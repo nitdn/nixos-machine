@@ -167,6 +167,7 @@ in
   programs.zoxide = {
     enable = true;
   };
+  programs.gh.enable = true;
 
   services.syncthing.enable = true;
   services.syncthing = {
