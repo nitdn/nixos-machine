@@ -94,6 +94,11 @@ in
     LC_TIME = "en_IN";
   };
 
+  i18n.extraLocales = [
+    "en_US.UTF-8"
+    "bn_IN"
+  ];
+
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
 
