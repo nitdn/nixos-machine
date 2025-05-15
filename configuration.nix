@@ -17,6 +17,15 @@ in
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];
+
+  # cleanup configs
+  nix.optimise.automatic = true;
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 7d";
+  };
+
   nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
   nix.settings.experimental-features = [
     "nix-command"
@@ -257,8 +266,7 @@ in
   # networking.firewall.enable = false;
 
   nix.settings.trusted-users = [
-    "root"
-    "ssmvabaa"
+    "@wheel"
   ];
 
   # This value determines the NixOS release from which the default
