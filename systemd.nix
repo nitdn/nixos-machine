@@ -1,35 +1,53 @@
 {
-  config,
-  pkgs,
-  lib,
-  ...
-}:
-{
-  systemd.user.paths.keepassxc-passonly = {
-    Unit = {
-      Description = "Run KeePassXC passonly service on file changes";
-    };
-    Path = {
-      PathModified = "${config.home.homeDirectory}/KeePass/E1o3l.kdbx";
-    };
-    Install = {
-      WantedBy = "paths.target";
-    };
+  # boot.kernelParams = [
+  #   "systemd.log_level=debug"
+  #   "systemd.log_target=kmsg"
+  #   "log_buf_len=1M"
+  #   "printk.devkmsg=on"
+  #   "enforcing=0"
+  # ];
+
+  # diagnose shutdown slowness
+  # systemd.shutdown."debug.sh" = pkgs.writeScript "debug.sh" ''
+  #   #!/bin/sh
+  #   mount -o remount,rw /
+  #   dmesg > /shutdown-log.txt
+  #   mount -o remount,ro /
+  # '';
+  services.homed.enable = true;
+  boot.initrd.systemd.enable = true;
+  boot.initrd.systemd.repart.enable = true;
+
+  systemd.repart.partitions."30-boot" = {
+    Type = "esp";
+    SizeMinBytes = "1G";
+    SizeMaxBytes = "2G";
+    Format = "vfat";
+    Label = "wd-efi";
   };
 
-  systemd.user.services.keepassxc-passonly = {
-    Unit = {
-      Description = "Run KeePassXC convert to passwordonly databases";
-    };
-    Service = {
-      Type = "oneshot";
-      ExecStart = ''
-        sh -c 'echo "${KEEPASSXC_PASSWORD}" \
-        | keepassxc-cli merge \
-        ${config.home.homeDirectory}/KeePass/E1o3l_password_only.kdbx \
-        ${config.home.homeDirectory}/KeePass/E1o3l.kdbx  \
-        --no-password-from --yubikey-from 2:$(ykinfo -qs)'
-      '';
-    };
+  systemd.repart.partitions."40-swap" = {
+    Type = "swap";
+    SizeMinBytes = "8G";
+    SizeMaxBytes = "20G";
+    Label = "wd-swap";
   };
+
+  systemd.repart.partitions."10-root" = {
+    Type = "root";
+    SizeMinBytes = "100G";
+    SizeMaxBytes = "200G";
+    # Format = "btrfs";
+    Label = "nixos-root-b";
+    CopyBlocks = "/dev/disk/by-partlabel/nixos-root-a";
+  };
+
+  systemd.repart.partitions."20-home" = {
+    Type = "home";
+    SizeMinBytes = "100G";
+    SizeMaxBytes = "300G";
+    Format = "btrfs";
+    Label = "systemd-home";
+  };
+
 }

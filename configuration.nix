@@ -42,13 +42,6 @@ in
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  # boot.kernelParams = [
-  #   "systemd.log_level=debug"
-  #   "systemd.log_target=kmsg"
-  #   "log_buf_len=1M"
-  #   "printk.devkmsg=on"
-  #   "enforcing=0"
-  # ];
 
   networking.hostName = "tjmaxxer"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -79,14 +72,6 @@ in
 
   services.desktopManager.cosmic.enable = true;
 
-  # diagnose shutdown slowness
-  # systemd.shutdown."debug.sh" = pkgs.writeScript "debug.sh" ''
-  #   #!/bin/sh
-  #   mount -o remount,rw /
-  #   dmesg > /shutdown-log.txt
-  #   mount -o remount,ro /
-  # '';
-
   # Set your time zone.
   time.timeZone = "Asia/Kolkata";
 
@@ -110,20 +95,6 @@ in
     "bn_IN"
   ];
 
-  # Enable the X11 windowing system.
-  # services.xserver.enable = true;
-
-  # Enable the GNOME Desktop Environment.
-  # services.xserver.displayManager.gdm = {
-  #   enable = true;
-  #   settings = {
-  #     greeter = {
-  #       Include = "ssmvabaa";
-  #     };
-  #   };
-  # };
-  # services.xserver.desktopManager.gnome.enable = true;
-
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
@@ -144,23 +115,7 @@ in
     # If you want to use JACK applications, uncomment this
     jack.enable = true;
 
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
   };
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  #  users.users.recovery = {
-  #    isNormalUser = true;
-  #    description = "recovery";
-  #    extraGroups = [ "networkmanager" "wheel" ];
-  #    packages = with pkgs; [
-  #    #  thunderbird
-  #    ];
-  #  };
 
   # Install firefox.
   programs.firefox.enable = true;
@@ -201,71 +156,7 @@ in
 
   programs.nh = {
     enable = true;
-    # I dont like hardcoded paths
-    # clean.enable = true;
-    # clean.extraArgs = "--keep-since 4d --keep 3";
-    # flake = "/home/user/my-nixos-config";
   };
-
-  fonts.packages = with pkgs; [
-    atkinson-hyperlegible-next
-    nerd-fonts.jetbrains-mono
-  ];
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
-  services.homed.enable = true;
-  boot.initrd.systemd.enable = true;
-  boot.initrd.systemd.repart.enable = true;
-
-  systemd.repart.partitions."30-boot" = {
-    Type = "esp";
-    SizeMinBytes = "1G";
-    SizeMaxBytes = "2G";
-    Format = "vfat";
-    Label = "wd-efi";
-  };
-
-  systemd.repart.partitions."40-swap" = {
-    Type = "swap";
-    SizeMinBytes = "8G";
-    SizeMaxBytes = "20G";
-    Label = "wd-swap";
-  };
-
-  systemd.repart.partitions."10-root" = {
-    Type = "root";
-    SizeMinBytes = "100G";
-    SizeMaxBytes = "200G";
-    # Format = "btrfs";
-    Label = "nixos-root-b";
-    CopyBlocks = "/dev/disk/by-partlabel/nixos-root-a";
-  };
-
-  systemd.repart.partitions."20-home" = {
-    Type = "home";
-    SizeMinBytes = "100G";
-    SizeMaxBytes = "300G";
-    Format = "btrfs";
-    Label = "systemd-home";
-  };
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
 
   nix.settings.trusted-users = [
     "@wheel"

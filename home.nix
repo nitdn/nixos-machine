@@ -26,20 +26,6 @@ in
   # release notes.
   home.stateVersion = "24.11"; # Please read the comment before changing.
 
-  fonts.fontconfig = {
-    enable = true;
-    defaultFonts.sansSerif = [ "Atkinson Hyberlegible Next" ];
-    defaultFonts.monospace = [ "JetbrainsMono Nerd Font Mono" ];
-  };
-
-  gtk = {
-    enable = true;
-    theme = {
-      name = "adw-gtk3";
-      package = pkgs.adw-gtk3;
-    };
-  };
-
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
@@ -176,4 +162,5 @@ in
   services.syncthing = {
     # openDefaultPorts = true;
   };
+
 }

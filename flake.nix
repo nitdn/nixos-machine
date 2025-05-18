@@ -17,6 +17,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     flake-parts.url = "github:hercules-ci/flake-parts";
+    stylix = {
+      url = "github:nix-community/stylix";
+      inputs.home-manager.follows = "home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
   };
 
@@ -62,12 +67,19 @@
 
                 modules = [
                   ./configuration.nix
+                  ./systemd.nix
+                  ./stylix.nix
                   inputs.sops-nix.nixosModules.sops
+                  inputs.stylix.nixosModules.stylix
                 ];
               };
               homeConfigurations.${username} = inputs.home-manager.lib.homeManagerConfiguration {
                 inherit pkgs;
-                modules = [ ./home.nix ];
+                modules = [
+                  ./home.nix
+                  ./stylix.nix
+                  inputs.stylix.homeModules.stylix
+                ];
                 extraSpecialArgs = {
                   inherit self username;
                 };

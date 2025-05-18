@@ -8,7 +8,6 @@
 {
   programs.helix = {
     settings = {
-      theme = "catppuccin_mocha";
       editor = {
         end-of-line-diagnostics = "hint";
         inline-diagnostics.cursor-line = "warning";
