@@ -59,6 +59,8 @@ in
 
   # Enable networking
   # networking.networkmanager.enable = true;
+
+  # Display manager configuration
   # Broken on homed users
   # services.displayManager.cosmic-greeter.enable = true;
   #

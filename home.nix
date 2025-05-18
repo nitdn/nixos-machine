@@ -114,7 +114,10 @@ in
 
     enable = true;
     defaultEditor = true;
-    extraPackages = [ pkgs.nixd ];
+    extraPackages = [
+      pkgs.nixd
+      pkgs.taplo
+    ];
   };
 
   programs.yazi = {
