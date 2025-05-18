@@ -27,6 +27,9 @@ in
   };
 
   nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
+  nix.settings.trusted-users = [
+    "@wheel"
+  ];
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
@@ -157,10 +160,6 @@ in
   programs.nh = {
     enable = true;
   };
-
-  nix.settings.trusted-users = [
-    "@wheel"
-  ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

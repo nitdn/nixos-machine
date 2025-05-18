@@ -12,7 +12,7 @@ in
   # manage.
   imports = [
     ./helix.nix
-    # ./systemd.nix
+    ./gitui.nix
   ];
   home.username = username;
   home.homeDirectory = lib.mkForce "/home/${username}";
@@ -48,7 +48,6 @@ in
     #
     pkgs.tlrc
     pkgs.p7zip
-
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -96,8 +95,8 @@ in
     gui = "systemd-run --scope --user start-cosmic";
     shutdown = "sudo shutdown now";
   };
-  programs.helix = {
 
+  programs.helix = {
     enable = true;
     defaultEditor = true;
     extraPackages = [
