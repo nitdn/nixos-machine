@@ -157,6 +157,17 @@ in
   };
   programs.gh.enable = true;
 
+  programs.bat = {
+    enable = true;
+    extraPackages = with pkgs.bat-extras; [
+      batdiff
+      batman
+      batgrep
+      batwatch
+      batpipe
+    ];
+  };
+
   services.syncthing.enable = true;
   services.syncthing = {
     # openDefaultPorts = true;

@@ -94,8 +94,8 @@ in
   };
 
   i18n.extraLocales = [
-    "en_US.UTF-8"
-    "bn_IN"
+    "en_US.UTF-8/UTF-8"
+    "bn_IN/UTF-8"
   ];
 
   # Configure keymap in X11
@@ -155,6 +155,9 @@ in
     mangohud
     vulkan-tools
     gamescope
+    ripgrep
+    bat
+    trashy
   ];
 
   programs.nh = {
