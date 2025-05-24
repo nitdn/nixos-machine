@@ -5,8 +5,9 @@
     # Specify the source of Home Manager and Nixpkgs.
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     zen-browser = {
-      url = "github:youwen5/zen-browser-flake";
+      url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
     };
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -22,7 +23,13 @@
       inputs.home-manager.follows = "home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nixos-facter-modules = {
+      url = "github:numtide/nixos-facter-modules";
+    };
   };
 
   outputs =
@@ -66,23 +73,49 @@
                 };
 
                 modules = [
-                  ./configuration.nix
-                  ./systemd.nix
+                  ./tjmaxxer/configuration.nix
+                  ./tjmaxxer/systemd.nix
                   ./stylix.nix
                   inputs.sops-nix.nixosModules.sops
                   inputs.stylix.nixosModules.stylix
                 ];
               };
+
               homeConfigurations.${username} = inputs.home-manager.lib.homeManagerConfiguration {
                 inherit pkgs;
                 modules = [
-                  ./home.nix
+                  ./tjmaxxer/home.nix
+                  ./tjmaxxer/helix.nix
+                  ./tjmaxxer/gitui.nix
                   ./stylix.nix
                   inputs.stylix.homeModules.stylix
+                  inputs.zen-browser.homeModules.twilight
                 ];
                 extraSpecialArgs = {
                   inherit self username;
                 };
+              };
+
+              nixosConfigurations.vps01 = inputs.nixpkgs.lib.nixosSystem {
+                modules = [
+                  inputs.disko.nixosModules.disko
+                  {
+                    networking.useDHCP = inputs.nixpkgs.lib.mkForce false;
+                    services.cloud-init = {
+                      enable = true;
+                      network.enable = true;
+                    };
+                  }
+                  ./vps/configuration.nix
+                  inputs.nixos-facter-modules.nixosModules.facter
+                  {
+                    config.facter.reportPath =
+                      if builtins.pathExists ./vps/facter.json then
+                        ./vps/facter.json
+                      else
+                        throw "Have you forgotten to run nixos-anywhere with `--generate-hardware-config nixos-facter ./vps/facter.json`?";
+                  }
+                ];
               };
             }
           );

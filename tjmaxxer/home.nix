@@ -11,8 +11,9 @@ in
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   imports = [
-    ./helix.nix
-    ./gitui.nix
+    # ./helix.nix
+    # ./gitui.nix
+    # inputs.zen-browser.homeModules.twilight
   ];
   home.username = username;
   home.homeDirectory = lib.mkForce "/home/${username}";
@@ -168,6 +169,8 @@ in
       batpipe
     ];
   };
+
+  programs.zen-browser.enable = true;
 
   services.syncthing.enable = true;
   services.syncthing = {

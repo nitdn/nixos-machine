@@ -5,7 +5,6 @@
 {
   lib,
   inputs,
-  inputs',
   pkgs,
   ...
 }:
@@ -141,7 +140,6 @@ in
     #  wget
     gparted
     helix
-    inputs'.zen-browser.packages.zen-browser
     keepassxc
     ghostty
     wl-clipboard

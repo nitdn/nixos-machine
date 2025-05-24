@@ -6,8 +6,13 @@
   ...
 }:
 {
+  # helix should not be confined to 16 colors
+  stylix.targets.helix.enable = false;
+
   programs.helix = {
     settings = {
+      # this has the best contrast imo
+      theme = "dracula_at_night";
       editor = {
         end-of-line-diagnostics = "hint";
         inline-diagnostics.cursor-line = "warning";
