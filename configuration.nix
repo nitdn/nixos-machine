@@ -158,6 +158,7 @@ in
     ripgrep
     bat
     trashy
+    wl-clip-persist
   ];
 
   programs.nh = {

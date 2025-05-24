@@ -48,6 +48,7 @@ in
     #
     pkgs.tlrc
     pkgs.p7zip
+    pkgs.charm-freeze
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
