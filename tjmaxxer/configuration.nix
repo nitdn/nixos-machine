@@ -144,10 +144,8 @@ in
     ghostty
     wl-clipboard
     legcord
-    devenv
-    mkosi-full
     adwaita-icon-theme
-    wineWowPackages.stagingFull
+    wineWow64Packages.waylandFull
     protonup-qt
     lutris
     mangohud
@@ -157,6 +155,7 @@ in
     bat
     trashy
     wl-clip-persist
+    libpcap
   ];
 
   programs.nh = {
