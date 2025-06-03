@@ -56,7 +56,7 @@ in
         #Configure what block categories are used
         clientGroupsBlock = {
           default = [ "ads" ];
-          kids-ipad = [
+          "family*" = [
             "ads"
             "adult"
           ];

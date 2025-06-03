@@ -74,7 +74,6 @@
 
                 modules = [
                   ./tjmaxxer/configuration.nix
-                  ./tjmaxxer/systemd.nix
                   ./stylix.nix
                   inputs.sops-nix.nixosModules.sops
                   inputs.stylix.nixosModules.stylix
