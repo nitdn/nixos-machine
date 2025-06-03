@@ -13,8 +13,17 @@
     (modulesPath + "/installer/scan/not-detected.nix")
     (modulesPath + "/profiles/qemu-guest.nix")
     ./disk-config.nix
+    ./bind.nix
+    ./blocky.nix
   ];
   # cleanup configs
+
+  services.bind = {
+    domain_name = "slipstr.click";
+    IPv4 = "147.93.97.244";
+    IPv6 = "2a02:4780:12:d0d9::1";
+  };
+
   nix.optimise.automatic = true;
   nix.gc = {
     automatic = true;
@@ -39,9 +48,11 @@
   time.timeZone = "Asia/Kolkata";
 
   environment.systemPackages = map lib.lowPrio [
+    pkgs.btop
     pkgs.curl
-    pkgs.gitMinimal
     pkgs.ghostty
+    pkgs.gitMinimal
+    pkgs.helix
   ];
 
   programs.bash = {
@@ -57,6 +68,20 @@
     # change this to your ssh key
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAbQpjuFSDUDRO1j6gvxqI+zGsm4nRtXGxRbup8uzR8E ssmvabaa@tjmaxxer"
   ];
+
+  # This will add secrets.yml to the nix store
+  # You can avoid this by adding a string to the full path instead, i.e.
+  # sops.defaultSopsFile = "/root/.sops/secrets/example.yaml";
+  sops.defaultSopsFile = ../secrets/dns-secrets.yaml;
+  # This will automatically import SSH keys as age keys
+  sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+  # This is using an age key that is expected to already be in the filesystem
+  sops.age.keyFile = "/var/lib/sops-nix/key.txt";
+  # This will generate a new key if the key specified above does not exist
+  sops.age.generateKey = true;
+  # This is the actual specification of the secrets.
+  # sops.secrets.tsig-key = { };
+  # sops.secrets.dnssec-key = { };
 
   system.stateVersion = "24.11";
 }

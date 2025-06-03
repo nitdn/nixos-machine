@@ -6,6 +6,7 @@
   lib,
   inputs,
   pkgs,
+  username,
   ...
 }:
 let
@@ -68,8 +69,9 @@ in
     };
   };
 
+  # Attempt to fix the slow shutdown issue
   environment.etc."greetd/environments".text = ''
-    start-cosmic
+    systemd-run --scope --user --property=User=${username} start-cosmic
   '';
 
   services.desktopManager.cosmic.enable = true;
@@ -138,24 +140,28 @@ in
   environment.systemPackages = with pkgs; [
     #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     #  wget
+    adwaita-icon-theme
+    bat
+    btop
+    gamescope
+    ghostty
+    git
     gparted
     helix
     keepassxc
-    ghostty
-    wl-clipboard
+    ldns # drill
     legcord
-    adwaita-icon-theme
-    wineWow64Packages.waylandFull
-    protonup-qt
+    libpcap
     lutris
     mangohud
-    vulkan-tools
-    gamescope
+    protonup-qt
     ripgrep
-    bat
+    sops
     trashy
+    vulkan-tools
+    wineWow64Packages.waylandFull
+    wl-clipboard
     wl-clip-persist
-    libpcap
   ];
 
   programs.nh = {

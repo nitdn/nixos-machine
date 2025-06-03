@@ -1,0 +1,74 @@
+{
+  pkgs,
+  config,
+  ...
+}:
+let
+  certFile = "/var/lib/acme/dns.${domain_name}/fullchain.pem";
+  keyFile = "/var/lib/acme/dns.${domain_name}/key.pem";
+  inherit (config.services.bind) domain_name;
+in
+{
+  systemd.services.blocky.serviceConfig.Group = "blocky";
+  networking.firewall.allowedTCPPorts = [
+    443
+    853
+  ];
+
+  services.blocky = {
+    enable = true;
+
+    settings = {
+      caching = {
+        minTime = "5m";
+        maxTime = "30m";
+        prefetching = true;
+      };
+      ports.dns = 153;
+      ports.tls = 853;
+      ports.http = 4000;
+      upstreams.groups.default = [
+        "https://one.one.one.one/dns-query" # Using Cloudflare's DNS over HTTPS server for resolving queries.
+      ];
+      # For initially solving DoH/DoT Requests when no system Resolver is available.
+      bootstrapDns = {
+        upstream = "https://one.one.one.one/dns-query";
+        ips = [
+          "1.1.1.1"
+          "1.0.0.1"
+        ];
+      };
+      #Enable Blocking of certian domains.
+      blocking = {
+        denylists = {
+          #Adblocking
+          ads = [
+            "https://s3.amazonaws.com/lists.disconnect.me/simple_ad.txt"
+            "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts"
+            "http://sysctl.org/cameleon/hosts"
+            "https://s3.amazonaws.com/lists.disconnect.me/simple_tracking.txt"
+            "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts"
+          ];
+          #Another filter for blocking adult sites
+          adult = [ "https://blocklistproject.github.io/Lists/porn.txt" ];
+          #You can add additional categories
+        };
+        #Configure what block categories are used
+        clientGroupsBlock = {
+          default = [ "ads" ];
+          kids-ipad = [
+            "ads"
+            "adult"
+          ];
+        };
+      };
+      inherit certFile keyFile;
+      ecs = {
+        # optional: if the request ecs option with a max sice mask the address will be used as client ip
+        useAsClient = true;
+        # optional: if the request contains a ecs option it will be forwarded to the upstream resolver
+        forward = true;
+      };
+    };
+  };
+}

@@ -49,7 +49,6 @@ in
     #
     pkgs.tlrc
     pkgs.p7zip
-    pkgs.charm-freeze
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -104,6 +103,7 @@ in
     extraPackages = [
       pkgs.nixd
       pkgs.taplo
+      pkgs.yaml-language-server
     ];
   };
 

@@ -41,6 +41,17 @@
         formatter.command = lib.getExe pkgs.nixfmt-rfc-style;
 
       }
+      {
+        name = "yaml";
+        auto-format = true;
+        formatter.command = lib.getExe pkgs.dprint;
+        formatter.args = [
+          "fmt"
+          "--stdin"
+          "yaml"
+        ];
+      }
+
     ];
 
     # Enables LSP for flake-parts
@@ -50,6 +61,14 @@
     # Enables LSP for home-manager
     languages.language-server.nixd.config.nixd.options.home-manager = {
       expr = "(builtins.getFlake \"${self.outPath}\").homeConfigurations.\"${username}\".options";
+    };
+
+    # YAML config
+    languages.language-server.yaml-language-server.config.yaml = {
+      format = {
+        enable = true;
+      };
+      validation = true;
     };
   };
 

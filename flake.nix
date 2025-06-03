@@ -69,7 +69,7 @@
               nixosConfigurations.tjmaxxer = inputs.nixpkgs.lib.nixosSystem {
                 specialArgs = {
                   packages = config.packages;
-                  inherit inputs inputs';
+                  inherit inputs inputs' username;
                 };
 
                 modules = [
@@ -108,6 +108,7 @@
                   }
                   ./vps/configuration.nix
                   inputs.nixos-facter-modules.nixosModules.facter
+                  inputs.sops-nix.nixosModules.sops
                   {
                     config.facter.reportPath =
                       if builtins.pathExists ./vps/facter.json then
