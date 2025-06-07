@@ -151,7 +151,9 @@ in
     libpcap
     lutris
     mangohud
+    openssl
     protonup-qt
+    pwgen
     ripgrep
     sops
     trashy

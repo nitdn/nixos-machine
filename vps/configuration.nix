@@ -2,6 +2,7 @@
   modulesPath,
   lib,
   pkgs,
+  config,
   ...
 }:
 {
@@ -22,6 +23,48 @@
     domain_name = "slipstr.click";
     IPv4 = "147.93.97.244";
     IPv6 = "2a02:4780:12:d0d9::1";
+  };
+  # Firewalls
+  networking.firewall.allowedTCPPorts = [ 5432 ];
+
+  services.postgresql = {
+    enable = true;
+    ensureDatabases = [ "mydatabase" ];
+    settings.ssl = true;
+    settings.listen_addresses = lib.mkForce "*";
+    initialScript = config.sops.secrets.blocky_initdb.path;
+    identMap = ''
+      # ArbitraryMapName systemUser DBUser
+         superuser_map      root      postgres
+         superuser_map      postgres  postgres
+         # Let other names login as themselves
+         superuser_map      /^(.*)$   \1
+    '';
+    authentication = pkgs.lib.mkOverride 10 ''
+      #type database  DBuser  auth-method   optional_ident_map
+      local sameuser  all     peer          map=superuser_map
+      host  sameuser  all     127.0.0.1/32  scram-sha-256
+      host  sameuser  all     ::1/128       scram-sha-256
+      host  sameuser  blocky  all           scram-sha-256
+    '';
+  };
+
+  sops.secrets.blocky_initdb = {
+    owner = config.systemd.services.postgresql.serviceConfig.User;
+    sopsFile = ../secrets/postgres-secrets.yaml;
+  };
+
+  sops.secrets.pgtls-crt = {
+    format = "binary";
+    owner = config.systemd.services.postgresql.serviceConfig.User;
+    sopsFile = ../secrets/postgres-server.crt;
+    path = "${config.services.postgresql.dataDir}/server.crt";
+  };
+  sops.secrets.pgtls-key = {
+    format = "binary";
+    owner = config.systemd.services.postgresql.serviceConfig.User;
+    sopsFile = ../secrets/postgres-server.key;
+    path = "${config.services.postgresql.dataDir}/server.key";
   };
 
   nix.optimise.automatic = true;
@@ -53,6 +96,7 @@
     pkgs.ghostty
     pkgs.gitMinimal
     pkgs.helix
+    pkgs.openssl
   ];
 
   programs.bash = {

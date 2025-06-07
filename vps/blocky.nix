@@ -9,7 +9,22 @@ let
   inherit (config.services.bind) domain_name;
 in
 {
-  systemd.services.blocky.serviceConfig.Group = "blocky";
+
+  systemd.services.blocky = {
+    environment.PGPASSFILE = config.sops.secrets.pgpass.path;
+    serviceConfig = {
+      SupplementaryGroups = [ "acme" ];
+      User = "blocky";
+      Group = "blocky";
+    };
+  };
+
+  sops.secrets.pgpass = with config.systemd.services.blocky; {
+    sopsFile = ../secrets/postgres-secrets.yaml;
+    owner = serviceConfig.User;
+    group = serviceConfig.Group;
+  };
+
   networking.firewall.allowedTCPPorts = [
     443
     853
@@ -68,6 +83,10 @@ in
         useAsClient = true;
         # optional: if the request contains a ecs option it will be forwarded to the upstream resolver
         forward = true;
+      };
+      queryLog = {
+        type = "postgresql";
+        target = "postgres://blocky@127.0.0.1/blocky";
       };
     };
   };

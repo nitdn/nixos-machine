@@ -89,7 +89,6 @@ in
       defaults.email = "admin+acme@slipstr.click";
       certs."dns.${domain_name}" = {
         domain = "*.dns.${domain_name}";
-        group = config.systemd.services.blocky.serviceConfig.Group;
         dnsProvider = "rfc2136";
         environmentFile = "${pkgs.writeText "nsupdate-creds" ''
           RFC2136_NAMESERVER=ns1.${domain_name}

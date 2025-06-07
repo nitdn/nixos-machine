@@ -9,7 +9,7 @@ keys:
   - &server_vps01 age1y372l3n6l0pxyj523p58m5d6nffagzgwjvgyl3h3ful2373qgvfq9fdl7a
 
 creation_rules:
-  - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
+  - path_regex: secrets/[^/]+\.(yaml|json|env|ini|crt|key)$
     key_groups:
       - age:
           - *admin_tjmaxxer
