@@ -42,6 +42,9 @@ in
     };
 
     services.bind.enable = true;
+    services.bind.extraOptions = ''
+      recursion no;
+    '';
     services.bind.extraConfig = ''
       include "${config.sops.secrets.named-tsig-key.path}";
     '';
