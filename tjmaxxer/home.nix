@@ -144,6 +144,8 @@ in
       "ctrl+k=goto_split:up"
       "${leader.key}>backslash=new_split:right"
       "${leader.key}>minus=new_split:down"
+      "${leader.key}>ctrl+backslash=new_split:right"
+      "${leader.key}>ctrl+minus=new_split:down"
     ];
   };
 
