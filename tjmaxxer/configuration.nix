@@ -147,7 +147,7 @@ in
     helix
     keepassxc
     ldns # drill
-    legcord
+    vesktop
     libpcap
     lutris
     mangohud
