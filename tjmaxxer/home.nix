@@ -82,6 +82,12 @@ in
   #
   #  /etc/profiles/per-user/ssmvabaa/etc/profile.d/hm-session-vars.sh
   #
+  nixpkgs.config.allowUnfreePredicate =
+    pkg:
+    builtins.elem (lib.getName pkg) [
+      "obsidian"
+    ];
+
   home.sessionVariables = {
     EDITOR = "hx";
     # EDITOR = "emacs";
@@ -177,6 +183,21 @@ in
   services.syncthing.enable = true;
   services.syncthing = {
     # openDefaultPorts = true;
+  };
+  programs.btop.enable = true;
+  programs.obsidian.enable = true;
+  programs.lutris = {
+    enable = true;
+    extraPackages = with pkgs; [
+      mangohud
+      winetricks
+      gamescope
+      gamemode
+      umu-launcher
+    ];
+  };
+  programs.vesktop.enable = true;
+  programs.vesktop.settings = {
   };
 
 }

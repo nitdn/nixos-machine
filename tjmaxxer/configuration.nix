@@ -139,7 +139,6 @@ in
     #  wget
     adwaita-icon-theme
     bat
-    btop
     gamescope
     ghostty
     git
@@ -147,20 +146,14 @@ in
     helix
     keepassxc
     ldns # drill
-    vesktop
-    libpcap
-    lutris
     mangohud
     openssl
-    protonup-qt
     pwgen
     ripgrep
     sops
     trashy
     vulkan-tools
-    wineWow64Packages.waylandFull
-    wl-clipboard
-    wl-clip-persist
+    wineWow64Packages.stagingFull
   ];
 
   programs.nh = {
