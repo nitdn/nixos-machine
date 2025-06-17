@@ -27,6 +27,10 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    niri = {
+      url = "github:sodiboo/niri-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixos-facter-modules = {
       url = "github:numtide/nixos-facter-modules";
     };
@@ -60,11 +64,12 @@
           systems = [ "x86_64-linux" ];
           flake = withSystem "x86_64-linux" (
             {
-              pkgs,
               config,
               inputs',
+              pkgs,
               ...
             }:
+
             {
               nixosConfigurations.tjmaxxer = inputs.nixpkgs.lib.nixosSystem {
                 specialArgs = {
@@ -77,6 +82,11 @@
                   ./stylix.nix
                   inputs.sops-nix.nixosModules.sops
                   inputs.stylix.nixosModules.stylix
+                  inputs.niri.nixosModules.niri
+                  {
+                    programs.niri.enable = true;
+                    nixpkgs.overlays = [ inputs.niri.overlays.niri ];
+                  }
                 ];
               };
 
@@ -89,6 +99,13 @@
                   ./stylix.nix
                   inputs.stylix.homeModules.stylix
                   inputs.zen-browser.homeModules.twilight
+                  inputs.niri.homeModules.niri
+                  inputs.niri.homeModules.stylix
+                  {
+                    programs.niri.enable = true;
+                    nixpkgs.overlays = [ inputs.niri.overlays.niri ];
+                  }
+                  ./tjmaxxer/niri.nix
                 ];
                 extraSpecialArgs = {
                   inherit self username;

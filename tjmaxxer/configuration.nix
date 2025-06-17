@@ -69,21 +69,9 @@ in
   # Broken on homed users
   # services.displayManager.cosmic-greeter.enable = true;
   #
-  services.greetd = {
-    enable = true;
-    settings = {
-      default_session = {
-        command = "dbus-run-session ${pkgs.cage}/bin/cage -s -- ${pkgs.greetd.gtkgreet}/bin/gtkgreet";
-      };
-    };
-  };
+  services.displayManager.gdm.enable = true;
 
-  # Attempt to fix the slow shutdown issue
-  environment.etc."greetd/environments".text = ''
-    systemd-run --scope --user --property=User=${username} start-cosmic
-  '';
-
-  services.desktopManager.cosmic.enable = true;
+  # services.desktopManager.cosmic.enable = true;
 
   # Set your time zone.
   time.timeZone = "Asia/Kolkata";
@@ -92,6 +80,7 @@ in
   i18n.defaultLocale = "en_IN";
 
   i18n.extraLocales = [
+    "en_IN/UTF-8"
     "en_US.UTF-8/UTF-8"
     "bn_IN/UTF-8"
   ];
@@ -144,7 +133,6 @@ in
     git
     gparted
     helix
-    keepassxc
     ldns # drill
     mangohud
     openssl

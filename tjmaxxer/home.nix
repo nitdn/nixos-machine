@@ -47,6 +47,9 @@ in
     #   echo "Hello, ${config.home.username}!"
     # '')
     #
+    (pkgs.writeShellScriptBin "xterm" ''
+      ghostty "$@"
+    '')
     pkgs.tlrc
     pkgs.p7zip
   ];
@@ -90,6 +93,7 @@ in
 
   home.sessionVariables = {
     EDITOR = "hx";
+    TERMINAL = "ghostty";
     # EDITOR = "emacs";
   };
   # Let Home Manager install and manage itself.
@@ -158,6 +162,8 @@ in
   programs.starship = {
     enable = true;
   };
+
+  programs.keepassxc.enable = true;
 
   programs.fzf = {
     enable = true;
