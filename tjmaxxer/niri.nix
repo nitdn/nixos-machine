@@ -10,6 +10,7 @@
     nautilus
     xwayland-satellite
     mako
+    wl-clipboard
   ];
   programs.fuzzel = {
     enable = true;
@@ -19,6 +20,8 @@
       };
     };
   };
+  programs.niri.settings.layout.gaps = 0;
+  programs.niri.settings.prefer-no-csd = true;
   programs.niri.settings.outputs.DP-2 = {
     mode = {
       height = 1080;
@@ -33,10 +36,18 @@
       ];
     }
     { command = [ "xwayland-satellite" ]; }
+    { command = [ "ghostty" ]; }
+
   ];
   programs.niri.settings.environment = {
     DISPLAY = ":0";
   };
+  programs.niri.settings.animations.workspace-switch.kind.spring = {
+    damping-ratio = 1.0;
+    epsilon = 0.0001;
+    stiffness = 1000;
+  };
+
   programs.niri.settings.binds = with config.lib.niri.actions; {
     "XF86AudioRaiseVolume".action = spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+";
     "XF86AudioLowerVolume".action = spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-";
@@ -54,6 +65,7 @@
       repeat = false;
     };
     "Mod+T".action = spawn "ghostty";
+    "Mod+B".action = spawn "zen";
 
     # Default movement keymaps
     # ←h ↓j ↑k →l

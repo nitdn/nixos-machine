@@ -27,6 +27,11 @@ in
   # release notes.
   home.stateVersion = "24.11"; # Please read the comment before changing.
 
+  nixpkgs.config.allowUnfreePredicate =
+    pkg:
+    builtins.elem (lib.getName pkg) [
+      "obsidian"
+    ];
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
@@ -52,6 +57,7 @@ in
     '')
     pkgs.tlrc
     pkgs.p7zip
+    pkgs.obsidian
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -85,11 +91,6 @@ in
   #
   #  /etc/profiles/per-user/ssmvabaa/etc/profile.d/hm-session-vars.sh
   #
-  nixpkgs.config.allowUnfreePredicate =
-    pkg:
-    builtins.elem (lib.getName pkg) [
-      "obsidian"
-    ];
 
   home.sessionVariables = {
     EDITOR = "hx";
@@ -191,7 +192,6 @@ in
     # openDefaultPorts = true;
   };
   programs.btop.enable = true;
-  programs.obsidian.enable = true;
   programs.lutris = {
     enable = true;
     extraPackages = with pkgs; [
