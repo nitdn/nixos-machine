@@ -23,7 +23,11 @@ in
   # cleanup configs
   nix.optimise.automatic = true;
   nix.gc = {
-    automatic = true;
+    # WARN: Symlink store for home will not show up until you login
+    # at which point its already too late
+    # HACK: Turn off autogc indefinitely
+    automatic = false;
+
     dates = "weekly";
     options = "--delete-older-than 7d";
   };
@@ -121,6 +125,22 @@ in
     '';
   };
 
+  # make distrobox work
+  environment.etc = {
+    "subuid" = {
+      mode = "0644";
+      text = ''
+        ${username}:524288:65536
+      '';
+    };
+    "subgid" = {
+      mode = "0644";
+      text = ''
+        ${username}:524288:65536
+      '';
+    };
+  };
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -128,6 +148,8 @@ in
     #  wget
     adwaita-icon-theme
     bat
+    du-dust
+    eza
     gamescope
     ghostty
     git
@@ -141,8 +163,19 @@ in
     sops
     trashy
     vulkan-tools
-    wineWow64Packages.stagingFull
+    wineWowPackages.stagingFull
   ];
+
+  # security.wrappers = {
+  #   # a setuid root program
+  #   wine = {
+  #     owner = "root";
+  #     group = "root";
+  #     capabilities = "cap_net_raw+eip";
+  #     source = "${pkgs.wineWow64Packages.stagingFull}/bin/wine";
+  #     permissions = "a+rx";
+  #   };
+  # };
 
   programs.nh = {
     enable = true;

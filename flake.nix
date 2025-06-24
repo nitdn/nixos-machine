@@ -62,6 +62,21 @@
             inputs.home-manager.flakeModules.home-manager
           ];
           systems = [ "x86_64-linux" ];
+          perSystem =
+            {
+              pkgs,
+              config,
+              ...
+            }:
+            {
+              devShells.default = pkgs.mkShell {
+                packages = [
+                  pkgs.just
+                  pkgs.vscode-langservers-extracted
+                  pkgs.eww
+                ];
+              };
+            };
           flake = withSystem "x86_64-linux" (
             {
               config,

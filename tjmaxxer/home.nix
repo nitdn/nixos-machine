@@ -104,8 +104,9 @@ in
     gco = "git checkout";
     npu = "nix-prefetch-url";
     rm = "y";
-    gui = "systemd-run --scope --user start-cosmic";
-    shutdown = "sudo shutdown now";
+  };
+  programs.eza = {
+    enable = true;
   };
 
   programs.helix = {
@@ -146,17 +147,16 @@ in
 
   programs.ghostty = {
     enable = true;
-    settings.theme = "ayu";
-    settings.window-decoration = "server";
+    # settings.window-decoration = "server";
     settings.keybind = [
-      "ctrl+h=goto_split:left"
-      "ctrl+l=goto_split:right"
-      "ctrl+j=goto_split:down"
-      "ctrl+k=goto_split:up"
-      "${leader.key}>backslash=new_split:right"
-      "${leader.key}>minus=new_split:down"
-      "${leader.key}>ctrl+backslash=new_split:right"
-      "${leader.key}>ctrl+minus=new_split:down"
+      # "ctrl+h=goto_split:left"
+      # "ctrl+l=goto_split:right"
+      # "ctrl+j=goto_split:down"
+      # "ctrl+k=goto_split:up"
+      "${leader.key}>backslash=new_window"
+      # "${leader.key}>minus=new_split:down"
+      "${leader.key}>ctrl+backslash=new_window"
+      # "${leader.key}>ctrl+minus=new_split:down"
     ];
   };
 

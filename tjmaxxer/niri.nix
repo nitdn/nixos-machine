@@ -7,11 +7,15 @@
 {
 
   home.packages = with pkgs; [
-    nautilus
+    (pkgs.writeShellScriptBin "nautilus" ''
+      $TERMINAL -e yazi "$@"
+    '')
     xwayland-satellite
     mako
     wl-clipboard
+    libnotify
   ];
+
   programs.fuzzel = {
     enable = true;
     settings = {
@@ -37,6 +41,8 @@
     }
     { command = [ "xwayland-satellite" ]; }
     { command = [ "ghostty" ]; }
+    { command = [ "zen" ]; }
+    { command = [ "obsidian" ]; }
 
   ];
   programs.niri.settings.environment = {

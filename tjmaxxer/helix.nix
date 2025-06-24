@@ -12,10 +12,11 @@
   programs.helix = {
     settings = {
       # this has the best contrast imo
-      theme = "dracula_at_night";
+      theme = "darcula";
       editor = {
         end-of-line-diagnostics = "hint";
         inline-diagnostics.cursor-line = "warning";
+        lsp.display-inlay-hints = true;
       };
       editor.cursor-shape = {
         normal = "block";
@@ -51,6 +52,15 @@
           "yaml"
         ];
       }
+      {
+        name = "yuck";
+        auto-format = true;
+        formatter.command = lib.getExe pkgs.parinfer-rust;
+      }
+      {
+        name = "just";
+        language-servers = [ "just-lsp" ];
+      }
 
     ];
 
@@ -63,6 +73,10 @@
       expr = "(builtins.getFlake \"${self.outPath}\").homeConfigurations.\"${username}\".options";
     };
 
+    #justfile LSP
+    languages.language-server.just-lsp = {
+      command = lib.getExe pkgs.just-lsp;
+    };
     # YAML config
     languages.language-server.yaml-language-server.config.yaml = {
       format = {
