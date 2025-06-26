@@ -47,6 +47,7 @@ in
       # Add additional package names here
       "steam"
       "steam-unwrapped"
+      "hplip"
     ];
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -176,6 +177,9 @@ in
   #     permissions = "a+rx";
   #   };
   # };
+
+  hardware.sane.enable = true;
+  hardware.sane.extraBackends = [ pkgs.hplipWithPlugin ];
 
   programs.nh = {
     enable = true;

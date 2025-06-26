@@ -7,9 +7,7 @@
 {
 
   home.packages = with pkgs; [
-    (pkgs.writeShellScriptBin "nautilus" ''
-      $TERMINAL -e yazi "$@"
-    '')
+    nautilus
     xwayland-satellite
     mako
     wl-clipboard

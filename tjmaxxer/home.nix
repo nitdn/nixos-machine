@@ -34,7 +34,7 @@ in
     ];
   # The home.packages option allows you to install Nix packages into your
   # environment.
-  home.packages = [
+  home.packages = with pkgs; [
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
@@ -52,12 +52,13 @@ in
     #   echo "Hello, ${config.home.username}!"
     # '')
     #
-    (pkgs.writeShellScriptBin "xterm" ''
+    (writeShellScriptBin "xterm" ''
       ghostty "$@"
     '')
-    pkgs.tlrc
-    pkgs.p7zip
-    pkgs.obsidian
+    naps2
+    obsidian
+    p7zip
+    tlrc
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -112,10 +113,10 @@ in
   programs.helix = {
     enable = true;
     defaultEditor = true;
-    extraPackages = [
-      pkgs.nixd
-      pkgs.taplo
-      pkgs.yaml-language-server
+    extraPackages = with pkgs; [
+      nixd
+      taplo
+      yaml-language-server
     ];
   };
 
@@ -195,11 +196,11 @@ in
   programs.lutris = {
     enable = true;
     extraPackages = with pkgs; [
-      mangohud
-      winetricks
-      gamescope
       gamemode
+      gamescope
+      mangohud
       umu-launcher
+      winetricks
     ];
   };
   programs.vesktop.enable = true;
