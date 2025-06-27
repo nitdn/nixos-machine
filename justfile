@@ -15,6 +15,7 @@ freeze:
     git merge next
     git push
 
+[working-directory: '../main']
 sysupgrade:
     nh os switch .
     nh home switch .
