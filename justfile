@@ -1,14 +1,20 @@
+[working-directory: '../eww']
+test-dir:
+    pwd
+
 ewd action:
     eww --config ./eww {{action}} example
 
+[working-directory: '../next']
 lock:
-    git switch main
-    nix flake update
-    git add ./flake.lock
-    git commit -m "Bump {{datetime("%F")}}"
-    git push
-    git switch -
+    git fetch
+    git merge origin/update_flake_lock_action
     
+[working-directory: '../main']
+freeze:
+    git merge next
+    git push
+
 sysupgrade:
     nh os switch .
     nh home switch .
