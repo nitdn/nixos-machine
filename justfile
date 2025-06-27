@@ -12,7 +12,8 @@ lock:
     
 [working-directory: '../main']
 freeze:
-    git merge next
+    git fetch
+    git merge origin/next
     git push
 
 [working-directory: '../main']
