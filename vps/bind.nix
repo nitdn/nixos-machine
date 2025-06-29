@@ -84,6 +84,10 @@ in
 
         ns2          IN      A       ${IPv4}
                      IN      AAAA    ${IPv6}
+
+        *            IN      A       ${IPv4}
+                     IN      AAAA    ${IPv6}
+
       '';
     };
 

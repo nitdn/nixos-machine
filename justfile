@@ -1,22 +1,25 @@
-[working-directory: '../eww']
-test-dir:
-    pwd
+[working-directory('../next')]
+test-vps:
+    nixos-rebuild --flake . --target-host root@vps01 test
+
+@pwgen len:
+    pwgen -s {{ len }} 1
 
 ewd action:
-    eww --config ./eww {{action}} example
+    eww --config ./eww {{ action }} example
 
-[working-directory: '../next']
+[working-directory('../next')]
 lock:
     git fetch
     git merge origin/update_flake_lock_action
-    
-[working-directory: '../main']
+
+[working-directory('../main')]
 freeze:
     git fetch
     git merge origin/next
     git push
 
-[working-directory: '../main']
+[working-directory('../main')]
 sysupgrade:
     nh os switch .
     nh home switch .

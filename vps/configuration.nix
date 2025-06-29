@@ -22,6 +22,7 @@
     ./disk-config.nix
     ./bind.nix
     ./blocky.nix
+    ./failing2ban.nix
   ];
   # cleanup configs
 
@@ -53,6 +54,28 @@
       host  sameuser  all     ::1/128       scram-sha-256
       host  sameuser  blocky  all           scram-sha-256
     '';
+  };
+
+  services.searx = {
+    enable = true;
+    redisCreateLocally = true;
+    settings = {
+      server.port = 8001;
+      server.bind_address = "::1";
+      server.secret_key = config.sops.secrets.searx.path;
+
+    };
+  };
+
+  services.nginx.enable = true;
+  services.nginx.virtualHosts = {
+    "search.slipstr.click" = {
+      forceSSL = true;
+      enableACME = true;
+      locations."/" = {
+        proxyPass = "http://localhost:8001";
+      };
+    };
   };
 
   sops.secrets.blocky_initdb = {
@@ -122,7 +145,7 @@
   # This will add secrets.yml to the nix store
   # You can avoid this by adding a string to the full path instead, i.e.
   # sops.defaultSopsFile = "/root/.sops/secrets/example.yaml";
-  sops.defaultSopsFile = ../secrets/dns-secrets.yaml;
+  sops.defaultSopsFile = ../secrets/core.yaml;
   # This will automatically import SSH keys as age keys
   sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
   # This is using an age key that is expected to already be in the filesystem
@@ -130,8 +153,9 @@
   # This will generate a new key if the key specified above does not exist
   sops.age.generateKey = true;
   # This is the actual specification of the secrets.
-  # sops.secrets.tsig-key = { };
-  # sops.secrets.dnssec-key = { };
+  sops.secrets = {
+    searx = { };
+  };
 
   system.stateVersion = "24.11";
 }
