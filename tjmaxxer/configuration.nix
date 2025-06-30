@@ -63,6 +63,7 @@ in
   networking.hostName = "tjmaxxer"; # Define your hostname.
   networking = {
     nameservers = [
+      # "1.1.1.1" # oh no
       "127.0.0.1"
       "::1"
     ];
@@ -89,7 +90,9 @@ in
   time.timeZone = "Asia/Kolkata";
 
   # Select internationalisation properties.
-  i18n.defaultLocale = "en_IN";
+  i18n.extraLocaleSettings = {
+    LC_ALL = "en_IN";
+  };
 
   i18n.extraLocales = [
     "en_IN/UTF-8"

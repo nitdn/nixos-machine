@@ -4,8 +4,8 @@
   ...
 }:
 let
-  certFile = "/var/lib/acme/dns.${domain_name}/fullchain.pem";
-  keyFile = "/var/lib/acme/dns.${domain_name}/key.pem";
+  certFile = "/var/lib/acme/wildcard.dns.${domain_name}/fullchain.pem";
+  keyFile = "/var/lib/acme/wildcard.dns.${domain_name}/key.pem";
   inherit (config.services.bind) domain_name;
 in
 {
@@ -44,6 +44,7 @@ in
       ports.http = 4000;
       upstreams.groups.default = [
         "https://one.one.one.one/dns-query" # Using Cloudflare's DNS over HTTPS server for resolving queries.
+        "https://dns.google/dns-query" # Some URLs do not work with CF
       ];
       # For initially solving DoH/DoT Requests when no system Resolver is available.
       bootstrapDns = {
@@ -51,6 +52,8 @@ in
         ips = [
           "1.1.1.1"
           "1.0.0.1"
+          "2606:4700:4700::1111"
+          "2606:4700:4700::1001"
         ];
       };
       #Enable Blocking of certian domains.
@@ -83,6 +86,9 @@ in
         useAsClient = true;
         # optional: if the request contains a ecs option it will be forwarded to the upstream resolver
         forward = true;
+      };
+      prometheus = {
+        enable = true;
       };
       queryLog = {
         type = "postgresql";

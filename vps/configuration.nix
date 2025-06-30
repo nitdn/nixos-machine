@@ -5,6 +5,9 @@
   config,
   ...
 }:
+let
+  inherit (config.services.bind) domain_name;
+in
 {
   nix.settings.substituters = [
     "https://cache.garnix.io"
@@ -69,11 +72,22 @@
 
   services.nginx.enable = true;
   services.nginx.virtualHosts = {
-    "search.slipstr.click" = {
+    "search.${domain_name}" = {
       forceSSL = true;
       enableACME = true;
       locations."/" = {
         proxyPass = "http://localhost:8001";
+      };
+    };
+    "dns.${domain_name}" = {
+      forceSSL = true;
+      enableACME = true;
+      locations."/dns-query" = {
+        proxyPass = "http://localhost:4000";
+      };
+      locations."/" = {
+        basicAuthFile = ../secrets/blocky-htpasswd;
+        proxyPass = "http://localhost:4000";
       };
     };
   };

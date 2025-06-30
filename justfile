@@ -2,6 +2,9 @@
 test-vps:
     nixos-rebuild --flake . --target-host root@vps01 test
 
+@pwget item:
+    sops decrypt --extract '["{{ item }}"]["password"]' secrets/core.yaml
+
 @pwgen len:
     pwgen -s {{ len }} 1
 

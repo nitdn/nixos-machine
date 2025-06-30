@@ -76,6 +76,9 @@ in
                      IN      AAAA    ${IPv6}
 
 
+        dns          IN      A       ${IPv4}
+                     IN      AAAA    ${IPv6}
+
         *.dns        IN      A       ${IPv4}
                      IN      AAAA    ${IPv6}
 
@@ -87,14 +90,13 @@ in
 
         *            IN      A       ${IPv4}
                      IN      AAAA    ${IPv6}
-
       '';
     };
 
     security.acme = {
       acceptTerms = true;
       defaults.email = "admin+acme@slipstr.click";
-      certs."dns.${domain_name}" = {
+      certs."wildcard.dns.${domain_name}" = {
         domain = "*.dns.${domain_name}";
         dnsProvider = "rfc2136";
         environmentFile = "${pkgs.writeText "nsupdate-creds" ''
@@ -110,7 +112,7 @@ in
         key = "tsig-key";
       };
       acme-tsig-key = {
-        owner = config.systemd.services."acme-dns.${domain_name}".serviceConfig.User;
+        owner = config.systemd.services."acme-wildcard.dns.${domain_name}".serviceConfig.User;
         key = "tsig-key";
       };
     };

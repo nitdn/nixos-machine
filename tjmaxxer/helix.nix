@@ -59,6 +59,7 @@
       }
       {
         name = "just";
+        # auto-format = true; # This bugs out saving
         language-servers = [ "just-lsp" ];
       }
 
