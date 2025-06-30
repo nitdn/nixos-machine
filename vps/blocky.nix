@@ -7,22 +7,27 @@ let
   certFile = "/var/lib/acme/wildcard.dns.${domain_name}/fullchain.pem";
   keyFile = "/var/lib/acme/wildcard.dns.${domain_name}/key.pem";
   inherit (config.services.bind) domain_name;
+  blocky-group = config.users.groups.blocky-creds.name;
 in
 {
 
   systemd.services.blocky = {
     environment.PGPASSFILE = config.sops.secrets.pgpass.path;
     serviceConfig = {
-      SupplementaryGroups = [ "acme" ];
-      User = "blocky";
-      Group = "blocky";
+      SupplementaryGroups = [
+        "acme"
+        blocky-group
+      ];
     };
   };
 
-  sops.secrets.pgpass = with config.systemd.services.blocky; {
+  users.extraGroups = {
+    blocky-creds = { };
+  };
+  sops.secrets.pgpass = {
     sopsFile = ../secrets/postgres-secrets.yaml;
-    owner = serviceConfig.User;
-    group = serviceConfig.Group;
+    group = blocky-group;
+    mode = "0440";
   };
 
   networking.firewall.allowedTCPPorts = [
