@@ -70,6 +70,12 @@ in
     };
   };
 
+  services.dolibarr = {
+    enable = true;
+    domain = "erp.slipstr.click";
+    nginx = { };
+  };
+
   services.nginx.enable = true;
   services.nginx.virtualHosts = {
     "search.${domain_name}" = {
