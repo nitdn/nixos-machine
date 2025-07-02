@@ -93,8 +93,8 @@
                 };
 
                 modules = [
-                  ./tjmaxxer/configuration.nix
-                  ./stylix.nix
+                  ./pc/tjmaxxer/configuration.nix
+                  ./pc/stylix.nix
                   inputs.sops-nix.nixosModules.sops
                   inputs.stylix.nixosModules.stylix
                   inputs.niri.nixosModules.niri
@@ -108,10 +108,8 @@
               homeConfigurations.${username} = inputs.home-manager.lib.homeManagerConfiguration {
                 inherit pkgs;
                 modules = [
-                  ./tjmaxxer/home.nix
-                  ./tjmaxxer/helix.nix
-                  ./tjmaxxer/gitui.nix
-                  ./stylix.nix
+                  ./pc/home.nix
+                  ./pc/stylix.nix
                   inputs.stylix.homeModules.stylix
                   inputs.zen-browser.homeModules.twilight
                   inputs.niri.homeModules.niri
@@ -120,7 +118,6 @@
                     programs.niri.enable = true;
                     nixpkgs.overlays = [ inputs.niri.overlays.niri ];
                   }
-                  ./tjmaxxer/niri.nix
                 ];
                 extraSpecialArgs = {
                   inherit self username;

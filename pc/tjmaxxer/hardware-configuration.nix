@@ -17,6 +17,7 @@
     "ahci"
     "usbhid"
     "usb_storage"
+    "usbcore"
     "sd_mod"
   ];
   boot.initrd.kernelModules = [ ];
@@ -29,14 +30,14 @@
     options = [ "subvol=@" ];
   };
 
-  # fileSystems."/boot" = {
-  #   device = "/dev/disk/by-partlabel/wd-efi";
-  #   fsType = "vfat";
-  #   options = [
-  #     "fmask=0077"
-  #     "dmask=0077"
-  #   ];
-  # };
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-partlabel/wd-efi";
+    fsType = "vfat";
+    options = [
+      "fmask=0022"
+      "dmask=0022"
+    ];
+  };
 
   # fileSystems."/home" = {
   #   device = "/dev/disk/by-uuid/6e34a9a3-52db-446c-89f2-a773b82446b7";

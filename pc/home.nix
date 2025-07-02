@@ -11,8 +11,9 @@ in
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   imports = [
-    # ./helix.nix
-    # ./gitui.nix
+    ./helix.nix
+    ./gitui.nix
+    ./niri.nix
     # inputs.zen-browser.homeModules.twilight
   ];
   home.username = username;
@@ -90,7 +91,7 @@ in
   #
   # or
   #
-  #  /etc/profiles/per-user/ssmvabaa/etc/profile.d/hm-session-vars.sh
+  #  /etc/profiles/per-user/${username}/etc/profile.d/hm-session-vars.sh
   #
 
   home.sessionVariables = {
