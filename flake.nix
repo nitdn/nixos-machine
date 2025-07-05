@@ -9,6 +9,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
+    nix-on-droid = {
+      url = "github:nix-community/nix-on-droid/release-24.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -61,11 +66,13 @@
             # Optional: use external flake logic, e.g.
             inputs.home-manager.flakeModules.home-manager
           ];
-          systems = [ "x86_64-linux" ];
+          systems = [
+            "x86_64-linux"
+            "aarch64-linux"
+          ];
           perSystem =
             {
               pkgs,
-              config,
               ...
             }:
             {
@@ -77,77 +84,108 @@
                 ];
               };
             };
-          flake = withSystem "x86_64-linux" (
+          flake.nixOnDroidConfigurations.default = withSystem "aarch64-linux" (
+            { system, ... }:
+            inputs.nix-on-droid.lib.nixOnDroidConfiguration {
+              _module.args.pkgs = import inputs.nixpkgs {
+                inherit system;
+                overlays = [
+                  inputs.nix-on-droid.overlays.default
+                ];
+              };
+              modules = [
+                ./pc/phone-home/nix-on-droid.nix
+
+                # list of extra modules for Nix-on-Droid system
+                # { nix.registry.nixpkgs.flake = nixpkgs; }
+                # ./path/to/module.nix
+
+                # or import source out-of-tree modules like:
+                # flake.nixOnDroidModules.module
+              ];
+
+              # list of extra special args for Nix-on-Droid modules
+              extraSpecialArgs = {
+                # rootPath = ./.;
+              };
+
+              # set path to home-manager flake
+              home-manager-path = inputs.home-manager.outPath;
+            }
+          );
+          flake.nixosConfigurations.tjmaxxer = withSystem "x86_64-linux" (
             {
               config,
               inputs',
-              pkgs,
               ...
             }:
 
-            {
-              nixosConfigurations.tjmaxxer = inputs.nixpkgs.lib.nixosSystem {
-                specialArgs = {
-                  packages = config.packages;
-                  inherit inputs inputs' username;
-                };
-
-                modules = [
-                  ./pc/tjmaxxer/configuration.nix
-                  ./pc/stylix.nix
-                  inputs.sops-nix.nixosModules.sops
-                  inputs.stylix.nixosModules.stylix
-                  inputs.niri.nixosModules.niri
-                  {
-                    programs.niri.enable = true;
-                    nixpkgs.overlays = [ inputs.niri.overlays.niri ];
-                  }
-                ];
+            inputs.nixpkgs.lib.nixosSystem {
+              specialArgs = {
+                packages = config.packages;
+                inherit inputs inputs' username;
               };
 
-              homeConfigurations.${username} = inputs.home-manager.lib.homeManagerConfiguration {
-                inherit pkgs;
-                modules = [
-                  ./pc/home.nix
-                  ./pc/stylix.nix
-                  inputs.stylix.homeModules.stylix
-                  inputs.zen-browser.homeModules.twilight
-                  inputs.niri.homeModules.niri
-                  inputs.niri.homeModules.stylix
-                  {
-                    programs.niri.enable = true;
-                    nixpkgs.overlays = [ inputs.niri.overlays.niri ];
-                  }
-                ];
-                extraSpecialArgs = {
-                  inherit self username;
-                };
-              };
+              modules = [
+                inputs.sops-nix.nixosModules.sops
+                inputs.stylix.nixosModules.stylix
+                inputs.niri.nixosModules.niri
+                ./pc/tjmaxxer/configuration.nix
+                ./pc/stylix.nix
+                {
+                  imports = [
+                  ];
+                  programs.niri.enable = true;
+                  nixpkgs.overlays = [ inputs.niri.overlays.niri ];
+                }
+              ];
+            }
+          );
 
-              nixosConfigurations.vps01 = inputs.nixpkgs.lib.nixosSystem {
-                modules = [
-                  inputs.disko.nixosModules.disko
-                  {
-                    networking.useDHCP = inputs.nixpkgs.lib.mkForce false;
-                    services.cloud-init = {
-                      enable = true;
-                      network.enable = true;
-                    };
-                  }
-                  ./vps/configuration.nix
-                  inputs.nixos-facter-modules.nixosModules.facter
-                  inputs.sops-nix.nixosModules.sops
-                  {
-                    config.facter.reportPath =
-                      if builtins.pathExists ./vps/facter.json then
-                        ./vps/facter.json
-                      else
-                        throw "Have you forgotten to run nixos-anywhere with `--generate-hardware-config nixos-facter ./vps/facter.json`?";
-                  }
-                ];
+          flake.homeConfigurations.${username} = withSystem "x86_64-linux" (
+            { pkgs, ... }:
+            inputs.home-manager.lib.homeManagerConfiguration {
+              inherit pkgs;
+              modules = [
+                ./pc/home.nix
+                ./pc/stylix.nix
+                inputs.stylix.homeModules.stylix
+                inputs.zen-browser.homeModules.twilight
+                inputs.niri.homeModules.niri
+                inputs.niri.homeModules.stylix
+                {
+                  programs.niri.enable = true;
+                  nixpkgs.overlays = [ inputs.niri.overlays.niri ];
+                }
+              ];
+              extraSpecialArgs = {
+                inherit self username;
               };
             }
           );
+
+          flake.nixosConfigurations.vps01 = inputs.nixpkgs.lib.nixosSystem {
+            modules = [
+              inputs.disko.nixosModules.disko
+              {
+                networking.useDHCP = inputs.nixpkgs.lib.mkForce false;
+                services.cloud-init = {
+                  enable = true;
+                  network.enable = true;
+                };
+              }
+              ./vps/configuration.nix
+              inputs.nixos-facter-modules.nixosModules.facter
+              inputs.sops-nix.nixosModules.sops
+              {
+                config.facter.reportPath =
+                  if builtins.pathExists ./vps/facter.json then
+                    ./vps/facter.json
+                  else
+                    throw "Have you forgotten to run nixos-anywhere with `--generate-hardware-config nixos-facter ./vps/facter.json`?";
+              }
+            ];
+          };
         }
       );
 }

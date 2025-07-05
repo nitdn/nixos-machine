@@ -105,6 +105,9 @@ in
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
+  services.printing.drivers = with pkgs; [
+    epson-escpr
+  ];
 
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
