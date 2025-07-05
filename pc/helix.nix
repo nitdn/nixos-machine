@@ -6,9 +6,6 @@
   ...
 }:
 {
-  # helix should not be confined to 16 colors
-  stylix.targets.helix.enable = false;
-
   programs.helix = {
     settings = {
       # this has the best contrast imo

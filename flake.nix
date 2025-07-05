@@ -96,7 +96,6 @@
             inputs.nix-on-droid.lib.nixOnDroidConfiguration {
               modules = [
                 ./pc/phone-home/nix-on-droid.nix
-                inputs.stylix.nixOnDroidModules.stylix
                 # list of extra modules for Nix-on-Droid system
                 # { nix.registry.nixpkgs.flake = nixpkgs; }
                 # ./path/to/module.nix

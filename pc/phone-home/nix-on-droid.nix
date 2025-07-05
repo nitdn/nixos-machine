@@ -7,7 +7,6 @@
 
 {
   imports = [
-    ./stylix.nix
   ];
 
   # Simply install just the packages
