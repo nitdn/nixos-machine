@@ -73,9 +73,16 @@
           perSystem =
             {
               pkgs,
+              system,
               ...
             }:
             {
+              _module.args.pkgs = import inputs.nixpkgs {
+                inherit system;
+                overlays = [
+                  inputs.nix-on-droid.overlays.default
+                ];
+              };
               devShells.default = pkgs.mkShell {
                 packages = [
                   pkgs.just
@@ -85,17 +92,11 @@
               };
             };
           flake.nixOnDroidConfigurations.default = withSystem "aarch64-linux" (
-            { system, ... }:
+            { pkgs, ... }:
             inputs.nix-on-droid.lib.nixOnDroidConfiguration {
-              _module.args.pkgs = import inputs.nixpkgs {
-                inherit system;
-                overlays = [
-                  inputs.nix-on-droid.overlays.default
-                ];
-              };
               modules = [
                 ./pc/phone-home/nix-on-droid.nix
-
+                inputs.stylix.nixOnDroidModules.stylix
                 # list of extra modules for Nix-on-Droid system
                 # { nix.registry.nixpkgs.flake = nixpkgs; }
                 # ./path/to/module.nix
@@ -108,7 +109,7 @@
               extraSpecialArgs = {
                 # rootPath = ./.;
               };
-
+              inherit pkgs;
               # set path to home-manager flake
               home-manager-path = inputs.home-manager.outPath;
             }
