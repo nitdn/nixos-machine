@@ -45,6 +45,7 @@ in
     # vim # or some other editor, e.g. nano or neovim
     helix
     git # Should just come standard with flakes
+    openssh
 
     # Some common stuff that people expect to have
     #procps
