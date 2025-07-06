@@ -17,7 +17,7 @@ lock:
     git merge origin/update_flake_lock_action
 
 [working-directory('../next')]
-rebase-to-main:
+rebase-to-main: freeze
     git rebase origin/main
 
 [working-directory('../main')]
