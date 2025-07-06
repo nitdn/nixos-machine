@@ -16,10 +16,15 @@ lock:
     git fetch
     git merge origin/update_flake_lock_action
 
+[working-directory('../next')]
+rebase-to-main:
+    git rebase origin/main
+
 [working-directory('../main')]
 freeze:
     git fetch
-    git merge origin/next
+    git merge origin/next --squash
+    git commit
     git push
 
 [working-directory('../main')]
