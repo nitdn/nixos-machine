@@ -13,12 +13,12 @@ ewd action:
 
 [working-directory('../next')]
 lock:
-    git fetch
+    git fetch origin
     git merge origin/update_flake_lock_action
 
 [working-directory('../main')]
 freeze:
-    git fetch
+    git fetch origin
     git merge origin/next
     git push
 
