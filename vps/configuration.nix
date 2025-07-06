@@ -26,6 +26,7 @@ in
     ./bind.nix
     ./blocky.nix
     ./failing2ban.nix
+    ./prometheus.nix
   ];
   # cleanup configs
 

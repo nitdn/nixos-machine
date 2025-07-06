@@ -121,6 +121,9 @@ in
     jack.enable = true;
 
   };
+  services.udev.packages = with pkgs; [
+    qmk-udev-rules # the only relevant
+  ];
 
   # Install firefox.
   programs.firefox.enable = true;

@@ -84,10 +84,11 @@
                 ];
               };
               devShells.default = pkgs.mkShell {
-                packages = [
-                  pkgs.just
-                  pkgs.vscode-langservers-extracted
-                  pkgs.eww
+                packages = with pkgs; [
+                  just
+                  vscode-langservers-extracted
+                  eww
+                  meld
                 ];
               };
             };
