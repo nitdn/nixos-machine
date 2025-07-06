@@ -19,6 +19,5 @@
         popups = 18;
       };
     };
-    targets.helix.enable = false;
   };
 }

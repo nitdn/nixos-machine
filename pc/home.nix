@@ -208,4 +208,6 @@ in
   programs.vesktop.settings = {
   };
 
+  stylix.targets.helix.enable = false;
+
 }
