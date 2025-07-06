@@ -6,6 +6,7 @@
 keys:
   # - &admin_alice 2504791468b153b8a3963cc97ba53d1919c5dfd4
   - &admin_tjmaxxer age1ajqgzup9l269ddfk6evc9gl9pgdf6vh9vmgl6nzz23hps2k20f9qyltuf7
+  - &admin_nix-on-droid age1q6wdf6grjdthn2fp23g6l7xqewclcq5zrk70j7c9xh9d99en3duqzrmty0
   - &server_vps01 age1y372l3n6l0pxyj523p58m5d6nffagzgwjvgyl3h3ful2373qgvfq9fdl7a
 
 creation_rules:
@@ -13,6 +14,7 @@ creation_rules:
     key_groups:
       - age:
           - *admin_tjmaxxer
+          - *admin_nix-on-droid
           - *server_vps01
       # pgp:
       #  - *admin_alice

@@ -160,6 +160,7 @@ in
   users.users.root.openssh.authorizedKeys.keys = [
     # change this to your ssh key
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAbQpjuFSDUDRO1j6gvxqI+zGsm4nRtXGxRbup8uzR8E ssmvabaa@tjmaxxer"
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGci+FnnDA7n5t/UQIOzpOEJtOpNEZN2sxHVxp+As/l+ nix-on-droid@localhost"
   ];
 
   # This will add secrets.yml to the nix store
