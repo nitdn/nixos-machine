@@ -26,7 +26,6 @@ freeze:
     git merge origin/next --squash
     git commit
     git push
-    rebase-to-main
 
 [working-directory('../main')]
 sysupgrade: freeze
