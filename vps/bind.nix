@@ -95,7 +95,7 @@ in
 
     security.acme = {
       acceptTerms = true;
-      defaults.email = "admin+acme@slipstr.click";
+      defaults.email = "admin+acme@${domain_name}";
       certs."wildcard.dns.${domain_name}" = {
         domain = "*.dns.${domain_name}";
         dnsProvider = "rfc2136";

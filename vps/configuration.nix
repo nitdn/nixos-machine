@@ -9,6 +9,7 @@ let
   inherit (config.services.bind) domain_name;
 in
 {
+
   nix.settings.substituters = [
     "https://cache.garnix.io"
   ];
@@ -73,8 +74,41 @@ in
 
   services.dolibarr = {
     enable = true;
-    domain = "erp.slipstr.click";
+    domain = "erp.${domain_name}";
     nginx = { };
+    settings = {
+      dolibarr_main_authentication = "openid_connect,dolibarr";
+    };
+  };
+
+  services.authentik = {
+    # other authentik options as in the example configuration at the top
+    enable = true;
+    # The environmentFile needs to be on the target host!
+    # Best use something like sops-nix or agenix to manage it
+    environmentFile = config.sops.secrets.authentik-env.path;
+    settings = {
+      email = {
+        host = "smtp.gmail.com";
+        port = 587;
+        username = "nitkdnath@gmail.com";
+        use_tls = true;
+        use_ssl = false;
+        from = "nitdnath+authentik@gmail.com";
+      };
+      disable_startup_analytics = true;
+      avatars = "initials";
+    };
+    nginx = {
+      enable = true;
+      enableACME = true;
+      host = "auth.${domain_name}";
+    };
+  };
+
+  sops.secrets.authentik-env = {
+    sopsFile = ../secrets/authentik.env;
+    format = "dotenv";
   };
 
   services.nginx.enable = true;

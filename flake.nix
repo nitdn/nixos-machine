@@ -39,6 +39,13 @@
     nixos-facter-modules = {
       url = "github:numtide/nixos-facter-modules";
     };
+    authentik-nix = {
+      url = "github:nix-community/authentik-nix";
+
+      ## optional overrides. Note that using a different version of nixpkgs can cause issues, especially with python dependencies
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-parts.follows = "flake-parts";
+    };
   };
 
   outputs =
@@ -178,6 +185,7 @@
               ./vps/configuration.nix
               inputs.nixos-facter-modules.nixosModules.facter
               inputs.sops-nix.nixosModules.sops
+              inputs.authentik-nix.nixosModules.default
               {
                 config.facter.reportPath =
                   if builtins.pathExists ./vps/facter.json then
