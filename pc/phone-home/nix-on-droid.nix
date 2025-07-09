@@ -13,6 +13,7 @@ in
 
 {
   imports = [
+    ./stylix.nix
   ];
 
   build.activation.sshd = ''
