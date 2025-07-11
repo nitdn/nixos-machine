@@ -25,8 +25,8 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
     stylix = {
       url = "github:nix-community/stylix";
-      inputs.home-manager.follows = "home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-parts.follows = "flake-parts";
     };
     disko = {
       url = "github:nix-community/disko";
