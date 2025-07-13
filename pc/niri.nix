@@ -46,6 +46,11 @@
   programs.niri.settings.environment = {
     DISPLAY = ":0";
   };
+
+  programs.niri.settings.input.mouse = {
+    accel-profile = "flat";
+    accel-speed = -0.7;
+  };
   programs.niri.settings.animations.workspace-switch.kind.spring = {
     damping-ratio = 1.0;
     epsilon = 0.0001;
@@ -157,5 +162,6 @@
     "Mod+Ctrl+Shift+E".action = quit { skip-confirmation = true; };
 
     "Mod+Plus".action = set-column-width "+10%";
+
   };
 }

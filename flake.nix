@@ -151,7 +151,7 @@
           );
 
           flake.homeConfigurations.${username} = withSystem "x86_64-linux" (
-            { pkgs, ... }:
+            { pkgs, lib, ... }:
             inputs.home-manager.lib.homeManagerConfiguration {
               inherit pkgs;
               modules = [
@@ -164,6 +164,11 @@
                 {
                   programs.niri.enable = true;
                   nixpkgs.overlays = [ inputs.niri.overlays.niri ];
+                  nixpkgs.config.allowUnfreePredicate =
+                    pkg:
+                    builtins.elem (lib.getName pkg) [
+                      "obsidian"
+                    ];
                 }
               ];
               extraSpecialArgs = {
@@ -195,6 +200,46 @@
               }
             ];
           };
+          flake.nixosConfigurations.disko-elysium = withSystem "x86_64-linux" (
+            {
+              config,
+              inputs',
+              ...
+            }:
+
+            inputs.nixpkgs.lib.nixosSystem {
+              specialArgs = {
+                packages = config.packages;
+                inherit inputs inputs' username;
+              };
+
+              modules = [
+                inputs.disko.nixosModules.disko
+                inputs.sops-nix.nixosModules.sops
+                inputs.stylix.nixosModules.stylix
+                inputs.niri.nixosModules.niri
+                inputs.home-manager.nixosModules.home-manager
+                ./pc/disko-elysium/configuration.nix
+                ./pc/stylix.nix
+                {
+                  imports = [
+                  ];
+                  programs.niri.enable = true;
+                  nixpkgs.overlays = [ inputs.niri.overlays.niri ];
+                  home-manager.useGlobalPkgs = true;
+                  home-manager.useUserPackages = true;
+                  home-manager.sharedModules = [
+                    inputs.zen-browser.homeModules.twilight
+                  ];
+                  home-manager.backupFileExtension = "backup";
+                  home-manager.users.ssmvabaa = ./pc/home.nix;
+                  home-manager.extraSpecialArgs = {
+                    inherit self username;
+                  };
+                }
+              ];
+            }
+          );
         }
       );
 }
