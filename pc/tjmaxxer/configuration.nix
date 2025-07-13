@@ -5,4 +5,6 @@
     ./hardware-configuration.nix
     ./systemd.nix
   ];
+
+  networking.hostName = "tjmaxxer"; # Define your hostname.
 }

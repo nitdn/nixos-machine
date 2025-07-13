@@ -56,8 +56,6 @@ in
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-
-  networking.hostName = "tjmaxxer"; # Define your hostname.
   networking = {
     nameservers = [
       # "1.1.1.1" # oh no
