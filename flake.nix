@@ -63,6 +63,7 @@
       (
         {
           self,
+          lib,
           withSystem,
           ...
         }:
@@ -151,7 +152,7 @@
           );
 
           flake.homeConfigurations.${username} = withSystem "x86_64-linux" (
-            { pkgs, lib, ... }:
+            { pkgs, ... }:
             inputs.home-manager.lib.homeManagerConfiguration {
               inherit pkgs;
               modules = [
