@@ -109,7 +109,7 @@ in
     epson-escpr
     foomatic-db-ppds
     foomatic-filters
-    (pkgs.callPackage ../bizhub-225i/bizhub-225i.nix { })
+    (pkgs.callPackage ../bizhub-225i.nix { })
 
   ];
 
