@@ -39,7 +39,7 @@
     }
     { command = [ "xwayland-satellite" ]; }
     { command = [ "ghostty" ]; }
-    { command = [ "zen" ]; }
+    { command = [ "zen-twilight" ]; }
     { command = [ "obsidian" ]; }
 
   ];
@@ -74,7 +74,7 @@
       repeat = false;
     };
     "Mod+T".action = spawn "ghostty";
-    "Mod+B".action = spawn "zen";
+    "Mod+B".action = spawn "zen-twilight";
 
     # Default movement keymaps
     # ←h ↓j ↑k →l

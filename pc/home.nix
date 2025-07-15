@@ -159,6 +159,8 @@ in
 
   programs.starship = {
     enable = true;
+    # This is the only saneish way to read the toml they provide
+    settings = fromTOML (builtins.readFile ./starship-preset-jetpack.toml);
   };
 
   programs.keepassxc.enable = true;
