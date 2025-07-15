@@ -104,8 +104,13 @@ in
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
+  services.printing.logLevel = "debug";
   services.printing.drivers = with pkgs; [
     epson-escpr
+    foomatic-db-ppds
+    foomatic-filters
+    (pkgs.callPackage ../bizhub-225i/bizhub-225i.nix { })
+
   ];
 
   # Enable sound with pipewire.
@@ -121,7 +126,8 @@ in
 
   };
   services.udev.packages = with pkgs; [
-    qmk-udev-rules # the only relevant
+    qmk-udev-rules
+    sane-airscan
   ];
 
   # Install firefox.
@@ -197,7 +203,17 @@ in
   # };
 
   hardware.sane.enable = true;
-  hardware.sane.extraBackends = [ pkgs.hplipWithPlugin ];
+  services.ipp-usb.enable = true;
+  hardware.sane.extraBackends = [
+    pkgs.hplipWithPlugin
+    pkgs.sane-airscan
+  ];
+
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
 
   programs.nh = {
     enable = true;
