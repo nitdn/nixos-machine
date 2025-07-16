@@ -15,6 +15,7 @@ in
 {
   imports = [
     ./stubby.nix
+    ./samba.nix
   ];
 
   # cleanup configs
