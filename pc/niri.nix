@@ -12,7 +12,10 @@
     mako
     wl-clipboard
     libnotify
+    brightnessctl
   ];
+
+  programs.waybar.enable = true;
 
   programs.fuzzel = {
     enable = true;
@@ -41,7 +44,7 @@
     { command = [ "ghostty" ]; }
     { command = [ "zen-twilight" ]; }
     { command = [ "obsidian" ]; }
-
+    { command = [ "waybar" ]; }
   ];
   programs.niri.settings.environment = {
     DISPLAY = ":0";
@@ -60,6 +63,10 @@
   programs.niri.settings.binds = with config.lib.niri.actions; {
     "XF86AudioRaiseVolume".action = spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+";
     "XF86AudioLowerVolume".action = spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-";
+    "XF86AudioMute".action = spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle";
+
+    "XF86MonBrightnessUp".action = spawn "brightnessctl" "set" "5%+";
+    "XF86MonBrightnessDown".action = spawn "brightnessctl" "set" "5%-";
 
     "Mod+Space".action = spawn "fuzzel";
     "Mod+1".action = focus-workspace 1;
