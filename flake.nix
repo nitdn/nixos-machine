@@ -3,7 +3,11 @@
 
   inputs = {
     # Specify the source of Home Manager and Nixpkgs.
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
+    helix = {
+      url = "github:helix-editor/helix/25.07";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -15,7 +19,7 @@
       inputs.home-manager.follows = "home-manager";
     };
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     sops-nix = {
@@ -24,7 +28,7 @@
     };
     flake-parts.url = "github:hercules-ci/flake-parts";
     stylix = {
-      url = "github:nix-community/stylix";
+      url = "github:nix-community/stylix/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
     };
@@ -89,10 +93,12 @@
                 inherit system;
                 overlays = [
                   inputs.nix-on-droid.overlays.default
+                  inputs.helix.overlays.default
                 ];
               };
               devShells.default = pkgs.mkShell {
                 packages = with pkgs; [
+                  helix
                   just
                   vscode-langservers-extracted
                   eww
@@ -145,7 +151,10 @@
                   imports = [
                   ];
                   programs.niri.enable = true;
-                  nixpkgs.overlays = [ inputs.niri.overlays.niri ];
+                  nixpkgs.overlays = [
+                    inputs.niri.overlays.niri
+                    inputs.helix.overlays.default
+                  ];
                 }
               ];
             }

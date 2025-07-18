@@ -79,7 +79,7 @@ in
   # Broken on homed users
   # services.displayManager.cosmic-greeter.enable = true;
   #
-  services.displayManager.gdm.enable = true;
+  services.xserver.displayManager.gdm.enable = true;
 
   # services.desktopManager.cosmic.enable = true;
 
