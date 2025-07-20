@@ -98,7 +98,6 @@
               };
               devShells.default = pkgs.mkShell {
                 packages = with pkgs; [
-                  helix
                   just
                   vscode-langservers-extracted
                   eww
@@ -168,7 +167,7 @@
                 ./pc/home.nix
                 ./pc/stylix.nix
                 inputs.stylix.homeModules.stylix
-                inputs.zen-browser.homeModules.twilight
+                inputs.zen-browser.homeModules.default
                 inputs.niri.homeModules.niri
                 inputs.niri.homeModules.stylix
                 {
@@ -239,7 +238,7 @@
                   home-manager.useGlobalPkgs = true;
                   home-manager.useUserPackages = true;
                   home-manager.sharedModules = [
-                    inputs.zen-browser.homeModules.twilight
+                    inputs.zen-browser.homeModules.default
                   ];
                   home-manager.backupFileExtension = "backup";
                   home-manager.users.ssmvabaa = ./pc/home.nix;
