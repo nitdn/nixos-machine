@@ -98,7 +98,6 @@
               };
               devShells.default = pkgs.mkShell {
                 packages = with pkgs; [
-                  helix
                   just
                   vscode-langservers-extracted
                   eww
@@ -242,7 +241,7 @@
                     inputs.zen-browser.homeModules.twilight
                   ];
                   home-manager.backupFileExtension = "backup";
-                  home-manager.users.ssmvabaa = ./pc/home.nix;
+                  home-manager.users.ssmvabaa = ./pc/disko-elysium/home.nix;
                   home-manager.extraSpecialArgs = {
                     inherit self username;
                   };

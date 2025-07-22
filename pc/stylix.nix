@@ -1,8 +1,8 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   stylix = {
     enable = true;
-    polarity = "dark";
+    polarity = lib.mkDefault "dark";
     base16Scheme = "${pkgs.base16-schemes}/share/themes/darcula.yaml";
     cursor = {
       name = "Adwaita";

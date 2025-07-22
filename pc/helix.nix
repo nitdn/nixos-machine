@@ -7,6 +7,14 @@
 }:
 {
   programs.helix = {
+    enable = true;
+    defaultEditor = true;
+    extraPackages = with pkgs; [
+      nixd
+      taplo
+      yaml-language-server
+    ];
+
     settings = {
       # this has the best contrast imo
       theme = "darcula";

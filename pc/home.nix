@@ -106,16 +106,6 @@ in
     enable = true;
   };
 
-  programs.helix = {
-    enable = true;
-    defaultEditor = true;
-    extraPackages = with pkgs; [
-      nixd
-      taplo
-      yaml-language-server
-    ];
-  };
-
   programs.yazi = {
     enable = true;
     enableFishIntegration = true;
