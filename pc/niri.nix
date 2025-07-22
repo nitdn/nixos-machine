@@ -42,7 +42,7 @@
     }
     { command = [ "xwayland-satellite" ]; }
     { command = [ "ghostty" ]; }
-    { command = [ "zen-twilight" ]; }
+    { command = [ "zen-beta" ]; }
     { command = [ "obsidian" ]; }
     { command = [ "waybar" ]; }
   ];

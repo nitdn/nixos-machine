@@ -5,7 +5,7 @@
     # Specify the source of Home Manager and Nixpkgs.
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
     helix = {
-      url = "github:helix-editor/helix/25.07";
+      url = "github:helix-editor/helix/25.07.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     zen-browser = {
@@ -167,7 +167,7 @@
                 ./pc/home.nix
                 ./pc/stylix.nix
                 inputs.stylix.homeModules.stylix
-                inputs.zen-browser.homeModules.twilight
+                inputs.zen-browser.homeModules.default
                 inputs.niri.homeModules.niri
                 inputs.niri.homeModules.stylix
                 {
@@ -238,7 +238,7 @@
                   home-manager.useGlobalPkgs = true;
                   home-manager.useUserPackages = true;
                   home-manager.sharedModules = [
-                    inputs.zen-browser.homeModules.twilight
+                    inputs.zen-browser.homeModules.default
                   ];
                   home-manager.backupFileExtension = "backup";
                   home-manager.users.ssmvabaa = ./pc/disko-elysium/home.nix;
