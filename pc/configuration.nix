@@ -18,6 +18,10 @@ in
     ./samba.nix
   ];
 
+  nixpkgs.overlays = [
+    inputs.helix.overlays.default
+  ];
+
   # cleanup configs
   nix.optimise.automatic = true;
   nix.gc = {
@@ -80,6 +84,8 @@ in
   # services.displayManager.cosmic-greeter.enable = true;
   #
   services.xserver.displayManager.gdm.enable = true;
+  services.gvfs.enable = true;
+  services.udisks2.enable = true;
 
   # services.desktopManager.cosmic.enable = true;
 
@@ -97,6 +103,17 @@ in
     "bn_IN/UTF-8"
   ];
 
+  fonts.packages = with pkgs; [
+    noto-fonts
+  ];
+
+  # Input methods
+  i18n.inputMethod = {
+    enable = true;
+    type = "fcitx5";
+    fcitx5.addons = with pkgs; [ fcitx5-openbangla-keyboard ];
+  };
+
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
@@ -105,6 +122,8 @@ in
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
+  services.system-config-printer.enable = true;
+  programs.system-config-printer.enable = true;
   services.printing.logLevel = "debug";
   services.printing.drivers = with pkgs; [
     epson-escpr

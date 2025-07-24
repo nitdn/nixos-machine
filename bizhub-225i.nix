@@ -7,7 +7,7 @@
 }:
 
 stdenv.mkDerivation rec {
-  name = "bizhub-225i-${version}";
+  name = "konica-bizhub-225i-${version}";
   version = "2.01-0";
   nativeBuildInputs = [
     autoPatchelfHook
