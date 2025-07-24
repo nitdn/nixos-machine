@@ -13,9 +13,8 @@ ewd action:
 
 [working-directory('../next')]
 lock:
-    gh workflow run "Flake.lock: update Nix dependencies"
     git fetch origin
-    git merge origin/update_flake_lock_action
+    git rebase origin/update_flake_lock_action
 
 [working-directory('../main')]
 freeze:
