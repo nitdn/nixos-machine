@@ -51,6 +51,7 @@ in
         "https://one.one.one.one/dns-query" # Using Cloudflare's DNS over HTTPS server for resolving queries.
         "https://dns.google/dns-query" # Some URLs do not work with CF
       ];
+      upstreams.userAgent = "blocky-slipstr";
       # For initially solving DoH/DoT Requests when no system Resolver is available.
       bootstrapDns = {
         upstream = "https://one.one.one.one/dns-query";
@@ -86,6 +87,7 @@ in
         };
       };
       inherit certFile keyFile;
+      ede.enable = true;
       ecs = {
         # optional: if the request ecs option with a max sice mask the address will be used as client ip
         useAsClient = true;
