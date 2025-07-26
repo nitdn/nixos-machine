@@ -5,7 +5,7 @@
   ...
 }:
 let
-  leader.key = "ctrl+space";
+  leader.key = "alt+space";
 in
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -142,7 +142,7 @@ in
       # "ctrl+k=goto_split:up"
       "${leader.key}>backslash=new_window"
       # "${leader.key}>minus=new_split:down"
-      "${leader.key}>ctrl+backslash=new_window"
+      "${leader.key}>shift+backslash=new_window"
       # "${leader.key}>ctrl+minus=new_split:down"
     ];
   };

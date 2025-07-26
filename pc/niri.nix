@@ -9,12 +9,12 @@
   home.packages = with pkgs; [
     nautilus
     xwayland-satellite
-    mako
     wl-clipboard
     libnotify
     brightnessctl
   ];
 
+  services.mako.enable = true;
   programs.waybar.enable = true;
 
   programs.fuzzel = {

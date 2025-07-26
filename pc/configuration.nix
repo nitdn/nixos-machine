@@ -105,12 +105,20 @@ in
 
   fonts.packages = with pkgs; [
     noto-fonts
+    font-awesome
   ];
+
+  fonts.fontconfig.defaultFonts = {
+    sansSerif = [ "Noto Sans Bengali" ];
+    serif = [ "Noto Serif Bengali" ];
+    monospace = [ "Noto Sans Bengali" ];
+  };
 
   # Input methods
   i18n.inputMethod = {
     enable = true;
     type = "fcitx5";
+    fcitx5.waylandFrontend = true;
     fcitx5.addons = with pkgs; [ fcitx5-openbangla-keyboard ];
   };
 
