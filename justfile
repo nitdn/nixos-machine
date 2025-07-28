@@ -23,8 +23,11 @@ freeze:
     git push
 
 [working-directory('../main')]
-sysupgrade: freeze
+sysupgrade: freeze gc
     nh os switch .
+
+[working-directory('../main')]
+home:
     nh home switch .
 
 gc:

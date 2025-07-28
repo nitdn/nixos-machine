@@ -88,14 +88,6 @@ in
     # Best use something like sops-nix or agenix to manage it
     environmentFile = config.sops.secrets.authentik-env.path;
     settings = {
-      email = {
-        host = "smtp.gmail.com";
-        port = 587;
-        username = "nitkdnath@gmail.com";
-        use_tls = true;
-        use_ssl = false;
-        from = "nitdnath+authentik@gmail.com";
-      };
       disable_startup_analytics = true;
       avatars = "initials";
     };
