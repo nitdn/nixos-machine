@@ -109,9 +109,15 @@ in
   ];
 
   fonts.fontconfig.defaultFonts = {
-    sansSerif = [ "Noto Sans Bengali" ];
-    serif = [ "Noto Serif Bengali" ];
-    monospace = [ "Noto Sans Bengali" ];
+    sansSerif = [
+      "Noto Sans Bengali"
+    ];
+    serif = [
+      "Noto Serif Bengali"
+    ];
+    monospace = [
+      "Noto Sans Bengali"
+    ];
   };
 
   # Input methods

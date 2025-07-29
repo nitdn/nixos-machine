@@ -3,5 +3,5 @@
   imports = [
     ../home.nix
   ];
-  stylix.polarity = "light";
+  programs.helix.settings.theme = "ayu_light";
 }

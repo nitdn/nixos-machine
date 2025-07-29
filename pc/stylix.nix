@@ -3,7 +3,7 @@
   stylix = {
     enable = true;
     polarity = lib.mkDefault "dark";
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/darcula.yaml";
+    base16Scheme = lib.mkDefault "${pkgs.base16-schemes}/share/themes/darcula.yaml";
     cursor = {
       name = "Adwaita";
       size = 24;

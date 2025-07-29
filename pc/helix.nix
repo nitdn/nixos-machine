@@ -17,7 +17,7 @@
 
     settings = {
       # this has the best contrast imo
-      theme = "darcula";
+      theme = lib.mkDefault "darcula";
       editor = {
         end-of-line-diagnostics = "hint";
         inline-diagnostics.cursor-line = "warning";

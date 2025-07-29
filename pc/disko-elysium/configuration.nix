@@ -19,6 +19,7 @@
   ];
 
   stylix.polarity = "light";
+  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/ayu-light.yaml";
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
