@@ -86,6 +86,7 @@ in
   services.xserver.displayManager.gdm.enable = true;
   services.gvfs.enable = true;
   services.udisks2.enable = true;
+  services.power-profiles-daemon.enable = true;
 
   # services.desktopManager.cosmic.enable = true;
 

@@ -81,7 +81,7 @@
       repeat = false;
     };
     "Mod+T".action = spawn "ghostty";
-    "Mod+B".action = spawn "zen-twilight";
+    "Mod+B".action = spawn "zen-beta";
 
     # Default movement keymaps
     # ←h ↓j ↑k →l
