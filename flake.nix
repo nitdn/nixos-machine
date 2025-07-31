@@ -120,6 +120,7 @@
 
               # list of extra special args for Nix-on-Droid modules
               extraSpecialArgs = {
+                inherit self;
                 # rootPath = ./.;
               };
               inherit pkgs;
