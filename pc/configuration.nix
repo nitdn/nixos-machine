@@ -105,7 +105,7 @@ in
   ];
 
   fonts.packages = with pkgs; [
-    noto-fonts
+    noto-fonts-extra
     font-awesome
   ];
 
@@ -117,22 +117,26 @@ in
       "Noto Serif Bengali"
     ];
     monospace = [
-      "Noto Sans Bengali"
+      "Noto Serif Bengali"
     ];
   };
 
   # Input methods
   i18n.inputMethod = {
     enable = true;
-    type = "ibus";
-    ibus.engines = with pkgs.ibus-engines; [
-      typing-booster
-      openbangla-keyboard
+    # type = "ibus";
+    # ibus.engines = with pkgs.ibus-engines; [
+    #   typing-booster
+    #   openbangla-keyboard
+    # ];
+
+    type = "fcitx5";
+    fcitx5.waylandFrontend = true;
+    fcitx5.addons = with pkgs; [
+      fcitx5-catppuccin
+      fcitx5-openbangla-keyboard
     ];
 
-    # type = "fcitx5";
-    # fcitx5.waylandFrontend = true;
-    # fcitx5.addons = with pkgs; [ fcitx5-openbangla-keyboard ];
   };
 
   # Configure keymap in X11

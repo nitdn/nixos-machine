@@ -139,6 +139,7 @@ in
   programs.ghostty = {
     enable = true;
     # settings.window-decoration = "server";
+    settings.font-family = [ "Noto Sans Bengali" ];
     settings.keybind = [
       # "ctrl+h=goto_split:left"
       # "ctrl+l=goto_split:right"
