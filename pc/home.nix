@@ -197,8 +197,6 @@ in
     ];
   };
   programs.vesktop.enable = true;
-  programs.vesktop.settings = {
-  };
 
   stylix.targets.helix.enable = false;
 
