@@ -78,6 +78,7 @@ in
     nginx = { };
     settings = {
       dolibarr_main_authentication = "openid_connect,dolibarr";
+      dolibarr_main_db_collation = "utf8mb4_unicode_ci";
     };
   };
 
