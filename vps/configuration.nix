@@ -153,7 +153,7 @@ in
 
   system.autoUpgrade = {
     enable = true;
-    flake = "github:nitdn/nixos-machine";
+    flake = "git+https://codeberg.org/nitdn/nixos-machine.git";
     allowReboot = true;
   };
   networking.hostName = "vps01";
