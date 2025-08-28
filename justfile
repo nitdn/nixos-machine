@@ -13,8 +13,8 @@ ewd action:
 
 [working-directory('../next')]
 lock:
-    git fetch origin
-    git rebase origin/update_flake_lock_action
+    git fetch flake-mirror
+    git rebase flake-mirror/update_flake_lock_action
 
 [working-directory('../main')]
 freeze:
