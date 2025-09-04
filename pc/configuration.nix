@@ -234,6 +234,9 @@ in
     trashy
     vulkan-tools
     wineWowPackages.stagingFull
+    libreoffice-qt6-fresh
+    hunspell
+    hunspellDicts.en-gb-large
   ];
 
   # security.wrappers = {
