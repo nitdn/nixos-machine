@@ -20,6 +20,7 @@
 
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "typeman";
+  stylizedName = "TypeMan";
   version = "0.1.2";
 
   nativeBuildInputs = [
@@ -57,14 +58,14 @@ rustPlatform.buildRustPackage (finalAttrs: {
   desktopItems = [
     (makeDesktopItem {
       name = finalAttrs.pname;
-      desktopName = "TypeMan";
+      desktopName = finalAttrs.stylizedName;
       comment = finalAttrs.meta.description;
       exec = "${finalAttrs.pname} --gui";
     })
 
     (makeDesktopItem {
       name = "${finalAttrs.pname}-cli";
-      desktopName = "TypeMan CLI";
+      desktopName = "${finalAttrs.stylizedName} CLI";
       comment = finalAttrs.meta.description;
       exec = "${finalAttrs.pname}";
       terminal = true;
