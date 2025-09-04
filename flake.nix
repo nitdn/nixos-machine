@@ -267,15 +267,11 @@
         }
       );
   nixConfig = {
-    substituters = [
-      "https://niri.cachix.org/"
+    extra-substituters = [
       "https://cache.garnix.io/"
-      "https://cache.nixos.org/"
     ];
-    trusted-public-keys = [
+    extra-trusted-public-keys = [
       "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
-      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-      "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
     ];
   };
 
