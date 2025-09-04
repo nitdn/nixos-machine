@@ -8,6 +8,8 @@
   fontconfig,
   freetype,
   libGL,
+  copyDesktopItems,
+  makeDesktopItem,
   xorg,
   wayland,
   libxkbcommon,
@@ -21,6 +23,7 @@ rustPlatform.buildRustPackage (finalAttrs: {
   version = "0.1.2";
 
   nativeBuildInputs = [
+    copyDesktopItems
     pkg-config
     makeWrapper
   ];
@@ -50,6 +53,24 @@ rustPlatform.buildRustPackage (finalAttrs: {
   };
 
   cargoHash = "sha256-xTsTvh5pxA72KcmcPa3mVK5WObB+QhmXO6vueJ851jk=";
+
+  desktopItems = [
+    (makeDesktopItem {
+      name = finalAttrs.pname;
+      desktopName = "TypeMan";
+      comment = finalAttrs.meta.description;
+      exec = "${finalAttrs.pname} --gui";
+    })
+
+    (makeDesktopItem {
+      name = "${finalAttrs.pname}-cli";
+      desktopName = "TypeMan CLI";
+      comment = finalAttrs.meta.description;
+      exec = "${finalAttrs.pname}";
+      terminal = true;
+    })
+
+  ];
 
   postInstall = ''
     # The Space between LD_LIBRARY_PATH and : is very important
