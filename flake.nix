@@ -77,6 +77,7 @@
           imports = [
             # Optional: use external flake logic, e.g.
             inputs.home-manager.flakeModules.home-manager
+            inputs.flake-parts.flakeModules.easyOverlay
           ];
           systems = [
             "x86_64-linux"
@@ -86,6 +87,7 @@
             {
               pkgs,
               system,
+              config,
               ...
             }:
             {
@@ -96,6 +98,11 @@
                   inputs.helix.overlays.default
                 ];
               };
+              overlayAttrs = {
+                inherit (config.packages) typeman bizhub-225i-ppds;
+              };
+              packages.typeman = pkgs.callPackage ./typeman.nix { };
+              packages.bizhub-225i-ppds = pkgs.callPackage ./bizhub-225i.nix { };
               devShells.default = pkgs.mkShell {
                 packages = with pkgs; [
                   just
@@ -173,7 +180,10 @@
                 inputs.niri.homeModules.stylix
                 {
                   programs.niri.enable = true;
-                  nixpkgs.overlays = [ inputs.niri.overlays.niri ];
+                  nixpkgs.overlays = [
+                    inputs.niri.overlays.niri
+                    self.overlays.default
+                  ];
                   nixpkgs.config.allowUnfreePredicate =
                     pkg:
                     builtins.elem (lib.getName pkg) [
@@ -235,7 +245,10 @@
                   imports = [
                   ];
                   programs.niri.enable = true;
-                  nixpkgs.overlays = [ inputs.niri.overlays.niri ];
+                  nixpkgs.overlays = [
+                    inputs.niri.overlays.niri
+                    self.overlays.default
+                  ];
                   home-manager.useGlobalPkgs = true;
                   home-manager.useUserPackages = true;
                   home-manager.sharedModules = [

@@ -55,6 +55,7 @@ in
     obsidian
     p7zip
     tlrc
+    typeman
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

@@ -154,8 +154,7 @@ in
     epson-escpr
     foomatic-db-ppds
     foomatic-filters
-    (pkgs.callPackage ../bizhub-225i.nix { })
-
+    bizhub-225i-ppds
   ];
 
   # Enable sound with pipewire.
