@@ -161,6 +161,7 @@
                   nixpkgs.overlays = [
                     inputs.niri.overlays.niri
                     inputs.helix.overlays.default
+                    self.overlays.default
                   ];
                 }
               ];

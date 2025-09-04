@@ -3,6 +3,7 @@
   fetchFromGitHub,
   rustPlatform,
   pkg-config,
+  makeWrapper,
   expat,
   fontconfig,
   freetype,
@@ -10,6 +11,8 @@
   xorg,
   wayland,
   libxkbcommon,
+  pipewire,
+  alsa-lib,
   ...
 }:
 
@@ -17,8 +20,13 @@ rustPlatform.buildRustPackage (finalAttrs: {
   pname = "typeman";
   version = "0.1.2";
 
-  buildInputs = [
+  nativeBuildInputs = [
     pkg-config
+    makeWrapper
+  ];
+
+  buildInputs = [
+    alsa-lib
     expat
     fontconfig
     freetype
@@ -30,6 +38,7 @@ rustPlatform.buildRustPackage (finalAttrs: {
     xorg.libXrandr
     wayland
     libxkbcommon
+    pipewire
 
   ];
 
@@ -41,6 +50,12 @@ rustPlatform.buildRustPackage (finalAttrs: {
   };
 
   cargoHash = "sha256-xTsTvh5pxA72KcmcPa3mVK5WObB+QhmXO6vueJ851jk=";
+
+  postInstall = ''
+    # The Space between LD_LIBRARY_PATH and : is very important
+    wrapProgram $out/bin/${finalAttrs.pname} --prefix LD_LIBRARY_PATH : \
+    ${builtins.toString (lib.makeLibraryPath finalAttrs.buildInputs)}
+  '';
 
   meta = {
     description = "Typing speed test with practice mode in GUI, TUI and CLI";
