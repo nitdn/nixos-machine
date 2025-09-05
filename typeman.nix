@@ -2,6 +2,7 @@
   lib,
   fetchFromGitHub,
   rustPlatform,
+  fetchCrate,
   pkg-config,
   makeWrapper,
   expat,
@@ -46,11 +47,9 @@ rustPlatform.buildRustPackage (finalAttrs: {
 
   ];
 
-  src = fetchFromGitHub {
-    owner = "mzums";
-    repo = finalAttrs.pname;
-    rev = "0e5dd3be2a2769f43ad3b0d91cae6763059d7079";
-    hash = "sha256-mTYRa+rtBpfpoUJi2SVXSpFWqEFATp6eDXiNhic7I5A=";
+  src = fetchCrate {
+    inherit (finalAttrs) pname version;
+    hash = "sha256-KDAx0a97mQQcQjd/rTLh3hJ8wElDwAiM40K3ty9+WoI=";
   };
 
   cargoHash = "sha256-xTsTvh5pxA72KcmcPa3mVK5WObB+QhmXO6vueJ851jk=";
