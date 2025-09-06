@@ -201,13 +201,6 @@
           flake.nixosConfigurations.vps01 = inputs.nixpkgs.lib.nixosSystem {
             modules = [
               inputs.disko.nixosModules.disko
-              {
-                networking.useDHCP = inputs.nixpkgs.lib.mkForce false;
-                services.cloud-init = {
-                  enable = true;
-                  network.enable = true;
-                };
-              }
               ./vps/configuration.nix
               inputs.nixos-facter-modules.nixosModules.facter
               inputs.sops-nix.nixosModules.sops

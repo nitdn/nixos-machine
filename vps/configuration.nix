@@ -36,7 +36,16 @@ in
     IPv4 = "147.93.97.244";
     IPv6 = "2a02:4780:12:d0d9::1";
   };
+
+  services.cloud-init = {
+    enable = true;
+    network.enable = true;
+  };
+
+  networking.useNetworkd = true;
+
   # Firewalls
+  networking.nftables.enable = true;
   networking.firewall.allowedTCPPorts = [ 5432 ];
 
   services.postgresql = {
