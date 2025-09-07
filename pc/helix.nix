@@ -19,9 +19,10 @@
       # this has the best contrast imo
       theme = lib.mkDefault "darcula";
       editor = {
-        end-of-line-diagnostics = "hint";
-        inline-diagnostics.cursor-line = "warning";
-        lsp.display-inlay-hints = true;
+        # They are not well implemented anyway
+        # end-of-line-diagnostics = "hint";
+        # inline-diagnostics.cursor-line = "warning";
+        # lsp.display-inlay-hints = true;
       };
       editor.cursor-shape = {
         normal = "block";
