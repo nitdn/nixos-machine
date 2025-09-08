@@ -1,6 +1,7 @@
 {
   inputs',
   pkgs,
+  packages,
   lib,
   username,
   ...
@@ -52,10 +53,11 @@ in
     (writeShellScriptBin "xterm" ''
       ghostty "$@"
     '')
-    naps2
+    packages.naps2-wrapped
     obsidian
     p7zip
     tlrc
+    scantailor-universal
     inputs'.typeman.packages.default
   ];
 

@@ -94,6 +94,13 @@
               system,
               ...
             }:
+            let
+
+              buildInputs = [
+                pkgs.makeWrapper
+                pkgs.libtiff.out
+              ];
+            in
             {
               _module.args.pkgs = import inputs.nixpkgs {
                 inherit system;
@@ -107,6 +114,18 @@
               };
               packages.typeman = inputs'.typeman.packages.default;
               packages.bizhub-225i-ppds = pkgs.callPackage ./bizhub-225i.nix { };
+              packages.naps2-wrapped = pkgs.symlinkJoin {
+                name = "naps2-wrapped";
+                paths = [
+                  pkgs.naps2
+                ];
+                inherit buildInputs;
+                postBuild = ''
+                  wrapProgram $out/bin/naps2 --prefix LD_LIBRARY_PATH : \
+                  ${builtins.toString (pkgs.lib.makeLibraryPath buildInputs)}
+
+                '';
+              };
               devShells.default = pkgs.mkShell {
                 packages = with pkgs; [
                   just
@@ -172,7 +191,12 @@
           );
 
           flake.homeConfigurations.${username} = withSystem "x86_64-linux" (
-            { pkgs, inputs', ... }:
+            {
+              config,
+              pkgs,
+              inputs',
+              ...
+            }:
             inputs.home-manager.lib.homeManagerConfiguration {
               inherit pkgs;
               modules = [
@@ -196,6 +220,7 @@
                 }
               ];
               extraSpecialArgs = {
+                packages = config.packages;
                 inherit self inputs' username;
               };
             }
@@ -254,6 +279,7 @@
                   home-manager.backupFileExtension = "backup";
                   home-manager.users.ssmvabaa = ./pc/disko-elysium/home.nix;
                   home-manager.extraSpecialArgs = {
+                    packages = config.packages;
                     inherit self inputs' username;
                   };
                 }
