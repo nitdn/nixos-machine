@@ -1,4 +1,5 @@
 {
+  inputs',
   pkgs,
   lib,
   username,
@@ -55,7 +56,7 @@ in
     obsidian
     p7zip
     tlrc
-    typeman
+    inputs'.typeman.packages.default
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

@@ -92,7 +92,6 @@
               inputs',
               pkgs,
               system,
-              config,
               ...
             }:
             {
@@ -104,7 +103,7 @@
                 ];
               };
               overlayAttrs = {
-                inherit (config.packages) bizhub-225i-ppds typeman;
+                # inherit (config.packages) bizhub-225i-ppds typeman;
               };
               packages.typeman = inputs'.typeman.packages.default;
               packages.bizhub-225i-ppds = pkgs.callPackage ./bizhub-225i.nix { };
@@ -143,14 +142,13 @@
           flake.nixosConfigurations.tjmaxxer = withSystem "x86_64-linux" (
             {
               config,
-              inputs',
               ...
             }:
 
             inputs.nixpkgs.lib.nixosSystem {
               specialArgs = {
                 packages = config.packages;
-                inherit inputs inputs' username;
+                inherit inputs username;
               };
 
               modules = [
@@ -174,7 +172,7 @@
           );
 
           flake.homeConfigurations.${username} = withSystem "x86_64-linux" (
-            { pkgs, ... }:
+            { pkgs, inputs', ... }:
             inputs.home-manager.lib.homeManagerConfiguration {
               inherit pkgs;
               modules = [
@@ -198,7 +196,7 @@
                 }
               ];
               extraSpecialArgs = {
-                inherit self username;
+                inherit self inputs' username;
               };
             }
           );
@@ -229,7 +227,7 @@
             inputs.nixpkgs.lib.nixosSystem {
               specialArgs = {
                 packages = config.packages;
-                inherit inputs inputs' username;
+                inherit inputs username;
               };
 
               modules = [
@@ -256,7 +254,7 @@
                   home-manager.backupFileExtension = "backup";
                   home-manager.users.ssmvabaa = ./pc/disko-elysium/home.nix;
                   home-manager.extraSpecialArgs = {
-                    inherit self username;
+                    inherit self inputs' username;
                   };
                 }
               ];

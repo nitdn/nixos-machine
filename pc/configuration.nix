@@ -5,6 +5,7 @@
 {
   lib,
   inputs,
+  packages,
   pkgs,
   username,
   ...
@@ -148,7 +149,7 @@ in
     epson-escpr
     foomatic-db-ppds
     foomatic-filters
-    bizhub-225i-ppds
+    packages.bizhub-225i-ppds
   ];
 
   # Enable sound with pipewire.
