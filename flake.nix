@@ -50,6 +50,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
     };
+    typeman = {
+      url = "github:mzums/typeman";
+      # inputs.nixpkgs.follows = "nixpkgs"; # libx11 is only in unstable
+    };
   };
 
   outputs =
@@ -85,6 +89,7 @@
           ];
           perSystem =
             {
+              inputs',
               pkgs,
               system,
               config,
@@ -99,9 +104,9 @@
                 ];
               };
               overlayAttrs = {
-                inherit (config.packages) typeman bizhub-225i-ppds;
+                inherit (config.packages) bizhub-225i-ppds typeman;
               };
-              packages.typeman = pkgs.callPackage ./typeman.nix { };
+              packages.typeman = inputs'.typeman.packages.default;
               packages.bizhub-225i-ppds = pkgs.callPackage ./bizhub-225i.nix { };
               devShells.default = pkgs.mkShell {
                 packages = with pkgs; [

@@ -511,6 +511,22 @@
         "type": "github"
       }
     },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1757068644,
+        "narHash": "sha256-NOrUtIhTkIIumj1E/Rsv1J37Yi3xGStISEo8tZm3KW4=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "8eb28adfa3dc4de28e792e3bf49fcf9007ca8ac9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nmd": {
       "flake": false,
       "locked": {
@@ -654,6 +670,7 @@
         "nixpkgs": "nixpkgs",
         "sops-nix": "sops-nix",
         "stylix": "stylix",
+        "typeman": "typeman",
         "zen-browser": "zen-browser"
       }
     },
@@ -881,6 +898,24 @@
       "original": {
         "owner": "numtide",
         "repo": "treefmt-nix",
+        "type": "github"
+      }
+    },
+    "typeman": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1757174007,
+        "narHash": "sha256-jOibvqIOKyYMH1BlXnyqT97o3FG93g1vu01a6NSbWTo=",
+        "owner": "mzums",
+        "repo": "typeman",
+        "rev": "cc83e406c8571c1494455495571a02bdd8cacd62",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mzums",
+        "repo": "typeman",
         "type": "github"
       }
     },
