@@ -1,0 +1,39 @@
+[[language]]
+auto-format = true
+name = "nix"
+
+[language.formatter]
+command = "nixfmt"
+
+[[language]]
+auto-format = true
+name = "yaml"
+
+[language.formatter]
+args = ["fmt", "--stdin", "yaml"]
+command = "dprint"
+
+[[language]]
+auto-format = true
+name = "yuck"
+
+[language.formatter]
+command = "parinfer-rust"
+
+[[language]]
+language-servers = ["just-lsp"]
+name = "just"
+
+[language-server.just-lsp]
+command = "just-lsp"
+
+[language-server.nixd.config.nixd.options.flake-parts]
+expr = "(builtins.getFlake \".\").debug.options"
+
+[language-server.nixd.config.nixd.options.home-manager]
+expr = "(builtins.getFlake \".\").homeConfigurations.\"ssmvabaa\".options"
+
+[language-server.yaml-language-server.config.yaml]
+validation = true
+[language-server.yaml-language-server.config.yaml.format]
+enable = true

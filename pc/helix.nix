@@ -1,8 +1,6 @@
 {
-  self,
   pkgs,
   lib,
-  username,
   ...
 }:
 {
@@ -70,15 +68,6 @@
       }
 
     ];
-
-    # Enables LSP for flake-parts
-    languages.language-server.nixd.config.nixd.options.flake-parts = {
-      expr = "(builtins.getFlake \"${self.outPath}\").debug.options";
-    };
-    # Enables LSP for home-manager
-    languages.language-server.nixd.config.nixd.options.home-manager = {
-      expr = "(builtins.getFlake \"${self.outPath}\").homeConfigurations.\"${username}\".options";
-    };
 
     #justfile LSP
     languages.language-server.just-lsp = {

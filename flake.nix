@@ -77,11 +77,13 @@
         }:
         {
           debug = true;
+          inherit username;
 
           imports = [
             # Optional: use external flake logic, e.g.
             inputs.home-manager.flakeModules.home-manager
             inputs.flake-parts.flakeModules.easyOverlay
+            ./pc/disko-elysium
           ];
           systems = [
             "x86_64-linux"
@@ -132,6 +134,8 @@
                   vscode-langservers-extracted
                   eww
                   meld
+                  nixfmt-rfc-style
+                  nixd
                 ];
               };
             };
@@ -242,50 +246,6 @@
               }
             ];
           };
-          flake.nixosConfigurations.disko-elysium = withSystem "x86_64-linux" (
-            {
-              config,
-              inputs',
-              ...
-            }:
-
-            inputs.nixpkgs.lib.nixosSystem {
-              specialArgs = {
-                packages = config.packages;
-                inherit inputs username;
-              };
-
-              modules = [
-                inputs.disko.nixosModules.disko
-                inputs.sops-nix.nixosModules.sops
-                inputs.stylix.nixosModules.stylix
-                inputs.niri.nixosModules.niri
-                inputs.home-manager.nixosModules.home-manager
-                ./pc/disko-elysium/configuration.nix
-                ./pc/stylix.nix
-                {
-                  imports = [
-                  ];
-                  programs.niri.enable = true;
-                  nixpkgs.overlays = [
-                    inputs.niri.overlays.niri
-                    self.overlays.default
-                  ];
-                  home-manager.useGlobalPkgs = true;
-                  home-manager.useUserPackages = true;
-                  home-manager.sharedModules = [
-                    inputs.zen-browser.homeModules.default
-                  ];
-                  home-manager.backupFileExtension = "backup";
-                  home-manager.users.ssmvabaa = ./pc/disko-elysium/home.nix;
-                  home-manager.extraSpecialArgs = {
-                    packages = config.packages;
-                    inherit self inputs' username;
-                  };
-                }
-              ];
-            }
-          );
         }
       );
   nixConfig = {
