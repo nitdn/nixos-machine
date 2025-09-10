@@ -116,18 +116,16 @@
               };
               packages.typeman = inputs'.typeman.packages.default;
               packages.bizhub-225i-ppds = pkgs.callPackage ./bizhub-225i.nix { };
-              packages.naps2-wrapped = pkgs.symlinkJoin {
-                name = "naps2-wrapped";
-                paths = [
-                  pkgs.naps2
-                ];
-                inherit buildInputs;
-                postBuild = ''
-                  wrapProgram $out/bin/naps2 --prefix LD_LIBRARY_PATH : \
-                  ${builtins.toString (pkgs.lib.makeLibraryPath buildInputs)}
-
-                '';
-              };
+              packages.naps2-wrapped = pkgs.naps2.overrideAttrs (
+                finalAttrs: previousAttrs: {
+                  buildInputs = previousAttrs.buildInputs or [ ] ++ buildInputs;
+                  postFixup = previousAttrs.postFixup or "" + ''
+                    chmod +x $out/lib/naps2/_linux/tesseract 
+                    wrapProgram $out/bin/naps2 --prefix LD_LIBRARY_PATH : \
+                    ${builtins.toString (pkgs.lib.makeLibraryPath buildInputs)}
+                  '';
+                }
+              );
               devShells.default = pkgs.mkShell {
                 packages = with pkgs; [
                   just
