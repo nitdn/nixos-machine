@@ -28,6 +28,7 @@ in
     ./blocky.nix
     ./failing2ban.nix
     ./prometheus.nix
+    ./paperless.nix
   ];
   # cleanup configs
 
