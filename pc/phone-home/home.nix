@@ -11,6 +11,13 @@
     ../helix.nix
     ../gitui.nix
   ];
+
+  programs.starship = {
+    enable = true;
+    # This is the only saneish way to read the toml they provide
+    settings = fromTOML (builtins.readFile ../starship-preset-jetpack.toml);
+  };
+
   programs.direnv.enable = true;
   programs.fish.enable = true;
   programs.bash = {
