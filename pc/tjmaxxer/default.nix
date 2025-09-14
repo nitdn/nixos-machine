@@ -1,14 +1,17 @@
 {
   self,
+  config,
   inputs,
   lib,
   withSystem,
-  username,
   ...
 }:
+let
+  username = config.username;
+in
 {
   config = {
-    flake.nixosConfigurations.tjmaxxer = (
+    flake.nixosConfigurations.tjmaxxer = withSystem "x86_64-linux" (
       {
         config,
         ...
@@ -24,8 +27,8 @@
           inputs.sops-nix.nixosModules.sops
           inputs.stylix.nixosModules.stylix
           inputs.niri.nixosModules.niri
-          ./pc/tjmaxxer/configuration.nix
-          ./pc/stylix.nix
+          ./configuration.nix
+          ../stylix.nix
           {
             imports = [
             ];
@@ -49,8 +52,8 @@
       inputs.home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         modules = [
-          ./pc/home.nix
-          ./pc/stylix.nix
+          ../home.nix
+          ../stylix.nix
           inputs.stylix.homeModules.stylix
           inputs.zen-browser.homeModules.default
           inputs.niri.homeModules.niri

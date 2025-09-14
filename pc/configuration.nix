@@ -17,6 +17,7 @@ in
   imports = [
     ./stubby.nix
     ./samba.nix
+    ./stylix.nix
   ];
 
   nixpkgs.overlays = [
