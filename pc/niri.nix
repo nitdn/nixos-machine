@@ -1,9 +1,11 @@
 {
   config,
-  lib,
   pkgs,
   ...
 }:
+let
+  waybar_settings = import ./waybar-config.nix;
+in
 {
 
   home.packages = with pkgs; [
@@ -16,7 +18,7 @@
 
   services.mako.enable = true;
   programs.waybar.enable = true;
-
+  programs.waybar.settings = waybar_settings;
   programs.fuzzel = {
     enable = true;
     settings = {
