@@ -1,5 +1,4 @@
 {
-  self,
   config,
   inputs,
   lib,
@@ -7,7 +6,8 @@
   ...
 }:
 let
-  username = config.username;
+  username = pc.username;
+  pc = config.pc;
 in
 {
   config = {
@@ -20,7 +20,7 @@ in
       inputs.nixpkgs.lib.nixosSystem {
         specialArgs = {
           packages = config.packages;
-          inherit inputs username;
+          inherit inputs pc;
         };
 
         modules = [
@@ -62,7 +62,6 @@ in
             programs.niri.enable = true;
             nixpkgs.overlays = [
               inputs.niri.overlays.niri
-              self.overlays.default
             ];
             nixpkgs.config.allowUnfreePredicate =
               pkg:
@@ -73,7 +72,7 @@ in
         ];
         extraSpecialArgs = {
           packages = config.packages;
-          inherit self inputs' username;
+          inherit inputs' pc;
         };
       }
     );

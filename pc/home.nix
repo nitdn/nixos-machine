@@ -1,13 +1,14 @@
 {
+  pc,
   inputs',
   pkgs,
   packages,
   lib,
-  username,
   ...
 }:
 let
   leader.key = "alt+space";
+  username = pc.username;
 in
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -18,7 +19,7 @@ in
     ./niri.nix
     # inputs.zen-browser.homeModules.twilight
   ];
-  home.username = username;
+  home.username = "${username}";
   home.homeDirectory = lib.mkForce "/home/${username}";
 
   # This value determines the Home Manager release that your configuration is

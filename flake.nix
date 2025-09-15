@@ -71,15 +71,13 @@
 
       {
         debug = true;
-        inherit username;
+        pc.username = username;
 
         imports = [
           # Optional: use external flake logic, e.g.
           inputs.home-manager.flakeModules.home-manager
           inputs.flake-parts.flakeModules.easyOverlay
-          ./pc/disko-elysium
-          ./pc/tjmaxxer
-          ./pc/phone-home
+          ./pc
           ./vps
         ];
         systems = [

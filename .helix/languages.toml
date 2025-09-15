@@ -28,10 +28,10 @@ name = "just"
 command = "just-lsp"
 
 [language-server.nixd.config.nixd.options.flake-parts]
-expr = "(builtins.getFlake \".\").debug.options"
+expr = "(builtins.getFlake \"git+https://codeberg.org/nitdn/nixos-machine.git\").debug.options"
 
 [language-server.nixd.config.nixd.options.home-manager]
-expr = "(builtins.getFlake \".\").homeConfigurations.\"ssmvabaa\".options"
+expr = "(builtins.getFlake \"git+https://codeberg.org/nitdn/nixos-machine.git\").homeConfigurations.\"ssmvabaa\".options"
 
 [language-server.yaml-language-server.config.yaml]
 validation = true

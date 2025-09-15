@@ -7,10 +7,11 @@
   inputs,
   packages,
   pkgs,
-  username,
+  pc,
   ...
 }:
 let
+  username = pc.username;
 in
 
 {

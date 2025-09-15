@@ -1,18 +1,14 @@
 {
   config,
-  self,
-  lib,
   withSystem,
   inputs,
   ...
 }:
 let
-  username = config.username;
+  username = pc.username;
+  pc = config.pc;
 in
 {
-  options.username = lib.mkOption {
-    type = lib.types.str;
-  };
   config = {
 
     flake.nixosConfigurations.disko-elysium = withSystem "x86_64-linux" (
@@ -25,7 +21,7 @@ in
       inputs.nixpkgs.lib.nixosSystem {
         specialArgs = {
           packages = config.packages;
-          inherit inputs username;
+          inherit inputs pc;
         };
 
         modules = [
@@ -42,7 +38,6 @@ in
             programs.niri.enable = true;
             nixpkgs.overlays = [
               inputs.niri.overlays.niri
-              self.overlays.default
             ];
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
@@ -50,10 +45,10 @@ in
               inputs.zen-browser.homeModules.default
             ];
             home-manager.backupFileExtension = "backup";
-            home-manager.users.ssmvabaa = ./home.nix;
+            home-manager.users.${username} = ./home.nix;
             home-manager.extraSpecialArgs = {
               packages = config.packages;
-              inherit self inputs' username;
+              inherit inputs' pc;
             };
           }
         ];
