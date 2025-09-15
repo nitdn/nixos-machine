@@ -7,6 +7,7 @@
 let
   username = pc.username;
   pc = config.pc;
+  homeModule = config.flake.homeModules.default;
 in
 {
   config = {
@@ -45,7 +46,10 @@ in
               inputs.zen-browser.homeModules.default
             ];
             home-manager.backupFileExtension = "backup";
-            home-manager.users.${username} = ./home.nix;
+            home-manager.users.${username} = {
+              imports = [ homeModule ];
+              programs.helix.settings.theme = "ayu_light";
+            };
             home-manager.extraSpecialArgs = {
               packages = config.packages;
               inherit inputs' pc;

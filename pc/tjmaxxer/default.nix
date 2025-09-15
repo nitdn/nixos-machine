@@ -6,8 +6,10 @@
   ...
 }:
 let
-  username = pc.username;
   pc = config.pc;
+  username = pc.username;
+  homeModule = config.flake.homeModules.default;
+
 in
 {
   config = {
@@ -52,13 +54,14 @@ in
       inputs.home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         modules = [
-          ../home.nix
+          homeModule
           ../stylix.nix
           inputs.stylix.homeModules.stylix
           inputs.zen-browser.homeModules.default
           inputs.niri.homeModules.niri
           inputs.niri.homeModules.stylix
           {
+            home.homeDirectory = "/home/${username}";
             programs.niri.enable = true;
             nixpkgs.overlays = [
               inputs.niri.overlays.niri
@@ -72,7 +75,7 @@ in
         ];
         extraSpecialArgs = {
           packages = config.packages;
-          inherit inputs' pc;
+          inherit inputs';
         };
       }
     );
