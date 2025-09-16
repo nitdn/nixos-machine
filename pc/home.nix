@@ -56,7 +56,7 @@ in
     p7zip
     tlrc
     scantailor-universal
-    inputs'.typeman.packages.default
+    # inputs'.typeman.packages.default # typeman currently fails
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

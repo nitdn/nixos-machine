@@ -76,7 +76,6 @@
         imports = [
           # Optional: use external flake logic, e.g.
           inputs.home-manager.flakeModules.home-manager
-          inputs.flake-parts.flakeModules.easyOverlay
           ./pc
           ./vps
         ];
@@ -86,7 +85,6 @@
         ];
         perSystem =
           {
-            inputs',
             pkgs,
             system,
             ...
@@ -106,10 +104,7 @@
                 inputs.helix.overlays.default
               ];
             };
-            overlayAttrs = {
-              # inherit (config.packages) bizhub-225i-ppds typeman;
-            };
-            packages.typeman = inputs'.typeman.packages.default;
+            # packages.typeman = inputs'.typeman.packages.default;
             packages.bizhub-225i-ppds = pkgs.callPackage ./bizhub-225i.nix { };
             packages.naps2-wrapped = pkgs.naps2.overrideAttrs (
               finalAttrs: previousAttrs: {
