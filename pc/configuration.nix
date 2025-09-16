@@ -108,13 +108,16 @@ in
 
   fonts.fontconfig.defaultFonts = {
     sansSerif = [
+      "Atkinson Hyperlegible Next"
       "Noto Sans Bengali"
     ];
     serif = [
-      "Noto Serif Bengali"
+      "Noto Serif"
     ];
     monospace = [
-      "Noto Serif Bengali"
+      "Font Awesome 6 Free Regular"
+      "JetBrainsMono Nerd Font"
+      "Noto Sans"
     ];
   };
 

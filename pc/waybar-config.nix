@@ -1,4 +1,3 @@
-# -*- mode= jsonc -*-
 {
   mainBar = {
     # "layer"= "top"; # Waybar at top layer
@@ -71,10 +70,10 @@
         ""
       ];
       tooltip = true;
-      tooltip-format = "{app}= {title}";
+      tooltip-format = "{app}: {title}";
     };
     mpd = {
-      format = "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime=%M=%S}/{totalTime=%M=%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ";
+      format = "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ";
       format-disconnected = "Disconnected ";
       format-stopped = "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ";
       unknown-tag = "N/A";
@@ -117,9 +116,9 @@
     clock = {
       "timezone" = "Asia/Kolkata";
       tooltip-format = ''
-        <big>{=%Y %B}</big>
+        <big>{:%Y %B}</big>
         <tt><small>{calendar}</small></tt>'';
-      format-alt = "{=%Y-%m-%d}";
+      format-alt = "{:%Y-%m-%d}";
     };
     cpu = {
       format = "{usage}% ";
@@ -181,7 +180,9 @@
     };
     power-profiles-daemon = {
       format = "{icon}";
-      tooltip-format = "Power profile= {profile}\nDriver= {driver}";
+      tooltip-format = ''
+        Power profile: {profile}
+        Driver: {driver}'';
       tooltip = true;
       format-icons = {
         default = "";
