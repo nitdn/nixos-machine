@@ -8,6 +8,7 @@ let
   username = pc.username;
   pc = config.pc;
   homeModule = config.flake.homeModules.default;
+  nixosModule = config.flake.nixosModules.default;
 in
 {
   config = {
@@ -32,14 +33,14 @@ in
           inputs.niri.nixosModules.niri
           inputs.home-manager.nixosModules.home-manager
           ./configuration.nix
-          ../stylix.nix
+          nixosModule
           {
-            imports = [
-            ];
-            programs.niri.enable = true;
-            nixpkgs.overlays = [
-              inputs.niri.overlays.niri
-            ];
+            # imports = [
+            # ];
+            #   programs.niri.enable = true;
+            #   nixpkgs.overlays = [
+            #     inputs.niri.overlays.niri
+            # ];
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.sharedModules = [

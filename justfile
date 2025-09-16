@@ -1,6 +1,6 @@
 [working-directory('../next')]
 test-vps:
-    nixos-rebuild --flake . --target-host root@vps01 test
+    nh os test --target-host root@vps01 .
 
 @pwget item:
     sops decrypt --extract '["{{ item }}"]["password"]' secrets/core.yaml

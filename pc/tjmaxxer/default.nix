@@ -9,6 +9,7 @@ let
   pc = config.pc;
   username = pc.username;
   homeModule = config.flake.homeModules.default;
+  nixosModule = config.flake.nixosModules.default;
 
 in
 {
@@ -30,15 +31,15 @@ in
           inputs.stylix.nixosModules.stylix
           inputs.niri.nixosModules.niri
           ./configuration.nix
-          ../stylix.nix
+          nixosModule
           {
-            imports = [
-            ];
-            programs.niri.enable = true;
-            nixpkgs.overlays = [
-              inputs.niri.overlays.niri
-              inputs.helix.overlays.default
-            ];
+            # imports = [
+            # ];
+            # programs.niri.enable = true;
+            # nixpkgs.overlays = [
+            #   inputs.niri.overlays.niri
+            #   inputs.helix.overlays.default
+            # ];
           }
         ];
       }
