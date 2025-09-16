@@ -17,7 +17,7 @@ stdenv.mkDerivation rec {
   ];
 
   src = fetchzip {
-    url = "https://dl.konicaminolta.eu/en/?tx_kmdownloadproxy_downloadproxy[fileId]=4562fe1cc1a8e069fd2f57714fd11d89&tx_kmdownloadproxy_downloadproxy[documentId]=138755&tx_kmdownloadproxy_downloadproxy[system]=KonicaMinolta&tx_kmdownloadproxy_downloadproxy[language]=EN&type=1558521685#${name}.zip";
+    url = "https://public.integration.yamayuri.kiku8101.com/publicdownload/download?fileId=B2C0B6D9-C563-4377-B77B-33BBAC4A5EC8#${name}.zip";
     hash = "sha256-urrs4DUFz3KFvX7G0xFLHauijlxNLa2evpPhYzbA8fU=";
   };
 
