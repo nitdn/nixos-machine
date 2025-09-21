@@ -33,23 +33,6 @@
       "tray"
       "custom/power"
     ];
-    # Modules configuration
-    # "sway/workspaces"= {
-    #     "disable-scroll"= true;
-    #     "all-outputs"= true;
-    #     "warp-on-scroll"= false;
-    #     "format"= "{name}= {icon}";
-    #     "format-icons"= {
-    #         "1"= "";
-    #         "2"= "";
-    #         "3"= "";
-    #         "4"= "";
-    #         "5"= "";
-    #         "urgent"= "";
-    #         "focused"= "";
-    #         "default"= ""
-    #     }
-    # };
     keyboard-state = {
       numlock = true;
       capslock = true;
@@ -194,31 +177,31 @@
     network = {
       # interface= "wlp2*"; # (Optional) To force the use of this interface
       format-wifi = "{essid} ({signalStrength}%) ";
-      format-ethernet = "{ipaddr}/{cidr} ";
-      tooltip-format = "{ifname} via {gwaddr} ";
-      format-linked = "{ifname} (No IP) ";
+      format-ethernet = "{ipaddr}/{cidr} ";
+      tooltip-format = "{ifname} via {gwaddr} ";
+      format-linked = "{ifname} (No IP) ";
       format-disconnected = "Disconnected ⚠";
-      format-alt = "{ifname}= {ipaddr}/{cidr}";
+      format-alt = "{ifname}: {ipaddr}/{cidr}";
     };
     pulseaudio = {
       # scroll-step= 1; # %; can be a float
       format = "{volume}% {icon} {format_source}";
       format-bluetooth = "{volume}% {icon} {format_source}";
-      format-bluetooth-muted = " {icon} {format_source}";
-      format-muted = "󰝟 {format_source}";
+      format-bluetooth-muted = " {icon} {format_source}";
+      format-muted = " {format_source}";
       format-source = "{volume}% ";
       format-source-muted = "";
       format-icons = {
         headphone = "";
-        hands-free = "";
-        headset = "";
+        hands-free = "";
+        headset = "";
         phone = "";
         portable = "";
         car = "";
         default = [
-          ""
           ""
           ""
+          ""
         ];
       };
       on-click = "pavucontrol";

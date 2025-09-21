@@ -123,18 +123,19 @@ in
   # Input methods
   i18n.inputMethod = {
     enable = true;
-    type = "ibus";
-    ibus.engines = with pkgs.ibus-engines; [
-      typing-booster
-      openbangla-keyboard
-    ];
-
-    # type = "fcitx5";
-    # fcitx5.waylandFrontend = true;
-    # fcitx5.addons = with pkgs; [
-    #   fcitx5-catppuccin
-    #   fcitx5-openbangla-keyboard
+    # type = "ibus";
+    # ibus.engines = with pkgs.ibus-engines; [
+    #   typing-booster
+    #   openbangla-keyboard
     # ];
+
+    type = "fcitx5";
+    fcitx5.waylandFrontend = true;
+    fcitx5.addons = with pkgs; [
+      fcitx5-catppuccin
+      fcitx5-gtk
+      fcitx5-openbangla-keyboard
+    ];
 
   };
 
