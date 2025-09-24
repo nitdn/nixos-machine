@@ -92,13 +92,14 @@ in
 
   # Select internationalisation properties.
   i18n.extraLocaleSettings = {
-    LC_ALL = "en_IN";
+    LANGUAGE = "en_IN:en:bn_IN:hi_IN";
   };
 
   i18n.extraLocales = [
     "en_IN/UTF-8"
     "en_US.UTF-8/UTF-8"
     "bn_IN/UTF-8"
+    "hi_IN/UTF-8"
   ];
 
   fonts.packages = with pkgs; [
