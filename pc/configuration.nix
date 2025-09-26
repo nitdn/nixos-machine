@@ -55,6 +55,7 @@ in
       "steam-unwrapped"
       "hplip"
       "obsidian"
+      "epson-202101w"
     ];
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -92,7 +93,7 @@ in
 
   # Select internationalisation properties.
   i18n.extraLocaleSettings = {
-    LANGUAGE = "en_IN:en:bn_IN:hi_IN";
+    LANGUAGE = "en_IN:en:C:bn_IN:hi_IN";
   };
 
   i18n.extraLocales = [
@@ -150,12 +151,10 @@ in
   services.printing.enable = true;
   services.system-config-printer.enable = true;
   programs.system-config-printer.enable = true;
-  services.printing.logLevel = "debug";
-  services.printing.drivers = with pkgs; [
-    epson-escpr
-    foomatic-db-ppds
-    foomatic-filters
+  # services.printing.logLevel = "debug";
+  services.printing.drivers = [
     packages.bizhub-225i-ppds
+    packages.epson-l3212
   ];
 
   # Enable sound with pipewire.

@@ -105,6 +105,7 @@
               ];
             };
             # packages.typeman = inputs'.typeman.packages.default;
+            packages.epson-l3212 = pkgs.callPackage ./epson-l3212.nix { };
             packages.bizhub-225i-ppds = pkgs.callPackage ./bizhub-225i.nix { };
             packages.naps2-wrapped = pkgs.naps2.overrideAttrs (
               finalAttrs: previousAttrs: {
