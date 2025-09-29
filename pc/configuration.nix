@@ -52,6 +52,8 @@ in
     builtins.elem (lib.getName pkg) [
       # Add additional package names here
       "steam"
+      "steam-original"
+      "steam-run"
       "steam-unwrapped"
       "hplip"
       "obsidian"
