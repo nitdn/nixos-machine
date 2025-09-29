@@ -17,6 +17,7 @@
   services.homed.enable = true;
   boot.initrd.systemd.enable = true;
   boot.initrd.systemd.repart.enable = true;
+  boot.initrd.systemd.repart.device = "/dev/disk/by-id/nvme-WD_BLACK_SN770_1TB_24184R805268";
 
   systemd.repart.partitions."30-boot" = {
     Type = "esp";
