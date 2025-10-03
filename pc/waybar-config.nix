@@ -199,9 +199,9 @@
         portable = "";
         car = "";
         default = [
+          ""
           ""
           ""
-          ""
         ];
       };
       on-click = "pavucontrol";
