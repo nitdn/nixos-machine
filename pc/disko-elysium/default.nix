@@ -11,53 +11,50 @@ let
   nixosModule = config.flake.nixosModules.default;
 in
 {
-  config = {
+  flake.nixosConfigurations.disko-elysium = withSystem "x86_64-linux" (
+    {
+      config,
+      inputs',
+      ...
+    }:
 
-    flake.nixosConfigurations.disko-elysium = withSystem "x86_64-linux" (
-      {
-        config,
-        inputs',
-        ...
-      }:
+    inputs.nixpkgs.lib.nixosSystem {
+      specialArgs = {
+        packages = config.packages;
+        inherit inputs pc;
+      };
 
-      inputs.nixpkgs.lib.nixosSystem {
-        specialArgs = {
-          packages = config.packages;
-          inherit inputs pc;
-        };
-
-        modules = [
-          inputs.disko.nixosModules.disko
-          inputs.sops-nix.nixosModules.sops
-          inputs.stylix.nixosModules.stylix
-          inputs.niri.nixosModules.niri
-          inputs.home-manager.nixosModules.home-manager
-          ./configuration.nix
-          nixosModule
-          {
-            # imports = [
-            # ];
-            #   programs.niri.enable = true;
-            #   nixpkgs.overlays = [
-            #     inputs.niri.overlays.niri
-            # ];
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.sharedModules = [
-              inputs.zen-browser.homeModules.default
-            ];
-            home-manager.backupFileExtension = "backup";
-            home-manager.users.${username} = {
-              imports = [ homeModule ];
-              programs.helix.settings.theme = "ayu_light";
-            };
-            home-manager.extraSpecialArgs = {
-              packages = config.packages;
-              inherit inputs' pc;
-            };
-          }
-        ];
-      }
-    );
-  };
+      modules = [
+        inputs.disko.nixosModules.disko
+        inputs.sops-nix.nixosModules.sops
+        inputs.stylix.nixosModules.stylix
+        inputs.niri.nixosModules.niri
+        inputs.home-manager.nixosModules.home-manager
+        ./configuration.nix
+        nixosModule
+        {
+          # imports = [
+          # ];
+          #   programs.niri.enable = true;
+          #   nixpkgs.overlays = [
+          #     inputs.niri.overlays.niri
+          # ];
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.sharedModules = [
+            inputs.zen-browser.homeModules.default
+          ];
+          home-manager.backupFileExtension = "backup";
+          home-manager.users.${username} = {
+            imports = [ homeModule ];
+            programs.helix.settings.theme = "ayu_light";
+          };
+          home-manager.extraSpecialArgs = {
+            packages = config.packages;
+            inherit inputs' pc;
+          };
+        }
+      ];
+    }
+  );
 }

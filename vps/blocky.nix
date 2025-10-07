@@ -67,14 +67,15 @@ in
         denylists = {
           #Adblocking
           ads = [
-            "https://s3.amazonaws.com/lists.disconnect.me/simple_ad.txt"
-            "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts"
-            "http://sysctl.org/cameleon/hosts"
-            "https://s3.amazonaws.com/lists.disconnect.me/simple_tracking.txt"
-            "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts"
+            "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/pro.txt"
+            "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/tif.medium.txt"
           ];
           #Another filter for blocking adult sites
-          adult = [ "https://blocklistproject.github.io/Lists/porn.txt" ];
+          adult = [
+            "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/gambling.txt"
+            "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/nosafesearch.txt"
+            "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/nsfw.txt"
+          ];
           #You can add additional categories
         };
         #Configure what block categories are used
