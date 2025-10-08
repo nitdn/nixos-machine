@@ -72,12 +72,8 @@ in
     #   org.gradle.console=verbose
     #   org.gradle.daemon.idletimeout=3600000
     # '';
-    ".config/waybar/power_menu.xml".source = pkgs.fetchurl {
-      url = "https://raw.githubusercontent.com/Alexays/Waybar/refs/heads/master/resources/custom_modules/power_menu.xml";
-      sha256 = "sha256-od1Hk8vSPvOBC1n3C0nHEXKiEDMRzKFCbUGcTWveKXo=";
-    };
+    ".config/waybar/power_menu.xml".source = ./power_menu.xml;
   };
-
   # Home Manager can also manage your environment variables through
   # 'home.sessionVariables'. These will be explicitly sourced when using a
   # shell provided by Home Manager. If you don't want to manage your shell

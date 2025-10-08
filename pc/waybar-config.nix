@@ -227,7 +227,6 @@
         shutdown = "shutdown now";
         reboot = "reboot";
         suspend = "systemctl suspend";
-        hibernate = "systemctl hibernate";
       };
     };
   };
