@@ -21,10 +21,6 @@ in
     ./stylix.nix
   ];
 
-  nixpkgs.overlays = [
-    inputs.helix.overlays.default
-  ];
-
   # cleanup configs
   nix.optimise.automatic = true;
   nix.gc = {

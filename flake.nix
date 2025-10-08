@@ -4,10 +4,6 @@
   inputs = {
     # Specify the source of Home Manager and Nixpkgs.
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
-    helix = {
-      url = "github:helix-editor/helix/25.07.1";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -45,14 +41,13 @@
     };
     authentik-nix = {
       url = "github:nix-community/authentik-nix";
-
       ## optional overrides. Note that using a different version of nixpkgs can cause issues, especially with python dependencies
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
     };
-    typeman = {
-      url = "github:mzums/typeman";
-      # inputs.nixpkgs.follows = "nixpkgs"; # libx11 is only in unstable
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
@@ -76,6 +71,7 @@
         imports = [
           # Optional: use external flake logic, e.g.
           inputs.home-manager.flakeModules.home-manager
+          inputs.treefmt-nix.flakeModule
           ./pc
           ./vps
         ];
@@ -101,7 +97,6 @@
               inherit system;
               overlays = [
                 inputs.nix-on-droid.overlays.default
-                inputs.helix.overlays.default
               ];
             };
             # packages.typeman = inputs'.typeman.packages.default;
@@ -117,6 +112,27 @@
                 '';
               }
             );
+            treefmt.programs = {
+              dprint.enable = true;
+              nixfmt.enable = true;
+              just.enable = true;
+              sqlfluff.enable = true;
+              sqlfluff.dialect = "postgres";
+            };
+            treefmt.programs.dprint.excludes = [
+              "**/*-lock.json"
+            ];
+            treefmt.programs.dprint.settings.plugins = (
+              pkgs.dprint-plugins.getPluginList (
+                plugins: with plugins; [
+                  dprint-plugin-json
+                  dprint-plugin-markdown
+                  dprint-plugin-toml
+                  g-plane-pretty_yaml
+                ]
+              )
+            );
+
             devShells.default = pkgs.mkShell {
               packages = with pkgs; [
                 just
