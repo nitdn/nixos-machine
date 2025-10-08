@@ -123,6 +123,13 @@ in
         proxyPass = "http://localhost:8001";
       };
     };
+    "tacker.${domain_name}" = {
+      enableACME = true;
+      addSSL = true;
+      locations."/" = {
+        root = "/var/www/tacker";
+      };
+    };
     "dns.${domain_name}" = {
       forceSSL = true;
       enableACME = true;

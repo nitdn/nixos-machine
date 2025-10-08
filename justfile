@@ -1,6 +1,6 @@
 [working-directory('../next')]
 test-vps:
-    nh os test --hostname vps01 --target-host root@vps01 .
+    nh os test --hostname vps01 --build-host root@vps01 --target-host root@vps01 .
 
 @pwget item:
     sops decrypt --extract '["{{ item }}"]["password"]' secrets/core.yaml
