@@ -20,6 +20,10 @@
   ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
+  boot.kernelParams = [
+    "radeon.si_support=0"
+    "amdgpu.si_support=1"
+  ];
   boot.extraModulePackages = [ ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
@@ -37,7 +41,6 @@
       intel-media-sdk
       intel-media-driver
       intel-vaapi-driver
-      amdvlk
       mesa
     ];
   };
