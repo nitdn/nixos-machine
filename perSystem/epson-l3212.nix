@@ -60,7 +60,7 @@ stdenv.mkDerivation {
   '';
 
   meta = with lib; {
-    homepage = "https://www.openprinting.org/driver/epson-202101w";
+    homepage = "http://download.ebz.epson.net/dsc/search/01/search/?OSC=LX";
     description = "Epson printer driver (L3210 L3200 L1250 L1210)";
     longDescription = ''
       This software is a filter program used with the Common UNIX Printing
@@ -73,11 +73,10 @@ stdenv.mkDerivation {
           drivers = [ pkgs.epson-202101w ];
         };
     '';
-    # We will remove the license declaration because it breaks local builds
-    # license = with licenses; [
-    #   lgpl21
-    #   epson
-    # ];
+    license = with licenses; [
+      lgpl21
+      epson
+    ];
     platforms = platforms.linux;
     # The guy I stole this config from
     # maintainers = [ maintainers.lunarequest ];

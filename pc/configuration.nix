@@ -53,7 +53,6 @@ in
       "steam-unwrapped"
       "hplip"
       "obsidian"
-      "epson-202101w"
     ];
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
