@@ -1,2 +1,3 @@
 /flake.lock linguist-generated=true
 facter.json linguist-generated=true
+*.layout.json linguist-generated=true

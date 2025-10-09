@@ -29,6 +29,7 @@
           inputs.nix-on-droid.overlays.default
         ];
       };
+
       # packages.typeman = inputs'.typeman.packages.default;
       packages.epson-l3212 = pkgs.callPackage ./epson-l3212.nix { };
       packages.bizhub-225i-ppds = pkgs.callPackage ./bizhub-225i.nix { };
@@ -42,15 +43,25 @@
           '';
         }
       );
+
       treefmt.programs = {
         dprint.enable = true;
         nixfmt.enable = true;
         just.enable = true;
+        shfmt.enable = true;
         sqlfluff.enable = true;
         sqlfluff.dialect = "postgres";
+        typstyle.enable = true;
       };
       treefmt.programs.dprint.excludes = [
-        "**/*-lock.json"
+        "**/*.layout.json"
+        "secrets/*"
+      ];
+      treefmt.programs.dprint.includes = [
+        "*.json"
+        "*.yaml"
+        "*.yml"
+        "*.toml"
       ];
       treefmt.programs.dprint.settings.plugins = (
         pkgs.dprint-plugins.getPluginList (
@@ -71,6 +82,8 @@
           meld
           nixfmt-rfc-style
           nixd
+          tinymist
+          typstyle
         ];
       };
     };

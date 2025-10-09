@@ -37,3 +37,14 @@ expr = "(builtins.getFlake \"git+https://codeberg.org/nitdn/nixos-machine.git\")
 validation = true
 [language-server.yaml-language-server.config.yaml.format]
 enable = true
+
+[language-server.tinymist]
+command = "tinymist"
+[language-server.tinymist.config]
+formatterMode = "typstyle"
+preview.background.enabled = true
+preview.background.args = [
+  "--data-plane-host=127.0.0.1:23635",
+  "--invert-colors=never",
+  "--open",
+]
