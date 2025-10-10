@@ -26,7 +26,7 @@ stdenv.mkDerivation rec {
   };
 
   unpackPhase = ''
-    ${rpmextract}/bin/rpmextract $src/For_x86_64/konica-minolta-245igdi-cups-2.01-0.${cpu}.rpm
+    ${rpmextract}/bin/rpmextract $src/For_${cpu}/konica-minolta-245igdi-cups-2.01-0.${cpu}.rpm
   '';
 
   installPhase = ''

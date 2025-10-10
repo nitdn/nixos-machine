@@ -1,8 +1,6 @@
 {
   config,
-  lib,
   pkgs,
-  self,
   ...
 }:
 
@@ -88,7 +86,6 @@ in
     backupFileExtension = "hm-bak";
     useGlobalPkgs = true;
     extraSpecialArgs = {
-      inherit self;
       username = config.user.userName;
     };
   };

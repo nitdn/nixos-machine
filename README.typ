@@ -29,7 +29,6 @@ So I have around $3 1 / 2$ machines and they are as follows:
       - Not FreshRSS yet, for some reason (I keep delaying it)
     - Also uses disko for partitioning
       - And facter for hardware discovery
-    - Only machine to not need `withSystem`
 
 + / phone-home: This is actually just nix-on-droid, so it doesn't count as a
     whole device really amirite gamers?

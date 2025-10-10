@@ -4,24 +4,37 @@
   config,
   ...
 }:
+let
+  nixosModules = config.flake.modules.nixos;
+in
 {
   options = {
     pc.username = lib.mkOption {
       type = lib.types.str;
+    };
+    pc.allowedPredicates = lib.mkOption {
+      type = lib.types.anything;
     };
   };
   imports = [
     ./disko-elysium
     ./tjmaxxer
     ./phone-home
+    ./configuration.nix
+    ./home.nix
   ];
-  config.flake.nixosModules.default =
+  config.flake.modules.nixos.default = {
+    imports = [
+      inputs.sops-nix.nixosModules.sops
+      inputs.stylix.nixosModules.stylix
+      inputs.niri.nixosModules.niri
+      nixosModules.base
+      nixosModules.niri
+    ];
+  };
+  config.flake.modules.nixos.niri =
     { pkgs, ... }:
     {
-      imports = [
-        ./configuration.nix
-        ./stylix.nix
-      ];
       programs.niri.enable = true;
       systemd.user.services.niri-flake-polkit.enable = false;
       systemd.user.services.polkit-gnome-authentication-agent-1 = {
@@ -42,11 +55,4 @@
         inputs.niri.overlays.niri
       ];
     };
-
-  config.flake.homeModules = {
-    default = {
-      imports = [ ./home.nix ];
-      home.username = config.pc.username;
-    };
-  };
 }

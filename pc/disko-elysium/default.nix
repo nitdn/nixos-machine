@@ -1,44 +1,26 @@
 {
   config,
-  withSystem,
   inputs,
   ...
 }:
 let
+  inherit (config) pc;
   username = pc.username;
-  pc = config.pc;
-  homeModule = config.flake.homeModules.default;
-  nixosModule = config.flake.nixosModules.default;
+  homeModule = config.flake.modules.homeManager.default;
+  nixosModules = config.flake.modules.nixos;
 in
 {
-  flake.nixosConfigurations.disko-elysium = withSystem "x86_64-linux" (
-    {
-      config,
-      inputs',
-      ...
-    }:
+  flake.nixosConfigurations.disko-elysium =
 
     inputs.nixpkgs.lib.nixosSystem {
-      specialArgs = {
-        packages = config.packages;
-        inherit inputs pc;
-      };
 
       modules = [
         inputs.disko.nixosModules.disko
-        inputs.sops-nix.nixosModules.sops
-        inputs.stylix.nixosModules.stylix
-        inputs.niri.nixosModules.niri
         inputs.home-manager.nixosModules.home-manager
+        nixosModules.default
         ./configuration.nix
-        nixosModule
+
         {
-          # imports = [
-          # ];
-          #   programs.niri.enable = true;
-          #   nixpkgs.overlays = [
-          #     inputs.niri.overlays.niri
-          # ];
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.sharedModules = [
@@ -49,12 +31,9 @@ in
             imports = [ homeModule ];
             programs.helix.settings.theme = "ayu_light";
           };
-          home-manager.extraSpecialArgs = {
-            packages = config.packages;
-            inherit inputs' pc;
-          };
         }
       ];
     }
-  );
+  # )
+  ;
 }
