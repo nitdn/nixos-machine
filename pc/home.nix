@@ -1,11 +1,10 @@
 { moduleWithSystem, ... }:
 {
+  pc.unfreeNames = [ "obsidian" ];
   flake.modules.homeManager.default = moduleWithSystem (
     {
       pkgs,
       config,
-
-      # packages,
       ...
     }:
     let

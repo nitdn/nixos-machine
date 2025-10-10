@@ -1,27 +1,13 @@
 {
-  lib,
   inputs,
   config,
   ...
 }:
-let
-  inherit (config) pc;
-in
 {
-  pc.allowedPredicates =
-    pkg:
-    builtins.elem (lib.getName pkg) [
-      # Add additional package names here
-      "steam"
-      "steam-original"
-      "steam-run"
-      "steam-unwrapped"
-      "hplip"
-      "epson-202101w"
-      "konica-bizhub-225i"
-      "obsidian"
-      "corefonts"
-    ];
+  pc.unfreeNames = [
+    "konica-bizhub-225i"
+    "epson-202101w"
+  ];
 
   perSystem =
     {
@@ -30,7 +16,6 @@ in
       ...
     }:
     let
-
       buildInputs = [
         pkgs.makeWrapper
         pkgs.libtiff.out
@@ -38,9 +23,8 @@ in
     in
     {
       _module.args.pkgs = import inputs.nixpkgs {
+        inherit (config.pc.unfreePredicate) config;
         inherit system;
-        # Learned this cool trick from flake-parts templates lol
-        config.allowUnfreePredicate = pc.allowedPredicates;
         overlays = [
           inputs.nix-on-droid.overlays.default
         ];

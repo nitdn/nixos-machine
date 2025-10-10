@@ -29,12 +29,11 @@ command = "just-lsp"
 
 [language-server.nixd.config.options]
 nixos.expr = "(builtins.getFlake (builtins.toString ./.)).nixosConfigurations.tjmaxxer.options"
-home-manager.expr = "(builtins.getFlake (builtins.toString ./.)).currentSystem.legacyPackages.homeConfigurations.ssmvabaa.options" 
+home-manager.expr = "(builtins.getFlake (builtins.toString ./.)).currentSystem.legacyPackages.homeConfigurations.ssmvabaa.options"
 flake-parts.expr = "(builtins.getFlake (builtins.toString ./.)).debug.options"
 flake-parts2.expr = "(builtins.getFlake (builtins.toString ./.)).currentSystem.options"
 
 [language-server.yaml-language-server.config.yaml]
-
 validation = true
 [language-server.yaml-language-server.config.yaml.format]
 enable = true

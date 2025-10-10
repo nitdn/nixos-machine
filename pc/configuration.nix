@@ -5,10 +5,7 @@
   ...
 }:
 let
-  username = pc.username;
-  pc = config.pc;
-  allowedPredicates = pc.allowedPredicates;
-
+  inherit (config.pc) username;
 in
 {
   flake.modules.nixos.base = moduleWithSystem (
@@ -43,7 +40,6 @@ in
       };
 
       nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
-      nixpkgs.config.allowUnfreePredicate = allowedPredicates;
 
       nix.settings.trusted-users = [
         "@wheel"
