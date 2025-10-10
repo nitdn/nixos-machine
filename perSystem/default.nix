@@ -20,6 +20,7 @@ in
       "epson-202101w"
       "konica-bizhub-225i"
       "obsidian"
+      "corefonts"
     ];
 
   perSystem =

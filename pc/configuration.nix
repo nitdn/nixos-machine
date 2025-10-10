@@ -229,10 +229,20 @@ in
         trashy
         vulkan-tools
         wineWowPackages.stagingFull
+        pkgs.onlyoffice-bin
         libreoffice-qt6-fresh
         hunspell
         hunspellDicts.en-gb-large
       ];
+      system.userActivationScripts = {
+        installCoreFonts = {
+          text = ''
+            mkdir -p ~/.local/share/fonts
+            cp ${pkgs.corefonts}/share/fonts/truetype/* ~/.local/share/fonts/
+            chmod 644 ~/.local/share/fonts/*
+          '';
+        };
+      };
 
       # security.wrappers = {
       #   # a setuid root program
