@@ -1,17 +1,13 @@
 {
   inputs,
-  config,
   ...
 }:
 {
-  pc.unfreeNames = [
-    "konica-bizhub-225i"
-    "epson-202101w"
-  ];
 
   perSystem =
     {
       pkgs,
+      config,
       system,
       ...
     }:
@@ -23,13 +19,16 @@
     in
     {
       _module.args.pkgs = import inputs.nixpkgs {
-        inherit (config.pc.unfreePredicate) config;
+        config = config.pc.unfreePredicate;
         inherit system;
         overlays = [
           inputs.nix-on-droid.overlays.default
         ];
       };
-
+      pc.unfreeNames = [
+        "konica-bizhub-225i"
+        "epson-202101w"
+      ];
       # packages.typeman = inputs'.typeman.packages.default;
       packages.epson-l3212 = pkgs.callPackage ./epson-l3212.nix { };
       packages.bizhub-225i-ppds = pkgs.callPackage ./bizhub-225i.nix { };

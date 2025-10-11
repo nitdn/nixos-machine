@@ -14,7 +14,8 @@ ewd action:
 [working-directory('../next')]
 lock:
     git fetch flake-mirror
-    git merge flake-mirror/update_flake_lock_action
+    # This should only produce a single commit, ever
+    git merge flake-mirror/update_flake_lock_action --squash
     git push flake-mirror
 
 [working-directory('../main')]

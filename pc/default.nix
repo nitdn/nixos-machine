@@ -1,6 +1,7 @@
 {
   inputs,
   lib,
+  flake-parts-lib,
   config,
   ...
 }:
@@ -8,17 +9,25 @@ let
   nixosModules = config.flake.modules.nixos;
 in
 {
-  options = {
-    pc.username = lib.mkOption {
-      type = lib.types.str;
-    };
-    pc.unfreeNames = lib.mkOption {
-      type = lib.types.listOf lib.types.str;
-    };
-    pc.unfreePredicate = lib.mkOption {
-      type = lib.types.anything;
-    };
-  };
+  options.perSystem = flake-parts-lib.mkPerSystemOption (
+    { config, ... }:
+    {
+      options = {
+        pc.username = lib.mkOption {
+          type = lib.types.str;
+        };
+        pc.unfreeNames = lib.mkOption {
+          type = lib.types.listOf lib.types.str;
+        };
+        pc.unfreePredicate = lib.mkOption {
+          type = lib.types.anything;
+        };
+      };
+      config.pc.unfreePredicate = {
+        allowUnfreePredicate = pkg: lib.elem (lib.getName pkg) config.pc.unfreeNames;
+      };
+    }
+  );
   imports = [
     ./disko-elysium
     ./tjmaxxer
@@ -26,17 +35,6 @@ in
     ./configuration.nix
     ./home.nix
   ];
-  config.pc.unfreeNames = [
-    "steam"
-    "steam-original"
-    "steam-run"
-    "steam-unwrapped"
-    "hplip"
-    "corefonts"
-  ];
-  config.pc.unfreePredicate = {
-    config.allowUnfreePredicate = pkg: lib.elem (lib.getName pkg) config.pc.unfreeNames;
-  };
   config.flake.modules.nixos = {
     default = {
       imports = [
@@ -45,7 +43,6 @@ in
         inputs.niri.nixosModules.niri
         nixosModules.base
         nixosModules.niri
-        nixosModules.unfree
       ];
     };
     niri =
@@ -71,8 +68,5 @@ in
           inputs.niri.overlays.niri
         ];
       };
-    unfree = {
-      nixpkgs = config.pc.unfreePredicate;
-    };
   };
 }

@@ -1,6 +1,7 @@
 { moduleWithSystem, ... }:
 {
-  pc.unfreeNames = [ "obsidian" ];
+  perSystem.pc.username = "ssmvabaa";
+  perSystem.pc.unfreeNames = [ "obsidian" ];
   flake.modules.homeManager.default = moduleWithSystem (
     {
       pkgs,

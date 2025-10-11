@@ -56,9 +56,6 @@
       flake-parts,
       ...
     }@inputs:
-    let
-      username = "ssmvabaa";
-    in
     flake-parts.lib.mkFlake
       {
         inherit inputs;
@@ -66,8 +63,6 @@
 
       {
         debug = true;
-        pc.username = username;
-
         imports = [
           # Optional: use external flake logic, e.g.
           inputs.flake-parts.flakeModules.modules

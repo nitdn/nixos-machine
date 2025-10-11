@@ -4,8 +4,6 @@
   ...
 }:
 let
-  inherit (config) pc;
-  username = pc.username;
   homeModule = config.flake.modules.homeManager.default;
   nixosModules = config.flake.modules.nixos;
 
@@ -20,7 +18,11 @@ in
   };
 
   perSystem =
-    { pkgs, ... }:
+    { pkgs, config, ... }:
+    let
+      inherit (config) pc;
+      username = pc.username;
+    in
     {
       legacyPackages.homeConfigurations.${username} = inputs.home-manager.lib.homeManagerConfiguration {
         inherit pkgs;

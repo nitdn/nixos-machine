@@ -5,22 +5,33 @@
   ...
 }:
 let
-  inherit (config.pc) username;
+  # inherit (config.pc) username;
 in
 {
+  perSystem.pc.unfreeNames = [
+    "steam"
+    "steam-original"
+    "steam-run"
+    "steam-unwrapped"
+    "hplip"
+    "corefonts"
+  ];
   flake.modules.nixos.base = moduleWithSystem (
-    # Edit this configuration file to define what should be installed on
-    # your system.  Help is available in the configuration.nix(5) man page
-    # and in the NixOS manual (accessible by running ‘nixos-help’).
     {
-      pkgs,
       config,
+      pkgs,
       ...
     }:
     let
       packages = config.packages;
+      inherit (config.pc) username unfreePredicate;
+      inherit pkgs;
     in
+    { ... }:
     {
+      # Edit this configuration file to define what should be installed on
+      # your system.  Help is available in the configuration.nix(5) man page
+      # and in the NixOS manual (accessible by running ‘nixos-help’).
       imports = [
         ./stubby.nix
         ./samba.nix
@@ -40,6 +51,7 @@ in
       };
 
       nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
+      nixpkgs.config.allowUnfreePredicate = unfreePredicate.allowUnfreePredicate;
 
       nix.settings.trusted-users = [
         "@wheel"
@@ -97,6 +109,8 @@ in
 
       fonts.packages = with pkgs; [
         noto-fonts-extra
+        noto-fonts-emoji
+        corefonts
       ];
 
       fonts.fontconfig.defaultFonts = {
@@ -234,8 +248,17 @@ in
         installCoreFonts = {
           text = ''
             mkdir -p ~/.local/share/fonts
-            cp ${pkgs.corefonts}/share/fonts/truetype/* ~/.local/share/fonts/
-            chmod 644 ~/.local/share/fonts/*
+            for font in ${
+              with pkgs;
+              builtins.concatStringsSep " " [
+                corefonts
+                noto-fonts-extra
+                noto-fonts-emoji
+              ]
+            }
+              do cp -rf $font/share/fonts/*/* ~/.local/share/fonts/
+              chmod 755 ~/.local/share/fonts/*
+            done
           '';
         };
       };
