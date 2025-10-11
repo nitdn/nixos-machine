@@ -14,7 +14,7 @@ ewd action:
 [working-directory('../next')]
 lock:
     git fetch flake-mirror
-    git rebase flake-mirror/update_flake_lock_action
+    git merge flake-mirror/update_flake_lock_action
     git push flake-mirror
 
 [working-directory('../main')]
