@@ -1,12 +1,8 @@
 {
   inputs,
-  config,
   moduleWithSystem,
   ...
 }:
-let
-  # inherit (config.pc) username;
-in
 {
   perSystem.pc.unfreeNames = [
     "steam"
