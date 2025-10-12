@@ -49,6 +49,17 @@
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    brokenpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    quickshell = {
+      url = "github:outfoxxed/quickshell";
+      inputs.nixpkgs.follows = "brokenpkgs";
+    };
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell";
+      inputs.nixpkgs.follows = "brokenpkgs";
+      inputs.quickshell.follows = "quickshell"; # Use same quickshell version
+    };
   };
 
   outputs =

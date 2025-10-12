@@ -16,17 +16,17 @@ in
     brightnessctl
   ];
 
-  services.mako.enable = true;
-  programs.waybar.enable = true;
-  programs.waybar.settings = waybar_settings;
-  programs.fuzzel = {
-    enable = true;
-    settings = {
-      main = {
-        terminal = "ghostty -e";
-      };
-    };
-  };
+  # services.mako.enable = true;
+  # programs.waybar.enable = true;
+  # programs.waybar.settings = waybar_settings;
+  # programs.fuzzel = {
+  #   enable = true;
+  #   settings = {
+  #     main = {
+  #       terminal = "ghostty -e";
+  #     };
+  #   };
+  # };
   programs.niri.settings.layout.gaps = 0;
   programs.niri.settings.prefer-no-csd = true;
   programs.niri.settings.outputs.DP-2 = {
@@ -47,7 +47,7 @@ in
     { command = [ "ghostty" ]; }
     { command = [ "zen-beta" ]; }
     { command = [ "obsidian" ]; }
-    { command = [ "waybar" ]; }
+    # { command = [ "waybar" ]; }
   ];
   programs.niri.settings.environment = {
     DISPLAY = ":0";
@@ -64,14 +64,14 @@ in
   };
 
   programs.niri.settings.binds = with config.lib.niri.actions; {
-    "XF86AudioRaiseVolume".action = spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+";
-    "XF86AudioLowerVolume".action = spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-";
-    "XF86AudioMute".action = spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle";
+    # "XF86AudioRaiseVolume".action = spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+";
+    # "XF86AudioLowerVolume".action = spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-";
+    # "XF86AudioMute".action = spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle";
 
-    "XF86MonBrightnessUp".action = spawn "brightnessctl" "set" "5%+";
-    "XF86MonBrightnessDown".action = spawn "brightnessctl" "set" "5%-";
+    # "XF86MonBrightnessUp".action = spawn "brightnessctl" "set" "5%+";
+    # "XF86MonBrightnessDown".action = spawn "brightnessctl" "set" "5%-";
 
-    "Mod+Space".action = spawn "fuzzel";
+    # "Mod+Space".action = spawn "fuzzel";
     "Mod+1".action = focus-workspace 1;
     "Mod+Slash".action = show-hotkey-overlay;
     "Mod+O" = {

@@ -1,4 +1,7 @@
-{ moduleWithSystem, ... }:
+{ config, moduleWithSystem, ... }:
+let
+  homeModules = config.flake.modules.homeManager;
+in
 {
   perSystem.pc.username = "ssmvabaa";
   perSystem.pc.unfreeNames = [ "obsidian" ];
@@ -19,6 +22,7 @@
         ./helix.nix
         ./gitui.nix
         ./niri.nix
+        homeModules.noctalia
         # inputs.zen-browser.homeModules.twilight
       ];
       # home.username = "${username}";
@@ -202,7 +206,6 @@
       programs.vesktop.enable = true;
 
       stylix.targets.helix.enable = false;
-
     }
   );
 }

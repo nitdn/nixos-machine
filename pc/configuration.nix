@@ -14,6 +14,7 @@
   ];
   flake.modules.nixos.base = moduleWithSystem (
     {
+      inputs',
       config,
       pkgs,
       ...
@@ -239,6 +240,7 @@
         libreoffice-qt6-fresh
         hunspell
         hunspellDicts.en-gb-large
+        inputs'.noctalia.packages.default
       ];
       system.userActivationScripts = {
         installCoreFonts = {

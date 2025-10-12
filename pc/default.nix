@@ -34,6 +34,7 @@ in
     ./phone-home
     ./configuration.nix
     ./home.nix
+    ./noctalia.nix
   ];
   config.flake.modules.nixos = {
     default = {
