@@ -15,6 +15,7 @@ in
       leader.key = "alt+space";
       packages = config.packages;
     in
+    { config, lib, ... }:
     {
       # Home Manager needs a bit of information about you and the paths it should
       # manage.
@@ -81,7 +82,13 @@ in
         #   org.gradle.console=verbose
         #   org.gradle.daemon.idletimeout=3600000
         # '';
-        ".config/waybar/power_menu.xml".source = ./power_menu.xml;
+        "${config.xdg.configHome}/waybar/power_menu.xml".source = ./power_menu.xml;
+        "${config.xdg.configHome}/starship.toml".source = lib.mkForce (
+          pkgs.fetchurl {
+            url = "https://starship.rs/presets/toml/jetpack.toml";
+            hash = "sha256-qCN4jI/LuMgyM80J5LZctCSuC8NzPrC+WlruFQUxjF8=";
+          }
+        );
       };
       # Home Manager can also manage your environment variables through
       # 'home.sessionVariables'. These will be explicitly sourced when using a
@@ -161,8 +168,6 @@ in
 
       programs.starship = {
         enable = true;
-        # This is the only saneish way to read the toml they provide
-        settings = fromTOML (builtins.readFile ./starship-preset-jetpack.toml);
       };
 
       programs.keepassxc.enable = true;
