@@ -83,6 +83,7 @@
           nixd
           tinymist
           typstyle
+          pandoc
         ];
       };
     };
