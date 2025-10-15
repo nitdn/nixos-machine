@@ -55,12 +55,7 @@
       treefmt.programs.dprint.excludes = [
         "**/*.layout.json"
         "secrets/*"
-      ];
-      treefmt.programs.dprint.includes = [
-        "*.json"
-        "*.yaml"
-        "*.yml"
-        "*.toml"
+        ".envrc"
       ];
       treefmt.programs.dprint.settings.plugins = (
         pkgs.dprint-plugins.getPluginList (
