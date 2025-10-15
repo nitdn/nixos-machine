@@ -4,7 +4,7 @@
   ...
 }:
 let
-  waybar_settings = import ./waybar-config.nix;
+  # waybar_settings = import ./waybar-config.nix;
 in
 {
 
@@ -165,7 +165,9 @@ in
     "Mod+Shift+Equal".action = set-window-height "+10%";
 
     "Print".action = screenshot;
-    "Ctrl+Print".action.screenshot-screen = { };
+    "Ctrl+Print".action.screenshot-screen = {
+      show-pointer = false;
+    };
     "Alt+Print".action = screenshot-window;
 
     "Mod+Shift+E".action = quit;
