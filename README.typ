@@ -1,4 +1,5 @@
 = Wacky funcubular configs straight from the bugland!
+#image(alt: "Please do not resize this app", "don't resize_ 1920x1080 only.svg")
 
 == Whats even happening here?
 

@@ -1,6 +1,8 @@
 Wacky funcubular configs straight from the bugland!
 ===================================================
 
+|Please do not resize this app|
+
 Whats even happening here?
 --------------------------
 
@@ -93,3 +95,5 @@ them.
 Feel free to drop any suggestions. I am kind of new to this nix
 ecosystem, so chances are I am most likely in the wrong about most
 things.
+
+.. |Please do not resize this app| image:: don't resize_ 1920x1080 only.svg
