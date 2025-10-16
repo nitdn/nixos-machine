@@ -28,7 +28,7 @@
             density = "comfortable";
             position = "bottom";
             showCapsule = true;
-            widgets.right = lib.mkAfter [
+            widgets.left = lib.mkAfter [
               {
                 id = "SidePanelToggle";
                 useDistroLogo = true;
@@ -38,6 +38,7 @@
           appLauncher = {
             enableClipboardHistory = true;
           };
+          colorSchemes.predefinedScheme = "Dracula";
         };
       };
       programs.niri = {
