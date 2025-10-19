@@ -67,8 +67,8 @@ in
         denylists = {
           #Adblocking
           ads = [
-            "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/pro.txt"
-            "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/tif.medium.txt"
+            "https://s3.amazonaws.com/lists.disconnect.me/simple_ad.txt"
+            "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts"
           ];
           #Another filter for blocking adult sites
           adult = [
@@ -89,12 +89,6 @@ in
       };
       inherit certFile keyFile;
       ede.enable = true;
-      ecs = {
-        # optional: if the request ecs option with a max sice mask the address will be used as client ip
-        useAsClient = true;
-        # optional: if the request contains a ecs option it will be forwarded to the upstream resolver
-        forward = true;
-      };
       prometheus = {
         enable = true;
       };

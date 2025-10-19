@@ -1,6 +1,7 @@
 {
   config,
   inputs,
+  moduleWithSystem,
   ...
 }:
 let
@@ -9,10 +10,18 @@ let
 
 in
 {
+  flake.modules.nixos.ckb-next = moduleWithSystem (
+    { inputs', ... }:
+    {
+      hardware.ckb-next.enable = true;
+      hardware.ckb-next.package = inputs'.stablepkgs.legacyPackages.ckb-next;
+    }
+  );
   flake.nixosConfigurations.tjmaxxer = inputs.nixpkgs.lib.nixosSystem {
 
     modules = [
       nixosModules.default
+      nixosModules.ckb-next
       ./configuration.nix
     ];
   };

@@ -14,13 +14,14 @@
   ];
   flake.modules.nixos.base = moduleWithSystem (
     {
-      inputs',
       config,
       pkgs,
+      inputs',
       ...
     }:
     let
       packages = config.packages;
+      stablepkgs = inputs'.stablepkgs.legacyPackages;
       inherit (config.pc) username unfreePredicate;
       inherit pkgs;
     in
@@ -136,7 +137,7 @@
 
         type = "fcitx5";
         fcitx5.waylandFrontend = true;
-        fcitx5.addons = with pkgs; [
+        fcitx5.addons = with stablepkgs; [
           fcitx5-catppuccin
           fcitx5-gtk
           fcitx5-openbangla-keyboard

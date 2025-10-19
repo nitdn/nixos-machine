@@ -22,7 +22,12 @@ test hostname:
 lock:
     git fetch flake-mirror
     git merge flake-mirror/update_flake_lock_action --ff-only
-    git push flake-mirror
+
+# Updates both mirrors.
+[group('pinning')]
+[working-directory('../next')]
+push:
+    git push --repo origin --repo flake-mirror
 
 # Updates the main track. NOTE: next must always be based on main.
 [group('pinning')]
