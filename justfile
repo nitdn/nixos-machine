@@ -27,7 +27,8 @@ lock:
 [group('pinning')]
 [working-directory('../next')]
 push:
-    git push --repo origin --repo flake-mirror
+    git push --repo flake-mirror
+    git push --repo origin
 
 # Updates the main track. NOTE: next must always be based on main.
 [group('pinning')]
