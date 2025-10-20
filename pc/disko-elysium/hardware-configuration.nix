@@ -38,7 +38,6 @@
     enable32Bit = true;
     extraPackages = with pkgs; [
       vpl-gpu-rt # or intel-media-sdk for QSV
-      intel-media-sdk
       intel-media-driver
       intel-vaapi-driver
       mesa

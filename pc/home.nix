@@ -9,6 +9,7 @@ in
     {
       pkgs,
       config,
+      inputs',
       ...
     }:
     let
@@ -66,6 +67,7 @@ in
         p7zip
         tlrc
         scantailor-universal
+        inputs'.direnv-instant.packages.default
         # inputs'.typeman.packages.default # typeman currently fails
       ];
 
@@ -146,8 +148,10 @@ in
 
       programs.git = {
         enable = true;
-        userName = "John Doe";
-        userEmail = "johndoe@example.com";
+        settings = {
+          user.name = "John Doe";
+          user.email = "johndoe@example.com";
+        };
       };
 
       programs.ghostty = {

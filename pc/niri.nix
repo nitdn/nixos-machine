@@ -164,11 +164,11 @@ in
     "Mod+Shift+Minus".action = set-window-height "-10%";
     "Mod+Shift+Equal".action = set-window-height "+10%";
 
-    "Print".action = screenshot;
-    "Ctrl+Print".action.screenshot-screen = {
+    "Print".action.screenshot = {
       show-pointer = false;
     };
-    "Alt+Print".action = screenshot-window;
+    "Ctrl+Print".action.screenshot-screen = { };
+    "Alt+Print".action.screenshot-window = { };
 
     "Mod+Shift+E".action = quit;
     "Mod+Ctrl+Shift+E".action = quit { skip-confirmation = true; };
