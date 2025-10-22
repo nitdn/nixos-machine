@@ -83,7 +83,7 @@
       # Broken on homed users
       # services.displayManager.cosmic-greeter.enable = true;
       #
-      services.xserver.displayManager.gdm.enable = true;
+      services.displayManager.gdm.enable = true;
       services.gvfs.enable = true;
       services.udisks2.enable = true;
       services.power-profiles-daemon.enable = true;
