@@ -10,7 +10,7 @@
         "flake-utils": "flake-utils",
         "napalm": "napalm",
         "nixpkgs": [
-          "nixpkgs"
+          "stablepkgs"
         ],
         "pyproject-build-systems": "pyproject-build-systems",
         "pyproject-nix": "pyproject-nix",
@@ -288,11 +288,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1761081701,
-        "narHash": "sha256-IwpfaKg5c/WWQiy8b5QGaVPMvoEQ2J6kpwRFdpVpBNQ=",
+        "lastModified": 1761191301,
+        "narHash": "sha256-xsRL2Oyb4YRZZ1Tu4WzR2uFg1n931bH+PfLdFcqtLg8=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "9b4a2a7c4fbd75b422f00794af02d6edb4d9d315",
+        "rev": "4958aafe7b237dc1e857fb0c916efff72075048f",
         "type": "github"
       },
       "original": {
@@ -360,11 +360,11 @@
         "xwayland-satellite-unstable": "xwayland-satellite-unstable"
       },
       "locked": {
-        "lastModified": 1761175749,
-        "narHash": "sha256-iz8bMJSTScvA1V1uvj+6nA9dRZvTVi9n0yOp/ij7fVM=",
+        "lastModified": 1761187190,
+        "narHash": "sha256-5ln16iOeWpEX5MO7M3jzFEBNFE42gpFsCvSvPjtF6tQ=",
         "owner": "sodiboo",
         "repo": "niri-flake",
-        "rev": "d797ded0e8d1f1a68bcef1a3eceb4942f22be627",
+        "rev": "77a07f5d3b775fba67550c38122ebb8d3ee3ba1c",
         "type": "github"
       },
       "original": {
@@ -643,11 +643,11 @@
         "systems": "systems_2"
       },
       "locked": {
-        "lastModified": 1761167842,
-        "narHash": "sha256-wYUgQqRs3Sc2eVBAV6FAdZho/f3N3emcyyzhMVIV9wA=",
+        "lastModified": 1761190730,
+        "narHash": "sha256-XAs/Q4zBJIfK/bwq9KjTUkTH15A+Pe2rIilyvalEHuM=",
         "owner": "noctalia-dev",
         "repo": "noctalia-shell",
-        "rev": "3a5d8ffc55f323f403e60f52953e552a28579489",
+        "rev": "c3439b262c7cb3d57c93197a93a3aa382582bdae",
         "type": "github"
       },
       "original": {

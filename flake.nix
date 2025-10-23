@@ -41,14 +41,13 @@
     authentik-nix = {
       url = "github:nix-community/authentik-nix";
       ## optional overrides. Note that using a different version of nixpkgs can cause issues, especially with python dependencies
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "stablepkgs";
       inputs.flake-parts.follows = "flake-parts";
     };
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
     stablepkgs.url = "github:nixos/nixpkgs/nixos-25.05";
     quickshell = {
       url = "github:outfoxxed/quickshell";
