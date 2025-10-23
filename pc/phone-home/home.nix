@@ -1,5 +1,7 @@
 {
   pkgs,
+  config,
+  lib,
   ...
 }:
 
@@ -8,11 +10,15 @@
     ../helix.nix
     ../gitui.nix
   ];
+  "${config.xdg.configHome}/starship.toml".source = lib.mkForce (
+    pkgs.fetchurl {
+      url = "https://starship.rs/presets/toml/jetpack.toml";
+      hash = "sha256-qCN4jI/LuMgyM80J5LZctCSuC8NzPrC+WlruFQUxjF8=";
+    }
+  );
 
   programs.starship = {
     enable = true;
-    # This is the only saneish way to read the toml they provide
-    settings = fromTOML (builtins.readFile ../starship-preset-jetpack.toml);
   };
 
   programs.direnv.enable = true;
