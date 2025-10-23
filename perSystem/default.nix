@@ -3,6 +3,7 @@
   ...
 }:
 {
+  imports = [ ./overlays.nix ];
 
   perSystem =
     {

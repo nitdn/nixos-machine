@@ -7,6 +7,7 @@
 }:
 let
   nixosModules = config.flake.modules.nixos;
+
 in
 {
   options.perSystem = flake-parts-lib.mkPerSystemOption (
@@ -44,6 +45,9 @@ in
         inputs.niri.nixosModules.niri
         nixosModules.base
         nixosModules.niri
+      ];
+      nixpkgs.overlays = [
+        config.flake.overlays.default
       ];
     };
     niri =
