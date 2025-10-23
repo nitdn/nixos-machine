@@ -4,18 +4,20 @@
   lib,
   ...
 }:
-
 {
   imports = [
     ../helix.nix
     ../gitui.nix
   ];
-  "${config.xdg.configHome}/starship.toml".source = lib.mkForce (
-    pkgs.fetchurl {
-      url = "https://starship.rs/presets/toml/jetpack.toml";
-      hash = "sha256-qCN4jI/LuMgyM80J5LZctCSuC8NzPrC+WlruFQUxjF8=";
-    }
-  );
+
+  home.file = {
+    "${config.xdg.configHome}/starship.toml".source = lib.mkForce (
+      pkgs.fetchurl {
+        url = "https://starship.rs/presets/toml/jetpack.toml";
+        hash = "sha256-qCN4jI/LuMgyM80J5LZctCSuC8NzPrC+WlruFQUxjF8=";
+      }
+    );
+  };
 
   programs.starship = {
     enable = true;
