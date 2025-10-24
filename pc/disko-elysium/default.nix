@@ -22,40 +22,44 @@ in
       stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/ayu-light.yaml";
     };
 
-  flake.modules.nixos.homeModule = moduleWithSystem (
+  flake.modules.nixos.hmBase = {
+    config = {
+      home-manager.useGlobalPkgs = true;
+      home-manager.useUserPackages = true;
+      home-manager.sharedModules = [
+        inputs.zen-browser.homeModules.default
+      ];
+      home-manager.backupFileExtension = "backup";
+    };
+  };
+
+  flake.modules.nixos.hmPerUser = moduleWithSystem (
     { config, ... }:
     let
       inherit (config.pc) username;
       inherit homeModules;
     in
     {
-      config = {
-        home-manager.useGlobalPkgs = true;
-        home-manager.useUserPackages = true;
-        home-manager.sharedModules = [
-          inputs.zen-browser.homeModules.default
-        ];
-        home-manager.backupFileExtension = "backup";
-        home-manager.users."${username}" = homeModules.default;
-      };
+      imports = [
+        nixosModules.hmBase
+      ];
+      home-manager.users."${username}" = homeModules.default;
     }
   );
-  flake.nixosConfigurations.disko-elysium =
 
-    inputs.nixpkgs.lib.nixosSystem {
-
-      modules = with nixosModules; [
-        inputs.disko.nixosModules.disko
-        inputs.home-manager.nixosModules.home-manager
-        default
-        config.flake.modules.generic.light
-        homeModule
-        ./configuration.nix
-        {
-          home-manager.sharedModules = [
-            homeModules.light
-          ];
-        }
-      ];
-    };
+  flake.nixosConfigurations.disko-elysium = inputs.nixpkgs.lib.nixosSystem {
+    modules = with nixosModules; [
+      inputs.disko.nixosModules.disko
+      inputs.home-manager.nixosModules.home-manager
+      default
+      config.flake.modules.generic.light
+      hmPerUser
+      ./configuration.nix
+      {
+        home-manager.sharedModules = [
+          homeModules.light
+        ];
+      }
+    ];
+  };
 }

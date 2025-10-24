@@ -18,7 +18,6 @@ in
     }
   );
   flake.nixosConfigurations.tjmaxxer = inputs.nixpkgs.lib.nixosSystem {
-
     modules = [
       nixosModules.default
       nixosModules.ckb-next
@@ -26,6 +25,24 @@ in
     ];
   };
 
+  flake.nixosConfigurations.tjmaxxer-vm = inputs.nixpkgs.lib.nixosSystem {
+    modules = [
+      nixosModules.default
+      inputs.home-manager.nixosModules.home-manager
+      nixosModules.hmBase
+      ./hardware-configuration.nix
+      {
+        users.users.alice = {
+          isNormalUser = true;
+          extraGroups = [ "wheel" ];
+          initialPassword = "test";
+        };
+        home-manager.users."alice" = homeModule;
+        networking.hostName = "tjmaxxer"; # Define your hostname.
+        system.stateVersion = "25.11"; # This will track unstable because of lore reasons
+      }
+    ];
+  };
   perSystem =
     { pkgs, config, ... }:
     let
