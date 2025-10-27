@@ -1,14 +1,25 @@
 {
+  lib,
   inputs,
+  config,
   ...
 }:
 {
-  imports = [ ./overlays.nix ];
-
+  debug = true;
+  systems = [
+    "x86_64-linux"
+    "aarch64-linux"
+  ];
+  imports = [
+    # Optional: use external flake logic, e.g.
+    inputs.flake-parts.flakeModules.modules
+    inputs.home-manager.flakeModules.home-manager
+    inputs.pkgs-by-name-for-flake-parts.flakeModule
+    inputs.treefmt-nix.flakeModule
+  ];
   perSystem =
     {
       pkgs,
-      config,
       system,
       ...
     }:
@@ -20,19 +31,14 @@
     in
     {
       _module.args.pkgs = import inputs.nixpkgs {
-        config = config.pc.unfreePredicate;
         inherit system;
+        config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) config.meta.unfreeNames;
         overlays = [
           inputs.nix-on-droid.overlays.default
         ];
       };
-      pc.unfreeNames = [
-        "konica-bizhub-225i"
-        "epson-202101w"
-      ];
+      pkgsDirectory = ../../pkgs;
       # packages.typeman = inputs'.typeman.packages.default;
-      packages.epson-l3212 = pkgs.callPackage ./epson-l3212.nix { };
-      packages.bizhub-225i-ppds = pkgs.callPackage ./bizhub-225i.nix { };
       packages.naps2-wrapped = pkgs.naps2.overrideAttrs (
         finalAttrs: previousAttrs: {
           buildInputs = previousAttrs.buildInputs or [ ] ++ buildInputs;

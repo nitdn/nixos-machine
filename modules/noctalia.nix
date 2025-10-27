@@ -1,6 +1,6 @@
 { inputs, ... }:
 {
-  flake.modules.homeManager.noctalia =
+  flake.modules.homeManager.pc =
     { pkgs, lib, ... }:
     let
       noctalia =

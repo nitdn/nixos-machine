@@ -22,17 +22,6 @@ in
       stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/ayu-light.yaml";
     };
 
-  flake.modules.nixos.hmBase = {
-    config = {
-      home-manager.useGlobalPkgs = true;
-      home-manager.useUserPackages = true;
-      home-manager.sharedModules = [
-        inputs.zen-browser.homeModules.default
-      ];
-      home-manager.backupFileExtension = "backup";
-    };
-  };
-
   flake.modules.nixos.hmPerUser = moduleWithSystem (
     { config, ... }:
     let

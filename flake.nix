@@ -58,6 +58,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.quickshell.follows = "quickshell"; # Use same quickshell version
     };
+    import-tree.url = "github:vic/import-tree";
+    pkgs-by-name-for-flake-parts.url = "github:drupol/pkgs-by-name-for-flake-parts";
   };
 
   outputs =
@@ -70,22 +72,24 @@
         inherit inputs;
       }
 
-      {
-        debug = true;
-        imports = [
-          # Optional: use external flake logic, e.g.
-          inputs.flake-parts.flakeModules.modules
-          inputs.home-manager.flakeModules.home-manager
-          inputs.treefmt-nix.flakeModule
-          ./pc
-          ./vps
-          ./perSystem
-        ];
-        systems = [
-          "x86_64-linux"
-          "aarch64-linux"
-        ];
-      };
+      # {
+      #   debug = true;
+      (inputs.import-tree ./modules);
+
+  # imports = [
+  #   # Optional: use external flake logic, e.g.
+  #   inputs.flake-parts.flakeModules.modules
+  #   inputs.home-manager.flakeModules.home-manager
+  #   inputs.treefmt-nix.flakeModule
+  #   ./pc
+  #   ./vps
+  #   ./perSystem
+  # ];
+  # systems = [
+  #   "x86_64-linux"
+  #   "aarch64-linux"
+  # ];
+  # };
   nixConfig = {
     extra-substituters = [
       "https://cache.garnix.io/"
