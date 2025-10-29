@@ -86,6 +86,7 @@
           tinymist
           typstyle
           pandoc
+          dix
         ];
       };
     };

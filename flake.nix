@@ -67,29 +67,10 @@
       flake-parts,
       ...
     }@inputs:
-    flake-parts.lib.mkFlake
-      {
-        inherit inputs;
-      }
+    flake-parts.lib.mkFlake {
+      inherit inputs;
+    } (inputs.import-tree ./modules);
 
-      # {
-      #   debug = true;
-      (inputs.import-tree ./modules);
-
-  # imports = [
-  #   # Optional: use external flake logic, e.g.
-  #   inputs.flake-parts.flakeModules.modules
-  #   inputs.home-manager.flakeModules.home-manager
-  #   inputs.treefmt-nix.flakeModule
-  #   ./pc
-  #   ./vps
-  #   ./perSystem
-  # ];
-  # systems = [
-  #   "x86_64-linux"
-  #   "aarch64-linux"
-  # ];
-  # };
   nixConfig = {
     extra-substituters = [
       "https://cache.garnix.io/"

@@ -1,6 +1,7 @@
 {
   config,
   inputs,
+  lib,
   moduleWithSystem,
   ...
 }:
@@ -28,19 +29,19 @@ in
       };
       networking.hostName = "tjmaxxer"; # Define your hostname.
       system.stateVersion = "24.11"; # I did not read the comment
+
     }
   );
   flake.nixosConfigurations.tjmaxxer = inputs.nixpkgs.lib.nixosSystem {
     modules = [
       nixosModules.pc
-      nixosModules.vm
       nixosModules.tjmaxxer
     ];
   };
-
   flake.nixosConfigurations.tjmaxxer-vm = inputs.nixpkgs.lib.nixosSystem {
     modules = [
       nixosModules.pc
+      nixosModules.vm
       nixosModules.tjmaxxer
     ];
   };

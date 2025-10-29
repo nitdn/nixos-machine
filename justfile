@@ -2,9 +2,15 @@
 [group('pinning')]
 [working-directory('../next')]
 test hostname:
-    nh os test --hostname {{ hostname }} \
+    nixos-rebuild test --flake . \
     --build-host root@{{ hostname }} \
-    --target-host root@{{ hostname }} .
+    --target-host root@{{ hostname }} 
+    
+[working-directory('../next')]
+build hostname:
+    nixos-rebuild build --flake . \
+    --build-host root@{{ hostname }} \
+    --target-host root@{{ hostname }} 
 
 # Get password from sops
 [group('password')]

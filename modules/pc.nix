@@ -3,7 +3,7 @@
   ...
 }:
 {
-  flake.modules.nixos.base =
+  flake.modules.nixos.pc =
     {
       pkgs,
       ...

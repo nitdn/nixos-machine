@@ -23,12 +23,19 @@ in
     pc = {
       imports = [
         inputs.sops-nix.nixosModules.sops
-        nixosModules.base
+        nixosModules.fish
       ];
       nixpkgs.overlays = [
         config.flake.overlays.default
       ];
       nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) config.meta.unfreeNames;
+    };
+    vps = {
+      imports = [
+        nixosModules.fish
+        inputs.sops-nix.nixosModules.sops
+        inputs.authentik-nix.nixosModules.default
+      ];
     };
   };
 }
