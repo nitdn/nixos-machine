@@ -5,7 +5,7 @@ test hostname:
     nixos-rebuild test --flake . \
     --build-host root@{{ hostname }} \
     --target-host root@{{ hostname }} 
-    
+
 [working-directory('../next')]
 build hostname:
     nixos-rebuild build --flake . \

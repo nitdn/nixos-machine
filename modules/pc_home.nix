@@ -4,6 +4,9 @@
   config,
   ...
 }:
+let
+  leader.key = "alt+space";
+in
 {
   meta.username = "ssmvabaa";
   meta.unfreeNames = [ "obsidian" ];
@@ -69,13 +72,22 @@
       # Let Home Manager install and manage itself.
       programs.home-manager.enable = true;
 
-      programs.git = {
+      programs.ghostty = {
         enable = true;
-        settings = {
-          user.name = "John Doe";
-          user.email = "johndoe@example.com";
-        };
+        # settings.window-decoration = "server";
+        # settings.font-family = [ "Noto Sans Bengali" ];
+        settings.keybind = [
+          # "ctrl+h=goto_split:left"
+          # "ctrl+l=goto_split:right"
+          # "ctrl+j=goto_split:down"
+          # "ctrl+k=goto_split:up"
+          "${leader.key}>backslash=new_window"
+          # "${leader.key}>minus=new_split:down"
+          "${leader.key}>shift+backslash=new_window"
+          # "${leader.key}>ctrl+minus=new_split:down"
+        ];
       };
+      home.sessionVariables.TERMINAL = "ghostty";
 
       programs.keepassxc.enable = true;
 

@@ -26,7 +26,6 @@
         (modulesPath + "/installer/scan/not-detected.nix")
         (modulesPath + "/profiles/qemu-guest.nix")
       ];
-      # cleanup configs
       services.cloud-init = {
         enable = true;
         network.enable = true;
@@ -36,6 +35,15 @@
       # Firewalls
       networking.nftables.enable = true;
       networking.firewall.allowedTCPPorts = [ 5432 ];
+
+      environment.systemPackages = map lib.lowPrio [
+        pkgs.btop
+        pkgs.curl
+        pkgs.ghostty
+        pkgs.gitMinimal
+        pkgs.helix
+        pkgs.openssl
+      ];
 
       services.postgresql = {
         enable = true;

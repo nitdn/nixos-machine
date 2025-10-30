@@ -1,14 +1,9 @@
 {
   inputs,
   lib,
-  flake-parts-lib,
   config,
   ...
 }:
-let
-  nixosModules = config.flake.modules.nixos;
-
-in
 {
   options = {
     meta.username = lib.mkOption {
@@ -23,7 +18,6 @@ in
     pc = {
       imports = [
         inputs.sops-nix.nixosModules.sops
-        nixosModules.fish
       ];
       nixpkgs.overlays = [
         config.flake.overlays.default
@@ -32,7 +26,6 @@ in
     };
     vps = {
       imports = [
-        nixosModules.fish
         inputs.sops-nix.nixosModules.sops
         inputs.authentik-nix.nixosModules.default
       ];
