@@ -1,5 +1,9 @@
+{ inputs, config, ... }:
+let
+  flakeModules = config.flake.modules;
+in
 {
-  flake.modules.homeManager.pc =
+  flake.modules.homeManager.helix =
     {
       pkgs,
       lib,
@@ -83,7 +87,13 @@
           validation = true;
         };
       };
-      stylix.targets.helix.enable = false;
       home.sessionVariables.EDITOR = "hx";
     };
+  flake.modules.homeManager.pc = {
+    imports = [ flakeModules.homeManager.helix ];
+    stylix.targets.helix.enable = false;
+  };
+  flake.modules.homeManager.droid = {
+    imports = [ config.flake.modules.homeManager.helix ];
+  };
 }

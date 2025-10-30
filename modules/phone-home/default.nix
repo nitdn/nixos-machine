@@ -1,5 +1,6 @@
 {
   inputs,
+  config,
   ...
 }:
 {
@@ -8,7 +9,7 @@
     {
       legacyPackages.nixOnDroidConfigurations.default = inputs.nix-on-droid.lib.nixOnDroidConfiguration {
         modules = [
-          ./nix-on-droid.nix
+          config.flake.modules.nixos.droid
           # list of extra modules for Nix-on-Droid system
           # { nix.registry.nixpkgs.flake = nixpkgs; }
           # ./path/to/module.nix

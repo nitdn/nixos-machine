@@ -1,16 +1,11 @@
+{ config, ... }:
+let
+  flakeModules = config.flake.modules;
+in
 {
-  flake.modules.nixos.fish =
-    { pkgs, lib, ... }:
+  flake.modules.generic.fish =
+    { pkgs, ... }:
     {
-      environment.systemPackages = map lib.lowPrio [
-        pkgs.btop
-        pkgs.curl
-        pkgs.ghostty
-        pkgs.gitMinimal
-        pkgs.helix
-        pkgs.openssl
-      ];
-
       programs.fish.enable = true;
       programs.bash = {
         interactiveShellInit = ''
@@ -22,4 +17,35 @@
         '';
       };
     };
+  flake.modules.homeManager.fish =
+    { pkgs, ... }:
+    {
+      programs.fish.enable = true;
+      programs.bash = {
+        initExtra = ''
+          if [[ $(${pkgs.procps}/bin/ps --no-header --pid=$PPID --format=comm) != "fish" && -z ''${BASH_EXECUTION_STRING} ]]
+          then
+            shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=""
+            exec ${pkgs.fish}/bin/fish $LOGIN_OPTION
+          fi
+        '';
+      };
+      programs.fish.shellAbbrs = {
+        gco = "git checkout";
+        npu = "nix-prefetch-url";
+        rm = "y";
+      };
+    };
+  flake.modules.nixos = {
+    pc.imports = [ flakeModules.generic.fish ];
+    vps.imports = [ flakeModules.generic.fish ];
+  };
+  flake.modules.homeManager = {
+    pc.imports = with flakeModules; [
+      homeManager.fish
+    ];
+    droid.imports = with flakeModules; [
+      homeManager.fish
+    ];
+  };
 }

@@ -1,8 +1,9 @@
+{ inputs, config, ... }:
 let
-  leader.key = "alt+space";
+  homeModules = config.flake.modules.homeManager;
 in
 {
-  flake.modules.homeManager.pc =
+  flake.modules.homeManager.shells =
     {
       config,
       pkgs,
@@ -10,12 +11,6 @@ in
       ...
     }:
     {
-      programs.fish.enable = true;
-      programs.fish.shellAbbrs = {
-        gco = "git checkout";
-        npu = "nix-prefetch-url";
-        rm = "y";
-      };
       programs.eza = {
         enable = true;
       };
@@ -48,23 +43,6 @@ in
         };
       };
 
-      programs.ghostty = {
-        enable = true;
-        # settings.window-decoration = "server";
-        # settings.font-family = [ "Noto Sans Bengali" ];
-        settings.keybind = [
-          # "ctrl+h=goto_split:left"
-          # "ctrl+l=goto_split:right"
-          # "ctrl+j=goto_split:down"
-          # "ctrl+k=goto_split:up"
-          "${leader.key}>backslash=new_window"
-          # "${leader.key}>minus=new_split:down"
-          "${leader.key}>shift+backslash=new_window"
-          # "${leader.key}>ctrl+minus=new_split:down"
-        ];
-      };
-      home.sessionVariables.TERMINAL = "ghostty";
-
       programs.starship = {
         enable = true;
       };
@@ -92,4 +70,8 @@ in
       };
       programs.btop.enable = true;
     };
+  flake.modules.homeManager = {
+    pc.imports = [ homeModules.shells ];
+    droid.imports = [ homeModules.shells ];
+  };
 }
