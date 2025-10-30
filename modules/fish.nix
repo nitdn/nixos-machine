@@ -39,6 +39,14 @@ in
   flake.modules.nixos = {
     pc.imports = [ flakeModules.generic.fish ];
     vps.imports = [ flakeModules.generic.fish ];
+    droid =
+      {
+        pkgs,
+        ...
+      }:
+      {
+        user.shell = "${pkgs.fish}/bin/fish";
+      };
   };
   flake.modules.homeManager = {
     pc.imports = with flakeModules; [
