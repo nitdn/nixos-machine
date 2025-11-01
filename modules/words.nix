@@ -53,7 +53,7 @@
               do
                 cd $font/share/fonts
                 find -type f \
-                -exec install -Dm644 "{}" ~/.local/share/fonts/"{}" \;
+                -exec install --verbose -CDm644 "{}" ~/.local/share/fonts/"{}" \;
               done
             '';
           };
