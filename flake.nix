@@ -3,7 +3,7 @@
 
   inputs = {
     # Specify the source of Home Manager and Nixpkgs.
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/6a08e6bb4e46ff7fcbb53d409b253f6bad8a28ce";
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -57,6 +57,9 @@
       url = "github:noctalia-dev/noctalia-shell";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.quickshell.follows = "quickshell"; # Use same quickshell version
+    };
+    affinity-nix = {
+      url = "github:mrshmllow/affinity-nix";
     };
     import-tree.url = "github:vic/import-tree";
     pkgs-by-name-for-flake-parts.url = "github:drupol/pkgs-by-name-for-flake-parts";

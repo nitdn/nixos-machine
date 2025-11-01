@@ -109,6 +109,9 @@ in
     home.homeDirectory = "/home/${config.meta.username}";
   };
   flake.modules.nixos.hmBase = {
+    imports = [
+      inputs.home-manager.nixosModules.home-manager
+    ];
     config = {
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;

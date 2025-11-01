@@ -14,9 +14,6 @@ in
   flake.modules.nixos.tjmaxxer = moduleWithSystem (
     { inputs', pkgs, ... }:
     {
-      imports = [
-        inputs.nixos-facter-modules.nixosModules.facter
-      ];
       facter.reportPath = ./facter.json;
       hardware.ckb-next.enable = true;
       hardware.ckb-next.package = inputs'.stablepkgs.legacyPackages.ckb-next;

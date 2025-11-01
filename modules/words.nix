@@ -8,13 +8,19 @@
     let
       stablepkgs = inputs'.stablepkgs.legacyPackages;
     in
-    { pkgs, lib, ... }:
+    {
+      pkgs,
+      lib,
+      config,
+      ...
+    }:
     {
       environment.systemPackages = with pkgs; [
-        onlyoffice-bin
+        onlyoffice-desktopeditors
         libreoffice-qt6-fresh
         hunspell
         hunspellDicts.en-gb-large
+        inputs'.affinity-nix.packages.v3
       ];
       i18n.inputMethod = {
         enable = true;
@@ -36,22 +42,21 @@
         corefonts
       ];
       system.userActivationScripts = {
-        installCoreFonts = {
-          text = ''
-            mkdir -p ~/.local/share/fonts
-            for font in ${
-              with pkgs;
-              builtins.concatStringsSep " " [
-                corefonts
-                noto-fonts-extra
-                noto-fonts-emoji
-              ]
-            }
-              do cp -rf $font/share/fonts/*/* ~/.local/share/fonts/
-              chmod 755 ~/.local/share/fonts/*
-            done
-          '';
-        };
+        # Onlyoffice doesn't like symlinks yet apparently
+        installCoreFonts =
+          let
+            fonts = with pkgs; config.fonts.packages ++ [ corefonts ];
+          in
+          {
+            text = ''
+              for font in ${builtins.concatStringsSep " " fonts}
+              do
+                cd $font/share/fonts
+                find -type f \
+                -exec install -Dm644 "{}" ~/.local/share/fonts/"{}" \;
+              done
+            '';
+          };
       };
     }
   );

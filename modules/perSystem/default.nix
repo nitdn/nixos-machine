@@ -87,6 +87,7 @@
           typstyle
           pandoc
           dix
+          jq
         ];
       };
     };

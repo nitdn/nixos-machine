@@ -29,7 +29,7 @@ in
         #  wget
         adwaita-icon-theme
         bat
-        du-dust
+        dust
         eza
         gamescope
         ghostty

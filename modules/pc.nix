@@ -82,8 +82,8 @@
       ];
 
       fonts.packages = with pkgs; [
-        noto-fonts-extra
-        noto-fonts-emoji
+        noto-fonts
+        noto-fonts-color-emoji
       ];
 
       fonts.fontconfig.defaultFonts = {

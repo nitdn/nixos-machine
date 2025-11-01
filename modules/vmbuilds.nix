@@ -8,7 +8,6 @@ in
 {
   flake.modules.nixos.vm = {
     imports = [
-      inputs.home-manager.nixosModules.home-manager
       nixosModules.hmBase
     ];
     users.users.vmtest = {

@@ -18,6 +18,7 @@
     pc = {
       imports = [
         inputs.sops-nix.nixosModules.sops
+        inputs.nixos-facter-modules.nixosModules.facter
       ];
       nixpkgs.overlays = [
         config.flake.overlays.default
@@ -28,6 +29,7 @@
       imports = [
         inputs.sops-nix.nixosModules.sops
         inputs.authentik-nix.nixosModules.default
+        inputs.nixos-facter-modules.nixosModules.facter
       ];
     };
   };

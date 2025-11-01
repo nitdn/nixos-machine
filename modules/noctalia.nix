@@ -39,6 +39,7 @@
             enableClipboardHistory = true;
           };
           colorSchemes.predefinedScheme = "Dracula";
+          dock.enabled = false; # who asked for an always visible dock?????????
         };
       };
       programs.niri = {
