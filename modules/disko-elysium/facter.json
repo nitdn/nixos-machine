@@ -24,7 +24,7 @@
     "bluetooth": [
       {
         "index": 27,
-        "attached_to": 30,
+        "attached_to": 29,
         "class_list": [
           "usb",
           "bluetooth"
@@ -110,8 +110,8 @@
         "module_alias": "usb:v0BDApB008d0200dcE0dsc01dp01icE0isc01ip01in01"
       },
       {
-        "index": 31,
-        "attached_to": 30,
+        "index": 30,
+        "attached_to": 29,
         "class_list": [
           "usb",
           "bluetooth"
@@ -543,8 +543,8 @@
     ],
     "camera": [
       {
-        "index": 29,
-        "attached_to": 30,
+        "index": 28,
+        "attached_to": 29,
         "class_list": [
           "camera",
           "usb"
@@ -645,8 +645,8 @@
         "module_alias": "usb:v05C8p038Fd0102dcEFdsc02dp01ic0Eisc02ip00in01"
       },
       {
-        "index": 34,
-        "attached_to": 30,
+        "index": 32,
+        "attached_to": 29,
         "class_list": [
           "camera",
           "usb"
@@ -804,7 +804,6 @@
           "dtes64",
           "monitor",
           "ds_cpl",
-          "vmx",
           "est",
           "tm2",
           "ssse3",
@@ -835,14 +834,8 @@
           "ibrs",
           "ibpb",
           "stibp",
-          "tpr_shadow",
-          "flexpriority",
-          "ept",
-          "vpid",
-          "ept_ad",
           "fsgsbase",
           "tsc_adjust",
-          "sgx",
           "bmi1",
           "avx2",
           "smep",
@@ -868,7 +861,6 @@
           "hwp_notify",
           "hwp_act_window",
           "hwp_epp",
-          "vnmi",
           "md_clear",
           "flush_l1d",
           "arch_capabilities"
@@ -899,7 +891,7 @@
         "fpu_exception": true,
         "cpuid_level": 22,
         "write_protect": false,
-        "tlb_size": 32521,
+        "tlb_size": 32765,
         "clflush_size": 64,
         "cache_alignment": 64,
         "address_sizes": {
@@ -1054,13 +1046,13 @@
           "secondary_bus": 0,
           "prog_if": 0
         },
-        "driver": "amdgpu",
-        "driver_module": "amdgpu",
+        "driver": "radeon",
+        "driver_module": "radeon",
         "drivers": [
-          "amdgpu"
+          "radeon"
         ],
         "driver_modules": [
-          "amdgpu"
+          "radeon"
         ],
         "module_alias": "pci:v00001002d00006660sv0000103Csd000081ECbc03sc80i00"
       },
@@ -1148,7 +1140,7 @@
     ],
     "hub": [
       {
-        "index": 30,
+        "index": 29,
         "attached_to": 23,
         "class_list": [
           "usb",
@@ -1170,7 +1162,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 6.17.3 xhci-hcd",
+          "name": "Linux 6.17.5 xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -1184,7 +1176,7 @@
           "value": 0
         },
         "serial": "0000:00:14.0",
-        "model": "Linux 6.17.3 xhci-hcd xHCI Host Controller",
+        "model": "Linux 6.17.5 xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:14.0/usb1/1-0:1.0",
         "sysfs_bus_id": "1-0:1.0",
         "resources": [
@@ -1235,7 +1227,7 @@
         "module_alias": "usb:v1D6Bp0002d0617dc09dsc00dp01ic09isc00ip00in00"
       },
       {
-        "index": 33,
+        "index": 31,
         "attached_to": 23,
         "class_list": [
           "usb",
@@ -1257,7 +1249,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 6.17.3 xhci-hcd",
+          "name": "Linux 6.17.5 xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -1271,7 +1263,7 @@
           "value": 0
         },
         "serial": "0000:00:14.0",
-        "model": "Linux 6.17.3 xhci-hcd xHCI Host Controller",
+        "model": "Linux 6.17.5 xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:14.0/usb2/2-0:1.0",
         "sysfs_bus_id": "2-0:1.0",
         "detail": {
@@ -1333,7 +1325,7 @@
         "resources": [
           {
             "type": "phys_mem",
-            "range": 16106127360
+            "range": 17179869184
           }
         ]
       }
@@ -1418,7 +1410,7 @@
     ],
     "mouse": [
       {
-        "index": 39,
+        "index": 36,
         "attached_to": 0,
         "bus_type": {
           "hex": "0008",
@@ -1443,7 +1435,7 @@
           "hex": "0000",
           "value": 0
         },
-        "sysfs_id": "/devices/pci0000:00/0000:00:1f.4/i2c-3/3-002c/rmi4-00/input/input8",
+        "sysfs_id": "/devices/pci0000:00/0000:00:1f.4/i2c-5/5-002c/rmi4-00/input/input8",
         "unix_device_names": [
           "/dev/input/event6",
           "/dev/input/ + handler"
@@ -1665,127 +1657,72 @@
           "r8169"
         ],
         "module_alias": "pci:v000010ECd00008136sv0000103Csd000081ECbc02sc00i00"
-      },
-      {
-        "index": 32,
-        "attached_to": 30,
-        "class_list": [
-          "network_controller",
-          "usb"
-        ],
-        "bus_type": {
-          "hex": "0086",
-          "name": "USB",
-          "value": 134
-        },
-        "slot": {
-          "bus": 0,
-          "number": 0
-        },
-        "base_class": {
-          "hex": "0002",
-          "name": "Network controller",
-          "value": 2
-        },
-        "sub_class": {
-          "hex": "0000",
-          "name": "Ethernet controller",
-          "value": 0
-        },
-        "vendor": {
-          "hex": "05c6",
-          "name": "Qualcomm, Inc",
-          "value": 1478
-        },
-        "device": {
-          "hex": "a4a1",
-          "name": "POCO F5",
-          "value": 42145
-        },
-        "revision": {
-          "hex": "0000",
-          "name": "5.10",
-          "value": 0
-        },
-        "serial": "66a78cd",
-        "model": "Qualcomm POCO F5",
-        "sysfs_id": "/devices/pci0000:00/0000:00:14.0/usb1/1-1/1-1:1.0",
-        "sysfs_bus_id": "1-1:1.0",
-        "unix_device_names": [
-          "enp0s20f0u1"
-        ],
-        "resources": [
-          {
-            "type": "baud",
-            "speed": 480000000,
-            "bits": 0,
-            "stop_bits": 0,
-            "parity": 0,
-            "handshake": 0
-          },
-          {
-            "type": "hwaddr",
-            "address": 49
-          },
-          {
-            "type": "phwaddr",
-            "address": 49
-          }
-        ],
-        "detail": {
-          "device_class": {
-            "hex": "0000",
-            "name": "per_interface",
-            "value": 0
-          },
-          "device_subclass": {
-            "hex": "0000",
-            "name": "per_interface",
-            "value": 0
-          },
-          "device_protocol": 0,
-          "interface_class": {
-            "hex": "0002",
-            "name": "comm",
-            "value": 2
-          },
-          "interface_subclass": {
-            "hex": "000d",
-            "name": "content_security",
-            "value": 13
-          },
-          "interface_protocol": 0,
-          "interface_number": 0,
-          "interface_alternate_setting": 0,
-          "interface_association": {
-            "function_class": {
-              "hex": "0002",
-              "name": "comm",
-              "value": 2
-            },
-            "function_subclass": {
-              "hex": "000d",
-              "name": "content_security",
-              "value": 13
-            },
-            "function_protocol": 0,
-            "interface_count": 2,
-            "first_interface": 0
-          }
-        },
-        "hotplug": "usb",
-        "driver": "cdc_ncm",
-        "driver_module": "cdc_ncm",
-        "drivers": [
-          "cdc_ncm"
-        ],
-        "driver_modules": [
-          "cdc_ncm"
-        ],
-        "module_alias": "usb:v05C6pA4A1d0510dc00dsc00dp00ic02isc0Dip00in00"
       }
     ],
     "network_interface": [
+      {
+        "index": 33,
+        "attached_to": 0,
+        "class_list": [
+          "network_interface"
+        ],
+        "base_class": {
+          "hex": "0107",
+          "name": "Network Interface",
+          "value": 263
+        },
+        "sub_class": {
+          "hex": "0000",
+          "name": "Loopback",
+          "value": 0
+        },
+        "model": "Loopback network interface",
+        "sysfs_id": "/class/net/lo",
+        "unix_device_names": [
+          "lo"
+        ]
+      },
+      {
+        "index": 34,
+        "attached_to": 8,
+        "class_list": [
+          "network_interface"
+        ],
+        "base_class": {
+          "hex": "0107",
+          "name": "Network Interface",
+          "value": 263
+        },
+        "sub_class": {
+          "hex": "0001",
+          "name": "Ethernet",
+          "value": 1
+        },
+        "model": "Ethernet network interface",
+        "sysfs_id": "/class/net/wlo1",
+        "sysfs_device_link": "/devices/pci0000:00/0000:00:1c.5/0000:03:00.0",
+        "unix_device_names": [
+          "wlo1"
+        ],
+        "resources": [
+          {
+            "type": "hwaddr",
+            "address": 57
+          },
+          {
+            "type": "phwaddr",
+            "address": 57
+          }
+        ],
+        "driver": "rtl8723be",
+        "driver_module": "rtl8723be",
+        "drivers": [
+          "rtl8723be"
+        ],
+        "driver_modules": [
+          "rtl8723be"
+        ]
+      },
       {
         "index": 35,
         "attached_to": 13,
@@ -1825,110 +1762,6 @@
         ],
         "driver_modules": [
           "r8169"
-        ]
-      },
-      {
-        "index": 36,
-        "attached_to": 32,
-        "class_list": [
-          "network_interface"
-        ],
-        "base_class": {
-          "hex": "0107",
-          "name": "Network Interface",
-          "value": 263
-        },
-        "sub_class": {
-          "hex": "0001",
-          "name": "Ethernet",
-          "value": 1
-        },
-        "model": "Ethernet network interface",
-        "sysfs_id": "/class/net/enp0s20f0u1",
-        "sysfs_device_link": "/devices/pci0000:00/0000:00:14.0/usb1/1-1/1-1:1.0",
-        "unix_device_names": [
-          "enp0s20f0u1"
-        ],
-        "resources": [
-          {
-            "type": "hwaddr",
-            "address": 49
-          },
-          {
-            "type": "phwaddr",
-            "address": 49
-          }
-        ],
-        "driver": "cdc_ncm",
-        "driver_module": "cdc_ncm",
-        "drivers": [
-          "cdc_ncm"
-        ],
-        "driver_modules": [
-          "cdc_ncm"
-        ]
-      },
-      {
-        "index": 37,
-        "attached_to": 0,
-        "class_list": [
-          "network_interface"
-        ],
-        "base_class": {
-          "hex": "0107",
-          "name": "Network Interface",
-          "value": 263
-        },
-        "sub_class": {
-          "hex": "0000",
-          "name": "Loopback",
-          "value": 0
-        },
-        "model": "Loopback network interface",
-        "sysfs_id": "/class/net/lo",
-        "unix_device_names": [
-          "lo"
-        ]
-      },
-      {
-        "index": 38,
-        "attached_to": 8,
-        "class_list": [
-          "network_interface"
-        ],
-        "base_class": {
-          "hex": "0107",
-          "name": "Network Interface",
-          "value": 263
-        },
-        "sub_class": {
-          "hex": "0001",
-          "name": "Ethernet",
-          "value": 1
-        },
-        "model": "Ethernet network interface",
-        "sysfs_id": "/class/net/wlo1",
-        "sysfs_device_link": "/devices/pci0000:00/0000:00:1c.5/0000:03:00.0",
-        "unix_device_names": [
-          "wlo1"
-        ],
-        "resources": [
-          {
-            "type": "hwaddr",
-            "address": 57
-          },
-          {
-            "type": "phwaddr",
-            "address": 57
-          }
-        ],
-        "driver": "rtl8723be",
-        "driver_module": "rtl8723be",
-        "drivers": [
-          "rtl8723be"
-        ],
-        "driver_modules": [
-          "rtl8723be"
         ]
       }
     ],
@@ -2436,115 +2269,6 @@
     "system": {
       "form_factor": "laptop"
     },
-    "usb": [
-      {
-        "index": 28,
-        "attached_to": 30,
-        "class_list": [
-          "usb",
-          "unknown"
-        ],
-        "bus_type": {
-          "hex": "0086",
-          "name": "USB",
-          "value": 134
-        },
-        "slot": {
-          "bus": 0,
-          "number": 0
-        },
-        "base_class": {
-          "hex": "0000",
-          "name": "Unclassified device",
-          "value": 0
-        },
-        "sub_class": {
-          "hex": "0000",
-          "name": "Unclassified device",
-          "value": 0
-        },
-        "vendor": {
-          "hex": "05c6",
-          "name": "Qualcomm, Inc",
-          "value": 1478
-        },
-        "device": {
-          "hex": "a4a1",
-          "name": "POCO F5",
-          "value": 42145
-        },
-        "revision": {
-          "hex": "0000",
-          "name": "5.10",
-          "value": 0
-        },
-        "serial": "66a78cd",
-        "model": "Qualcomm POCO F5",
-        "sysfs_id": "/devices/pci0000:00/0000:00:14.0/usb1/1-1/1-1:1.1",
-        "sysfs_bus_id": "1-1:1.1",
-        "resources": [
-          {
-            "type": "baud",
-            "speed": 480000000,
-            "bits": 0,
-            "stop_bits": 0,
-            "parity": 0,
-            "handshake": 0
-          }
-        ],
-        "detail": {
-          "device_class": {
-            "hex": "0000",
-            "name": "per_interface",
-            "value": 0
-          },
-          "device_subclass": {
-            "hex": "0000",
-            "name": "per_interface",
-            "value": 0
-          },
-          "device_protocol": 0,
-          "interface_class": {
-            "hex": "000a",
-            "name": "data",
-            "value": 10
-          },
-          "interface_subclass": {
-            "hex": "0000",
-            "name": "per_interface",
-            "value": 0
-          },
-          "interface_protocol": 1,
-          "interface_number": 1,
-          "interface_alternate_setting": 1,
-          "interface_association": {
-            "function_class": {
-              "hex": "0002",
-              "name": "comm",
-              "value": 2
-            },
-            "function_subclass": {
-              "hex": "000d",
-              "name": "content_security",
-              "value": 13
-            },
-            "function_protocol": 0,
-            "interface_count": 2,
-            "first_interface": 0
-          }
-        },
-        "hotplug": "usb",
-        "driver": "cdc_ncm",
-        "driver_module": "cdc_ncm",
-        "drivers": [
-          "cdc_ncm"
-        ],
-        "driver_modules": [
-          "cdc_ncm"
-        ],
-        "module_alias": "usb:v05C6pA4A1d0510dc00dsc00dp00ic0Aisc00ip01in01"
-      }
-    ],
     "usb_controller": [
       {
         "index": 23,
@@ -2602,7 +2326,7 @@
         "sysfs_bus_id": "0000:00:14.0",
         "detail": {
           "function": 0,
-          "command": 1030,
+          "command": 1026,
           "header_type": 0,
           "secondary_bus": 0,
           "prog_if": 48
