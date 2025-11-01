@@ -47,21 +47,30 @@
         stiffness = 1000;
       };
     };
-  flake.modules.homeManager.standalone = {
-    imports = [
-      inputs.niri.homeModules.niri
-      inputs.niri.homeModules.stylix
-    ];
-    programs.niri.enable = true;
-  };
+  flake.modules.homeManager.standalone =
+    { pkgs, config, ... }:
+    {
+      imports = [
+        inputs.niri.homeModules.niri
+        inputs.niri.homeModules.stylix
+      ];
+      nixpkgs.overlays = [
+        inputs.niri.overlays.niri
+      ];
+      programs.niri.enable = true;
+      programs.niri.package = pkgs.niri-unstable;
+    };
   flake.modules.nixos.pc =
     { pkgs, ... }:
     {
       imports = [
         inputs.niri.nixosModules.niri
       ];
+      nixpkgs.overlays = [
+        inputs.niri.overlays.niri
+      ];
       programs.niri.enable = true;
-      # programs.niri.package = pkgs.niri;
+      programs.niri.package = pkgs.niri-unstable;
       # systemd.user.services.niri-flake-polkit.enable = false;
       # systemd.user.services.polkit-gnome-authentication-agent-1 = {
       #   description = "polkit-gnome-authentication-agent-1";

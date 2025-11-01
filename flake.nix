@@ -3,7 +3,7 @@
 
   inputs = {
     # Specify the source of Home Manager and Nixpkgs.
-    nixpkgs.url = "github:nixos/nixpkgs/6a08e6bb4e46ff7fcbb53d409b253f6bad8a28ce";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";

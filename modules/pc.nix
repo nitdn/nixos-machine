@@ -126,6 +126,7 @@
         sane-airscan
         via
       ];
+      environment.systemPackages = with pkgs; [ via ];
 
       # Install firefox.
       programs.firefox.enable = true;

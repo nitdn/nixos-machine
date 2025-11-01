@@ -115,5 +115,6 @@
         "Mod+Plus".action = set-column-width "+10%";
 
       };
+      programs.niri.settings.input.keyboard.xkb.options = "compose:caps";
     };
 }
