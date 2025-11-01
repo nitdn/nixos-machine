@@ -119,9 +119,12 @@
         jack.enable = true;
 
       };
+
+      hardware.keyboard.qmk.enable = true;
+      hardware.keyboard.qmk.keychronSupport = true;
       services.udev.packages = with pkgs; [
-        qmk-udev-rules
         sane-airscan
+        via
       ];
 
       # Install firefox.
@@ -130,4 +133,5 @@
         enable = true;
       };
     };
+  meta.unfreeNames = [ "via" ];
 }
