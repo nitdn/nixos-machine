@@ -63,7 +63,6 @@ in
         p7zip
         tlrc
         scantailor-universal
-        inputs'.direnv-instant.packages.default
         # inputs'.typeman.packages.default # typeman currently fails
       ];
 

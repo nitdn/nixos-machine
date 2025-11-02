@@ -1,12 +1,21 @@
-{ inputs, config, ... }:
+{
+  inputs,
+  moduleWithSystem,
+  config,
+  ...
+}:
 let
   homeModules = config.flake.modules.homeManager;
 in
 {
-  flake.modules.homeManager.shells =
+  flake.modules.homeManager.shells = moduleWithSystem (
+    {
+      pkgs,
+      inputs',
+      ...
+    }:
     {
       config,
-      pkgs,
       lib,
       ...
     }:
@@ -35,6 +44,7 @@ in
         nix-direnv.enable = true;
       };
 
+      home.packages = [ inputs'.direnv-instant.packages.default ];
       programs.git = {
         enable = true;
         settings = {
@@ -69,7 +79,8 @@ in
         ];
       };
       programs.btop.enable = true;
-    };
+    }
+  );
   flake.modules.homeManager = {
     pc.imports = [ homeModules.shells ];
     droid.imports = [ homeModules.shells ];
