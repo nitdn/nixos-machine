@@ -30,6 +30,7 @@ lock:
 # Updates both mirrors.
 [group('pinning')]
 push:
+    nix fmt && nix flake check
     git push --repo flake-mirror
     git push --repo origin
 

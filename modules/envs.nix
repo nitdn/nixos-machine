@@ -44,7 +44,6 @@ in
         trashy
         vulkan-tools
         wineWowPackages.stagingFull
-        inputs'.noctalia.packages.default
       ];
     }
   );

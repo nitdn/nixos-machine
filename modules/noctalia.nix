@@ -1,12 +1,13 @@
-{ inputs, ... }:
+{ inputs, moduleWithSystem, ... }:
 {
-  flake.modules.homeManager.pc =
+  flake.modules.homeManager.pc = moduleWithSystem (
+    { inputs', ... }:
     { pkgs, lib, ... }:
     let
       noctalia =
         cmd:
         [
-          "noctalia-shell"
+          "${inputs'.noctalia.packages.default}/bin/noctalia-shell"
           "ipc"
           "call"
         ]
@@ -45,7 +46,7 @@
       programs.niri = {
         settings = {
           spawn-at-startup = [
-            { command = [ "noctalia-shell" ]; }
+            { command = [ "${inputs'.noctalia.packages.default}/bin/noctalia-shell" ]; }
           ];
           binds = {
             "Mod+Space".action.spawn = noctalia "launcher toggle";
@@ -60,5 +61,16 @@
           };
         };
       };
-    };
+    }
+  );
+  flake.modules.nixos.pc = moduleWithSystem (
+    {
+      inputs',
+    }:
+    {
+      environment.systemPackages = [
+        inputs'.noctalia.packages.default
+      ];
+    }
+  );
 }
