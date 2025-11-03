@@ -62,7 +62,6 @@
       url = "github:mrshmllow/affinity-nix";
     };
     import-tree.url = "github:vic/import-tree";
-    pkgs-by-name-for-flake-parts.url = "github:drupol/pkgs-by-name-for-flake-parts";
   };
 
   outputs =

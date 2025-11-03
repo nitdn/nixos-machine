@@ -14,7 +14,6 @@
     # Optional: use external flake logic, e.g.
     inputs.flake-parts.flakeModules.modules
     inputs.home-manager.flakeModules.home-manager
-    inputs.pkgs-by-name-for-flake-parts.flakeModule
     inputs.treefmt-nix.flakeModule
   ];
   perSystem =
@@ -37,18 +36,24 @@
           inputs.nix-on-droid.overlays.default
         ];
       };
-      pkgsDirectory = ../../pkgs;
-      # packages.typeman = inputs'.typeman.packages.default;
-      packages.naps2-wrapped = pkgs.naps2.overrideAttrs (
-        finalAttrs: previousAttrs: {
-          buildInputs = previousAttrs.buildInputs or [ ] ++ buildInputs;
-          postFixup = previousAttrs.postFixup or "" + ''
-            chmod +x $out/lib/naps2/_linux/tesseract 
-            wrapProgram $out/bin/naps2 --prefix LD_LIBRARY_PATH : \
-            ${builtins.toString (pkgs.lib.makeLibraryPath buildInputs)}
-          '';
+      # pkgsDirectory = ../../pkgs;
+      packages =
+        lib.filesystem.packagesFromDirectoryRecursive {
+          callPackage = pkgs.callPackage;
+          directory = ../../pkgs;
         }
-      );
+        // {
+          naps2-wrapped = pkgs.naps2.overrideAttrs (
+            finalAttrs: previousAttrs: {
+              buildInputs = previousAttrs.buildInputs or [ ] ++ buildInputs;
+              postFixup = previousAttrs.postFixup or "" + ''
+                chmod +x $out/lib/naps2/_linux/tesseract 
+                wrapProgram $out/bin/naps2 --prefix LD_LIBRARY_PATH : \
+                ${builtins.toString (pkgs.lib.makeLibraryPath buildInputs)}
+              '';
+            }
+          );
+        };
 
       treefmt.programs = {
         dprint.enable = true;
