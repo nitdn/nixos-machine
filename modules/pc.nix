@@ -35,6 +35,7 @@
         "flakes"
         "auto-allocate-uids"
       ];
+      nix.settings.auto-allocate-uids = true;
 
       # Bootloader.
       boot.loader.systemd-boot.enable = true;

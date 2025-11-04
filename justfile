@@ -36,7 +36,7 @@ push:
 
 # This one is for whole machines
 [group('system')]
-sysupgrade: gc
+sysupgrade:
     nh os switch .
 
 # This one is for houses

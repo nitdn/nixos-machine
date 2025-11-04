@@ -85,13 +85,16 @@
   flake.modules.nixos.pc = moduleWithSystem (
     {
       inputs',
+      pkgs,
     }:
     {
       imports = [
         inputs.noctalia.nixosModules.default
       ];
+      hardware.i2c.enable = true;
       services.noctalia-shell.enable = true;
       environment.systemPackages = [
+        pkgs.ddcutil
         inputs'.noctalia.packages.default
       ];
     }
