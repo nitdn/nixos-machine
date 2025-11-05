@@ -6,16 +6,14 @@
 }:
 {
   debug = true;
-  systems = [
-    "x86_64-linux"
-    "aarch64-linux"
-  ];
+
   imports = [
     # Optional: use external flake logic, e.g.
     inputs.flake-parts.flakeModules.modules
     inputs.home-manager.flakeModules.home-manager
     inputs.treefmt-nix.flakeModule
   ];
+
   perSystem =
     {
       pkgs,
@@ -29,6 +27,7 @@
       ];
     in
     {
+      # pkgsDirectory = ../../pkgs;
       _module.args.pkgs = import inputs.nixpkgs {
         inherit system;
         config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) config.meta.unfreeNames;
@@ -36,7 +35,25 @@
           inputs.nix-on-droid.overlays.default
         ];
       };
-      # pkgsDirectory = ../../pkgs;
+
+      devShells.default = pkgs.mkShell {
+        packages = with pkgs; [
+          cloc
+          dix
+          eww
+          jq
+          jujutsu
+          just
+          meld
+          nixd
+          nixfmt-rfc-style
+          pandoc
+          tinymist
+          typstyle
+          vscode-langservers-extracted
+        ];
+      };
+
       packages =
         lib.filesystem.packagesFromDirectoryRecursive {
           callPackage = pkgs.callPackage;
@@ -57,11 +74,11 @@
 
       treefmt.programs = {
         dprint.enable = true;
-        nixfmt.enable = true;
         just.enable = true;
+        nixfmt.enable = true;
         shfmt.enable = true;
-        sqlfluff.enable = true;
         sqlfluff.dialect = "postgres";
+        sqlfluff.enable = true;
         typstyle.enable = true;
       };
       treefmt.programs.dprint.excludes = [
@@ -79,22 +96,10 @@
           ]
         )
       );
-
-      devShells.default = pkgs.mkShell {
-        packages = with pkgs; [
-          just
-          vscode-langservers-extracted
-          eww
-          meld
-          nixfmt-rfc-style
-          nixd
-          tinymist
-          typstyle
-          pandoc
-          dix
-          cloc
-          jq
-        ];
-      };
     };
+
+  systems = [
+    "aarch64-linux"
+    "x86_64-linux"
+  ];
 }
