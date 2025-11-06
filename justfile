@@ -32,8 +32,8 @@ lock:
 push:
     jj bookmark set main
     nix fmt && nix flake check
-    jj git push --remote flake-mirror
-    jj git push --remote origin
+    jj git push -r @ --remote flake-mirror
+    jj git push -r @ --remote origin
 
 # This one is for whole machines
 [group('system')]
