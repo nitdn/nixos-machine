@@ -24,15 +24,16 @@ build hostname:
 # Ideally updates the lockfiles. WARNING: Run this command exclusively on unstaged working trees
 [group('pinning')]
 lock:
-    git fetch flake-mirror
-    git merge flake-mirror/update_flake_lock_action --ff-only
+    jj git fetch flake-mirror
+    jj rebase update_flake_lock_action@flake-mirror
 
 # Updates both mirrors.
 [group('pinning')]
 push:
+    jj bookmark set main
     nix fmt && nix flake check
-    git push --repo flake-mirror
-    git push --repo origin
+    jj git push --remote flake-mirror
+    jj git push --remote origin
 
 # This one is for whole machines
 [group('system')]

@@ -33,8 +33,6 @@ in
       imports = [
         generic.light
       ];
-      boot.loader.systemd-boot.enable = true;
-      boot.loader.efi.canTouchEfiVariables = true;
       boot.kernelPackages = pkgs.linuxPackages_latest;
       networking.useDHCP = true;
       facter.reportPath = ./facter.json;
