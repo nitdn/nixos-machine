@@ -34,6 +34,7 @@ in
         generic.light
       ];
       boot.kernelPackages = pkgs.linuxPackages_latest;
+      boot.loader.efi.canTouchEfiVariables = false;
       networking.useDHCP = true;
       facter.reportPath = ./facter.json;
       users.users.${username} = {

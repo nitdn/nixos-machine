@@ -1,5 +1,6 @@
 {
   inputs,
+  lib,
   ...
 }:
 {
@@ -39,7 +40,7 @@
 
       # Bootloader.
       boot.loader.limine.enable = true;
-      boot.loader.efi.canTouchEfiVariables = true;
+      boot.loader.efi.canTouchEfiVariables = lib.mkDefault true;
       networking = {
         nameservers = [
           # "1.1.1.1" # oh no
