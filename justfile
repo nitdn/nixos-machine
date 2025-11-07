@@ -27,6 +27,12 @@ lock:
     jj git fetch --remote flake-mirror
     jj rebase -d update_flake_lock_action@flake-mirror
 
+# Conventional commits, cannot really cancel though
+desc revset:
+    jj describe -m"type(scope): description" \
+            -m"body" \
+            -m"footer" --edit {{ revset }}
+
 # Updates both mirrors.
 [group('pinning')]
 push:

@@ -44,6 +44,7 @@
           jq
           jujutsu
           just
+          just-lsp
           meld
           nixd
           nixfmt-rfc-style
