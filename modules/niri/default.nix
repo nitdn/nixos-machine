@@ -27,7 +27,6 @@
             "--background"
           ];
         }
-        { command = [ "xwayland-satellite" ]; }
         { command = [ "ghostty" ]; }
         { command = [ "zen-beta" ]; }
         { command = [ "obsidian" ]; }

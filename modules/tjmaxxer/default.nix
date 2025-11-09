@@ -18,10 +18,15 @@ in
       hardware.ckb-next.enable = true;
       hardware.ckb-next.package = inputs'.stablepkgs.legacyPackages.ckb-next;
       hardware.graphics = {
+        enable32Bit = true;
         extraPackages = with pkgs; [
           # Required for modern Intel GPUs (Xe iGPU and ARC)
           intel-media-driver # VA-API (iHD) userspace
           vpl-gpu-rt # oneVPL (QSV) runtime
+        ];
+        extraPackages32 = with pkgs.pkgsi686Linux; [
+          # Required for modern Intel GPUs (Xe iGPU and ARC)
+          intel-media-driver # VA-API (iHD) userspace
         ];
       };
       networking.hostName = "tjmaxxer"; # Define your hostname.
