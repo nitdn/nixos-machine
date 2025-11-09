@@ -68,18 +68,20 @@
           ports.tls = 853;
           ports.http = 4000;
           upstreams.groups.default = [
-            "https://one.one.one.one/dns-query" # Using Cloudflare's DNS over HTTPS server for resolving queries.
+            # "https://one.one.one.one/dns-query" # Using Cloudflare's DNS over HTTPS server for resolving queries.
+            "https://dns11.quad9.net/dns-query"
             "https://dns.google/dns-query" # Some URLs do not work with CF
+
           ];
           upstreams.userAgent = "blocky-slipstr";
           # For initially solving DoH/DoT Requests when no system Resolver is available.
           bootstrapDns = {
-            upstream = "https://one.one.one.one/dns-query";
+            upstream = "https://dns.google/dns-query";
             ips = [
-              "1.1.1.1"
-              "1.0.0.1"
-              "2606:4700:4700::1111"
-              "2606:4700:4700::1001"
+              "8.8.8.8"
+              "8.8.4.4"
+              "2001:4860:4860::8888"
+              "2001:4860:4860::8844"
             ];
           };
           #Enable Blocking of certian domains.
@@ -105,10 +107,15 @@
                 "ads"
                 "adult"
               ];
+              "bypass*" = [ ];
             };
           };
           inherit certFile keyFile;
           ede.enable = true;
+          ecs = {
+            useAsClient = true;
+            forward = true;
+          };
           prometheus = {
             enable = true;
           };
