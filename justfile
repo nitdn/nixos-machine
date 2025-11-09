@@ -38,7 +38,7 @@ desc revset:
 push:
     jj bookmark set main
     nix fmt && nix flake check
-    jj git push -r @ --remote flake-mirror
+    jj git push -r @ --remote flake-mirror --bookmark main
     jj git push -r @ --remote origin
 
 # This one is for whole machines
