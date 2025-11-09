@@ -45,7 +45,11 @@
         # Onlyoffice doesn't like symlinks yet apparently
         installCoreFonts =
           let
-            fonts = with pkgs; config.fonts.packages ++ [ corefonts ];
+            fonts = with pkgs; [
+              corefonts
+              noto-fonts
+              noto-fonts-color-emoji
+            ];
           in
           {
             text = ''

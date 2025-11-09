@@ -45,11 +45,11 @@ in
       };
 
       home.packages = [ inputs'.direnv-instant.packages.default ];
-      programs.git = {
+      programs.jujutsu = {
         enable = true;
         settings = {
-          user.name = "John Doe";
-          user.email = "johndoe@example.com";
+          user.name = "Nitesh Kumar Debnath";
+          user.email = "nitkdnath@gmail.com";
         };
       };
 

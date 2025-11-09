@@ -27,10 +27,15 @@ So I have around :math:`3\frac{1}{2}` machines and they are as follows:
 
    - Uses disko for partitioning
 
-   - Has home-manager NixOS module
+   - Will be turned into a server, sorry
 
-   - Will be in light theme for lore reasons (I use it in the sun and
-     the contrast is bad)
+#. / msi-colgate: Got this built in a shop
+
+   - Probably got fleeced
+
+   - How will I ever acquire more DDR4 ram
+
+   - Will use the work specialisation
 
 #. / vps01: This is a very cheap VPS I rented for a year because paying
    for Adguard is stupid. It is actually like 4x as costly as Adguard.
