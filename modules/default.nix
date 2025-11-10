@@ -2,7 +2,6 @@
   config,
   inputs,
   lib,
-  moduleWithSystem,
   ...
 }:
 let
@@ -32,7 +31,7 @@ in
       ];
       nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) config.meta.unfreeNames;
     };
-    work = moduleWithSystem (
+    work =
       { config, pkgs, ... }:
       let
         inherit homeModules;
@@ -65,8 +64,7 @@ in
           homeModules.light
         ];
         system.stateVersion = "25.05"; # Did you read the comment?
-      }
-    );
+      };
 
     vps = {
       imports = [
