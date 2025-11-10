@@ -33,11 +33,16 @@ desc revset='@':
             -m"body" \
             -m"footer" --edit {{ revset }}
 
+# Pushes an unnamed bookmark
+[group('pinning')]
+book:
+    nix fmt && nix flake check
+    jj git push -c @ --remote flake-mirror
+
 # Updates both mirrors.
 [group('pinning')]
 push:
     jj bookmark set main
-    nix fmt && nix flake check
     jj git push -r @ --remote flake-mirror --bookmark main
     jj git push -r @ --remote origin
 
