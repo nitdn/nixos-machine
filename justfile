@@ -1,12 +1,12 @@
 # Builds character
 [group('pinning')]
-test hostname:
+test hostname='vps01':
     nixos-rebuild test --flake . \
     --build-host root@{{ hostname }} \
     --target-host root@{{ hostname }} 
 
 [group('pinning')]
-build hostname:
+build hostname='vps01':
     nixos-rebuild build --flake . \
     --build-host root@{{ hostname }} \
     --target-host root@{{ hostname }} 
@@ -18,7 +18,7 @@ build hostname:
 
 # Generate a password of desired length
 [group('password')]
-@pwgen len:
+@pwgen len='17':
     pwgen -s {{ len }} 1
 
 # Ideally updates the lockfiles. WARNING: Run this command exclusively on unstaged working trees
@@ -28,7 +28,7 @@ lock:
     jj rebase -d update_flake_lock_action@flake-mirror
 
 # Conventional commits, cannot really cancel though
-desc revset:
+desc revset='@':
     jj describe -m"type(scope): description" \
             -m"body" \
             -m"footer" --edit {{ revset }}
