@@ -20,5 +20,5 @@ creation_rules:
           - *server_vps01
           - *admin_elysium
           - *admin_colgate
-      # pgp:
-      #  - *admin_alice
+      # - pgp:
+      #     - *admin_alice
