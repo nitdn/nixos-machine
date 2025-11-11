@@ -31,12 +31,10 @@ in
         bat
         dust
         eza
-        gamescope
         ghostty
         git
         gparted
         ldns # drill
-        mangohud
         openssl
         pwgen
         ripgrep

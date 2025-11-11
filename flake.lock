@@ -1013,6 +1013,7 @@
         "stablepkgs": "stablepkgs",
         "stylix": "stylix",
         "treefmt-nix": "treefmt-nix_3",
+        "wrappers": "wrappers",
         "zen-browser": "zen-browser"
       }
     },
@@ -1311,6 +1312,26 @@
       "original": {
         "owner": "pyproject-nix",
         "repo": "uv2nix",
+        "type": "github"
+      }
+    },
+    "wrappers": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1762869054,
+        "narHash": "sha256-TEY9x+NQ+7VrRuyeUcit+RtwxcFA+3Jp4YOqNvp3olA=",
+        "owner": "lassulus",
+        "repo": "wrappers",
+        "rev": "8d2627fe0b17892c6938cc42a4ad5fa3ff7a037b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "lassulus",
+        "repo": "wrappers",
         "type": "github"
       }
     },

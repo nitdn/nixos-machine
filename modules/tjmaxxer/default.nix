@@ -29,6 +29,9 @@ in
           intel-media-driver # VA-API (iHD) userspace
         ];
       };
+      # May help if FFmpeg/VAAPI/QSV init fails (esp. on Arc with i915):
+      hardware.enableRedistributableFirmware = true;
+      boot.kernelParams = [ "i915.enable_guc=3" ];
       networking.hostName = "tjmaxxer"; # Define your hostname.
       system.stateVersion = "24.11"; # I did not read the comment
 

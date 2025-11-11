@@ -1,27 +1,50 @@
+{ inputs, ... }:
 {
   meta.unfreeNames = [
     "steam"
     "steam-unwrapped"
   ];
-  flake.modules.nixos.pc = {
-    programs.steam = {
-      enable = true;
-      remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-      dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+  flake.modules.nixos.pc =
+    { pkgs, ... }:
+    let
+      partialWrapper = definition: inputs.wrappers.lib.wrapPackage (definition // { inherit pkgs; });
+    in
+    {
+      programs.steam = {
+        enable = true;
+        remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+        dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+        package = pkgs.steam.override {
+          extraEnv = {
+            MANGOHUD = true;
+            OBS_VKCAPTURE = true;
+            RADV_TEX_ANISO = 16;
+          };
+          extraArgs = "-system-composer";
+        };
+      };
+      programs.gamemode.enable = true;
+      environment.systemPackages = [
+        (partialWrapper {
+          package = pkgs.mangohud;
+          env.MANGOHUD_CONFIG = "no_display,fps_limit=165";
+        })
+      ];
     };
-
-    programs.gamemode.enable = true;
-  };
 
   flake.modules.homeManager.pc =
     { pkgs, ... }:
     {
+      # programs.mangohud.enable = true;
+      # programs.mangohud.settings = {
+      #   fps_limit = 165;
+      #   no_display = true;
+      # };
       programs.lutris = {
         enable = true;
         extraPackages = with pkgs; [
           gamemode
           gamescope
-          mangohud
           umu-launcher
           winetricks
         ];
