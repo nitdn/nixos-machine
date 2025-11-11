@@ -28,10 +28,10 @@ name = "just"
 command = "just-lsp"
 
 [language-server.nixd.config.options]
-nixos.expr = "(builtins.getFlake (builtins.toString ./.)).nixosConfigurations.tjmaxxer.options"
-home-manager.expr = "(builtins.getFlake (builtins.toString ./.)).currentSystem.legacyPackages.homeConfigurations.ssmvabaa.options"
-flake-parts.expr = "(builtins.getFlake (builtins.toString ./.)).debug.options"
-flake-parts2.expr = "(builtins.getFlake (builtins.toString ./.)).currentSystem.options"
+nixos.expr = "(builtins.getFlake (builtins.toString \"/home/ssmvabaa/nixos-machine\")).nixosConfigurations.tjmaxxer.options"
+home-manager.expr = "(builtins.getFlake (builtins.toString \"/home/ssmvabaa/nixos-machine\")).legacyPackages.x86_64-linux.homeConfigurations.ssmvabaa.options"
+flake-parts.expr = "(builtins.getFlake (builtins.toString \"/home/ssmvabaa/nixos-machine\")).debug.options"
+flake-parts2.expr = "(builtins.getFlake (builtins.toString \"/home/ssmvabaa/nixos-machine\")).currentSystem.options"
 
 [language-server.yaml-language-server.config.yaml]
 validation = true
