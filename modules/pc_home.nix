@@ -73,16 +73,12 @@ in
 
       programs.ghostty = {
         enable = true;
-        # settings.window-decoration = "server";
-        # settings.font-family = [ "Noto Sans Bengali" ];
         settings.keybind = [
           # "ctrl+h=goto_split:left"
           # "ctrl+l=goto_split:right"
           # "ctrl+j=goto_split:down"
           # "ctrl+k=goto_split:up"
-          "${leader.key}>backslash=new_window"
           # "${leader.key}>minus=new_split:down"
-          "${leader.key}>shift+backslash=new_window"
           # "${leader.key}>ctrl+minus=new_split:down"
         ];
       };

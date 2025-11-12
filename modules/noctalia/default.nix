@@ -31,30 +31,23 @@
           bar = {
             density = "comfortable";
             position = "bottom";
-            showCapsule = true;
-            widgets.center = [ { id = "TaskbarGrouped"; } ];
+            floating = true;
+            widgets.left = [
+              { id = "SystemMonitor"; }
+              { id = "ActiveWindow"; }
+              { id = "MediaMini"; }
+            ]; # I am losing my mind
+            widgets.center = [
+              { id = "TaskbarGrouped"; }
+              { id = "Clock"; }
+            ];
             widgets.right = [
-              {
-                id = "ScreenRecorder";
-              }
-              {
-                id = "Tray";
-              }
-              {
-                id = "NotificationHistory";
-              }
-              {
-                id = "Battery";
-              }
-              {
-                id = "Volume";
-              }
-              {
-                id = "Brightness";
-              }
-              {
-                id = "Clock";
-              }
+              { id = "ScreenRecorder"; }
+              { id = "Tray"; }
+              { id = "NotificationHistory"; }
+              { id = "Battery"; }
+              { id = "Volume"; }
+              { id = "Brightness"; }
               {
                 id = "ControlCenter";
                 useDistroLogo = true;
@@ -72,7 +65,7 @@
         binds = {
           "Mod+Space".action.spawn = noctalia "launcher toggle";
           "Mod+Escape".action.spawn = noctalia "sessionMenu toggle";
-          "Mod+G".action.spawn = noctalia "lockScreen toggle";
+          "Mod+G".action.spawn = noctalia "lockScreen lock";
           "Mod+V".action.spawn = noctalia "launcher clipboard";
           "XF86AudioLowerVolume".action.spawn = noctalia "volume decrease";
           "XF86AudioRaiseVolume".action.spawn = noctalia "volume increase";
