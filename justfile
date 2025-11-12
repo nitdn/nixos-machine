@@ -36,7 +36,7 @@ book:
 # Updates both mirrors.
 [group('pinning')]
 push:
-    jj bookmark set main
+    jj bookmark set -r @- main
     jj git push -r @- --remote flake-mirror --bookmark main
     jj git push -r @- --remote origin
 
