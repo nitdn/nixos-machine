@@ -47,6 +47,7 @@
           just-lsp
           meld
           nixd
+          nil
           nixfmt-rfc-style
           pandoc
           tinymist
