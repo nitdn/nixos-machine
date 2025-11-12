@@ -45,13 +45,6 @@ in
       };
 
       home.packages = [ inputs'.direnv-instant.packages.default ];
-      programs.jujutsu = {
-        enable = true;
-        settings = {
-          user.name = "Nitesh Kumar Debnath";
-          user.email = "nitkdnath@gmail.com";
-        };
-      };
 
       programs.starship = {
         enable = true;

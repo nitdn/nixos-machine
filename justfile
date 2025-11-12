@@ -21,30 +21,24 @@ build hostname='vps01':
 @pwgen len='17':
     pwgen -s {{ len }} 1
 
-# Ideally updates the lockfiles. WARNING: Run this command exclusively on unstaged working trees
+# Ideally updates the lockfiles.
 [group('pinning')]
 lock:
     jj git fetch --remote flake-mirror
     jj rebase -d update_flake_lock_action@flake-mirror
 
-# Conventional commits, cannot really cancel though
-desc revset='@':
-    jj describe -m"type(scope): description" \
-            -m"body" \
-            -m"footer" --edit {{ revset }}
-
 # Pushes an unnamed bookmark
 [group('pinning')]
 book:
     nix fmt && nix flake check
-    jj git push -c @ --remote flake-mirror
+    jj git push -c @- --remote flake-mirror
 
 # Updates both mirrors.
 [group('pinning')]
 push:
     jj bookmark set main
-    jj git push -r @ --remote flake-mirror --bookmark main
-    jj git push -r @ --remote origin
+    jj git push -r @- --remote flake-mirror --bookmark main
+    jj git push -r @- --remote origin
 
 # This one is for whole machines
 [group('system')]
