@@ -1,4 +1,7 @@
-{ moduleWithSystem, ... }:
+{ moduleWithSystem, config, ... }:
+let
+  user = config.meta.username;
+in
 {
   meta.unfreeNames = [
     "corefonts"
@@ -41,27 +44,25 @@
       fonts.packages = with pkgs; [
         corefonts
       ];
-      system.userActivationScripts = {
-        # Onlyoffice doesn't like symlinks yet apparently
-        installCoreFonts =
-          let
-            fonts = with pkgs; [
-              corefonts
-              noto-fonts
-              noto-fonts-color-emoji
-            ];
-          in
-          {
-            text = ''
-              for font in ${builtins.concatStringsSep " " fonts}
-              do
-                cd $font/share/fonts
-                find -type f \
-                -exec install --verbose -CDm644 "{}" ~/.local/share/fonts/"{}" \;
-              done
-            '';
+      systemd.tmpfiles.settings."10-onlyoffice-fonts" =
+        lib.listToAttrs (
+          lib.lists.forEach [ pkgs.corefonts pkgs.noto-fonts pkgs.noto-fonts-color-emoji ] (
+            pkg:
+            lib.attrsets.nameValuePair "/home/${user}/.local/share/fonts/${pkg.pname}" {
+              "C+" = {
+                inherit user;
+                argument = "${pkg}/share/fonts";
+              };
+            }
+          )
+        )
+        // {
+          "/home/${user}/.local/share/fonts" = {
+            d = {
+              inherit user;
+            };
           };
-      };
+        };
     }
   );
 }
