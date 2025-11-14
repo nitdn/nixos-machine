@@ -41,6 +41,7 @@
       # Bootloader.
       boot.loader.limine.enable = true;
       boot.loader.efi.canTouchEfiVariables = lib.mkDefault true;
+      services.fwupd.enable = true;
       networking = {
         nameservers = [
           # "1.1.1.1" # oh no
