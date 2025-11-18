@@ -41,6 +41,7 @@
       # Bootloader.
       boot.loader.limine.enable = true;
       boot.loader.efi.canTouchEfiVariables = lib.mkDefault true;
+      boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_zen;
       services.fwupd.enable = true;
       networking = {
         nameservers = [
