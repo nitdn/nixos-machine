@@ -47,6 +47,7 @@ in
           extraGroups = [
             "wheel"
             "input"
+            "i2c"
           ]; # Enable ‘sudo’ for the user.
           packages = with pkgs; [
             tree
