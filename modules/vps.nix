@@ -149,7 +149,8 @@
       users.users.root.openssh.authorizedKeys.keys = [
         # change this to your ssh key
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAbQpjuFSDUDRO1j6gvxqI+zGsm4nRtXGxRbup8uzR8E ssmvabaa@tjmaxxer"
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGci+FnnDA7n5t/UQIOzpOEJtOpNEZN2sxHVxp+As/l+ nix-on-droid@localhost"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHFAs8o5K95ZQdqZQqXLhRvjfNHfC3RB5a/OLZKcBm7a nix-on-droid@localhost"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBDcnwk3vUJDAzD4m28LZHUBju3Fb7J613R7FW4RtR4t ssmvabaa@msi-colgate"
       ];
 
       # This will add secrets.yml to the nix store

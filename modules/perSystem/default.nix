@@ -46,6 +46,7 @@
           just
           just-lsp
           meld
+          sops
           nixd
           nil
           nixfmt-rfc-style
