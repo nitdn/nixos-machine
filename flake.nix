@@ -53,14 +53,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     stablepkgs.url = "github:nixos/nixpkgs/nixos-25.05";
-    quickshell = {
-      url = "github:outfoxxed/quickshell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     noctalia = {
       url = "github:noctalia-dev/noctalia-shell";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.quickshell.follows = "quickshell"; # Use same quickshell version
     };
     affinity-nix = {
       url = "github:mrshmllow/affinity-nix";
@@ -79,10 +74,10 @@
 
   nixConfig = {
     extra-substituters = [
-      "https://cache.garnix.io/"
+      "https://machines.cachix.org"
     ];
     extra-trusted-public-keys = [
-      "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
+      "machines.cachix.org-1:imnXlKFUc4Iaedv6469v6TO37ruiNh6OfJN4le5bqdE="
     ];
   };
 

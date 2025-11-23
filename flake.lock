@@ -985,26 +985,6 @@
         "type": "github"
       }
     },
-    "quickshell": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1763629934,
-        "narHash": "sha256-jWz10RbNAyylJbH4cUTLS/CsDjkd8gxfT8OsIgQIgEg=",
-        "owner": "outfoxxed",
-        "repo": "quickshell",
-        "rev": "ed036d514b0fdbce03158a0b331305be166f4555",
-        "type": "github"
-      },
-      "original": {
-        "owner": "outfoxxed",
-        "repo": "quickshell",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "affinity-nix": "affinity-nix",
@@ -1019,7 +999,6 @@
         "nixos-facter-modules": "nixos-facter-modules",
         "nixpkgs": "nixpkgs_6",
         "noctalia": "noctalia",
-        "quickshell": "quickshell",
         "sops-nix": "sops-nix",
         "stablepkgs": "stablepkgs",
         "stylix": "stylix",

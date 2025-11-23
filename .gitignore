@@ -1,5 +1,5 @@
 *.orig
-result
+result*
 .direnv
 source
 outputs

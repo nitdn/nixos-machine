@@ -11,13 +11,6 @@
       inherit (config.services.bind) domain_name;
     in
     {
-
-      nix.settings.substituters = [
-        "https://cache.garnix.io"
-      ];
-      nix.settings.trusted-public-keys = [
-        "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
-      ];
       nix.settings.experimental-features = [
         "nix-command"
         "flakes"
@@ -133,6 +126,9 @@
       system.autoUpgrade = {
         enable = true;
         flake = "git+https://codeberg.org/nitdn/nixos-machine.git";
+        flags = [
+          "--accept-flake-config"
+        ];
         allowReboot = true;
       };
       networking.hostName = "vps01";

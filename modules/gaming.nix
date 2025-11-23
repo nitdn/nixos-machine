@@ -26,6 +26,7 @@
       programs.gamemode.enable = true;
       environment.systemPackages = [
         (partialWrapper {
+          exePath = "${pkgs.mangohud}/bin/mangohud";
           package = pkgs.mangohud;
           env.MANGOHUD_CONFIG = "no_display,fps_limit=165";
         })

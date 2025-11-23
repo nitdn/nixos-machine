@@ -30,7 +30,8 @@ lock:
 # Pushes an unnamed bookmark
 [group('pinning')]
 book:
-    nix fmt && nix flake check
+    nix fmt -- -c
+    nix flake check
     jj git push -c @- --remote flake-mirror
 
 # Updates both mirrors.
