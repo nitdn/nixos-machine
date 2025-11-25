@@ -69,6 +69,13 @@
             ];
           }
         ];
+        layer-rules = [
+          {
+            matches = [ { namespace = "^noctalia-wallpaper*"; } ];
+            place-within-backdrop = true;
+          }
+        ];
+        layout.background-color = "transparent";
         binds = {
           "Mod+Space".action.spawn = noctalia "launcher toggle";
           "Mod+Escape".action.spawn = noctalia "sessionMenu toggle";

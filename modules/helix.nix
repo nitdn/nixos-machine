@@ -20,8 +20,7 @@ in
         ];
 
         settings = {
-          # this has the best contrast imo
-          theme = lib.mkDefault "darcula";
+          theme = lib.mkDefault "dracula";
           editor = {
             # They are not well implemented anyway
             # end-of-line-diagnostics = "hint";
@@ -91,7 +90,7 @@ in
     };
   flake.modules.homeManager.pc = {
     imports = [ flakeModules.homeManager.helix ];
-    stylix.targets.helix.enable = false;
+    # stylix.targets.helix.enable = false;
   };
   flake.modules.homeManager.droid = {
     imports = [ config.flake.modules.homeManager.helix ];

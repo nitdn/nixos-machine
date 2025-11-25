@@ -59,12 +59,8 @@
 
       # Enable networking
       # networking.networkmanager.enable = true;
-
-      # Display manager configuration
-      # Broken on homed users
-      # services.displayManager.cosmic-greeter.enable = true;
-      #
       services.displayManager.gdm.enable = true;
+      services.displayManager.gdm.autoSuspend = false;
       services.gvfs.enable = true;
       services.udisks2.enable = true;
       services.power-profiles-daemon.enable = true;
@@ -89,6 +85,8 @@
       fonts.packages = with pkgs; [
         noto-fonts
         noto-fonts-color-emoji
+        atkinson-hyperlegible-next
+        nerd-fonts.jetbrains-mono
       ];
 
       fonts.fontconfig.defaultFonts = {

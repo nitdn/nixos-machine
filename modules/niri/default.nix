@@ -11,7 +11,7 @@
         brightnessctl
       ];
 
-      programs.niri.settings.layout.gaps = 0;
+      programs.niri.settings.layout.gaps = 5;
       programs.niri.settings.prefer-no-csd = true;
       programs.niri.settings.outputs.DP-2 = {
         variable-refresh-rate = true;
@@ -51,7 +51,7 @@
     {
       imports = [
         inputs.niri.homeModules.niri
-        inputs.niri.homeModules.stylix
+        # inputs.niri.homeModules.stylix
       ];
       nixpkgs.overlays = [
         inputs.niri.overlays.niri

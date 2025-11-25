@@ -20,8 +20,8 @@ in
   flake.modules.generic.light =
     { pkgs, ... }:
     {
-      stylix.polarity = "light";
-      stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/ayu-light.yaml";
+      # stylix.polarity = "light";
+      # stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/ayu-light.yaml";
     };
 
   flake.modules.nixos.msi-colgate = moduleWithSystem (

@@ -1,5 +1,5 @@
 {
-  description = "Tjmaxxer nixos machine";
+  description = "A variety of machines powered by NixOS™";
 
   inputs = {
     # Specify the source of Home Manager and Nixpkgs.
@@ -25,11 +25,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     flake-parts.url = "github:hercules-ci/flake-parts";
-    stylix = {
-      url = "github:nix-community/stylix";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-parts.follows = "flake-parts";
-    };
     direnv-instant.url = "github:Mic92/direnv-instant";
     disko = {
       url = "github:nix-community/disko";
