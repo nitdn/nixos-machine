@@ -62,6 +62,13 @@
         };
       };
       programs.niri.settings = {
+        spawn-at-startup = [
+          {
+            command = [
+              "noctalia-shell"
+            ];
+          }
+        ];
         binds = {
           "Mod+Space".action.spawn = noctalia "launcher toggle";
           "Mod+Escape".action.spawn = noctalia "sessionMenu toggle";
@@ -85,7 +92,6 @@
         inputs.noctalia.nixosModules.default
       ];
       hardware.i2c.enable = true;
-      services.noctalia-shell.enable = true;
       environment.systemPackages = [
         pkgs.ddcutil
         inputs'.noctalia.packages.default
