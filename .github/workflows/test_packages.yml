@@ -1,6 +1,7 @@
 name: "Test packages"
 on:
   push:
+  pull_request:
 jobs:
   tests:
     name: "Build packages"
