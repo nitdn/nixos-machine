@@ -17,9 +17,8 @@
       # cleanup configs
       nix.optimise.automatic = true;
       nix.gc = {
-        # WARN: Symlink store for home will not show up until you login
+        # FIXME: Symlink store for home will not show up until you login
         # at which point its already too late
-        # HACK: Turn off autogc indefinitely
         automatic = false;
 
         dates = "weekly";

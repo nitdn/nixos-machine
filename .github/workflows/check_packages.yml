@@ -1,6 +1,7 @@
 name: "Test packages"
 on:
-  push:
+  # push:
+  workflow_call:
 jobs:
   tests:
     name: "Build packages"
