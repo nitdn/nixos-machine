@@ -1,5 +1,8 @@
 name: "All nixos-machines checks"
-on: push
+on:
+  push:
+    branches-ignore:
+      - main # Avoid redundant checks when merging to main
 jobs:
   # If the secrets are inherited by using secrets: inherit
   # in the calling workflow, you can reference them even if
