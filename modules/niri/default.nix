@@ -14,7 +14,7 @@
       programs.niri.settings.layout.gaps = 5;
       programs.niri.settings.prefer-no-csd = true;
       programs.niri.settings.outputs.DP-2 = {
-        variable-refresh-rate = true;
+        # variable-refresh-rate = true;
         mode = {
           height = 1080;
           width = 1920;
