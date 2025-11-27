@@ -13,6 +13,7 @@
     programs.niri.settings.environment = {
       QT_QPA_PLATFORMTHEME = "qt6ct";
     };
+    programs.ghostty.settings.theme = "noctalia";
     programs.noctalia-shell.settings = {
       templates = {
         gtk = true;
@@ -30,6 +31,7 @@
         walker = true;
         code = true;
         spicetify = true;
+        cava = true;
         enableUserTemplates = true;
       };
     };
