@@ -21,7 +21,7 @@ in
         generic.light
       ];
       boot.kernelPackages = pkgs.linuxPackages_latest;
-      boot.loader.efi.canTouchEfiVariables = false;
+      # boot.loader.efi.canTouchEfiVariables = false;
       networking.useDHCP = true;
       facter.reportPath = ./facter.json;
       users.users.${username} = {
@@ -41,9 +41,6 @@ in
         vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
         wget
         ecryptfs
-      ];
-      home-manager.sharedModules = [
-        homeModules.light
       ];
       networking.hostName = "disko-elysium"; # Define your hostname.
       system.stateVersion = "25.05"; # Did you read the comment?

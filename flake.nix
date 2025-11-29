@@ -13,7 +13,7 @@
       url = "github:nix-community/nix-on-droid/release-24.05";
     };
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     wrappers = {

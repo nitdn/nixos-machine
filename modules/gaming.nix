@@ -1,4 +1,7 @@
-{ inputs, ... }:
+{ inputs, config, ... }:
+let
+  homeModules = config.flake.modules.homeManager;
+in
 {
   meta.unfreeNames = [
     "steam"
@@ -32,6 +35,13 @@
         })
       ];
     };
+  flake.modules.nixos.disko-elysium = {
+    users.users.gaming = {
+      isNormalUser = true;
+      password = "gaming";
+    };
+    home-manager.users."gaming" = homeModules.pc;
+  };
 
   flake.modules.homeManager.pc =
     { pkgs, ... }:
