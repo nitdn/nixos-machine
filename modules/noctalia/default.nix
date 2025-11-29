@@ -1,10 +1,8 @@
-{ inputs, moduleWithSystem, ... }:
+{ inputs, ... }:
 {
   flake.modules.homeManager.pc =
     {
       pkgs,
-      lib,
-      config,
       ...
     }:
     let
@@ -89,20 +87,15 @@
         };
       };
     };
-  flake.modules.nixos.pc = moduleWithSystem (
+  flake.modules.nixos.pc =
     {
-      inputs',
       pkgs,
+      ...
     }:
     {
-      imports = [
-        inputs.noctalia.nixosModules.default
-      ];
       hardware.i2c.enable = true;
       environment.systemPackages = [
         pkgs.ddcutil
-        inputs'.noctalia.packages.default
       ];
-    }
-  );
+    };
 }
