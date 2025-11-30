@@ -49,7 +49,7 @@ in
       programs.starship = {
         enable = true;
       };
-      home.file."${config.xdg.configHome}/starship.toml".source = lib.mkForce (
+      xdg.configFile."starship.toml".source = lib.mkForce (
         pkgs.fetchurl {
           url = "https://starship.rs/presets/toml/jetpack.toml";
           hash = "sha256-YvKGrjmcG+ZUuiFOr94IFKJESJemSYxuDg92Pe7GJqY=";

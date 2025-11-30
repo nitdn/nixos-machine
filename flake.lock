@@ -74,6 +74,49 @@
         "type": "github"
       }
     },
+    "dankMaterialShell": {
+      "inputs": {
+        "dgop": [
+          "dgop"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1764516174,
+        "narHash": "sha256-n7EDbvIGGmD1KfJg+fe/nhlWx/go4czhnuv3jEAwMpk=",
+        "owner": "AvengeMedia",
+        "repo": "DankMaterialShell",
+        "rev": "a55ec6416c09fb33ffab7cca81d24036397a543b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "AvengeMedia",
+        "repo": "DankMaterialShell",
+        "type": "github"
+      }
+    },
+    "dgop": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1762835999,
+        "narHash": "sha256-UykYGrGFOFTmDpKTLNxj1wvd1gbDG4TkqLNSbV0TYwk=",
+        "owner": "AvengeMedia",
+        "repo": "dgop",
+        "rev": "799301991cd5dcea9b64245f9d500dcc76615653",
+        "type": "github"
+      },
+      "original": {
+        "owner": "AvengeMedia",
+        "repo": "dgop",
+        "type": "github"
+      }
+    },
     "direnv-instant": {
       "inputs": {
         "flake-parts": "flake-parts_2",
@@ -845,6 +888,8 @@
       "inputs": {
         "affinity-nix": "affinity-nix",
         "authentik-nix": "authentik-nix",
+        "dankMaterialShell": "dankMaterialShell",
+        "dgop": "dgop",
         "direnv-instant": "direnv-instant",
         "disko": "disko",
         "flake-parts": "flake-parts_3",

@@ -14,7 +14,6 @@ in
   flake.modules.homeManager.light = {
     imports = [ config.flake.modules.generic.light ];
     programs.helix.settings.theme = "ayu_light";
-    programs.noctalia-shell.settings.colorSchemes.darkMode = "false";
   };
 
   flake.modules.generic.light =

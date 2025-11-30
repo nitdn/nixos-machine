@@ -1,6 +1,6 @@
 {
   flake.modules.homeManager.pc =
-    { config, ... }:
+    { config, lib, ... }:
     {
       programs.niri.settings.binds = with config.lib.niri.actions; {
         # "XF86AudioRaiseVolume".action = spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+";
@@ -49,7 +49,8 @@
         # Workspaces
         "Mod+Page_Down".action = focus-workspace-down;
         "Mod+Page_Up".action = focus-workspace-up;
-        "Mod+N".action = focus-workspace-down;
+        # DMS thinks its DND mode deserves this bind
+        "Mod+N".action = lib.mkForce focus-workspace-down;
         "Mod+U".action = focus-workspace-up;
         "Mod+Ctrl+Page_Down".action = move-column-to-workspace-down;
         "Mod+Ctrl+Page_Up".action = move-column-to-workspace-up;
@@ -69,9 +70,9 @@
         "Mod+BracketRight".action = consume-or-expel-window-right;
 
         # Consume one window from the right to the bottom of the focused column.
-        "Mod+Comma".action = consume-window-into-column;
+        # "Mod+Comma".action = consume-window-into-column;
         # Expel the bottom window from the focused column to the right.
-        "Mod+Period".action = expel-window-from-column;
+        # "Mod+Period".action = expel-window-from-column;
 
         "Mod+R".action = switch-preset-column-width;
         "Mod+Shift+R".action = switch-preset-window-height;

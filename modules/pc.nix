@@ -58,7 +58,7 @@
 
       # Enable networking
       # networking.networkmanager.enable = true;
-      services.displayManager.gdm.enable = true;
+      services.displayManager.gdm.enable = lib.mkDefault true;
       services.displayManager.gdm.autoSuspend = false;
       services.gvfs.enable = true;
       services.udisks2.enable = true;

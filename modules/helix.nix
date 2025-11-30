@@ -20,7 +20,6 @@ in
         ];
 
         settings = {
-          theme = lib.mkDefault "dracula";
           editor = {
             # They are not well implemented anyway
             # end-of-line-diagnostics = "hint";
