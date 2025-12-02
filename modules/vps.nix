@@ -15,6 +15,14 @@
         "nix-command"
         "flakes"
       ];
+
+      nix.settings.substituters = [
+        "https://machines.cachix.org"
+      ];
+      nix.settings.trusted-public-keys = [
+        "machines.cachix.org-1:imnXlKFUc4Iaedv6469v6TO37ruiNh6OfJN4le5bqdE="
+      ];
+
       imports = [
         (modulesPath + "/installer/scan/not-detected.nix")
         (modulesPath + "/profiles/qemu-guest.nix")
@@ -27,7 +35,6 @@
 
       # Firewalls
       networking.nftables.enable = true;
-      networking.firewall.allowedTCPPorts = [ 5432 ];
 
       environment.systemPackages = map lib.lowPrio [
         pkgs.btop
@@ -37,27 +44,6 @@
         pkgs.helix
         pkgs.openssl
       ];
-
-      services.postgresql = {
-        enable = true;
-        ensureDatabases = [ "mydatabase" ];
-        settings.ssl = true;
-        settings.listen_addresses = lib.mkForce "*";
-        identMap = ''
-          # ArbitraryMapName systemUser DBUser
-             superuser_map      root      postgres
-             superuser_map      postgres  postgres
-             # Let other names login as themselves
-             superuser_map      /^(.*)$   \1
-        '';
-        authentication = pkgs.lib.mkOverride 10 ''
-          #type database  DBuser  auth-method   optional_ident_map
-          local sameuser  all     peer          map=superuser_map
-          host  sameuser  all     127.0.0.1/32  scram-sha-256
-          host  sameuser  all     ::1/128       scram-sha-256
-          host  sameuser  blocky  all           scram-sha-256
-        '';
-      };
 
       services.searx = {
         enable = true;
@@ -101,19 +87,6 @@
             root = "/var/www/tacker";
           };
         };
-      };
-
-      sops.secrets.pgtls-crt = {
-        format = "binary";
-        owner = config.systemd.services.postgresql.serviceConfig.User;
-        sopsFile = ../secrets/postgres-server.crt;
-        path = "${config.services.postgresql.dataDir}/server.crt";
-      };
-      sops.secrets.pgtls-key = {
-        format = "binary";
-        owner = config.systemd.services.postgresql.serviceConfig.User;
-        sopsFile = ../secrets/postgres-server.key;
-        path = "${config.services.postgresql.dataDir}/server.key";
       };
 
       nix.optimise.automatic = true;
