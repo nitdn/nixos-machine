@@ -45,6 +45,12 @@ in
         QT_QPA_PLATFORMTHEME = "qt6ct";
       };
       programs.ghostty.settings.config-file = "./config-dankcolors";
+
+      programs.kitty.extraConfig = ''
+        include dank-tabs.conf
+        include dank-theme.conf
+      '';
+
       programs.helix.settings.theme = lib.mkDefault "catppuccin_mocha";
     };
   flake.modules.nixos.pc =

@@ -18,6 +18,9 @@ in
     meta.unfreeNames = lib.mkOption {
       type = lib.types.listOf lib.types.str;
     };
+    meta.term = lib.mkOption {
+      type = lib.types.str;
+    };
   };
 
   config.flake.modules.nixos = {

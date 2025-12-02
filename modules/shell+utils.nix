@@ -2,12 +2,15 @@
   inputs,
   moduleWithSystem,
   config,
+  lib,
   ...
 }:
 let
   homeModules = config.flake.modules.homeManager;
+  inherit (config.meta) term;
 in
 {
+  meta.term = "kitty";
   flake.modules.homeManager.shells = moduleWithSystem (
     {
       pkgs,
@@ -44,7 +47,41 @@ in
         nix-direnv.enable = true;
       };
 
-      home.packages = [ inputs'.direnv-instant.packages.default ];
+      home.packages = [
+        inputs'.direnv-instant.packages.default
+        (pkgs.writeShellScriptBin "xterm" ''
+          ${term} "$@"
+        '')
+
+      ];
+      programs.kitty = {
+        enable = true;
+        keybindings = {
+          "ctrl+c" = "copy_or_interrupt";
+          "ctrl+f>2" = "set_font_size 20";
+          "f1" = "launch --cwd=current --type os-window";
+        };
+        settings = {
+          scrollback_lines = 10000;
+          enable_audio_bell = false;
+          update_check_interval = 0;
+          font_size = 14;
+          enabled_layouts = "horizontal";
+        };
+      };
+
+      # programs.ghostty = {
+      #   enable = true;
+      #   settings.keybind = [
+      #     # "ctrl+h=goto_split:left"
+      #     # "ctrl+l=goto_split:right"
+      #     # "ctrl+j=goto_split:down"
+      #     # "ctrl+k=goto_split:up"
+      #     # "${leader.key}>minus=new_split:down"
+      #     # "${leader.key}>ctrl+minus=new_split:down"
+      #   ];
+      # };
+      home.sessionVariables.TERMINAL = term;
 
       programs.starship = {
         enable = true;

@@ -1,4 +1,7 @@
-{ inputs, ... }:
+{ inputs, config, ... }:
+let
+  inherit (config.meta) term;
+in
 {
   flake.modules.homeManager.pc =
     { pkgs, ... }:
@@ -27,9 +30,10 @@
             "--background"
           ];
         }
-        { command = [ "ghostty" ]; }
+        { command = [ term ]; }
         { command = [ "zen-beta" ]; }
         { command = [ "obsidian" ]; }
+        { command = [ "vesktop" ]; }
         # { command = [ "waybar" ]; }
       ];
       programs.niri.settings.environment = {

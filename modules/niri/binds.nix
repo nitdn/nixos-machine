@@ -1,3 +1,7 @@
+{ config, ... }:
+let
+  inherit (config.meta) term;
+in
 {
   flake.modules.homeManager.pc =
     { config, lib, ... }:
@@ -22,7 +26,7 @@
           action = close-window;
           repeat = false;
         };
-        "Mod+T".action = spawn "ghostty";
+        "Mod+T".action = spawn term;
         "Mod+B".action = spawn "zen-beta";
 
         # Default movement keymaps
