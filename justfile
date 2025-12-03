@@ -25,7 +25,7 @@ build hostname='vps01':
 [group('pinning')]
 lock:
     jj git fetch --remote flake-mirror
-    jj rebase -d update_flake_lock_action@flake-mirror
+    jj rebase -r @ -d update_flake_lock_action@flake-mirror
 
 # Pushes an unnamed bookmark
 [group('pinning')]
