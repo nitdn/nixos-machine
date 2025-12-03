@@ -15,19 +15,20 @@
         # settings.ssl = true;
         # settings.listen_addresses = lib.mkForce "*";
         identMap = ''
-          # ArbitraryMapName systemUser DBUser
-             superuser_map      root      postgres
-             superuser_map      postgres  postgres
-             # Let other names login as themselves
-             superuser_map      /^(.*)$   \1
+          # ArbitraryMapName   systemUser DBUser
+            superuser_map      root       postgres
+            superuser_map      postgres   postgres
+          # Let other names login as themselves
+            superuser_map      /^(.*)$    \1
         '';
         authentication = pkgs.lib.mkOverride 10 ''
-          #type database  DBuser  auth-method   optional_ident_map
-          # local all       all     trust
-          local sameuser  all     peer          map=superuser_map
-          host  sameuser  all     127.0.0.1/32  scram-sha-256
-          host  sameuser  all     ::1/128       scram-sha-256
-          host  sameuser  blocky  all           scram-sha-256
+          # type  database  DBuser   auth-method   optional_ident_map
+          # local all       all      trust
+            local all       postgres peer
+            local sameuser  all      peer          map=superuser_map
+            host  sameuser  all      127.0.0.1/32  scram-sha-256
+            host  sameuser  all      ::1/128       scram-sha-256
+            host  sameuser  blocky   all           scram-sha-256
         '';
       };
       services.nginx.streamConfig = ''
