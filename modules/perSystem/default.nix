@@ -76,29 +76,24 @@
         };
 
       treefmt.programs = {
-        dprint.enable = true;
         just.enable = true;
         nixfmt.enable = true;
         shfmt.enable = true;
         sqlfluff.dialect = "postgres";
         sqlfluff.enable = true;
+        taplo.enable = true;
         typstyle.enable = true;
+        typos.enable = true;
+        yamlfmt.enable = true;
       };
-      treefmt.programs.dprint.excludes = [
+      treefmt.settings.excludes = [
         "**/*.layout.json"
         "secrets/*"
-        ".envrc"
+        ".sops.yaml"
+        "**/facter.json"
       ];
-      treefmt.programs.dprint.settings.plugins = (
-        pkgs.dprint-plugins.getPluginList (
-          plugins: with plugins; [
-            dprint-plugin-json
-            dprint-plugin-markdown
-            dprint-plugin-toml
-            g-plane-pretty_yaml
-          ]
-        )
-      );
+      treefmt.programs.typos.excludes = [
+      ];
     };
 
   systems = [

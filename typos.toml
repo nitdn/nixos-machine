@@ -1,0 +1,4 @@
+[default.extend-identifiers]
+facter = "facter"
+browseable = "browseable"
+ede = "ede"

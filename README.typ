@@ -56,8 +56,8 @@ There are also a few packages, I will put them here:
 + / naps2-wrapped: I NEED TIFF, I do not care how old or insecure libtiff is,
     if scantailor needs TIFF, so do I.
 
-There's also a slightly bizzare devShell that consists solely of stuff I need to
-set up helix and just, specificially for writing this flake.
+There's also a slightly bizarre devShell that consists solely of stuff I need to
+set up helix and just, specifically for writing this flake.
 
 One thing you will notice that every machine seems to be on its own set of
 tools. This is deliberate, as I don't really know how each of them fare.
