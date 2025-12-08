@@ -28,5 +28,5 @@ jobs:
         run: >
           cachix use niri
 
-          nix build
-          .#nixosConfigurations.${{ matrix.machine }}.config.system.build.toplevel
+          nix build .#nixosConfigurations.${{ matrix.machine }}.config.system.build.toplevel
+

@@ -62,7 +62,7 @@
       inputs.dgop.follows = "dgop";
     };
     affinity-nix = {
-      url = "github:mrshmllow/affinity-nix";
+      url = "github:mrshmllow/affinity-nix/040e147f9785b2c19a59988aed0cc8fcfd9481d8";
     };
     import-tree.url = "github:vic/import-tree";
   };
