@@ -14,13 +14,9 @@ jobs:
           app-id: ${{ vars.APP_ID }}
           private-key: ${{ secrets.APP_PRIVATE_KEY }}
       - uses: actions/checkout@v6
-        # FIXME: Remove the option below once
-        # https://github.com/DeterminateSystems/update-flake-lock/issues/223
-        # is fixed
         with:
           # NOTE: Needs token for running actions
           token: ${{ steps.generate-token.outputs.token }}
-          persist-credentials: false
       - uses: DeterminateSystems/determinate-nix-action@v3
       - uses: DeterminateSystems/update-flake-lock@v28
         with:
