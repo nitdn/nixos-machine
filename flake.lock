@@ -74,6 +74,19 @@
         "type": "github"
       }
     },
+    "bizhub-225i": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1695211618,
+        "narHash": "sha256-urrs4DUFz3KFvX7G0xFLHauijlxNLa2evpPhYzbA8fU=",
+        "type": "tarball",
+        "url": "https://public.integration.yamayuri.kiku8101.com/publicdownload/download?fileId=B2C0B6D9-C563-4377-B77B-33BBAC4A5EC8"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://public.integration.yamayuri.kiku8101.com/publicdownload/download?fileId=B2C0B6D9-C563-4377-B77B-33BBAC4A5EC8"
+      }
+    },
     "dankMaterialShell": {
       "inputs": {
         "dgop": [
@@ -174,6 +187,18 @@
         "ref": "affinity-photo3-wine9.13-part3",
         "repo": "wine",
         "type": "gitlab"
+      }
+    },
+    "epson-202101w": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-mr0rrlB4IWR0jq/PzeHLW5lO8u5rut1RU0MVUMfwXsM=",
+        "type": "file",
+        "url": "https://download3.ebz.epson.net/dsc/f/03/00/15/15/02/f5cba2761f2f501363cdbf7e1b9b9879b0715aa5/epson-inkjet-printer-202101w-1.0.2-1.src.rpm"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://download3.ebz.epson.net/dsc/f/03/00/15/15/02/f5cba2761f2f501363cdbf7e1b9b9879b0715aa5/epson-inkjet-printer-202101w-1.0.2-1.src.rpm"
       }
     },
     "flake-compat": {
@@ -395,6 +420,18 @@
         "owner": "vic",
         "repo": "import-tree",
         "type": "github"
+      }
+    },
+    "jetpack.toml": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-wKhoPLIt703gbsmqd6hm6d5+QJjvi4k3SszIroBtMZ4=",
+        "type": "file",
+        "url": "https://starship.rs/presets/toml/jetpack.toml"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://starship.rs/presets/toml/jetpack.toml"
       }
     },
     "napalm": {
@@ -888,13 +925,16 @@
       "inputs": {
         "affinity-nix": "affinity-nix",
         "authentik-nix": "authentik-nix",
+        "bizhub-225i": "bizhub-225i",
         "dankMaterialShell": "dankMaterialShell",
         "dgop": "dgop",
         "direnv-instant": "direnv-instant",
         "disko": "disko",
+        "epson-202101w": "epson-202101w",
         "flake-parts": "flake-parts_3",
         "home-manager": "home-manager",
         "import-tree": "import-tree",
+        "jetpack.toml": "jetpack.toml",
         "niri": "niri",
         "nix-on-droid": "nix-on-droid",
         "nixos-facter-modules": "nixos-facter-modules",

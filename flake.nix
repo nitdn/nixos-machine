@@ -9,9 +9,19 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
-    nix-on-droid = {
-      url = "github:nix-community/nix-on-droid/release-24.05";
+    bizhub-225i = {
+      url = "tarball+https://public.integration.yamayuri.kiku8101.com/publicdownload/download?fileId=B2C0B6D9-C563-4377-B77B-33BBAC4A5EC8";
+      flake = false;
     };
+    epson-202101w = {
+      url = "file+https://download3.ebz.epson.net/dsc/f/03/00/15/15/02/f5cba2761f2f501363cdbf7e1b9b9879b0715aa5/epson-inkjet-printer-202101w-1.0.2-1.src.rpm";
+      flake = false;
+    };
+    "jetpack.toml" = {
+      url = "https://starship.rs/presets/toml/jetpack.toml";
+      flake = false;
+    };
+    nix-on-droid.url = "github:nix-community/nix-on-droid/release-24.05";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -34,12 +44,11 @@
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixos-facter-modules = {
-      url = "github:numtide/nixos-facter-modules";
-    };
+    nixos-facter-modules.url = "github:numtide/nixos-facter-modules";
     authentik-nix = {
       url = "github:nix-community/authentik-nix";
-      ## optional overrides. Note that using a different version of nixpkgs can cause issues, especially with python dependencies
+      ## optional overrides. Note that using a different version of nixpkgs
+      # can cause issues, especially with python dependencies
       inputs.nixpkgs.follows = "stablepkgs";
       inputs.flake-parts.follows = "flake-parts";
     };
@@ -61,20 +70,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.dgop.follows = "dgop";
     };
-    affinity-nix = {
-      url = "github:mrshmllow/affinity-nix";
-    };
+    affinity-nix.url = "github:mrshmllow/affinity-nix";
     import-tree.url = "github:vic/import-tree";
   };
 
   outputs =
-    {
-      flake-parts,
-      ...
-    }@inputs:
-    flake-parts.lib.mkFlake {
-      inherit inputs;
-    } (inputs.import-tree ./modules);
+    { flake-parts, ... }@inputs:
+    flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
 
   nixConfig = {
     extra-substituters = [

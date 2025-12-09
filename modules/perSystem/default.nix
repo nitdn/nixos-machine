@@ -27,7 +27,6 @@
       ];
     in
     {
-      # pkgsDirectory = ../../pkgs;
       _module.args.pkgs = import inputs.nixpkgs {
         inherit system;
         config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) config.meta.unfreeNames;
@@ -57,23 +56,22 @@
         ];
       };
 
-      packages =
-        lib.filesystem.packagesFromDirectoryRecursive {
-          callPackage = pkgs.callPackage;
-          directory = ../../pkgs;
+      packages.bizhub-225i = pkgs.callPackage ../../pkgs/bizhub-225i.nix {
+        inherit (inputs) bizhub-225i;
+      };
+      packages.epson-l3212 = pkgs.callPackage ../../pkgs/epson-l3212.nix {
+        inherit (inputs) epson-202101w;
+      };
+      packages.naps2-wrapped = pkgs.naps2.overrideAttrs (
+        finalAttrs: previousAttrs: {
+          buildInputs = previousAttrs.buildInputs or [ ] ++ buildInputs;
+          postFixup = previousAttrs.postFixup or "" + ''
+            chmod +x $out/lib/naps2/_linux/tesseract 
+            wrapProgram $out/bin/naps2 --prefix LD_LIBRARY_PATH : \
+            ${builtins.toString (pkgs.lib.makeLibraryPath buildInputs)}
+          '';
         }
-        // {
-          naps2-wrapped = pkgs.naps2.overrideAttrs (
-            finalAttrs: previousAttrs: {
-              buildInputs = previousAttrs.buildInputs or [ ] ++ buildInputs;
-              postFixup = previousAttrs.postFixup or "" + ''
-                chmod +x $out/lib/naps2/_linux/tesseract 
-                wrapProgram $out/bin/naps2 --prefix LD_LIBRARY_PATH : \
-                ${builtins.toString (pkgs.lib.makeLibraryPath buildInputs)}
-              '';
-            }
-          );
-        };
+      );
 
       treefmt.programs = {
         just.enable = true;
