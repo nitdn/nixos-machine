@@ -27,7 +27,7 @@ So I have around :math:`3\frac{1}{2}` machines and they are as follows:
 
    - Uses disko for partitioning
 
-   - Will be turned into a server, sorry
+   - It plays Team Fortress 2 now
 
 #. / msi-colgate: Got this built in a shop
 
@@ -35,7 +35,7 @@ So I have around :math:`3\frac{1}{2}` machines and they are as follows:
 
    - How will I ever acquire more DDR4 ram
 
-   - Will use the work specialisation
+   - It is my workhorse
 
 #. / vps01: This is a very cheap VPS I rented for a year because paying
    for Adguard is stupid. It is actually like 4x as costly as Adguard.
@@ -63,8 +63,6 @@ So I have around :math:`3\frac{1}{2}` machines and they are as follows:
 
    - Hardest to debug
 
-   - Most of the stylix options dont even work here
-
    - Will probably die next year due to Google being predatory
 
 There are also a few packages, I will put them here:
@@ -88,7 +86,7 @@ There are also a few packages, I will put them here:
    libtiff is, if scantailor needs TIFF, so do I.
 
 There’s also a slightly bizarre devShell that consists solely of stuff I
-need to set up helix and just, specifically for writing this flake.
+need to set up helix, and some scripts.
 
 One thing you will notice that every machine seems to be on its own set
 of tools. This is deliberate, as I don’t really know how each of them

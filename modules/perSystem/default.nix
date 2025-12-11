@@ -36,24 +36,72 @@
       };
 
       devShells.default = pkgs.mkShell {
-        packages = with pkgs; [
-          cloc
-          dix
-          eww
-          jq
-          jujutsu
-          just
-          just-lsp
-          meld
-          sops
-          nixd
-          nil
-          nixfmt-rfc-style
-          pandoc
-          tinymist
-          typstyle
-          vscode-langservers-extracted
-        ];
+        packages =
+          with pkgs;
+          let
+            scripts = {
+              gc = ''
+                nh clean all --keep-since 7d
+                nh clean user --keep-since 7d
+              '';
+              home = ''
+                nh os switch .
+                nh home switch .
+                gc
+              '';
+              upgrade = ''
+                nh os switch .
+                gc
+              '';
+              fetch = ''
+                jj git fetch --remote flake-mirror
+                jj rebase -r @ -d update_flake_lock_action@flake-mirror
+              '';
+              push-ci = ''
+                nix flake check
+                jj git push -c @- --remote flake-mirror
+              '';
+              push-main = ''
+                jj bookmark set -r @- main
+                jj git push -r @- --remote flake-mirror --bookmark main
+                jj git push -r @- --remote origin
+              '';
+              pwget = ''
+                sops decrypt --extract "['$1']['password']" secrets/core.yaml
+              '';
+              remote-test = ''
+                remote="''${1:-vps01}"
+                nixos-rebuild test --flake . \
+                --build-host root@"$remote" \
+                --target-host root@"$remote" 
+              '';
+              remote-build = ''
+                remote="''${1:-vps01}"
+                nixos-rebuild build --flake . \
+                --build-host root@"$remote" \
+                --target-host root@"$remote" 
+              '';
+            };
+            toPackage = name: text: pkgs.writeShellApplication { inherit name text; };
+          in
+          [
+            cloc
+            dix
+            eww
+            jq
+            jujutsu
+            meld
+            sops
+            nixd
+            nil
+            nh
+            nixfmt-rfc-style
+            pandoc
+            tinymist
+            typstyle
+            vscode-langservers-extracted
+            (lib.mapAttrsToList toPackage scripts)
+          ];
       };
 
       packages.bizhub-225i = pkgs.callPackage ../../pkgs/bizhub-225i.nix {
