@@ -81,9 +81,11 @@
   nixConfig = {
     extra-substituters = [
       "https://machines.cachix.org"
+      "https://niri.cachix.org"
     ];
     extra-trusted-public-keys = [
       "machines.cachix.org-1:imnXlKFUc4Iaedv6469v6TO37ruiNh6OfJN4le5bqdE="
+      "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
     ];
   };
 
