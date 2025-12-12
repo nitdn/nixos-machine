@@ -73,13 +73,15 @@
                 remote="''${1:-vps01}"
                 nixos-rebuild test --flake . \
                 --build-host root@"$remote" \
-                --target-host root@"$remote" 
+                --target-host root@"$remote" \
+                --option max-jobs 4
               '';
               remote-build = ''
                 remote="''${1:-vps01}"
                 nixos-rebuild build --flake . \
                 --build-host root@"$remote" \
-                --target-host root@"$remote" 
+                --target-host root@"$remote" \
+                --option max-jobs 4
               '';
             };
             toPackage = name: text: pkgs.writeShellApplication { inherit name text; };
