@@ -52,3 +52,5 @@ jobs:
           cachix use niri
           nix build --option max-jobs 8 \
            .#nixosConfigurations.${{ matrix.machine }}.config.system.build.toplevel
+      - name: Compress cache
+        run: nix run nixpkgs#nix-heuristic-gc 10G
