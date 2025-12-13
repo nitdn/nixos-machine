@@ -16,30 +16,17 @@ jobs:
           hatchet-protocol: "rampage" # Options: holster, carve, cleave (default), rampage
           nix-permission-edict: true
       - uses: nixbuild/nix-quick-install-action@v34
-      - name: Restore and save Nix store
-        uses: nix-community/cache-nix-action@v6
+      - name: Get narHash
+        id: get-narHash
+        run: echo "narHash=$(nix flake metadata --json | jq .locked.narHash)" >> $GITHUB_OUTPUT
+      - name: Cache flake metadata
+        uses: actions/cache@v4
         with:
-          # restore and save a cache using this key
-          primary-key: nix-${{ runner.os }}-${{ matrix.machine }}-${{ hashFiles('**/*.nix', '**/flake.lock') }}
-          # if there's no cache hit, restore a cache by this prefix
-          restore-prefixes-first-match: |
-            nix-${{ runner.os }}-${{ matrix.machine }}
-            nix-${{ runner.os }}-
-          # collect garbage until the Nix store size (in bytes) is at most this number
-          # before trying to save a new cache
-          # 1G = 1073741824
-          gc-max-store-size-linux: 300M
-          # do purge caches
-          purge: true
-          # purge all versions of the cache
-          purge-prefixes: nix-${{ runner.os }}-${{ matrix.machine }}
-          # created more than this number of seconds ago
-          purge-created: 0
-          # or, last accessed more than this number of seconds ago
-          # relative to the start of the `Post Restore and save Nix store` phase
-          purge-last-accessed: 0
-          # except any version with the key that is the same as the `primary-key`
-          purge-primary-key: never
+          path: ~/.cache/nix
+          key: eval-cache-${{ matrix.machine }}-${{ steps.get-narHash.outputs.narHash }}
+          restore-keys: |
+            eval-cache-${{ matrix.machine }}
+            eval-cache-
       - uses: cachix/cachix-action@v16
         with:
           name: machines
