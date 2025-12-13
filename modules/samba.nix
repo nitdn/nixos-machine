@@ -1,6 +1,6 @@
 {
   flake.modules.nixos.pc =
-    { config, ... }:
+    { config, lib, ... }:
     let
       smbnix = config.networking.hostName;
     in
@@ -60,7 +60,7 @@
         openFirewall = true;
       };
 
-      networking.firewall.enable = true;
+      networking.firewall.enable = lib.mkDefault true;
       networking.firewall.allowPing = true;
     };
 }

@@ -1,3 +1,4 @@
+{ config, ... }:
 {
   flake.modules.nixos.vps =
     { pkgs, config, ... }:
@@ -31,6 +32,7 @@
       packages.runner = pkgs.dockerTools.buildImage {
         name = "runner";
         tag = "latest";
+        buildVMMemorySize = 20 * 1024;
         includeNixDB = true;
         copyToRoot = [
           (pkgs.buildEnv {
@@ -40,6 +42,7 @@
               pkgs.coreutils
               pkgs.nix
               pkgs.git
+              config.flake.nixosConfigurations.tjmaxxer.config.system.build.toplevel
             ];
             pathsToLink = [
               "/bin"
