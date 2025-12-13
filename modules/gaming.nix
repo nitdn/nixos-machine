@@ -27,6 +27,14 @@ in
         };
       };
       programs.gamemode.enable = true;
+      programs.obs-studio = {
+        enable = true;
+        enableVirtualCamera = true;
+        plugins = with (pkgs.obs-studio-plugins); [
+          wlrobs
+          obs-vkcapture
+        ];
+      };
       environment.systemPackages = [
         (partialWrapper {
           exePath = "${pkgs.mangohud}/bin/mangohud";
@@ -59,6 +67,9 @@ in
           umu-launcher
           winetricks
         ];
+      };
+      programs.niri.settings.binds = {
+        "Mod+S".action.set-dynamic-cast-window = { };
       };
     };
 }

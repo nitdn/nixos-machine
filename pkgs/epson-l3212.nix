@@ -1,7 +1,7 @@
 {
   lib,
   stdenv,
-  fetchurl,
+  epson-202101w,
   rpmextract,
   autoreconfHook,
   file,
@@ -17,12 +17,7 @@ stdenv.mkDerivation {
   pname = "epson-202101w";
   inherit version;
 
-  src = fetchurl {
-    urls = [
-      "https://download3.ebz.epson.net/dsc/f/03/00/15/15/02/f5cba2761f2f501363cdbf7e1b9b9879b0715aa5/epson-inkjet-printer-202101w-1.0.2-1.src.rpm"
-    ];
-    sha256 = "sha256-n0Ff2wfhPruYhzAH0GrhpYpkddiQ3rkYukvZyRgrn54=";
-  };
+  src = epson-202101w;
 
   nativeBuildInputs = [
     rpmextract

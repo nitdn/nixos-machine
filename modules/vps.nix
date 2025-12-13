@@ -45,17 +45,6 @@
         pkgs.openssl
       ];
 
-      services.searx = {
-        enable = true;
-        redisCreateLocally = true;
-        settings = {
-          server.port = 8001;
-          server.bind_address = "::1";
-          server.secret_key = config.sops.secrets.searx.path;
-
-        };
-      };
-
       services.authentik = {
         # other authentik options as in the example configuration at the top
         enable = true;

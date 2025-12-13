@@ -1,0 +1,17 @@
+name: "Test machines"
+on:
+  push:
+  workflow_call:
+jobs:
+  tests:
+    name: "Build machine ${{ matrix.machine }}"
+    runs-on: runner
+    strategy:
+      matrix:
+        machine: [tjmaxxer, msi-colgate, vps01]
+    steps:
+      - uses: actions/checkout@v6
+      - name: Build ${{ matrix.machine }}
+        run: |
+          nix build \
+           .#nixosConfigurations.${{ matrix.machine }}.config.system.build.toplevel \

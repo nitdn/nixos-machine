@@ -24,6 +24,13 @@ in
         hunspell
         hunspellDicts.en-gb-large
         inputs'.affinity-nix.packages.v3
+        (writeShellApplication {
+          name = "affinity-fix";
+          runtimeInputs = [ inputs'.affinity-nix.packages.v3 ];
+          text = ''
+            affinity-v3 wine "$HOME/.local/share/affinity-v3/drive_c/Program Files/Affinity/Affinity/Affinity.exe"
+          '';
+        })
       ];
       i18n.inputMethod = {
         enable = true;

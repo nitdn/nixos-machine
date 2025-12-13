@@ -57,9 +57,7 @@ in
       programs.kitty = {
         enable = true;
         keybindings = {
-          "ctrl+c" = "copy_or_interrupt";
-          "ctrl+f>2" = "set_font_size 20";
-          "f1" = "launch --cwd=current --type os-window";
+          "f2" = "launch --cwd=current --type os-window";
         };
         settings = {
           scrollback_lines = 10000;
@@ -86,12 +84,7 @@ in
       programs.starship = {
         enable = true;
       };
-      xdg.configFile."starship.toml".source = lib.mkForce (
-        pkgs.fetchurl {
-          url = "https://starship.rs/presets/toml/jetpack.toml";
-          hash = "sha256-YvKGrjmcG+ZUuiFOr94IFKJESJemSYxuDg92Pe7GJqY=";
-        }
-      );
+      xdg.configFile."starship.toml".source = lib.mkForce inputs."jetpack.toml";
 
       programs.fzf = {
         enable = true;

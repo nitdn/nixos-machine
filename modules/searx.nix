@@ -25,7 +25,6 @@
           server.port = 8001;
           server.bind_address = "::1";
           server.secret_key = config.sops.secrets.searx.path;
-
         };
       };
 
