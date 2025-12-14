@@ -1,4 +1,8 @@
-{ inputs, config, ... }:
+{
+  inputs,
+  config,
+  ...
+}:
 let
   homeModules = config.flake.modules.homeManager;
 in
@@ -67,9 +71,6 @@ in
           umu-launcher
           winetricks
         ];
-      };
-      programs.niri.settings.binds = {
-        "Mod+S".action.set-dynamic-cast-window = { };
       };
     };
 }

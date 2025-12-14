@@ -1,9 +1,14 @@
-{ config, inputs, ... }:
+{
+  config,
+  inputs,
+  lib,
+  ...
+}:
 let
   user = config.meta.username;
 in
 {
-  flake.modules.homeManager.pc =
+  flake.modules.nixos.dms =
     {
       config,
       pkgs,
@@ -23,41 +28,44 @@ in
     in
     {
       imports = [
-        inputs.dankMaterialShell.homeModules.dankMaterialShell.default
-        inputs.dankMaterialShell.homeModules.dankMaterialShell.niri
+        inputs.dankMaterialShell.nixosModules.dankMaterialShell
       ];
       programs.dankMaterialShell = {
         enable = true;
-        niri = {
-          enableKeybinds = true; # Automatic keybinding configuration
-          enableSpawn = true; # Auto-start DMS with niri
-        };
-        default.settings = {
-          theme = lib.mkDefault "cat-sapphire";
-          dynamicTheming = true;
-          # Add any other settings here
-        };
       };
-      programs.niri.settings.binds = with config.lib.niri.actions; {
-        "Mod+Escape".action = spawn (dms "dash toggle overview");
-      };
-      programs.niri.settings.environment = {
-        QT_QPA_PLATFORMTHEME = "qt6ct";
-      };
-      programs.ghostty.settings.config-file = "./config-dankcolors";
 
-      programs.kitty.extraConfig = ''
-        include dank-tabs.conf
-        include dank-theme.conf
-      '';
-
-      programs.helix.settings.theme = lib.mkDefault "catppuccin_mocha";
     };
+  flake.modules.homeManager.pc = {
+    programs.kitty.extraConfig = ''
+      include dank-tabs.conf
+      include dank-theme.conf
+    '';
+  };
+
+  perSystem.niri.extraConfig = lib.strings.concatLines (
+    [
+      ''spawn-at-startup "dms" "run"''
+      ''include "${./niri.kdl}"''
+      ''
+        environment {
+            "QT_QPA_PLATFORMTHEME" "qt6ct"
+        }
+      ''
+    ]
+    ++ lib.lists.map (path: "include \"/home/${user}/.config/niri/${path}\"") [
+      "dms/colors.kdl"
+      "dms/layout.kdl"
+      "dms/alttab.kdl"
+      "dms/binds.kdl"
+    ]
+  );
+
   flake.modules.nixos.pc =
     { pkgs, ... }:
     {
       imports = [
         inputs.dankMaterialShell.nixosModules.greeter
+        config.flake.modules.nixos.dms
       ];
       # FIXME: DMS polkit agent doesn't seem to work
       # systemd.user.services.niri-flake-polkit.enable = false;

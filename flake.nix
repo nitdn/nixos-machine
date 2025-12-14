@@ -40,10 +40,6 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    niri = {
-      url = "github:sodiboo/niri-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nixos-facter-modules.url = "github:numtide/nixos-facter-modules";
     authentik-nix = {
       url = "github:nix-community/authentik-nix";
@@ -81,11 +77,9 @@
   nixConfig = {
     extra-substituters = [
       "https://machines.cachix.org"
-      "https://niri.cachix.org"
     ];
     extra-trusted-public-keys = [
       "machines.cachix.org-1:imnXlKFUc4Iaedv6469v6TO37ruiNh6OfJN4le5bqdE="
-      "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
     ];
   };
 

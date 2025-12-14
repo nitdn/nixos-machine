@@ -1,0 +1,8 @@
+binds {
+    Mod+Escape {
+        spawn "dms" "ipc" "call" "dash" "toggle" "overview"
+    }
+    Mod+X hotkey-overlay-title="Toggle Power Menu" { spawn "dms" "ipc" "powermenu" "toggle"; }
+
+}
+

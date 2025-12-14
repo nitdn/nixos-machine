@@ -92,6 +92,7 @@
             eww
             jq
             jujutsu
+            kdlfmt
             meld
             sops
             nixd

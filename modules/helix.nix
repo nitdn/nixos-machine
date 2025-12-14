@@ -20,6 +20,7 @@ in
         ];
 
         settings = {
+          theme = lib.mkDefault "catppuccin_mocha";
           editor = {
             # They are not well implemented anyway
             # end-of-line-diagnostics = "hint";
