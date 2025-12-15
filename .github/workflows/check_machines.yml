@@ -20,7 +20,7 @@ jobs:
         id: get-narHash
         run: echo "narHash=$(nix flake metadata --json | jq .locked.narHash)" >> $GITHUB_OUTPUT
       - name: Cache flake metadata
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ~/.cache/nix
           key: eval-cache-${{ matrix.machine }}-${{ steps.get-narHash.outputs.narHash }}
