@@ -139,9 +139,12 @@
 
       # Install firefox.
       programs.firefox.enable = true;
-      programs.nh = {
-        enable = true;
-      };
+
+      programs.nh.enable = true;
+
+      programs.nix-index-database.comma.enable = true;
+
     };
+
   meta.unfreeNames = [ "via" ];
 }

@@ -28,6 +28,7 @@ in
       imports = [
         inputs.sops-nix.nixosModules.sops
         inputs.nixos-facter-modules.nixosModules.facter
+        inputs.nix-index-database.nixosModules.default
       ];
       nixpkgs.overlays = [
         config.flake.overlays.default
