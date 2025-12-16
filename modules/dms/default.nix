@@ -69,13 +69,6 @@ in
             argument = "/home/${user}/.cache/wal/dank-pywalfox.json";
           };
 
-          "/home/${user}/.config/DankMaterialShell/settings.json"."C" = {
-            inherit user;
-            group = "users";
-            mode = "0755";
-            argument = "${./settings.json}";
-          };
-
           "/home/${user}/.config/niri/dms" = {
             "C".argument = "${./niri}";
             "z".mode = "0755";
