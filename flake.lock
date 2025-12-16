@@ -750,26 +750,6 @@
         "type": "gitlab"
       }
     },
-    "noctalia": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1765848573,
-        "narHash": "sha256-0BzTOmvypArQlxXZ0FkQectl/mf9TwOgJDAPdxB26+k=",
-        "owner": "noctalia-dev",
-        "repo": "noctalia-shell",
-        "rev": "78e77f17c2300fa1118c57dc99c0809a0cf48075",
-        "type": "github"
-      },
-      "original": {
-        "owner": "noctalia-dev",
-        "repo": "noctalia-shell",
-        "type": "github"
-      }
-    },
     "on-linux": {
       "flake": false,
       "locked": {
@@ -887,7 +867,6 @@
         "nix-on-droid": "nix-on-droid",
         "nixos-facter-modules": "nixos-facter-modules",
         "nixpkgs": "nixpkgs_6",
-        "noctalia": "noctalia",
         "sops-nix": "sops-nix",
         "stablepkgs": "stablepkgs",
         "treefmt-nix": "treefmt-nix_3",

@@ -58,6 +58,7 @@ in
             lib.attrsets.nameValuePair "/home/${user}/.local/share/fonts/${pkg.pname}" {
               "C+" = {
                 inherit user;
+                group = "users";
                 argument = "${pkg}/share/fonts";
               };
             }

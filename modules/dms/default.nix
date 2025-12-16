@@ -8,33 +8,15 @@ let
   user = config.meta.username;
 in
 {
-  flake.modules.nixos.dms =
-    {
-      config,
-      pkgs,
-      lib,
-      ...
-    }:
-    let
-      dms =
-        cmd:
-        [
-          "dms"
-          "ipc"
-          "call"
-        ]
-        ++ (pkgs.lib.splitString " " cmd);
-
-    in
-    {
-      imports = [
-        inputs.dankMaterialShell.nixosModules.dankMaterialShell
-      ];
-      programs.dankMaterialShell = {
-        enable = true;
-      };
-
+  flake.modules.nixos.dms = {
+    imports = [
+      inputs.dankMaterialShell.nixosModules.dankMaterialShell
+    ];
+    programs.dankMaterialShell = {
+      enable = true;
     };
+
+  };
   flake.modules.homeManager.pc = {
     programs.kitty.extraConfig = ''
       include dank-tabs.conf
@@ -45,7 +27,6 @@ in
   perSystem.niri.extraConfig = lib.strings.concatLines (
     [
       ''spawn-at-startup "dms" "run"''
-      ''include "${./niri.kdl}"''
       ''
         environment {
             "QT_QPA_PLATFORMTHEME" "qt6ct"
@@ -80,10 +61,30 @@ in
         pkgs.adw-gtk3
         pkgs.pywalfox-native
       ];
-      systemd.tmpfiles.settings."10-dms" = {
-        "/home/${user}/.cache/wal/colors.json"."L" = {
-          inherit user;
-          argument = "/home/${user}/.cache/wal/dank-pywalfox.json";
+      systemd.tmpfiles.settings = {
+        "20-dms" = {
+          "/home/${user}/.cache/wal/colors.json"."L" = {
+            inherit user;
+            mode = "0755";
+            argument = "/home/${user}/.cache/wal/dank-pywalfox.json";
+          };
+
+          "/home/${user}/.config/DankMaterialShell/settings.json"."C" = {
+            inherit user;
+            group = "users";
+            mode = "0755";
+            argument = "${./settings.json}";
+          };
+
+          "/home/${user}/.config/niri/dms" = {
+            "C".argument = "${./niri}";
+            "z".mode = "0755";
+            "Z" = {
+              inherit user;
+              group = "users";
+              mode = "0644";
+            };
+          };
         };
       };
     };
