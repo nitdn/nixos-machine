@@ -1,7 +1,4 @@
-{ moduleWithSystem, config, ... }:
-let
-  user = config.meta.username;
-in
+{ moduleWithSystem, ... }:
 {
   meta.unfreeNames = [
     "corefonts"
@@ -14,7 +11,6 @@ in
     {
       pkgs,
       lib,
-      config,
       ...
     }:
     {
@@ -31,6 +27,17 @@ in
             affinity-v3 wine "$HOME/.local/share/affinity-v3/drive_c/Program Files/Affinity/Affinity/Affinity.exe"
           '';
         })
+        (
+          let
+            item = {
+              name = "affinity-fix";
+              desktopName = "Affinity (workaround for plugin loader)";
+              icon = "affinity-v3";
+              exec = item.name;
+            };
+          in
+          makeDesktopItem item
+        )
       ];
       i18n.inputMethod = {
         enable = true;
