@@ -36,6 +36,5 @@ jobs:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
       - name: Build ${{ matrix.machine }}
         run: |
-          cachix use niri
-          nix build --option max-jobs 8 \
-           .#nixosConfigurations.${{ matrix.machine }}.config.system.build.toplevel
+          nix run nixpkgs#nh -- os build . -H ${{ matrix.machine }} \
+          --no-nom -j 4 --cores 4

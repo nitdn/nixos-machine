@@ -5,7 +5,7 @@ in
 
 {
   flake.modules.nixos.pc = moduleWithSystem (
-    { pkgs, inputs', ... }:
+    { pkgs, ... }:
     {
       # docker compat stuff
       environment.etc = {

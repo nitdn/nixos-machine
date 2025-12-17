@@ -1,4 +1,4 @@
-{ config, inputs, ... }:
+{ config, ... }:
 
 let
   homeModule = config.flake.modules.homeManager.pc;

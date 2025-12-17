@@ -58,7 +58,7 @@
                 jj rebase -r @ -d update_flake_lock_action@flake-mirror
               '';
               push-ci = ''
-                nix flake check 
+                nix flake check
                 jj git push -c @- --remote flake-mirror
               '';
               push-main = ''
@@ -114,7 +114,7 @@
         inherit (inputs) epson-202101w;
       };
       packages.naps2-wrapped = pkgs.naps2.overrideAttrs (
-        finalAttrs: previousAttrs: {
+        _finalAttrs: previousAttrs: {
           buildInputs = previousAttrs.buildInputs or [ ] ++ buildInputs;
           postFixup = previousAttrs.postFixup or "" + ''
             chmod +x $out/lib/naps2/_linux/tesseract 
@@ -127,6 +127,8 @@
       treefmt.programs = {
         just.enable = true;
         nixfmt.enable = true;
+        statix.enable = true;
+        deadnix.enable = true;
         shfmt.enable = true;
         sqlfluff.dialect = "postgres";
         sqlfluff.enable = true;

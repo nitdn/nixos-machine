@@ -1,14 +1,13 @@
 {
   config,
   inputs,
-  lib,
   moduleWithSystem,
   ...
 }:
 let
   homeModules = config.flake.modules.homeManager;
   nixosModules = config.flake.modules.nixos;
-  username = config.meta.username;
+  inherit (config.meta) username;
 in
 {
   flake.modules.nixos.tjmaxxer = moduleWithSystem (

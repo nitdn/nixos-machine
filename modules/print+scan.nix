@@ -11,7 +11,7 @@
       ...
     }:
     let
-      packages = config.packages;
+      inherit (config) packages;
     in
     {
       # Enable CUPS to print documents.

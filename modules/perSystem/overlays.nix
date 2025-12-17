@@ -6,9 +6,7 @@
   perSystem =
     {
       inputs',
-      config,
       pkgs,
-      final,
       ...
     }:
     {

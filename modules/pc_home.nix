@@ -4,9 +4,6 @@
   config,
   ...
 }:
-let
-  leader.key = "alt+space";
-in
 {
   meta.username = "ssmvabaa";
   meta.unfreeNames = [ "obsidian" ];
@@ -14,11 +11,10 @@ in
     {
       pkgs,
       config,
-      inputs',
       ...
     }:
     let
-      packages = config.packages;
+      inherit (config) packages;
     in
     {
       # Home Manager needs a bit of information about you and the paths it should

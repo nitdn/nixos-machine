@@ -6,8 +6,7 @@
 }:
 let
   homeModules = config.flake.modules.homeManager;
-  nixosModules = config.flake.modules.nixos;
-  username = config.meta.username;
+  inherit (config.meta) username;
   inherit (config.flake.modules) generic;
 in
 {
@@ -36,7 +35,7 @@ in
       nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) config.meta.unfreeNames;
     };
     work =
-      { config, pkgs, ... }:
+      { pkgs, ... }:
       let
         inherit homeModules;
       in

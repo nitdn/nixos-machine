@@ -17,16 +17,14 @@ in
         '';
       };
     };
-  flake.modules.homeManager.fish =
-    { pkgs, ... }:
-    {
-      programs.fish.enable = true;
-      programs.fish.shellAbbrs = {
-        gco = "git checkout";
-        npu = "nix-prefetch-url";
-        rm = "y";
-      };
+  flake.modules.homeManager.fish = _: {
+    programs.fish.enable = true;
+    programs.fish.shellAbbrs = {
+      gco = "git checkout";
+      npu = "nix-prefetch-url";
+      rm = "y";
     };
+  };
   flake.modules.nixos = {
     pc.imports = [ flakeModules.generic.fish ];
     vps.imports = [ flakeModules.generic.fish ];

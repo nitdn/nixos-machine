@@ -5,9 +5,7 @@
   ...
 }:
 let
-  homeModules = config.flake.modules.homeManager;
   nixosModules = config.flake.modules.nixos;
-  username = config.meta.username;
   inherit (config.flake.modules) generic;
 in
 {
@@ -16,18 +14,13 @@ in
     programs.helix.settings.theme = "ayu_light";
   };
 
-  flake.modules.generic.light =
-    { pkgs, ... }:
-    {
-      # stylix.polarity = "light";
-      # stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/ayu-light.yaml";
-    };
+  flake.modules.generic.light = _: {
+    # stylix.polarity = "light";
+    # stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/ayu-light.yaml";
+  };
 
   flake.modules.nixos.msi-colgate = moduleWithSystem (
-    { config, pkgs, ... }:
-    let
-      inherit homeModules;
-    in
+    { ... }:
     {
       imports = [
         generic.light

@@ -2,7 +2,7 @@
   flake.modules.nixos.vps =
     { config, ... }:
     let
-      domain_name = config.services.bind.domain_name;
+      inherit (config.services.bind) domain_name;
     in
     {
       services.postgresql = {

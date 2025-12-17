@@ -48,7 +48,7 @@
           let
             # XXX specify the postgresql package you'd like to upgrade to.
             # Do not forget to list the extensions you need.
-            newPostgres = pkgs.postgresql_17.withPackages (pp: [
+            newPostgres = pkgs.postgresql_17.withPackages (_pp: [
               # pp.plv8
             ]);
             cfg = config.services.postgresql;
