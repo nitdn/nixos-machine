@@ -51,26 +51,17 @@ in
       fonts.packages = with pkgs; [
         corefonts
       ];
-      systemd.tmpfiles.settings."10-onlyoffice-fonts" =
-        lib.listToAttrs (
-          lib.lists.forEach [ pkgs.corefonts pkgs.noto-fonts pkgs.noto-fonts-color-emoji ] (
-            pkg:
-            lib.attrsets.nameValuePair "/home/${user}/.local/share/fonts/${pkg.pname}" {
-              "C+" = {
-                inherit user;
-                group = "users";
-                argument = "${pkg}/share/fonts";
-              };
-            }
-          )
-        )
-        // {
-          "/home/${user}/.local/share/fonts" = {
-            d = {
-              inherit user;
-            };
-          };
-        };
+      systemd.user.tmpfiles.rules =
+        lib.lists.forEach
+          [
+            pkgs.corefonts
+            pkgs.noto-fonts
+            pkgs.noto-fonts-color-emoji
+          ]
+          (pkg: ''
+            C+ %h/.local/share/fonts/${pkg.pname} 0755 - - - ${pkg}/share/fonts/
+            z %h/.local/share/fonts/${pkg.pname}/* 0755 - - -
+          '');
     }
   );
 }

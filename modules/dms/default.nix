@@ -61,25 +61,11 @@ in
         pkgs.adw-gtk3
         pkgs.pywalfox-native
       ];
-      systemd.tmpfiles.settings = {
-        "20-dms" = {
-          "/home/${user}/.cache/wal/colors.json"."L" = {
-            inherit user;
-            mode = "0755";
-            argument = "/home/${user}/.cache/wal/dank-pywalfox.json";
-          };
-
-          "/home/${user}/.config/niri/dms" = {
-            "C".argument = "${./niri}";
-            "z".mode = "0755";
-            "Z" = {
-              inherit user;
-              group = "users";
-              mode = "0644";
-            };
-          };
-        };
-      };
+      systemd.user.tmpfiles.rules = [
+        "L %C/wal/colors.json - - - - %C/wal/dank-pywalfox.json"
+        "C+ %h/.config/niri/dms 0755 - - - ${./niri}"
+        "z %h/.config/niri/dms/* 0644 - - - -"
+      ];
     };
 
 }
