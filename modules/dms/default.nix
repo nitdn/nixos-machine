@@ -10,9 +10,9 @@ in
 {
   flake.modules.nixos.dms = {
     imports = [
-      inputs.dankMaterialShell.nixosModules.dankMaterialShell
+      inputs.dank-material-shell.nixosModules.dank-material-shell
     ];
-    programs.dankMaterialShell = {
+    programs.dank-material-shell = {
       enable = true;
     };
 
@@ -45,13 +45,13 @@ in
     { pkgs, ... }:
     {
       imports = [
-        inputs.dankMaterialShell.nixosModules.greeter
+        inputs.dank-material-shell.nixosModules.greeter
         config.flake.modules.nixos.dms
       ];
       # FIXME: DMS polkit agent doesn't seem to work
       # systemd.user.services.niri-flake-polkit.enable = false;
       services.displayManager.gdm.enable = false;
-      programs.dankMaterialShell.greeter = {
+      programs.dank-material-shell.greeter = {
         enable = true;
         compositor.name = "niri"; # Or "hyprland" or "sway"
       };

@@ -87,7 +87,7 @@
         "url": "https://public.integration.yamayuri.kiku8101.com/publicdownload/download?fileId=B2C0B6D9-C563-4377-B77B-33BBAC4A5EC8"
       }
     },
-    "dankMaterialShell": {
+    "dank-material-shell": {
       "inputs": {
         "dgop": [
           "dgop"
@@ -98,11 +98,11 @@
         "quickshell": "quickshell"
       },
       "locked": {
-        "lastModified": 1765916864,
-        "narHash": "sha256-mXKYRVK5YndrvgbIKCyz4BRuLkyEqgceF/djXmA6cD8=",
+        "lastModified": 1766034842,
+        "narHash": "sha256-Ux7aImJy4sohnVH5jKY7QjgVGeImuEmEyUYfnXSzdEQ=",
         "owner": "AvengeMedia",
         "repo": "DankMaterialShell",
-        "rev": "672754b0b5efd9e61ea8080c40614ad3b4fd5dbf",
+        "rev": "78a5f401d76d575fb88757ad812dcda0adc24e3e",
         "type": "github"
       },
       "original": {
@@ -851,7 +851,7 @@
     "quickshell": {
       "inputs": {
         "nixpkgs": [
-          "dankMaterialShell",
+          "dank-material-shell",
           "nixpkgs"
         ]
       },
@@ -875,7 +875,7 @@
         "affinity-nix": "affinity-nix",
         "authentik-nix": "authentik-nix",
         "bizhub-225i": "bizhub-225i",
-        "dankMaterialShell": "dankMaterialShell",
+        "dank-material-shell": "dank-material-shell",
         "dgop": "dgop",
         "direnv-instant": "direnv-instant",
         "disko": "disko",
