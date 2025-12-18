@@ -24,10 +24,11 @@ jobs:
       - uses: nix-community/cache-nix-action@6de24dc9a84f783ab87016f2df9d0e85131480b4
         with:
           # restore and save a cache using this key
-          primary-key: nix-${{ runner.os }}-flake-${{ hashFiles('**/*.nix', '**/flake.lock') }}
+          primary-key: nix-${{ runner.os }}-package-${{ matrix.package }}-${{ hashFiles('**/*.nix', '**/flake.lock') }}
           # if there's no cache hit, restore a cache by this prefix
           restore-prefixes-first-match: |
-            nix-${{ runner.os }}-flake
+            nix-${{ runner.os }}-package-${{ matrix.package }}
+            nix-${{ runner.os }}-package
             nix-${{ runner.os }}-
           # collect garbage until the Nix store size (in bytes) is at most this number
           # before trying to save a new cache
