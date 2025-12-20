@@ -57,15 +57,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     stablepkgs.url = "github:nixos/nixpkgs/nixos-25.05";
-    dgop = {
-      url = "github:AvengeMedia/dgop";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    dank-material-shell = {
-      url = "github:AvengeMedia/DankMaterialShell";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.dgop.follows = "dgop";
-    };
     affinity-nix.url = "github:mrshmllow/affinity-nix";
     import-tree.url = "github:vic/import-tree";
   };

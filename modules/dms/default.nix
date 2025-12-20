@@ -9,11 +9,12 @@ let
 in
 {
   flake.modules.nixos.dms = {
-    imports = [
-      inputs.dank-material-shell.nixosModules.dank-material-shell
-    ];
-    programs.dank-material-shell = {
+    programs.dms-shell = {
       enable = true;
+      systemd = {
+        enable = true; # Systemd service for auto-start
+        restartIfChanged = true; # Auto-restart dms.service when dms-shell changes
+      };
     };
 
   };
@@ -26,10 +27,13 @@ in
 
   perSystem.niri.extraConfig = lib.strings.concatLines (
     [
-      ''spawn-at-startup "dms" "run"''
       ''
         environment {
             "QT_QPA_PLATFORMTHEME" "qt6ct"
+        }
+        layer-rule {
+            match namespace="^quickshell$"
+            place-within-backdrop true
         }
       ''
     ]
@@ -45,15 +49,14 @@ in
     { pkgs, ... }:
     {
       imports = [
-        inputs.dank-material-shell.nixosModules.greeter
         config.flake.modules.nixos.dms
       ];
-      # FIXME: DMS polkit agent doesn't seem to work
-      # systemd.user.services.niri-flake-polkit.enable = false;
       services.displayManager.gdm.enable = false;
-      programs.dank-material-shell.greeter = {
+      services.displayManager.dms-greeter = {
         enable = true;
         compositor.name = "niri"; # Or "hyprland" or "sway"
+        # Sync your user's DankMaterialShell theme with the greeter. You'll probably want this
+        configHome = "/home/${user}";
       };
       hardware.i2c.enable = true;
       environment.systemPackages = [
