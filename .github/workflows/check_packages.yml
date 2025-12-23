@@ -54,5 +54,5 @@ jobs:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
       - name: Build ${{ matrix.package }}
         run: |
-          nix build \
+          nix build --cores 0 \
           ${{ matrix.package }} --accept-flake-config

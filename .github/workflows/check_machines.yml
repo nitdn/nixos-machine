@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        machine: [tjmaxxer, disko-elysium, msi-colgate]
+        machine: [tjmaxxer, disko-elysium, msi-colgate, vps01]
     steps:
       - uses: actions/checkout@v6
       - uses: wimpysworld/nothing-but-nix@main
@@ -16,29 +16,16 @@ jobs:
           hatchet-protocol: "rampage" # Options: holster, carve, cleave (default), rampage
           nix-permission-edict: true
       - uses: nixbuild/nix-quick-install-action@v34
-      - name: Get narHash
-        id: get-narHash
-        run: echo "narHash=$(nix flake metadata --json | jq .locked.narHash)" >> $GITHUB_OUTPUT
-      # - name: Cache flake metadata
-      #   uses: actions/cache@v5
-      #   with:
-      #     path: ~/.cache/nix
-      #     key: eval-cache-${{ matrix.machine }}-${{ steps.get-narHash.outputs.narHash }}
-      #     restore-keys: |
-      #       eval-cache-${{ matrix.machine }}
-      #       eval-cache-
-      # - uses: nix-community/cache-nix-action@6de24dc9a84f783ab87016f2df9d0e85131480b4
-      #   with:
-      #     primary-key: nix-${{ runner.os }}-machine-${{ matrix.machine }}-${{ hashFiles('**/*.nix', '**/flake.lock') }}
-      #     restore-prefixes-first-match: |
-      #       nix-${{ runner.os }}-machine-${{ matrix.machine }}
-      #       nix-${{ runner.os }}-
-      #     gc-max-store-size-linux: 1G
-      #     purge: true
-      #     purge-prefixes: nix-${{ runner.os }}-flake
-      #     purge-created: 0
-      #     purge-last-accessed: 0
-      #     purge-primary-key: never
+      - name: Cache flake metadata
+        uses: actions/cache@v5
+        with:
+          path: |
+            ~/.cache/nix
+            ~root/.cache/nix
+          key: nix-${{ runner.os }}-machine-${{ matrix.machine }}-${{ hashFiles('**/*.nix', '**/flake.lock') }}
+          restore-keys: |
+            nix-${{ runner.os }}-machine-${{ matrix.machine }}
+            nix-${{ runner.os }}-
       - uses: cachix/cachix-action@29121a2db12c7ff8b89724a8898ca20d33bb4ea3
         with:
           name: machines
@@ -48,7 +35,5 @@ jobs:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
       - name: Build ${{ matrix.machine }}
         run: |
-          nix run nixpkgs#nh -- os build --no-nom -j 4 --cores 4 \
-          --fallback . -H ${{ matrix.machine }}
-          # nix build --option max-jobs 12 --cores 4 \
-          # .#nixosConfigurations.${{ matrix.machine }}.config.system.build.toplevel
+          nix build --cores 0 \
+          .#nixosConfigurations.${{ matrix.machine }}.config.system.build.toplevel
