@@ -49,14 +49,12 @@
       url = "github:nix-community/authentik-nix";
       ## optional overrides. Note that using a different version of nixpkgs
       # can cause issues, especially with python dependencies
-      inputs.nixpkgs.follows = "stablepkgs";
       inputs.flake-parts.follows = "flake-parts";
     };
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    stablepkgs.url = "github:nixos/nixpkgs/nixos-25.05";
     affinity-nix.url = "github:mrshmllow/affinity-nix";
     import-tree.url = "github:vic/import-tree";
   };
@@ -68,9 +66,11 @@
   nixConfig = {
     extra-substituters = [
       "https://machines.cachix.org"
+      "https://nix-community.cachix.org"
     ];
     extra-trusted-public-keys = [
       "machines.cachix.org-1:imnXlKFUc4Iaedv6469v6TO37ruiNh6OfJN4le5bqdE="
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
     ];
   };
 

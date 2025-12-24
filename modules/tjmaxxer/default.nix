@@ -1,7 +1,6 @@
 {
   config,
   inputs,
-  moduleWithSystem,
   ...
 }:
 let
@@ -10,12 +9,14 @@ let
   inherit (config.meta) username;
 in
 {
-  flake.modules.nixos.tjmaxxer = moduleWithSystem (
-    { inputs', pkgs, ... }:
+  flake.modules.nixos.tjmaxxer =
+    { pkgs, ... }:
     {
       facter.reportPath = ./facter.json;
       hardware.ckb-next.enable = true;
-      hardware.ckb-next.package = inputs'.stablepkgs.legacyPackages.ckb-next;
+      hardware.ckb-next.package = pkgs.ckb-next.overrideAttrs (old: {
+        cmakeFlags = (old.cmakeFlags or [ ]) ++ [ "-DUSE_DBUS_MENU=0" ];
+      });
       hardware.graphics = {
         enable32Bit = true;
         extraPackages = with pkgs; [
@@ -34,8 +35,7 @@ in
       networking.hostName = "tjmaxxer"; # Define your hostname.
       system.stateVersion = "24.11"; # I did not read the comment
 
-    }
-  );
+    };
   flake.nixosConfigurations.tjmaxxer = inputs.nixpkgs.lib.nixosSystem {
     modules = [
       nixosModules.pc

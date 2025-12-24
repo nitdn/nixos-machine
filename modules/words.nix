@@ -5,9 +5,6 @@
   ];
   flake.modules.nixos.pc = moduleWithSystem (
     { inputs', ... }:
-    let
-      stablepkgs = inputs'.stablepkgs.legacyPackages;
-    in
     {
       pkgs,
       lib,
@@ -49,8 +46,8 @@
 
         type = "fcitx5";
         fcitx5.waylandFrontend = true;
-        fcitx5.addons = with stablepkgs; [
-          fcitx5-catppuccin
+        fcitx5.addons = with pkgs; [
+          catppuccin-fcitx5
           fcitx5-gtk
           fcitx5-openbangla-keyboard
         ];
