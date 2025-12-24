@@ -16,6 +16,10 @@ jobs:
           hatchet-protocol: "rampage" # Options: holster, carve, cleave (default), rampage
           nix-permission-edict: true
       - uses: nixbuild/nix-quick-install-action@v34
+        with:
+          nix_conf: |
+            keep-env-derivations = true
+            keep-outputs = true
       - name: Cache flake metadata
         uses: actions/cache@v5
         with:
