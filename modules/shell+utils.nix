@@ -12,20 +12,12 @@ in
 {
   meta.term = "kitty";
   perSystem =
-    { pkgs, ... }:
 
-    let
-      "term-kdl" = pkgs.writeText "${term}.kdl" ''
-        binds {
-              Mod+T { spawn "${term}"; }
-        }
-        spawn-at-startup "${term}"
-      '';
-    in
     {
-      niri.extraConfig = ''
-        include "${term-kdl}"
-      '';
+      niri.settings = {
+        binds."Mod+T".spawn = term;
+        "spawn-at-startup \"${term}\"" = { };
+      };
     };
   flake.modules.homeManager.shells = moduleWithSystem (
     {

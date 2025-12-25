@@ -32,7 +32,7 @@ command = "just-lsp"
 nixos.expr = "(builtins.getFlake \"/home/ssmvabaa/nixos-machine\").nixosConfigurations.tjmaxxer.options"
 home-manager.expr = "(builtins.getFlake \"/home/ssmvabaa/nixos-machine\").currentSystem.legacyPackages.homeConfigurations.ssmvabaa.options"
 flake-parts.expr = "(builtins.getFlake \"/home/ssmvabaa/nixos-machine\").debug.options"
-flake-parts2.expr = "(builtins.getFlake \"/home/ssmvabaa/nixos-machine\").currentSystem.options"
+flake-parts-perSystem.expr = "(builtins.getFlake \"/home/ssmvabaa/nixos-machine\").currentSystem.options"
 
 [language-server.yaml-language-server.config.yaml]
 validation = true
