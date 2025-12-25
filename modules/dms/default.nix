@@ -64,6 +64,7 @@ in
       services.displayManager.gdm.enable = false;
       services.displayManager.dms-greeter = {
         enable = true;
+        quickshell.package = inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.quickshell;
         compositor.name = "niri"; # Or "hyprland" or "sway"
         # Sync your user's DankMaterialShell theme with the greeter. You'll probably want this
         configHome = "/home/${user}";

@@ -4,6 +4,9 @@
   config,
   ...
 }:
+let
+  inherit (config) meta;
+in
 {
   debug = true;
 
@@ -29,7 +32,7 @@
     {
       _module.args.pkgs = import inputs.nixpkgs {
         inherit system;
-        config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) config.meta.unfreeNames;
+        config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) meta.unfreeNames;
         overlays = [
           inputs.nix-on-droid.overlays.default
         ];
@@ -113,6 +116,10 @@
       packages.epson-l3212 = pkgs.callPackage ../../pkgs/epson-l3212.nix {
         inherit (inputs) epson-202101w;
       };
+      # Provide this for building a binary cache through CI
+      packages.quickshell-cached =
+        inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.quickshell;
+
       packages.naps2-wrapped = pkgs.naps2.overrideAttrs (
         _finalAttrs: previousAttrs: {
           buildInputs = previousAttrs.buildInputs or [ ] ++ buildInputs;

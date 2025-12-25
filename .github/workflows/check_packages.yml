@@ -12,6 +12,7 @@ jobs:
           - .#naps2-wrapped
           - .#bizhub-225i
           - .#epson-l3212
+          - .#quickshell-cached
           - .#devShells.x86_64-linux.default
           - .#homeConfigurations.ssmvabaa.activationPackage
     steps:
