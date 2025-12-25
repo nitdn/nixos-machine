@@ -23,7 +23,7 @@ in
         dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
         package = pkgs.steam.override {
           extraEnv = {
-            MANGOHUD = true;
+            # MANGOHUD = true; maybe too dangerous to enable by default
             OBS_VKCAPTURE = true;
             RADV_TEX_ANISO = 16;
           };
