@@ -22,6 +22,10 @@ in
     };
   };
 
+  imports = [
+    inputs.home-manager.flakeModules.home-manager
+  ];
+
   config.flake.modules.nixos = {
     pc = {
       imports = [

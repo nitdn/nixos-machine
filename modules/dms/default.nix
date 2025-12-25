@@ -34,26 +34,29 @@ in
       include dank-theme.conf
     '';
   };
+  perSystem =
+    { pkgs, ... }:
+    {
+      # Provide this for building a binary cache through CI
+      packages.quickshell-cached =
+        inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.quickshell;
 
-  perSystem.niri.extraConfig = lib.strings.concatLines (
-    [
-      ''
-        environment {
-            "QT_QPA_PLATFORMTHEME" "qt6ct"
-        }
-        layer-rule {
-            match namespace="^quickshell$"
-            place-within-backdrop true
-        }
-      ''
-    ]
-    ++ lib.lists.map (path: "include \"/home/${user}/.config/niri/${path}\"") [
-      "dms/colors.kdl"
-      "dms/layout.kdl"
-      "dms/alttab.kdl"
-      "dms/binds.kdl"
-    ]
-  );
+      packages.niri-dms-snapshot = pkgs.writeShellApplication {
+        name = "niri-dms-snapshot";
+        text = ''cp "$HOME"/.config/niri/dms/* "$HOME"/nixos-machine/modules/dms/niri/'';
+      };
+      niri.settings = {
+        environment."QT_QPA_PLATFORMTHEME" = "qt6ct";
+        layer-rule.match._props.namespace = "^quickshell$";
+        layer-rule.place-within-backdrop = true;
+      };
+      niri.includes = lib.lists.map (path: "/home/${user}/.config/niri/${path}") [
+        "dms/colors.kdl"
+        "dms/layout.kdl"
+        "dms/alttab.kdl"
+        "dms/binds.kdl"
+      ];
+    };
 
   flake.modules.nixos.pc =
     { pkgs, ... }:

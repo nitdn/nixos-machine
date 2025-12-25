@@ -1,9 +1,3 @@
-input {
-    mouse {
-        accel-speed -0.7
-        accel-profile "flat"
-    }
-}
 output "DP-2" {
     transform "normal"
     mode "1920x1080"
@@ -176,8 +170,6 @@ binds {
     }
 }
 spawn-at-startup "ckb-next" "--background"
-spawn-at-startup "kitty"
-spawn-at-startup "zen-beta"
 spawn-at-startup "obsidian"
 spawn-at-startup "vesktop"
 animations {
