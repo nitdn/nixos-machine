@@ -144,6 +144,15 @@
 
       programs.nix-index-database.comma.enable = true;
 
+      programs = {
+        thunar.enable = true;
+        thunar.plugins = with pkgs.xfce; [
+          thunar-archive-plugin
+          thunar-volman
+        ];
+        xfconf.enable = true;
+      };
+      services.tumbler.enable = true;
     };
 
   meta.unfreeNames = [ "via" ];

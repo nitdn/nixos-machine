@@ -39,7 +39,7 @@ in
         pwgen
         ripgrep
         sops
-        trashy
+        trash-cli
         vulkan-tools
         wineWowPackages.stagingFull
       ];
