@@ -818,6 +818,26 @@
         "type": "github"
       }
     },
+    "quickshell": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1766386896,
+        "narHash": "sha256-1uql4y229Rh+/2da99OVNe6DfsjObukXkf60TYRCvhI=",
+        "ref": "refs/heads/master",
+        "rev": "3918290c1bcd93ed81291844d9f1ed146672dbfc",
+        "revCount": 714,
+        "type": "git",
+        "url": "https://git.outfoxxed.me/quickshell/quickshell"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://git.outfoxxed.me/quickshell/quickshell"
+      }
+    },
     "root": {
       "inputs": {
         "affinity-nix": "affinity-nix",
@@ -834,6 +854,7 @@
         "nix-on-droid": "nix-on-droid",
         "nixos-facter-modules": "nixos-facter-modules",
         "nixpkgs": "nixpkgs_7",
+        "quickshell": "quickshell",
         "sops-nix": "sops-nix",
         "treefmt-nix": "treefmt-nix_3",
         "wrappers": "wrappers",

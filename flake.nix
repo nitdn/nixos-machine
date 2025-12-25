@@ -57,6 +57,10 @@
     };
     affinity-nix.url = "github:mrshmllow/affinity-nix";
     import-tree.url = "github:vic/import-tree";
+    quickshell = {
+      url = "git+https://git.outfoxxed.me/quickshell/quickshell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
