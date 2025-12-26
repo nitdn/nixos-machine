@@ -75,7 +75,7 @@
     "bizhub-225i": {
       "flake": false,
       "locked": {
-        "lastModified": 1695231418,
+        "lastModified": 1695211618,
         "narHash": "sha256-urrs4DUFz3KFvX7G0xFLHauijlxNLa2evpPhYzbA8fU=",
         "type": "tarball",
         "url": "https://public.integration.yamayuri.kiku8101.com/publicdownload/download?fileId=B2C0B6D9-C563-4377-B77B-33BBAC4A5EC8"
