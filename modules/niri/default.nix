@@ -80,6 +80,7 @@
       config.niri.settings = {
         input.mouse.accel-speed = -0.7;
         input.mouse.accel-profile = "flat";
+        input.keyboard.xkb.options = "compose:caps";
         "spawn-at-startup \"zen-beta\"" = { };
       };
       config.niri.extraConfig = lib.readFile ./niri.kdl;
