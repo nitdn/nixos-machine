@@ -48,4 +48,9 @@
         key = "";
       };
     };
+  perSystem =
+    { pkgs, ... }:
+    {
+      packages.paperless-ngx-cached = pkgs.paperless-ngx;
+    };
 }

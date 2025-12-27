@@ -40,5 +40,5 @@ jobs:
       - name: Build ${{ matrix.machine }}
         run: |
           cachix use nix-community
-          nix build --cores 0 \
+          nix build  --max-jobs 3 --cores 0 \
           .#nixosConfigurations.${{ matrix.machine }}.config.system.build.toplevel

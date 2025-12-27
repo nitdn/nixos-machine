@@ -13,6 +13,7 @@ jobs:
           - .#bizhub-225i
           - .#epson-l3212
           - .#quickshell-cached
+          - .#paperless-ngx-cached
           - .#devShells.x86_64-linux.default
           - .#homeConfigurations.ssmvabaa.activationPackage
     steps:
@@ -56,5 +57,5 @@ jobs:
       - name: Build ${{ matrix.package }}
         run: |
           cachix use nix-community
-          nix build --cores 0 \
+          nix build --max-jobs 4 --cores 0 \
           ${{ matrix.package }}
