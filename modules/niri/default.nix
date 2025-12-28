@@ -12,12 +12,11 @@
     let
       # Define the settings format used for this program
       generator = inputs.home-manager.lib.hm.generators.toKDL { };
+      niriConfigWithoutIncludes =
+        (generator config.niri.settings)
+        + ''include "${pkgs.writeText "niri-extraConfig" config.niri.extraConfig}"'';
       finalNiriConfig = lib.strings.concatLines (
-        [
-          (generator config.niri.settings)
-          ''include "${pkgs.writeText "niri-extraConfig" config.niri.extraConfig}"''
-        ]
-        ++ lib.lists.forEach config.niri.includes (s: ''include "${s}"'')
+        [ niriConfigWithoutIncludes ] ++ lib.lists.forEach config.niri.includes (s: ''include "${s}"'')
       );
     in
     {
@@ -84,7 +83,17 @@
         "spawn-at-startup \"zen-beta\"" = { };
       };
       config.niri.extraConfig = lib.readFile ./niri.kdl;
-      config.packages.niri-config = pkgs.writeText "niri-config" finalNiriConfig;
+      config.packages.niri-config = pkgs.writeTextFile {
+        name = "niri-config";
+        text = finalNiriConfig;
+        checkPhase = ''
+          TMPFILE=$(mktemp)
+          cat << EOF > "$TMPFILE"
+          ${niriConfigWithoutIncludes}
+          EOF
+          ${pkgs.niri}/bin/niri validate -c "$TMPFILE"
+        '';
+      };
       config.packages.niri-wrapped =
         (inputs.wrappers.wrapperModules.niri.apply {
           inherit pkgs;

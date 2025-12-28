@@ -9,11 +9,12 @@ jobs:
     strategy:
       matrix:
         package:
-          - .#naps2-wrapped
           - .#bizhub-225i
           - .#epson-l3212
-          - .#quickshell-cached
+          - .#naps2-wrapped
+          - .#niri-wrapped
           - .#paperless-ngx-cached
+          - .#quickshell-cached
           - .#devShells.x86_64-linux.default
           - .#homeConfigurations.ssmvabaa.activationPackage
     steps:
