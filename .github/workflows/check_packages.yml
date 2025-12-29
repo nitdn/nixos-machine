@@ -43,7 +43,7 @@ jobs:
           # do purge caches
           purge: true
           # purge all versions of the cache
-          purge-prefixes: nix-${{ runner.os }}-flake
+          purge-prefixes: nix-${{ runner.os }}-package
           # created more than this number of seconds ago
           purge-created: 0
           # or, last accessed more than this number of seconds ago
