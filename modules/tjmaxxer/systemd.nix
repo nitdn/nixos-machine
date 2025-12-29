@@ -55,7 +55,10 @@
     fileSystems."/" = {
       device = "/dev/disk/by-partlabel/nixos-root-b";
       fsType = "btrfs";
-      options = [ "subvol=@" ];
+      options = [
+        "subvol=@"
+        "compress=zstd"
+      ];
     };
 
     fileSystems."/boot" = {

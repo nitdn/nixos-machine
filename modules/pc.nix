@@ -49,6 +49,8 @@
       ];
       boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_zen;
       services.fwupd.enable = true;
+      services.btrfs.autoScrub.enable = true;
+
       networking = {
         nameservers = [
           # "1.1.1.1" # oh no
