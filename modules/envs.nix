@@ -1,10 +1,14 @@
-{ config, moduleWithSystem, ... }:
+# SPDX-FileCopyrightText: 2025 Nitesh Kumar Debnath <nitkdnath@gmail.com
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+{ config, ... }:
 let
   inherit (config.meta) username;
 in
 
 {
-  flake.modules.nixos.pc = moduleWithSystem (
+  flake.modules.nixos.pc =
     { pkgs, ... }:
     {
       # docker compat stuff
@@ -22,6 +26,12 @@ in
           '';
         };
       };
+      security.sudo.extraRules = [
+        {
+          users = [ username ];
+          commands = [ "ALL" ];
+        }
+      ];
       # List packages installed in system profile. To search, run:
       # $ nix search wget
       environment.systemPackages = with pkgs; [
@@ -43,6 +53,5 @@ in
         vulkan-tools
         wineWowPackages.stagingFull
       ];
-    }
-  );
+    };
 }

@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2025 Nitesh Kumar Debnath <nitkdnath@gmail.com
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
 name: "All nixos-machines checks"
 on:
   push:

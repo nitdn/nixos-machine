@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2025 Nitesh Kumar Debnath <nitkdnath@gmail.com
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 {
   lib,
   inputs,
@@ -102,6 +106,7 @@ in
             nh
             nixfmt-rfc-style
             pandoc
+            reuse
             tinymist
             typstyle
             vscode-langservers-extracted
@@ -121,10 +126,21 @@ in
           postFixup = previousAttrs.postFixup or "" + ''
             chmod +x $out/lib/naps2/_linux/tesseract 
             wrapProgram $out/bin/naps2 --prefix LD_LIBRARY_PATH : \
-            ${builtins.toString (pkgs.lib.makeLibraryPath buildInputs)}
+            ${toString (pkgs.lib.makeLibraryPath buildInputs)}
           '';
         }
       );
+      checks.reuse =
+        pkgs.runCommand "reuse"
+          {
+            src = inputs.self.outPath;
+            nativeBuildInputs = [ pkgs.reuse ];
+          }
+          ''
+            cd $src
+            reuse lint 
+            mkdir $out
+          '';
 
       treefmt.programs = {
         just.enable = true;

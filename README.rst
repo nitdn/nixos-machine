@@ -1,3 +1,7 @@
+.. SPDX-FileCopyrightText: 2025 Nitesh Kumar Debnath <nitkdnath@gmail.com
+..
+.. SPDX-License-Identifier: GPL-3.0-or-later
+
 Wacky funcubular configs straight from the bugland!
 ===================================================
 
