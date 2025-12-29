@@ -74,6 +74,6 @@ stdenv.mkDerivation {
     ];
     platforms = platforms.linux;
     # The guy I stole this config from
-    # maintainers = [ maintainers.lunarequest ];
+    maintainers = [ maintainers.lunarequest ];
   };
 }
