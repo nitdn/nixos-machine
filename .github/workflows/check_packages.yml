@@ -27,7 +27,7 @@ jobs:
           nix_conf: |
             keep-env-derivations = true
             keep-outputs = true
-      - uses: nix-community/cache-nix-action@c73812493a45fa688af121cb216da31f3d099cc4
+      - uses: nix-community/cache-nix-action@d81037ab7edbb4443c3ee77c734acdaf66ecc32d
         with:
           # restore and save a cache using this key
           primary-key: nix-${{ runner.os }}-package-${{ matrix.package }}-${{ hashFiles('**/*.nix', '**/flake.lock') }}
