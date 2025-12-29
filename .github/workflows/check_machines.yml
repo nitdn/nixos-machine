@@ -34,11 +34,11 @@ jobs:
         with:
           name: machines
           # If you chose signing key for write access
-          signingKey: "${{ secrets.CACHIX_SIGNING_KEY }}"
+          # signingKey: "${{ secrets.CACHIX_SIGNING_KEY }}"
           # If you chose API tokens for write access OR if you have a private cache
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
       - name: Build ${{ matrix.machine }}
         run: |
-          cachix use nix-community
-          nix build  --max-jobs 3 --cores 0 \
+          # cachix use nix-community
+          nix build  --max-jobs 4 --cores 0 --print-build-logs \
           .#nixosConfigurations.${{ matrix.machine }}.config.system.build.toplevel
