@@ -116,15 +116,15 @@
   config.flake.modules.nixos.pc = moduleWithSystem (
     { config, pkgs, ... }:
     {
-      config = {
-        programs.niri.enable = true;
-        programs.niri.package = config.packages.niri-wrapped;
-        environment.systemPackages = [
-          pkgs.wl-clipboard
-          pkgs.cliphist
-          pkgs.xwayland-satellite
-        ];
-      };
+      programs.niri.enable = true;
+      programs.niri.package = config.packages.niri-wrapped;
+      environment.systemPackages = [
+        pkgs.xwayland-satellite
+      ];
+      systemd.user.tmpfiles.rules = [
+        "L %h/.config/niri/config.kdl - - - - ${config.packages.niri-config}"
+      ];
     }
+
   );
 }
