@@ -85,6 +85,10 @@
         input.mouse.accel-profile = "flat";
         input.keyboard.xkb.options = "compose:caps";
         "spawn-at-startup \"zen-beta\"" = { };
+        "output \"DP-2\"" = {
+          transform = "normal";
+          mode = "1920x1080";
+        };
       };
       config.niri.extraConfig = lib.readFile ./niri.kdl;
       config.packages.niri-config = pkgs.writeTextFile {
@@ -95,7 +99,11 @@
           cat << EOF > "$TMPFILE"
           ${niriConfigWithoutIncludes}
           EOF
-          ${pkgs.niri}/bin/niri validate -c "$TMPFILE"
+          ${pkgs.niri}/bin/niri validate -c "$TMPFILE" || {
+            STATUS=$?
+            cat "$TMPFILE"
+            exit "$STATUS"
+          }
         '';
       };
       config.packages.niri-wrapped =
