@@ -27,7 +27,7 @@ in
       boot.kernelPackages = pkgs.linuxPackages_latest;
       # boot.loader.efi.canTouchEfiVariables = false;
       networking.useDHCP = true;
-      facter.reportPath = ./facter.json;
+      hardware.facter.reportPath = ./facter.json;
       users.users.${username} = {
         isNormalUser = true;
         extraGroups = [

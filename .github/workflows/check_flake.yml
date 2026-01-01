@@ -19,7 +19,8 @@ jobs:
       - uses: nix-community/cache-nix-action@d81037ab7edbb4443c3ee77c734acdaf66ecc32d
         with:
           # restore and save a cache using this key
-          primary-key: nix-${{ runner.os }}-flake-${{ hashFiles('**/*.nix', '**/flake.lock') }}
+          primary-key: nix-${{ runner.os }}-package-${{ hashFiles('**/*.nix', '**/flake.lock') }}
+          # primary-key: nix-${{ runner.os }}-flake-${{ hashFiles('**/*.nix', '**/flake.lock') }}
           # if there's no cache hit, restore a cache by this prefix
           restore-prefixes-first-match: |
             nix-${{ runner.os }}-flake
@@ -47,5 +48,4 @@ jobs:
           # If you chose API tokens for write access OR if you have a private cache
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
       - run: |
-          cachix use nix-community
           nix flake check --accept-flake-config --max-jobs 4 --cores 0

@@ -48,7 +48,6 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixos-facter-modules.url = "github:numtide/nixos-facter-modules";
     authentik-nix = {
       url = "github:nix-community/authentik-nix";
       ## optional overrides. Note that using a different version of nixpkgs

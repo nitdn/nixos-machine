@@ -3,10 +3,14 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 {
+  config,
   inputs,
   lib,
   ...
 }:
+let
+  nixosModules = config.flake.modules.nixos;
+in
 {
   flake.modules.nixos.pc =
     {
@@ -53,8 +57,26 @@
       ];
       boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_zen;
       services.fwupd.enable = true;
-      services.btrfs.autoScrub.enable = true;
-
+      services.btrfs.autoScrub.enable = lib.mkDefault true;
+      image.modules = {
+        iso-installer = {
+          imports = [ nixosModules.vm ];
+          boot.supportedFilesystems = lib.mkForce [
+            "btrfs"
+            "cifs"
+            "erofs"
+            "ext4"
+            "f2fs"
+            "ntfs"
+            "squashfs"
+            "vfat"
+            "xfs"
+          ];
+        };
+      };
+      virtualisation.vmVariant = {
+        imports = [ nixosModules.vm ];
+      };
       networking = {
         nameservers = [
           # "1.1.1.1" # oh no

@@ -34,7 +34,6 @@ in
     pc = {
       imports = [
         inputs.sops-nix.nixosModules.sops
-        inputs.nixos-facter-modules.nixosModules.facter
         inputs.nix-index-database.nixosModules.default
       ];
       nixpkgs.overlays = [
@@ -82,7 +81,6 @@ in
       imports = [
         inputs.sops-nix.nixosModules.sops
         inputs.authentik-nix.nixosModules.default
-        inputs.nixos-facter-modules.nixosModules.facter
       ];
     };
   };
