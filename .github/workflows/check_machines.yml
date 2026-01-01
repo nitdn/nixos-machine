@@ -45,3 +45,8 @@ jobs:
         run: |
           nix build  --max-jobs 4 --cores 0 --print-build-logs \
           .#nixosConfigurations.${{ matrix.machine }}.config.system.build.toplevel
+      - name: Optimise nix stores
+        run: |
+          nix --print-build-logs store gc
+          nix --print-build-logs store optimise
+          du --summarize --human-readable /nix
