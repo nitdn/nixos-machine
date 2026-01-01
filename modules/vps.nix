@@ -45,7 +45,6 @@
       environment.systemPackages = map lib.lowPrio [
         pkgs.btop
         pkgs.curl
-        pkgs.ghostty
         pkgs.gitMinimal
         pkgs.helix
         pkgs.openssl

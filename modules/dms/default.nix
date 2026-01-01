@@ -54,7 +54,7 @@ in
         layer-rule.match._props.namespace = "^quickshell$";
         layer-rule.place-within-backdrop = true;
       };
-      niri.includes = lib.lists.map (path: "/home/${user}/.config/niri/${path}") [
+      niri.includes = lib.lists.map (dmsPath: "/home/${user}/.config/niri/${dmsPath}") [
         "dms/colors.kdl"
         "dms/layout.kdl"
         "dms/alttab.kdl"
@@ -72,7 +72,18 @@ in
       services.displayManager.dms-greeter = {
         enable = true;
         quickshell.package = inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.quickshell;
-        compositor.name = "niri"; # Or "hyprland" or "sway"
+        compositor = {
+          name = "niri"; # Or "hyprland" or "sway"
+          customConfig = ''
+            output "DP-2" {
+            	mode "1920x1080"
+            	transform "normal"
+            }
+            hotkey-overlay {
+              skip-at-startup
+            }
+          '';
+        };
         # Sync your user's DankMaterialShell theme with the greeter. You'll probably want this
         configHome = "/home/${user}";
       };

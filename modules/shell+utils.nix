@@ -75,17 +75,6 @@ in
         };
       };
 
-      # programs.ghostty = {
-      #   enable = true;
-      #   settings.keybind = [
-      #     # "ctrl+h=goto_split:left"
-      #     # "ctrl+l=goto_split:right"
-      #     # "ctrl+j=goto_split:down"
-      #     # "ctrl+k=goto_split:up"
-      #     # "${leader.key}>minus=new_split:down"
-      #     # "${leader.key}>ctrl+minus=new_split:down"
-      #   ];
-      # };
       home.sessionVariables.TERMINAL = term;
 
       programs.starship = {
@@ -115,4 +104,13 @@ in
     pc.imports = [ homeModules.shells ];
     droid.imports = [ homeModules.shells ];
   };
+  flake.modules.nixos.vps01 =
+    { pkgs, ... }:
+    {
+      # Required for kitty terminfo setup
+      environment.systemPackages = with pkgs.kitty; [
+        terminfo
+        shell_integration
+      ];
+    };
 }
