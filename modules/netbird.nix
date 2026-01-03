@@ -2,10 +2,10 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-{ config, ... }:
+{ config, lib, ... }:
 {
   flake.modules.nixos.netbird = {
-    services.netbird.enable = true;
+    services.netbird.enable = lib.mkDefault true;
     services.netbird.useRoutingFeatures = "client";
   };
 
@@ -13,6 +13,6 @@
 
   flake.modules.nixos.pc = {
     imports = [ config.flake.modules.nixos.netbird ];
-    services.netbird.ui.enable = true;
+    services.netbird.clients.default.autoStart = false;
   };
 }
