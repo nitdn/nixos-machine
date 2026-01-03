@@ -10,6 +10,7 @@
 }:
 let
   nixosModules = config.flake.modules.nixos;
+  inherit (config.meta) username;
 in
 {
   flake.modules.nixos.pc =
@@ -36,6 +37,7 @@ in
       nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
 
       nix.settings.trusted-users = [
+        username
         "@wheel"
       ];
       nix.settings.experimental-features = [
