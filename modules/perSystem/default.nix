@@ -148,8 +148,8 @@ in
         statix.enable = true;
         deadnix.enable = true;
         shfmt.enable = true;
-        sqlfluff.dialect = "postgres";
-        sqlfluff.enable = true;
+        sql-formatter.dialect = "postgresql";
+        sql-formatter.enable = true;
         taplo.enable = true;
         typstyle.enable = true;
         typos.enable = true;
