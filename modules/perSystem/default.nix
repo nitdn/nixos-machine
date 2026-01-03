@@ -59,6 +59,10 @@ in
                 nh os switch .
                 gc
               '';
+              upgrade-elysium = ''
+                sudo ${pkgs.efibootmgr}/bin/efibootmgr -o 0001,2001,3001 # Fixes the issue with mangled UEFI
+                upgrade
+              '';
               fetch = ''
                 jj git fetch --remote flake-mirror
                 jj rebase -r @ -d update_flake_lock_action@flake-mirror
