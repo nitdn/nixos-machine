@@ -9,7 +9,6 @@
   ...
 }:
 let
-  nixosModules = config.flake.modules.nixos;
   inherit (config.meta) username;
 in
 {
@@ -60,25 +59,6 @@ in
       boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_zen;
       services.fwupd.enable = true;
       services.btrfs.autoScrub.enable = lib.mkDefault true;
-      image.modules = {
-        iso-installer = {
-          imports = [ nixosModules.vm ];
-          boot.supportedFilesystems = lib.mkForce [
-            "btrfs"
-            "cifs"
-            "erofs"
-            "ext4"
-            "f2fs"
-            "ntfs"
-            "squashfs"
-            "vfat"
-            "xfs"
-          ];
-        };
-      };
-      virtualisation.vmVariant = {
-        imports = [ nixosModules.vm ];
-      };
       hardware.facter.detected.dhcp.enable = false;
       networking = {
         nameservers = [
