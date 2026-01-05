@@ -69,7 +69,12 @@ in
               '';
               push-ci = ''
                 nix flake check
+                jj squash
                 jj git push -c @- --remote flake-mirror
+              '';
+              push-new = ''
+                jj desc && jj new
+                push-ci
               '';
               push-main = ''
                 jj bookmark set -r @- main

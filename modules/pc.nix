@@ -166,7 +166,9 @@ in
         sane-airscan
         via
       ];
-      environment.systemPackages = with pkgs; [ via ];
+      environment.systemPackages = with pkgs; [
+        via
+      ];
 
       # Install firefox.
       programs.firefox.enable = true;
@@ -175,16 +177,6 @@ in
 
       programs.nix-index-database.comma.enable = true;
 
-      programs = {
-        thunar.enable = true;
-        thunar.plugins = with pkgs; [
-          thunar-archive-plugin
-          thunar-volman
-        ];
-        xfconf.enable = true;
-      };
-      services.tumbler.enable = true;
     };
-
   meta.unfreeNames = [ "via" ];
 }
