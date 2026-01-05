@@ -79,6 +79,7 @@ in
       virtualisation.vmVariant = {
         imports = [ nixosModules.vm ];
       };
+      hardware.facter.detected.dhcp.enable = false;
       networking = {
         nameservers = [
           # "1.1.1.1" # oh no

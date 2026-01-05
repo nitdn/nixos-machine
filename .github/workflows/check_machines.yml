@@ -19,12 +19,20 @@ jobs:
           remove-dotnet: "true"
           remove-android: "true"
           remove-codeql: "true"
-      - uses: actions/checkout@v6
-      - uses: nixbuild/nix-quick-install-action@v34
+      - name: Generate a token
+        id: generate-token
+        uses: actions/create-github-app-token@v2
         with:
-          nix_conf: |
-            keep-env-derivations = true
-            keep-outputs = true
+          app-id: ${{ vars.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+      - uses: actions/checkout@v6
+        with:
+          # NOTE: Needs token for running actions
+          token: ${{ steps.generate-token.outputs.token }}
+      - uses: actions/checkout@v6
+      - uses: cachix/install-nix-action@v31
+        with:
+          github_access_token: ${{ steps.generate-token.outputs.token }}
       - uses: cachix/cachix-action@29121a2db12c7ff8b89724a8898ca20d33bb4ea3
         with:
           name: machines

@@ -26,9 +26,8 @@ in
         settings = {
           theme = lib.mkDefault "catppuccin_mocha";
           editor = {
-            # They are not well implemented anyway
-            # end-of-line-diagnostics = "hint";
-            # inline-diagnostics.cursor-line = "warning";
+            end-of-line-diagnostics = "hint";
+            inline-diagnostics.cursor-line = "warning";
             # lsp.display-inlay-hints = true;
           };
           editor.cursor-shape = {

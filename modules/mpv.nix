@@ -2,29 +2,27 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
+{ inputs, ... }:
 {
-  flake.modules.homeManager.pc =
+  flake.modules.nixos.pc =
     { pkgs, ... }:
     {
-      programs.mpv = {
-        enable = true;
-
-        package = pkgs.mpv-unwrapped.wrapper {
+      environment.systemPackages = [
+        (inputs.wrappers.wrapperModules.mpv.apply {
+          inherit pkgs;
           scripts = with pkgs.mpvScripts; [
             uosc
             sponsorblock
           ];
-
-          mpv = pkgs.mpv-unwrapped.override {
-            waylandSupport = true;
-          };
-        };
-
-        config = {
-          profile = "high-quality";
-          ytdl-format = "bestvideo+bestaudio";
-          cache-default = 4000000;
-        };
-      };
+          "mpv.conf".content = ''
+            vo=gpu
+            hwdec=auto
+          '';
+          "mpv.input".content = ''
+            WHEEL_UP seek 10
+            WHEEL_DOWN seek -10
+          '';
+        }).wrapper
+      ];
     };
 }
