@@ -22,19 +22,40 @@ in
     { config, ... }:
     {
       imports = [ nixosModules.dolibarr ];
+      networking.firewall.allowedTCPPorts = [
+        22
+        80
+        443
+      ];
       services.dolibarr = {
         domain = "erp.localhost";
         nginx = {
           serverAliases = [
-            "dolibarr.${config.networking.fqdn}"
-            "erp.${config.networking.fqdn}"
+            "dolibarr.${config.networking.domain}"
+            "erp.${config.networking.domain}"
+            "dolibarr.${config.networking.hostName}.local"
+            "erp.${config.networking.hostName}.local"
           ];
           enableACME = false;
           forceSSL = false;
         };
       };
-
+      services.nginx = {
+        enable = true;
+        virtualHosts.localhost = {
+          serverAliases = [
+            "${config.networking.hostName}.local"
+          ];
+          locations."/" = {
+            return = "200 '<html><body>It works</body></html>'";
+            extraConfig = ''
+              default_type text/html;
+            '';
+          };
+        };
+      };
     };
+
   flake.modules.nixos.dolibarr = {
     services.dolibarr = {
       enable = true;
