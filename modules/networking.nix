@@ -4,22 +4,22 @@
 
 {
   flake.modules.nixos.pc =
-    { pkgs, config, ... }:
+    { pkgs, ... }:
     let
-      hostname = config.networking.hostName;
-      tls_auth_name = "id-${hostname}.dns.slipstr.click";
+      tls_auth_name = "dns.adguard-dns.com";
     in
     {
+      networking.domain = "home.arpa";
       services.stubby = {
         enable = true;
         settings = pkgs.stubby.passthru.settingsExample // {
           upstream_recursive_servers = [
             {
-              address_data = "147.93.97.244";
+              address_data = "94.140.14.14";
               inherit tls_auth_name;
             }
             {
-              address_data = "2a02:4780:12:d0d9::1";
+              address_data = "2a10:50c0::ad1:ff";
               inherit tls_auth_name;
             }
           ];

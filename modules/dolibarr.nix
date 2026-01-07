@@ -22,13 +22,12 @@ in
     { config, ... }:
     {
       imports = [ nixosModules.dolibarr ];
-      networking.domain = config.networking.hostName;
       services.dolibarr = {
         domain = "erp.localhost";
         nginx = {
           serverAliases = [
-            "dolibarr.${config.networking.domain}"
-            "erp.${config.networking.domain}"
+            "dolibarr.${config.networking.fqdn}"
+            "erp.${config.networking.fqdn}"
           ];
           enableACME = false;
           forceSSL = false;
