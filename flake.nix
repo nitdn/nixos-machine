@@ -42,6 +42,10 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    steam-presence = {
+      url = "github:JustTemmie/steam-presence";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     flake-parts.url = "github:hercules-ci/flake-parts";
     direnv-instant.url = "github:Mic92/direnv-instant";
     disko = {
