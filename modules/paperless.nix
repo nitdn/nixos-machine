@@ -1,7 +1,10 @@
 # SPDX-FileCopyrightText: 2025 Nitesh Kumar Debnath <nitkdnath@gmail.com>
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
-
+{ config, ... }:
+let
+  cfg = config.flake.nixosConfigurations.vps01.config;
+in
 {
   flake.modules.nixos.vps =
     { config, ... }:
@@ -55,6 +58,7 @@
   perSystem =
     { pkgs, ... }:
     {
-      packages.paperless-ngx-cached = pkgs.paperless-ngx;
+      packages.paperless-ngx-cached = cfg.services.paperless.package;
+      packages.python313Packages-ocrmypdf-cached = pkgs.python313Packages.ocrmypdf;
     };
 }

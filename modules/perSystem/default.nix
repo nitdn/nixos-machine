@@ -114,7 +114,7 @@ in
             nixd
             nil
             nh
-            nixfmt-rfc-style
+            nixfmt
             pandoc
             reuse
             tinymist

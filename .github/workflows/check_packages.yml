@@ -16,6 +16,7 @@ jobs:
           - .#epson-l3212
           - .#niri-wrapped
           - .#paperless-ngx-cached
+          - .#python313Packages-ocrmypdf-cached
           - .#naps2-wrapped
           - .#quickshell-cached
           - .#devShells.x86_64-linux.default
@@ -53,5 +54,5 @@ jobs:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
       - name: Build ${{ matrix.package }}
         run: |
-          nix build --max-jobs 4 --cores 0 \
+          nix build --max-jobs 4 --cores 0 --print-build-logs \
           ${{ matrix.package }}
