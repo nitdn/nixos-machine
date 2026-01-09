@@ -15,9 +15,12 @@
       "locked": {
         "lastModified": 1767916874,
         "narHash": "sha256-IcvLwoF1CIOd7yELc0Xwqskilw2FxHHRm5ZnmNdBuKc=",
+        "lastModified": 1767742577,
+        "narHash": "sha256-ccMNAjOT8oU9rfOuZ5YV5lSyYRTf+ZrctJDawJMODvo=",
         "owner": "mrshmllow",
         "repo": "affinity-nix",
         "rev": "0c110a15fb5605490f7de451073db1c775745fee",
+        "rev": "4d482d71a8fd3d98c7771b97ff8d0c2d631f65df",
         "type": "github"
       },
       "original": {
@@ -348,9 +351,12 @@
       "locked": {
         "lastModified": 1768068402,
         "narHash": "sha256-bAXnnJZKJiF7Xr6eNW6+PhBf1lg2P1aFUO9+xgWkXfA=",
+        "lastModified": 1767824564,
+        "narHash": "sha256-DRhbz2dZaEmj5MgLFMXjEPfmKYfMG6LwNT9Bv8zeLPQ=",
         "owner": "nix-community",
         "repo": "home-manager",
         "rev": "8bc5473b6bc2b6e1529a9c4040411e1199c43b4c",
+        "rev": "4fee4bd14b5e4178855ad0041df89fa44f3f2bea",
         "type": "github"
       },
       "original": {
@@ -830,9 +836,13 @@
       "locked": {
         "lastModified": 1768080170,
         "narHash": "sha256-HYKRNShQe5YnnxLazQajB9JkAPGpVcUt9jQ3KwilITQ=",
+        "lastModified": 1767693058,
+        "narHash": "sha256-rnLX8IA4yMbKHjYmJPcYCcWrqJ50B8WApQW62l+V9LE=",
         "ref": "refs/heads/master",
         "rev": "bcc3d4265e8b3ed2b17b801923905b60a3927823",
         "revCount": 722,
+        "rev": "6742148cf4a8415a9c51fdeb11d8c3ea716c2e14",
+        "revCount": 717,
         "type": "git",
         "url": "https://git.outfoxxed.me/quickshell/quickshell"
       },
