@@ -108,7 +108,6 @@ in
           [
             cloc
             dix
-            eww
             hydra-check
             jq
             jujutsu
