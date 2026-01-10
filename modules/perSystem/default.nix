@@ -55,6 +55,10 @@ in
                 nh home switch .
                 gc
               '';
+              license = ''
+                reuse annotate --copyright="Nitesh Kumar Debnath <nitkdnath@gmail.com>" \
+                --license="GPL-3.0-or-later" "$@"
+              '';
               upgrade = ''
                 nh os switch .
                 gc

@@ -48,6 +48,7 @@ in
 
       # Bootloader.
       boot.loader.limine.enable = true;
+      boot.loader.limine.efiInstallAsRemovable = true;
       boot.loader.efi.canTouchEfiVariables = lib.mkDefault true;
       boot.initrd.systemd.enable = true;
       boot.kernelParams = [
@@ -157,6 +158,7 @@ in
 
       programs.nix-index-database.comma.enable = true;
 
+      documentation.dev.enable = true;
     };
   meta.unfreeNames = [ "via" ];
 }

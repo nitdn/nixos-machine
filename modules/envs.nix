@@ -53,5 +53,9 @@ in
         vulkan-tools
         wineWowPackages.stagingFull
       ];
+      environment.variables = {
+        EDITOR = "hx";
+        VISUAL = "hx";
+      };
     };
 }
