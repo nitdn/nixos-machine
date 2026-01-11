@@ -30,8 +30,14 @@ in
     };
   };
   flake.modules.nixos = {
-    pc.imports = [ flakeModules.generic.fish ];
-    vps.imports = [ flakeModules.generic.fish ];
+    fish =
+      { pkgs, ... }:
+      {
+        imports = [ flakeModules.generic.fish ];
+        environment.systemPackages = [ pkgs.fish-lsp ];
+      };
+    pc.imports = [ flakeModules.nixos.fish ];
+    vps.imports = [ flakeModules.nixos.fish ];
     droid =
       {
         pkgs,
