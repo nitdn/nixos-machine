@@ -76,3 +76,4 @@ $env.config = {
     }
     # ...
 }
+$env.EDITOR = "hx"
