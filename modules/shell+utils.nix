@@ -52,9 +52,26 @@ in
             enabled_layouts = "horizontal";
           };
         };
+        wrappers.nushell.extraConfig = ''
+          use std/config *
+
+          # Initialize the PWD hook as an empty list if it doesn't exist
+          $env.config.hooks.env_change.PWD = $env.config.hooks.env_change.PWD? | default []
+
+          $env.config.hooks.env_change.PWD ++= [{||
+            if (which direnv | is-empty) {
+              # If direnv isn't installed, do nothing
+              return
+            }
+
+            direnv export json | from json | default {} | load-env
+            # If direnv changes the PATH, it will become a string and we need to re-convert it to a list
+            $env.PATH = do (env-conversions).path.from_string $env.PATH
+          }]          
+        '';
         packages.kittyWrapped = config.wrappers.kitty.wrapper;
       };
-    flake.modules.homeManager.shells = moduleWithSystem (
+    flake.modules.homeManager.shells =
       {
         pkgs,
         ...
@@ -78,10 +95,6 @@ in
               max_height = 1000;
             };
           };
-        };
-        programs.direnv = {
-          enable = true;
-          nix-direnv.enable = true;
         };
 
         home.packages = [
@@ -109,8 +122,7 @@ in
           ];
         };
         programs.btop.enable = true;
-      }
-    );
+      };
     flake.modules.homeManager = {
       pc.imports = [ homeModules.shells ];
       droid.imports = [ homeModules.shells ];
@@ -118,7 +130,10 @@ in
     flake.modules.nixos.pc = moduleWithSystem (
       { config, ... }:
       {
-        environment.systemPackages = [ config.packages.kittyWrapped ];
+        environment.systemPackages = [
+          config.packages.kittyWrapped
+        ];
+        programs.direnv.enable = true;
       }
     );
     flake.modules.nixos.vps01 =

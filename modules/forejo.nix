@@ -27,9 +27,15 @@
       virtualisation.docker.enable = true;
       sops.secrets.forgejo-runner-token = { };
     };
-  flake.modules.nixos.pc = {
-    virtualisation.docker.enable = true;
-  };
+  flake.modules.nixos.pc =
+    { pkgs, ... }:
+    {
+      virtualisation.podman = {
+        enable = true;
+        dockerCompat = true;
+      };
+      environment.systemPackages = [ pkgs.distrobox ];
+    };
   perSystem =
     { pkgs, ... }:
     {
