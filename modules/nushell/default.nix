@@ -40,6 +40,7 @@
             source ${config.packages.zoxide-nushell}
           '';
         }).wrapper;
+      wrappers.kitty.settings.shell = "nu";
     };
   flake.modules.nixos.pc = moduleWithSystem (
     { config, ... }:

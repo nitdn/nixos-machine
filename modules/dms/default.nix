@@ -60,6 +60,12 @@ in
         "dms/alttab.kdl"
         "dms/binds.kdl"
       ];
+      wrappers.kitty.extraSettings =
+        lib.strings.concatMapStringsSep "\n" (dmsPath: "include /home/${user}/.config/kitty/${dmsPath}")
+          [
+            "dank-tabs.conf"
+            "dank-theme.conf"
+          ];
     };
 
   flake.modules.nixos.pc =

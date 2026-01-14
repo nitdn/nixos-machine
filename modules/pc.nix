@@ -24,14 +24,6 @@ in
 
       # cleanup configs
       nix.optimise.automatic = true;
-      nix.gc = {
-        # FIXME: Symlink store for home will not show up until you login
-        # at which point its already too late
-        automatic = false;
-
-        dates = "weekly";
-        options = "--delete-older-than 7d";
-      };
 
       nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
 
@@ -153,8 +145,11 @@ in
 
       # Install firefox.
       programs.firefox.enable = true;
-
-      programs.nh.enable = true;
+      programs.nh = {
+        enable = true;
+        clean.enable = true;
+        clean.extraArgs = "--keep 5 --keep-since 3d";
+      };
 
       programs.nix-index-database.comma.enable = true;
 

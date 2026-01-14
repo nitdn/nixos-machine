@@ -48,12 +48,10 @@ in
             scripts = {
               gc = ''
                 nh clean all --keep-since 7d
-                nh clean user --keep-since 7d
               '';
               home = ''
                 nh os switch .
                 nh home switch .
-                gc
               '';
               license = ''
                 reuse annotate --copyright="Nitesh Kumar Debnath <nitkdnath@gmail.com>" \
@@ -61,7 +59,6 @@ in
               '';
               upgrade = ''
                 nh os switch .
-                gc
               '';
               upgrade-elysium = ''
                 sudo ${pkgs.efibootmgr}/bin/efibootmgr -o 0001,2001,3001 # Fixes the issue with mangled UEFI
