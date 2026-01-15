@@ -94,7 +94,10 @@
           mode = "1920x1080";
         };
       };
-      niri.extraConfig = lib.readFile ./niri.kdl;
+      niri.extraConfig = ''
+        include "${./default_binds.kdl}"
+        include "${./default_config.kdl}"
+      '';
       packages.niri-config = pkgs.writeTextFile {
         name = "niri-config";
         text = finalNiriConfig;

@@ -94,6 +94,7 @@
     config = {
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
+      home-manager.startAsUserService = true;
       home-manager.sharedModules = [
         inputs.zen-browser.homeModules.default
       ];
