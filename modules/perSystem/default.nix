@@ -66,12 +66,9 @@ in
                   reuse annotate --copyright="Nitesh Kumar Debnath <nitkdnath@gmail.com>" \
                   --license="GPL-3.0-or-later" "$@"
                 '';
-                upgrade = ''
-                  nh os switch .
-                '';
                 upgrade-elysium = ''
                   sudo ${pkgs.efibootmgr}/bin/efibootmgr -o 0001,2001,3001 # Fixes the issue with mangled UEFI
-                  upgrade
+                  nh os switch .
                 '';
                 fetch = ''
                   jj git fetch --remote flake-mirror

@@ -395,18 +395,6 @@
         "type": "github"
       }
     },
-    "jetpack.toml": {
-      "flake": false,
-      "locked": {
-        "narHash": "sha256-wKhoPLIt703gbsmqd6hm6d5+QJjvi4k3SszIroBtMZ4=",
-        "type": "file",
-        "url": "https://starship.rs/presets/toml/jetpack.toml"
-      },
-      "original": {
-        "type": "file",
-        "url": "https://starship.rs/presets/toml/jetpack.toml"
-      }
-    },
     "napalm": {
       "inputs": {
         "flake-utils": [
@@ -852,7 +840,6 @@
         "flake-parts": "flake-parts_3",
         "home-manager": "home-manager",
         "import-tree": "import-tree",
-        "jetpack.toml": "jetpack.toml",
         "nix-index-database": "nix-index-database",
         "nix-on-droid": "nix-on-droid",
         "nixpkgs": "nixpkgs_7",

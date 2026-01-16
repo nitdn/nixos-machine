@@ -21,10 +21,6 @@
       url = "file+https://download3.ebz.epson.net/dsc/f/03/00/15/15/02/f5cba2761f2f501363cdbf7e1b9b9879b0715aa5/epson-inkjet-printer-202101w-1.0.2-1.src.rpm";
       flake = false;
     };
-    "jetpack.toml" = {
-      url = "https://starship.rs/presets/toml/jetpack.toml";
-      flake = false;
-    };
     nix-on-droid.url = "github:nix-community/nix-on-droid/release-24.05";
     home-manager = {
       url = "github:nix-community/home-manager";
