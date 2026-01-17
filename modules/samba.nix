@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 {
-  flake.modules.nixos.pc =
+  flake.modules.nixos.work =
     { config, lib, ... }:
     let
       smbnix = config.networking.hostName;

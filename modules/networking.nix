@@ -10,6 +10,7 @@
     in
     {
       networking.domain = "home.arpa";
+      networking.dhcpcd.wait = "background";
       services.stubby = {
         enable = true;
         settings = pkgs.stubby.passthru.settingsExample // {
