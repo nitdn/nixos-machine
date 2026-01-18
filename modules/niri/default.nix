@@ -9,7 +9,6 @@
   moduleWithSystem,
   ...
 }:
-
 {
   options.perSystem = flake-parts-lib.mkPerSystemOption (_: {
 
@@ -22,6 +21,7 @@
           "dms/layout.kdl"
           "dms/alttab.kdl"
           "dms/binds.kdl"
+          "dms/outputs.kdl"
         ];
         default = [ ];
         description = ''
@@ -113,22 +113,16 @@
           }
         '';
       };
-      packages.niri-wrapped =
-        (inputs.wrappers.wrapperModules.niri.apply {
-          inherit pkgs;
-          "config.kdl".path = config.packages.niri-config;
-        }).wrapper;
     };
   config.flake.modules.nixos.pc = moduleWithSystem (
     { config, pkgs, ... }:
     {
       programs.niri.enable = true;
-      programs.niri.package = config.packages.niri-wrapped;
       environment.systemPackages = [
         pkgs.xwayland-satellite
       ];
       systemd.user.tmpfiles.rules = [
-        "L %h/.config/niri/config.kdl - - - - ${config.packages.niri-config}"
+        "L+ %h/.config/niri/config.kdl - - - - ${config.packages.niri-config}"
       ];
     }
 

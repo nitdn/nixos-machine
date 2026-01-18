@@ -14,7 +14,6 @@ jobs:
         package:
           - .#bizhub-225i
           - .#epson-l3212
-          - .#niri-wrapped
           - .#paperless-ngx-cached
           - .#python313Packages-ocrmypdf-cached
           - .#naps2-wrapped

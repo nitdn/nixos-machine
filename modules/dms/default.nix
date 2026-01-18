@@ -58,6 +58,8 @@ in
         "dms/layout.kdl"
         "dms/alttab.kdl"
         "dms/binds.kdl"
+        "dms/outputs.kdl"
+        "dms/cursor.kdl"
       ];
       wrappers.kitty.extraSettings =
         lib.strings.concatMapStringsSep "\n" (dmsPath: "include /home/${user}/.config/kitty/${dmsPath}")
