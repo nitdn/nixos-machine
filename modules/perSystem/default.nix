@@ -162,6 +162,7 @@ in
             '';
 
         treefmt.programs = {
+          actionlint.enable = true;
           just.enable = true;
           nixfmt.enable = true;
           statix.enable = true;

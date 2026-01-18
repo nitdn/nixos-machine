@@ -76,12 +76,9 @@ in
           ];
         };
         home-manager.users."${username}" = homeModules.pc;
-        boot.kernelModules = [ "ecryptfs" ];
-        security.pam.enableEcryptfs = true;
         environment.systemPackages = with pkgs; [
           vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
           wget
-          ecryptfs
         ];
         home-manager.sharedModules = [
           homeModules.light

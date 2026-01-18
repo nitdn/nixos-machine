@@ -20,6 +20,7 @@ jobs:
         with:
           # NOTE: Needs token for running actions
           token: ${{ steps.generate-token.outputs.token }}
+          persist-credentials: false
       - uses: DeterminateSystems/determinate-nix-action@v3
       - uses: DeterminateSystems/update-flake-lock@v28
         with:

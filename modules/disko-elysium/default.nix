@@ -39,12 +39,9 @@ in
         ];
       };
       home-manager.users."${username}" = homeModules.pc;
-      boot.kernelModules = [ "ecryptfs" ];
-      security.pam.enableEcryptfs = true;
       environment.systemPackages = with pkgs; [
         vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
         wget
-        ecryptfs
       ];
       networking.hostName = "disko-elysium"; # Define your hostname.
       system.stateVersion = "25.05"; # Did you read the comment?

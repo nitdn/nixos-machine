@@ -20,6 +20,7 @@ jobs:
         with:
           # NOTE: Needs token for running actions
           token: ${{ steps.generate-token.outputs.token }}
+          persist-credentials: false
       - uses: cachix/install-nix-action@v31
         with:
           github_access_token: ${{ steps.generate-token.outputs.token }}
