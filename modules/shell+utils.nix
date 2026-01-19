@@ -71,22 +71,28 @@ in
         '';
         packages.kittyWrapped = config.wrappers.kitty.wrapper;
       };
-    flake.modules.homeManager.shells =
+    flake.modules.homeManager.shells = {
+      home.sessionVariables.TERMINAL = term;
+      flake.modules.homeManager = {
+        pc.imports = [ homeModules.shells ];
+        droid.imports = [ homeModules.shells ];
+      };
+    };
+    flake.modules.nixos.pc = moduleWithSystem (
+      { config, pkgs, ... }:
       {
-        pkgs,
-        ...
-      }:
-      {
-        programs.eza = {
-          enable = true;
-        };
-
+        environment.systemPackages = [
+          config.packages.kittyWrapped
+          (pkgs.writeShellScriptBin "xterm" ''
+            ${term} "$@"
+          '')
+        ];
+        programs.direnv.enable = true;
+        programs.zoxide.enable = true;
         programs.yazi = {
           enable = true;
-          enableFishIntegration = true;
-          shellWrapperName = "y";
 
-          settings = {
+          settings.yazi = {
             manager = {
               show_hidden = true;
             };
@@ -96,44 +102,6 @@ in
             };
           };
         };
-
-        home.packages = [
-          (pkgs.writeShellScriptBin "xterm" ''
-            ${term} "$@"
-          '')
-
-        ];
-
-        home.sessionVariables.TERMINAL = term;
-
-        programs.fzf = {
-          enable = true;
-        };
-        programs.zoxide = {
-          enable = true;
-        };
-        programs.bat = {
-          enable = true;
-          extraPackages = with pkgs.bat-extras; [
-            batdiff
-            batman
-            batwatch
-            batpipe
-          ];
-        };
-        programs.btop.enable = true;
-      };
-    flake.modules.homeManager = {
-      pc.imports = [ homeModules.shells ];
-      droid.imports = [ homeModules.shells ];
-    };
-    flake.modules.nixos.pc = moduleWithSystem (
-      { config, ... }:
-      {
-        environment.systemPackages = [
-          config.packages.kittyWrapped
-        ];
-        programs.direnv.enable = true;
       }
     );
     flake.modules.nixos.vps01 =

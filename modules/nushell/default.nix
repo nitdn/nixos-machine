@@ -73,7 +73,9 @@
         nuWrapped
         # For completions
         pkgs.carapace
+        pkgs.fish
         pkgs.zsh
+
       ];
     }
   );
