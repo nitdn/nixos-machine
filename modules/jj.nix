@@ -7,7 +7,7 @@
   ...
 }:
 {
-  flake.modules.homeManager.shells = moduleWithSystem (
+  flake.modules.homeManager.pc = moduleWithSystem (
     _: _: {
       programs.jujutsu = {
         enable = true;

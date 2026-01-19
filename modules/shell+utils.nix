@@ -73,10 +73,10 @@ in
       };
     flake.modules.homeManager.shells = {
       home.sessionVariables.TERMINAL = term;
-      flake.modules.homeManager = {
-        pc.imports = [ homeModules.shells ];
-        droid.imports = [ homeModules.shells ];
-      };
+    };
+    flake.modules.homeManager = {
+      pc.imports = [ homeModules.shells ];
+      droid.imports = [ homeModules.shells ];
     };
     flake.modules.nixos.pc = moduleWithSystem (
       { config, pkgs, ... }:
