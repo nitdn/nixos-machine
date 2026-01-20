@@ -13,8 +13,9 @@ keys:
   - &server_tjmaxxer age1tkr0aetu5swh76m8dzkgc8fax8z276py27k9cxs2jpuy02ucdpvquft4u0
   - &admin_nix-on-droid age1ua9smjl5xw24lm5mddhvc625xr70jxwr7n86992a4un69ju9853s4vsmk2
   - &server_vps01 age1y372l3n6l0pxyj523p58m5d6nffagzgwjvgyl3h3ful2373qgvfq9fdl7a
-  - &admin_elysium age13duvd94dn8aa2j9k8f8m5rkc6sflf33yueqar7cv44tj60qgqvaqa5a20g
+  # - &admin_elysium age13duvd94dn8aa2j9k8f8m5rkc6sflf33yueqar7cv44tj60qgqvaqa5a20g
   - &admin_colgate age159adtgxccsccq60y7tu5v85hndxzmzzm6dm6d4dy47pl7u3ezg4qkn686u
+  - &server_colgate age1egd0sruxmj6p4vl2dn87kf360jzjv9v8ulxf40fy3v36y3c8y5nqxzkd4m
 
 creation_rules:
   - path_regex: secrets/[^/]+\.(yaml|json|env|ini|crt|key)$
@@ -24,7 +25,8 @@ creation_rules:
           - *server_tjmaxxer
           - *admin_nix-on-droid
           - *server_vps01
-          - *admin_elysium
+          # - *admin_elysium
           - *admin_colgate
+          - *server_colgate
       # - pgp:
       #     - *admin_alice
