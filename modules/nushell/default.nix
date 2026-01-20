@@ -12,15 +12,16 @@
   options.perSystem = flake-parts-lib.mkPerSystemOption (_: {
     options.wrappers.nushell = lib.mkOption {
       description = "Nushell wrapper options";
-      type = lib.types.submodule {
-        options.extraConfig = lib.mkOption {
-          description = "Nushell config";
-          type = lib.types.lines;
-          default = "";
-        };
-      };
+      type = lib.types.lazyAttrsOf (
+        lib.types.submodule {
+          options.extraConfig = lib.mkOption {
+            description = "Nushell config";
+            type = lib.types.lines;
+            default = "";
+          };
+        }
+      );
     };
-
   });
   config.perSystem =
     { pkgs, config, ... }:
@@ -54,12 +55,12 @@
         (inputs.wrappers.wrapperModules.nushell.apply {
           inherit pkgs;
           "config.nu".content = ''
-            ${config.wrappers.nushell.extraConfig}
+            ${config.wrappers.nushell.pc.extraConfig}
             source ${./config.nu}
             source ${config.packages.zoxide-nushell}
           '';
         }).wrapper;
-      wrappers.kitty.settings.shell = "nu";
+      wrappers.kitty.pc.settings.shell = "nu";
     };
   config.flake.modules.nixos.pc = moduleWithSystem (
     { config, ... }:

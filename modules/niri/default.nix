@@ -11,8 +11,6 @@
 }:
 {
   options.perSystem = flake-parts-lib.mkPerSystemOption (_: {
-
-    options.wrappers.niri = lib.mkEnableOption "Oh god why";
     options.niri = {
       includes = lib.mkOption {
         type = with lib.types; listOf str;

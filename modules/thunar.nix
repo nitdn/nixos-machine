@@ -19,7 +19,7 @@ in
         xfconf.enable = true;
       };
       environment.systemPackages = [
-        pkgs.xarchiver
+        pkgs.kdePackages.ark
       ];
       services.tumbler.enable = true;
       services.gvfs.enable = true;

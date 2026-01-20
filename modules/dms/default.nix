@@ -61,7 +61,7 @@ in
         "dms/outputs.kdl"
         "dms/cursor.kdl"
       ];
-      wrappers.kitty.extraSettings =
+      wrappers.kitty.pc.extraSettings =
         lib.strings.concatMapStringsSep "\n" (dmsPath: "include /home/${user}/.config/kitty/${dmsPath}")
           [
             "dank-tabs.conf"

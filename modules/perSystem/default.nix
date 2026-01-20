@@ -5,7 +5,6 @@
 {
   lib,
   inputs,
-  flake-parts-lib,
   config,
   ...
 }:
@@ -18,13 +17,6 @@ in
     inputs.flake-parts.flakeModules.modules
     inputs.treefmt-nix.flakeModule
   ];
-
-  options.perSystem = flake-parts-lib.mkPerSystemOption {
-    options.wrappers = lib.mkOption {
-      description = "lassulus/wrappers modules";
-      type = lib.types.submodule { };
-    };
-  };
 
   config = {
     debug = true;

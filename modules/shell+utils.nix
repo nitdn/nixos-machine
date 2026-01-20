@@ -3,10 +3,8 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 {
-  inputs,
   moduleWithSystem,
   config,
-  lib,
   flake-parts-lib,
   ...
 }:
@@ -16,20 +14,21 @@ let
 in
 {
   options.perSystem = flake-parts-lib.mkPerSystemOption (_: {
-    options.wrappers.kitty = lib.mkOption {
-      description = "Kitty config from lassulus/wrappers";
-      type = lib.types.submoduleWith {
-        modules = [
-          "${inputs.wrappers}/modules/kitty/module.nix"
-          "${inputs.wrappers}/lib/modules/wrapper.nix"
-          "${inputs.wrappers}/lib/modules/meta.nix"
+    # options.wrappers.kitty.pc
+    #  = lib.mkOption {
+    #   description = "Kitty config from lassulus/wrappers";
+    #   type = lib.types.submoduleWith {
+    #     modules = [
+    #       "${inputs.wrappers}/modules/kitty/module.nix"
+    #       "${inputs.wrappers}/lib/modules/wrapper.nix"
+    #       "${inputs.wrappers}/lib/modules/meta.nix"
 
-        ];
-        specialArgs = {
-          wlib = inputs.wrappers.lib;
-        };
-      };
-    };
+    #     ];
+    #     specialArgs = {
+    #       wlib = inputs.wrappers.lib;
+    #     };
+    #   };
+    # };
   });
   config = {
     meta.term = "kitty";
@@ -41,7 +40,7 @@ in
           binds."Mod+T".spawn = term;
           "spawn-at-startup \"${term}\"" = { };
         };
-        wrappers.kitty = {
+        wrappers.kitty.pc = {
           inherit pkgs;
           settings = {
             "map" = "f2 launch --cwd=current --type os-window";
@@ -52,7 +51,7 @@ in
             enabled_layouts = "horizontal";
           };
         };
-        wrappers.nushell.extraConfig = ''
+        wrappers.nushell.pc.extraConfig = ''
           use std/config *
 
           # Initialize the PWD hook as an empty list if it doesn't exist
@@ -69,7 +68,7 @@ in
             $env.PATH = do (env-conversions).path.from_string $env.PATH
           }]          
         '';
-        packages.kittyWrapped = config.wrappers.kitty.wrapper;
+        packages.kittyWrapped = config.wrappers.kitty.pc.wrapper;
       };
     flake.modules.homeManager.shells = {
       home.sessionVariables.TERMINAL = term;
