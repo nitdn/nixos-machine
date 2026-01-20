@@ -19,12 +19,12 @@
         "niri"
       ];
       inherit (inputs) wrappers;
-      inherit (lib.types) lazyAttrsOf submodule submoduleWith;
+      inherit (lib.types) attrsOf submodule submoduleWith;
       mkWrapperOption =
         moduleName:
         lib.mkOption {
           description = "${moduleName} config from lassulus/wrappers";
-          type = lazyAttrsOf (submoduleWith {
+          type = attrsOf (submoduleWith {
             specialArgs = {
               wlib = wrappers.lib;
             };
@@ -41,7 +41,7 @@
       options.wrappers = lib.mkOption {
         description = "Wrappers from lassulus/wrappers";
         type = submodule {
-          options = (lib.genAttrs modules mkWrapperOption);
+          options = lib.genAttrs modules mkWrapperOption;
         };
       };
     }

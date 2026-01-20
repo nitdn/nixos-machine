@@ -67,7 +67,6 @@ in
                   jj rebase -r @ -d update_flake_lock_action@flake-mirror
                 '';
                 push-ci = ''
-                  nix flake check
                   jj squash
                   jj git push -c @- --remote flake-mirror
                 '';

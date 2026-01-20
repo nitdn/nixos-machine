@@ -12,7 +12,7 @@
   options.perSystem = flake-parts-lib.mkPerSystemOption (_: {
     options.wrappers.nushell = lib.mkOption {
       description = "Nushell wrapper options";
-      type = lib.types.lazyAttrsOf (
+      type = lib.types.attrsOf (
         lib.types.submodule {
           options.extraConfig = lib.mkOption {
             description = "Nushell config";
