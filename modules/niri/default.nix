@@ -31,7 +31,7 @@
         type = with lib.types; lazyAttrsOf anything;
         default = { };
         example = {
-          input.mouse.accel-speed = -0.7;
+          input.mouse.accel-speed = -0.5;
           input.mouse.accel-profile = "flat";
         };
 
@@ -83,10 +83,11 @@
     in
     {
       niri.settings = {
-        input.mouse.accel-speed = lib.mkDefault (-0.5);
+        input.mouse.accel-speed = lib.mkDefault 0.001;
         input.mouse.accel-profile = "flat";
         input.keyboard.xkb.options = "compose:caps";
         "spawn-at-startup \"zen-beta\"" = { };
+        "spawn-at-startup \"ckb-next\"" = { };
         "output \"DP-2\"" = {
           transform = "normal";
           mode = "1920x1080";

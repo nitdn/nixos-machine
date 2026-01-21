@@ -28,19 +28,19 @@ gestures {
 // Input device configuration.
 // Find the full list of options on the wiki:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Input
-input {
-    keyboard {
-        xkb {
-        }
-        numlock
-    }
-    touchpad {
-    }
-    mouse {
-    }
-    trackpoint {
-    }
-}
+// input {
+//     keyboard {
+//         xkb {
+//         }
+//         numlock
+//     }
+//     touchpad {
+//     }
+//     mouse {
+//     }
+//     trackpoint {
+//     }
+// }
 // You can configure outputs by their name, which you can find
 // by running `niri msg outputs` while inside a niri instance.
 // The built-in laptop monitor is usually called "eDP-1".
