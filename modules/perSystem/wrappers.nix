@@ -17,6 +17,7 @@
       modules = [
         "kitty"
         "niri"
+        "jujutsu"
       ];
       inherit (inputs) wrappers;
       inherit (lib.types) attrsOf submodule submoduleWith;

@@ -25,6 +25,7 @@ in
       {
         pkgs,
         system,
+        config,
         ...
       }:
       let
@@ -104,7 +105,7 @@ in
               dix
               hydra-check
               jq
-              jujutsu
+              config.packages.jj-wrapped
               kdlfmt
               meld
               sops

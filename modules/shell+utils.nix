@@ -5,7 +5,6 @@
 {
   moduleWithSystem,
   config,
-  flake-parts-lib,
   ...
 }:
 let
@@ -13,23 +12,6 @@ let
   inherit (config.meta) term;
 in
 {
-  options.perSystem = flake-parts-lib.mkPerSystemOption (_: {
-    # options.wrappers.kitty.pc
-    #  = lib.mkOption {
-    #   description = "Kitty config from lassulus/wrappers";
-    #   type = lib.types.submoduleWith {
-    #     modules = [
-    #       "${inputs.wrappers}/modules/kitty/module.nix"
-    #       "${inputs.wrappers}/lib/modules/wrapper.nix"
-    #       "${inputs.wrappers}/lib/modules/meta.nix"
-
-    #     ];
-    #     specialArgs = {
-    #       wlib = inputs.wrappers.lib;
-    #     };
-    #   };
-    # };
-  });
   config = {
     meta.term = "kitty";
     perSystem =
