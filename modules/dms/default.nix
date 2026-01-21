@@ -76,6 +76,9 @@ in
         config.flake.modules.nixos.dms
       ];
       services.displayManager.gdm.enable = false;
+      systemd.user.services.dms.serviceConfig.Environment = [
+        ''"QT_QPA_PLATFORMTHEME=qt6ct"''
+      ];
       services.displayManager.dms-greeter = {
         enable = true;
         quickshell.package = inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.quickshell;
@@ -98,7 +101,6 @@ in
       environment.systemPackages = [
         pkgs.qt6Packages.qt6ct
         pkgs.adw-gtk3
-        pkgs.pywalfox-native
       ];
       systemd.user.tmpfiles.rules = [
         "L %C/wal/colors.json - - - - %C/wal/dank-pywalfox.json"

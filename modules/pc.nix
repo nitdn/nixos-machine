@@ -91,6 +91,8 @@ in
         "hi_IN/UTF-8"
       ];
 
+      services.dbus.implementation = "broker";
+
       fonts.packages = with pkgs; [
         noto-fonts
         noto-fonts-color-emoji
