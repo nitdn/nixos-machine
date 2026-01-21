@@ -146,7 +146,7 @@ in
             }
             ''
               cd $src
-              reuse lint 
+              reuse lint | tac >&2
               mkdir $out
             '';
 

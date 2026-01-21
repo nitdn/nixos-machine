@@ -104,11 +104,8 @@
           cat << EOF > "$TMPFILE"
           ${niriConfigWithoutIncludes}
           EOF
-          ${pkgs.niri}/bin/niri validate -c "$TMPFILE" || {
-            STATUS=$?
-            cat "$TMPFILE"
-            exit "$STATUS"
-          }
+          cat "$TMPFILE"
+          ${pkgs.niri}/bin/niri validate -c "$TMPFILE"
         '';
       };
     };

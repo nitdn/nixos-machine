@@ -68,17 +68,17 @@
       # Let Home Manager install and manage itself.
       programs.home-manager.enable = true;
 
-      programs.keepassxc.enable = true;
+      # programs.keepassxc.enable = true;
 
       programs.gh.enable = true;
 
       programs.zen-browser.enable = true;
       # stylix.targets.zen-browser.profileNames = [ "Default" ];
 
-      services.syncthing.enable = true;
-      services.syncthing = {
-        # openDefaultPorts = true;
-      };
+      # services.syncthing.enable = true;
+      # services.syncthing = {
+      #   # openDefaultPorts = true;
+      # };
       programs.vesktop.enable = true;
     }
   );
