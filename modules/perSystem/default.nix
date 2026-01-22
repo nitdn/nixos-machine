@@ -77,7 +77,9 @@ in
                 '';
                 push-new = ''
                   jj desc && jj new
+                  change_id=$(jj log -r @-  -T "change_id.short()" --no-graph)
                   push-ci
+                  gh pr create --head push-"$change_id" --fill
                 '';
                 push-main = ''
                   jj bookmark set -r @- main
