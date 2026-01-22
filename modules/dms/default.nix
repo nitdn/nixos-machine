@@ -29,6 +29,40 @@ in
         enableAudioWavelength = true; # Audio visualizer (cava)
         enableCalendarEvents = true; # Calendar integration (khal)
       };
+      programs.dsearch.enable = true;
+      services.displayManager.gdm.enable = false;
+      systemd.user.services.dms.serviceConfig.Environment = [
+        ''"QT_QPA_PLATFORMTHEME=qt6ct"''
+      ];
+      services.displayManager.dms-greeter = {
+        enable = true;
+        quickshell.package = inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.quickshell;
+        compositor = {
+          name = "niri"; # Or "hyprland" or "sway"
+          customConfig = ''
+            output "DP-2" {
+                mode "1920x1080@165.001"
+                scale 1
+                position x=0 y=0
+            }
+            hotkey-overlay {
+              skip-at-startup
+            }
+          '';
+        };
+        # Sync your user's DankMaterialShell theme with the greeter. You'll probably want this
+        configHome = "/home/${user}";
+      };
+      hardware.i2c.enable = true;
+      environment.systemPackages = [
+        pkgs.qt6Packages.qt6ct
+        pkgs.adw-gtk3
+      ];
+      systemd.user.tmpfiles.rules = [
+        "L %C/wal/colors.json - - - - %C/wal/dank-pywalfox.json"
+        "C+ %h/.config/niri/dms 0755 - - - ${./niri}"
+        "z %h/.config/niri/dms/* 0644 - - - -"
+      ];
 
     };
   flake.modules.homeManager.pc = {
@@ -70,42 +104,10 @@ in
     };
 
   flake.modules.nixos.pc =
-    { pkgs, ... }:
+    { ... }:
     {
       imports = [
         config.flake.modules.nixos.dms
-      ];
-      services.displayManager.gdm.enable = false;
-      systemd.user.services.dms.serviceConfig.Environment = [
-        ''"QT_QPA_PLATFORMTHEME=qt6ct"''
-      ];
-      services.displayManager.dms-greeter = {
-        enable = true;
-        quickshell.package = inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.quickshell;
-        compositor = {
-          name = "niri"; # Or "hyprland" or "sway"
-          customConfig = ''
-            output "DP-2" {
-            	mode "1920x1080"
-            	transform "normal"
-            }
-            hotkey-overlay {
-              skip-at-startup
-            }
-          '';
-        };
-        # Sync your user's DankMaterialShell theme with the greeter. You'll probably want this
-        configHome = "/home/${user}";
-      };
-      hardware.i2c.enable = true;
-      environment.systemPackages = [
-        pkgs.qt6Packages.qt6ct
-        pkgs.adw-gtk3
-      ];
-      systemd.user.tmpfiles.rules = [
-        "L %C/wal/colors.json - - - - %C/wal/dank-pywalfox.json"
-        "C+ %h/.config/niri/dms 0755 - - - ${./niri}"
-        "z %h/.config/niri/dms/* 0644 - - - -"
       ];
     };
 
