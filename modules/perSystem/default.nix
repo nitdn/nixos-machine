@@ -48,8 +48,12 @@ in
             with pkgs;
             let
               scripts = {
+                throttle = ''
+                  systemd-run --user --scope \
+                  --property=MemoryMax=4G --property=CPUQuota=50% \
+                  --property=CPUWeight=500 "$@"'';
                 gc = ''
-                  nh clean all --keep-since 7d
+                  ${scripts.throttle} nh clean all --keep-since 7d
                 '';
                 home = ''
                   nh os switch .
@@ -61,7 +65,7 @@ in
                 '';
                 upgrade-elysium = ''
                   sudo ${pkgs.efibootmgr}/bin/efibootmgr -o 0001,2001,3001 # Fixes the issue with mangled UEFI
-                  nh os switch .
+                  ${scripts.throttle} nh os switch .
                 '';
                 fetch = ''
                   jj git fetch --remote flake-mirror
@@ -85,14 +89,14 @@ in
                 '';
                 remote-test = ''
                   remote="''${1:-vps01}"
-                  nixos-rebuild test --flake . \
+                  ${scripts.throttle} nixos-rebuild test --flake . \
                   --build-host root@"$remote" \
                   --target-host root@"$remote" \
                   --option max-jobs 4
                 '';
                 remote-build = ''
                   remote="''${1:-vps01}"
-                  nixos-rebuild build --flake . \
+                  ${scripts.throttle} nixos-rebuild build --flake . \
                   --build-host root@"$remote" \
                   --target-host root@"$remote" \
                   --option max-jobs 4
