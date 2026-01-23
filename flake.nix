@@ -21,7 +21,13 @@
       url = "file+https://download3.ebz.epson.net/dsc/f/03/00/15/15/02/f5cba2761f2f501363cdbf7e1b9b9879b0715aa5/epson-inkjet-printer-202101w-1.0.2-1.src.rpm";
       flake = false;
     };
-    nix-on-droid.url = "github:nix-community/nix-on-droid/release-24.05";
+    nix-on-droid = {
+      url = "github:nix-community/nix-on-droid/release-24.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs-docs.follows = "nixpkgs";
+
+      inputs.home-manager.follows = "home-manager";
+    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -51,13 +57,22 @@
       url = "github:nix-community/authentik-nix";
       ## optional overrides. Note that using a different version of nixpkgs
       # can cause issues, especially with python dependencies
+      inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
     };
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    affinity-nix.url = "github:mrshmllow/affinity-nix";
+    affinity-nix = {
+      url = "github:mrshmllow/affinity-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs-wine.follows = "nixpkgs";
+      inputs.flake-parts.follows = "flake-parts";
+      inputs.treefmt-nix.follows = "treefmt-nix";
+      inputs.git-hooks.inputs.nixpkgs.follows = "nixpkgs";
+      inputs.git-hooks.inputs.flake-compat.follows = "affinity-nix/flake-compat";
+    };
     import-tree.url = "github:vic/import-tree";
     quickshell = {
       url = "git+https://git.outfoxxed.me/quickshell/quickshell";

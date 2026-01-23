@@ -13,7 +13,7 @@ jobs:
       pull-requests: write
     strategy:
       matrix:
-        machine: [tjmaxxer, disko-elysium, msi-colgate, vps01]
+        machine: [tjmaxxer, disko-elysium, msi-colgate]
     steps:
       - name: Maximize Runner Space
         uses: justinthelaw/maximize-github-runner-space@master
