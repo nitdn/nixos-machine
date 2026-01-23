@@ -9,6 +9,8 @@ jobs:
   tests:
     name: "Build machines"
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
     strategy:
       matrix:
         machine: [tjmaxxer, disko-elysium, msi-colgate, vps01]
@@ -43,5 +45,17 @@ jobs:
       - name: Build ${{ matrix.machine }}
         run: |
           cachix use nix-community
-          nix build  --max-jobs 4 --cores 0 --print-build-logs \
+          nix build  --max-jobs 4 --cores 0 --print-build-logs  --eval-profiler flamegraph \
           .#nixosConfigurations.${{ matrix.machine }}.config.system.build.toplevel
+          nix shell nixpkgs#inferno -c \
+          inferno-flamegraph nix.profile > ${{ matrix.machine }}-build.svg
+      - uses: actions/upload-artifact@v4
+        id: eval-artifact
+        with:
+          name: ${{ matrix.machine }} eval profile
+          path: ${{ matrix.machine }}-build.svg
+      - name: Add PR Comment
+        uses: mshick/add-pr-comment@v2.8.2
+        with:
+          message-id: ${{ matrix.machine }} eval profile
+          message: "${{ matrix.machine }} eval profile: ${{ steps.eval-artifact.outputs.artifact-url }}"

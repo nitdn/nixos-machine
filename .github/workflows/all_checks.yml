@@ -14,6 +14,8 @@ jobs:
     secrets: inherit
   check_machines:
     uses: ./.github/workflows/check_machines.yml
+    permissions:
+      pull-requests: write
     secrets: inherit
   check_packages:
     uses: ./.github/workflows/check_packages.yml

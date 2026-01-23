@@ -49,6 +49,7 @@ in
             let
               scripts = {
                 throttle = ''
+                  systemd-inhibit --what=sleep:shutdown \
                   systemd-run --user --scope \
                   --property=MemoryMax=4G --property=CPUQuota=50% \
                   --property=CPUWeight=500 "$@"'';
