@@ -70,7 +70,7 @@
       # inputs.nixpkgs-wine.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
       inputs.treefmt-nix.follows = "treefmt-nix";
-      inputs.git-hooks.inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.git-hooks.inputs.nixpkgs.follows = "nixpkgs";
       inputs.git-hooks.inputs.flake-compat.follows = "affinity-nix/flake-compat";
     };
     import-tree.url = "github:vic/import-tree";
