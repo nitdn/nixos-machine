@@ -2,13 +2,20 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
+{ config, ... }:
+let
+  inherit (config.meta) username;
+in
 {
   flake.modules.nixos.pc =
-    { pkgs, ... }:
+    { pkgs, config, ... }:
     {
       services.syncthing = {
         enable = true;
-        openDefaultPorts = true;
+        user = username;
+        group = username;
+        dataDir = "/home/${username}/";
+        configDir = config.services.syncthing.dataDir + "/.local/state/syncthing";
       };
       environment.systemPackages = [ pkgs.keepassxc ];
     };

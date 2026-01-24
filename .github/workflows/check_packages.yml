@@ -19,7 +19,6 @@ jobs:
           - .#naps2-wrapped
           - .#quickshell-cached
           - .#devShells.x86_64-linux.default
-          - .#homeConfigurations.ssmvabaa.activationPackage
     steps:
       - name: Generate a token
         id: generate-token

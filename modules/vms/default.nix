@@ -42,8 +42,4 @@ in
       imports = [ nixosModules.vm ];
     };
   };
-  flake.modules.nixos.tjmaxxer = {
-    image.modules.image.modules.iso.imports = [ nixosModules.hmBase ];
-    virtualisation.vmVariant.imports = [ nixosModules.hmBase ];
-  };
 }

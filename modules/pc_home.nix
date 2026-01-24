@@ -5,7 +5,6 @@
 {
   moduleWithSystem,
   inputs,
-  config,
   ...
 }:
 {
@@ -82,11 +81,6 @@
       programs.vesktop.enable = true;
     }
   );
-  flake.modules.homeManager.standalone = {
-    imports = [ inputs.zen-browser.homeModules.default ];
-    home.username = config.meta.username;
-    home.homeDirectory = "/home/${config.meta.username}";
-  };
   flake.modules.nixos.hmBase = {
     imports = [
       inputs.home-manager.nixosModules.home-manager

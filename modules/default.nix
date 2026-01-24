@@ -50,6 +50,7 @@ in
       sops.age.generateKey = true;
 
       nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) config.meta.unfreeNames;
+      home-manager.users."${username}" = homeModules.pc;
     };
     work =
       { pkgs, ... }:
@@ -73,7 +74,6 @@ in
             tree
           ];
         };
-        home-manager.users."${username}" = homeModules.pc;
         environment.systemPackages = with pkgs; [
           vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
           wget

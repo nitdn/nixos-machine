@@ -37,31 +37,20 @@ in
       hardware.enableRedistributableFirmware = true;
       boot.kernelParams = [ "i915.enable_guc=3" ];
       networking.hostName = "tjmaxxer"; # Define your hostname.
-      system.stateVersion = "24.11"; # I did not read the comment
+      # I did not read the comment
+      system.stateVersion = "24.11";
+      users.users.${username} = {
+        enable = false;
+        isNormalUser = true;
+      };
+      home-manager.users.${username} = homeModules.pc;
     };
 
   flake.nixosConfigurations.tjmaxxer = inputs.nixpkgs.lib.nixosSystem {
     modules = [
       nixosModules.pc
       nixosModules.tjmaxxer
+      nixosModules.hmBase
     ];
   };
-  # flake.nixosConfigurations.tjmaxxer-vm = inputs.nixpkgs.lib.nixosSystem {
-  #   modules = [
-  #     nixosModules.pc
-  #     nixosModules.vm
-  #     nixosModules.tjmaxxer
-  #   ];
-  # };
-  perSystem =
-    { pkgs, ... }:
-    {
-      legacyPackages.homeConfigurations.${username} = inputs.home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        modules = [
-          homeModules.pc
-          homeModules.standalone
-        ];
-      };
-    };
 }

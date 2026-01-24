@@ -11,21 +11,7 @@ in
   flake.modules.nixos.pc =
     { pkgs, ... }:
     {
-      # docker compat stuff
-      environment.etc = {
-        "subuid" = {
-          mode = "0644";
-          text = ''
-            ${username}:524288:65536
-          '';
-        };
-        "subgid" = {
-          mode = "0644";
-          text = ''
-            ${username}:524288:65536
-          '';
-        };
-      };
+
       security.sudo.extraRules = [
         {
           users = [ username ];
