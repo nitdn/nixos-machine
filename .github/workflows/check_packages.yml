@@ -34,7 +34,7 @@ jobs:
       - uses: cachix/install-nix-action@v31
         with:
           github_access_token: ${{ steps.generate-token.outputs.token }}
-      - uses: cachix/cachix-action@29121a2db12c7ff8b89724a8898ca20d33bb4ea3
+      - uses: cachix/cachix-action@3ba601ff5bbb07c7220846facfa2cd81eeee15a1
         with:
           name: machines
           # If you chose signing key for write access
