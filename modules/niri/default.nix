@@ -13,7 +13,7 @@
   options.perSystem = flake-parts-lib.mkPerSystemOption (_: {
     options.niri = {
       includes = lib.mkOption {
-        type = with lib.types; listOf str;
+        type = with lib.types; listOf externalPath;
         example = [
           "dms/colors.kdl"
           "dms/layout.kdl"
@@ -28,13 +28,12 @@
         '';
       };
       settings = lib.mkOption {
-        type = with lib.types; lazyAttrsOf anything;
+        type = with lib.types; attrsOf anything;
         default = { };
         example = {
           input.mouse.accel-speed = -0.5;
           input.mouse.accel-profile = "flat";
         };
-
         description = ''
           Niri configuration in nix format. This uses the home-manager
           KDL generator.
@@ -42,9 +41,11 @@
           nodes. Nix doesnt have any sane way of representing them so instead
           you should try to create a long attribute (```"spawn-at-startup \"foo\"" = {};
           "spawn-at-startup \"bar\"" = {}```) to work around this limitation.
+          You can also use `_children` sometimes.
           NOTE 2: that some options may need to be flattened with
           `_args` for multi-argument arrays and `_props` for properties
           (not kdl nodes).
+
         '';
       };
       extraConfig = lib.mkOption {
@@ -57,6 +58,7 @@
             }
           }
         '';
+        default = "";
         description = ''
           Niri configuration in raw KDL format. This will be `include`d in
           the final config file.
@@ -86,17 +88,17 @@
         input.mouse.accel-speed = lib.mkDefault 0.001;
         input.mouse.accel-profile = "flat";
         input.keyboard.xkb.options = "compose:caps";
-        "spawn-at-startup \"zen-beta\"" = { };
-        "spawn-at-startup \"ckb-next\"" = { };
         "output \"DP-2\"" = {
           transform = "normal";
           mode = "1920x1080";
         };
+        _children = [
+          { include = "${./default_binds.kdl}"; }
+          { include = "${./default_config.kdl}"; }
+          { spawn-at-startup = "zen-beta"; }
+          { spawn-at-startup = "ckb-next"; }
+        ];
       };
-      niri.extraConfig = ''
-        include "${./default_binds.kdl}"
-        include "${./default_config.kdl}"
-      '';
       packages.niri-config = pkgs.writeTextFile {
         name = "niri-config";
         text = finalNiriConfig;
