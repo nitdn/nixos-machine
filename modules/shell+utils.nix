@@ -37,9 +37,9 @@ in
           use std/config *
 
           # Initialize the PWD hook as an empty list if it doesn't exist
-          $env.config.hooks.env_change.PWD = $env.config.hooks.env_change.PWD? | default []
+          $env.config.hooks.pre_prompt = $env.config.hooks.pre_prompt? | default []
 
-          $env.config.hooks.env_change.PWD ++= [{||
+          $env.config.hooks.pre_prompt ++= [{||
             if (which direnv | is-empty) {
               # If direnv isn't installed, do nothing
               return
@@ -67,6 +67,7 @@ in
           (pkgs.writeShellScriptBin "xterm" ''
             ${term} "$@"
           '')
+          pkgs.wl-clipboard
         ];
         programs.direnv.enable = true;
         programs.zoxide.enable = true;
