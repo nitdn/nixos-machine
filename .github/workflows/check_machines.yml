@@ -18,9 +18,7 @@ jobs:
       - name: Maximize Runner Space
         uses: justinthelaw/maximize-github-runner-space@master
         with:
-          remove-dotnet: "true"
           remove-android: "true"
-          remove-codeql: "true"
       - name: Generate a token
         id: generate-token
         uses: actions/create-github-app-token@v2
