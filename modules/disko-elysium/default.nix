@@ -24,7 +24,6 @@ in
       imports = [
         generic.light
       ];
-      boot.kernelPackages = pkgs.linuxPackages_latest;
       # boot.loader.efi.canTouchEfiVariables = false;
       networking.useDHCP = true;
       hardware.facter.reportPath = ./facter.json;

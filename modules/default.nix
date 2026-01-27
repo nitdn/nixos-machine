@@ -61,7 +61,6 @@ in
         imports = [
           generic.light
         ];
-        boot.kernelPackages = pkgs.linuxPackages_latest;
         networking.useDHCP = true;
         users.users.${username} = {
           isNormalUser = true;
