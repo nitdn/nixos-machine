@@ -69,13 +69,13 @@ in
             "input"
             "i2c"
           ]; # Enable ‘sudo’ for the user.
-          packages = with pkgs; [
-            tree
+          packages = [
+            pkgs.tree
           ];
         };
-        environment.systemPackages = with pkgs; [
-          vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-          wget
+        environment.systemPackages = [
+          pkgs.vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+          pkgs.wget
         ];
         home-manager.sharedModules = [
           homeModules.light

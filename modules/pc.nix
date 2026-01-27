@@ -93,11 +93,11 @@ in
 
       services.dbus.implementation = "broker";
 
-      fonts.packages = with pkgs; [
-        noto-fonts
-        noto-fonts-color-emoji
-        atkinson-hyperlegible-next
-        nerd-fonts.jetbrains-mono
+      fonts.packages = [
+        pkgs.noto-fonts
+        pkgs.noto-fonts-color-emoji
+        pkgs.atkinson-hyperlegible-next
+        pkgs.nerd-fonts.jetbrains-mono
       ];
 
       fonts.fontconfig.defaultFonts = {
@@ -136,12 +136,12 @@ in
 
       hardware.keyboard.qmk.enable = true;
       hardware.keyboard.qmk.keychronSupport = true;
-      services.udev.packages = with pkgs; [
-        sane-airscan
-        via
+      services.udev.packages = [
+        pkgs.sane-airscan
+        pkgs.via
       ];
-      environment.systemPackages = with pkgs; [
-        via
+      environment.systemPackages = [
+        pkgs.via
       ];
 
       # Install firefox.

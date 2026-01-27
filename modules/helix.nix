@@ -17,10 +17,10 @@ in
       programs.helix = {
         enable = true;
         defaultEditor = true;
-        extraPackages = with pkgs; [
-          nixd
-          taplo
-          yaml-language-server
+        extraPackages = [
+          pkgs.nixd
+          pkgs.taplo
+          pkgs.yaml-language-server
         ];
 
         settings = {

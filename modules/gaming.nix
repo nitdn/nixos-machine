@@ -70,9 +70,9 @@ in
       programs.obs-studio = {
         enable = true;
         enableVirtualCamera = true;
-        plugins = with pkgs.obs-studio-plugins; [
-          wlrobs
-          obs-vkcapture
+        plugins = [
+          pkgs.obs-studio-plugins.wlrobs
+          pkgs.obs-studio-plugins.obs-vkcapture
         ];
       };
       environment.systemPackages = [
@@ -101,11 +101,11 @@ in
       # };
       programs.lutris = {
         enable = true;
-        extraPackages = with pkgs; [
-          gamemode
-          gamescope
-          umu-launcher
-          winetricks
+        extraPackages = [
+          pkgs.gamemode
+          pkgs.gamescope
+          pkgs.umu-launcher
+          pkgs.winetricks
         ];
       };
     };

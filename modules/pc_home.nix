@@ -36,7 +36,7 @@
 
       # The home.packages option allows you to install Nix packages into your
       # environment.
-      home.packages = with pkgs; [
+      home.packages = [
         # # Adds the 'hello' command to your environment. It prints a friendly
         # # "Hello, world!" when run.
         # pkgs.hello
@@ -55,10 +55,10 @@
         # '')
         #
         packages.naps2-wrapped
-        obsidian
-        p7zip
-        tlrc
-        scantailor-universal
+        pkgs.obsidian
+        pkgs.p7zip
+        pkgs.tlrc
+        pkgs.scantailor-universal
         # inputs'.typeman.packages.default # typeman currently fails
       ];
 

@@ -12,9 +12,9 @@ in
     {
       programs = {
         thunar.enable = true;
-        thunar.plugins = with pkgs; [
-          thunar-archive-plugin
-          thunar-volman
+        thunar.plugins = [
+          pkgs.thunar-archive-plugin
+          pkgs.thunar-volman
         ];
         xfconf.enable = true;
       };

@@ -45,7 +45,6 @@ in
 
         devShells.default = pkgs.mkShell {
           packages =
-            with pkgs;
             let
               scripts = {
                 throttle = ''
@@ -108,23 +107,23 @@ in
               toPackage = name: text: pkgs.writeShellApplication { inherit name text; };
             in
             [
-              cloc
-              dix
-              hydra-check
-              jq
+              pkgs.cloc
+              pkgs.dix
+              pkgs.hydra-check
+              pkgs.jq
               config.packages.jj-wrapped
-              kdlfmt
-              meld
-              sops
-              nixd
-              nil
-              nh
-              nixfmt
-              pandoc
-              reuse
-              tinymist
-              typstyle
-              vscode-langservers-extracted
+              pkgs.kdlfmt
+              pkgs.meld
+              pkgs.sops
+              pkgs.nixd
+              pkgs.nil
+              pkgs.nh
+              pkgs.nixfmt
+              pkgs.pandoc
+              pkgs.reuse
+              pkgs.tinymist
+              pkgs.typstyle
+              pkgs.vscode-langservers-extracted
               (lib.mapAttrsToList toPackage scripts)
             ];
         };
@@ -141,7 +140,7 @@ in
             postFixup = previousAttrs.postFixup or "" + ''
               chmod +x $out/lib/naps2/_linux/tesseract 
               wrapProgram $out/bin/naps2 --prefix LD_LIBRARY_PATH : \
-              ${toString (pkgs.lib.makeLibraryPath buildInputs)}
+              ${toString (lib.makeLibraryPath buildInputs)}
             '';
           }
         );

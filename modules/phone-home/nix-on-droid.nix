@@ -42,7 +42,7 @@ in
       '';
 
       # Simply install just the packages
-      environment.packages = with pkgs; [
+      environment.packages = [
         (pkgs.writeScriptBin "sshd-start" ''
           #!${pkgs.runtimeShell}
 
@@ -53,8 +53,8 @@ in
         # User-facing stuff that you really really want to have
         # vim # or some other editor, e.g. nano or neovim
         # helix # home-manager uses the same path for programs.helix
-        git # Should just come standard with flakes
-        openssh
+        pkgs.git # Should just come standard with flakes
+        pkgs.openssh
 
         # Some common stuff that people expect to have
         #procps

@@ -90,9 +90,9 @@ in
       { pkgs, ... }:
       {
         # Required for kitty terminfo setup
-        environment.systemPackages = with pkgs.kitty; [
-          terminfo
-          shell_integration
+        environment.systemPackages = [
+          pkgs.kitty.terminfo
+          pkgs.kitty.shell_integration
         ];
       };
   };

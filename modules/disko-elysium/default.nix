@@ -33,14 +33,14 @@ in
           "wheel"
           "input"
         ]; # Enable ‘sudo’ for the user.
-        packages = with pkgs; [
-          tree
+        packages = [
+          pkgs.tree
         ];
       };
       home-manager.users."${username}" = homeModules.pc;
-      environment.systemPackages = with pkgs; [
-        vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-        wget
+      environment.systemPackages = [
+        pkgs.vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+        pkgs.wget
       ];
       networking.hostName = "disko-elysium"; # Define your hostname.
       system.stateVersion = "25.05"; # Did you read the comment?
@@ -48,10 +48,9 @@ in
   );
 
   flake.nixosConfigurations.disko-elysium = inputs.nixpkgs.lib.nixosSystem {
-    modules = with nixosModules; [
-      pc
-      disko-elysium
-      hmBase
-    ];
+    modules = builtins.attrValues {
+      inherit (nixosModules) pc disko-elysium hmBase;
+
+    };
   };
 }

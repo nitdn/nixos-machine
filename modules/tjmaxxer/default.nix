@@ -23,14 +23,14 @@ in
       });
       hardware.graphics = {
         enable32Bit = true;
-        extraPackages = with pkgs; [
+        extraPackages = [
           # Required for modern Intel GPUs (Xe iGPU and ARC)
-          intel-media-driver # VA-API (iHD) userspace
-          vpl-gpu-rt # oneVPL (QSV) runtime
+          pkgs.intel-media-driver # VA-API (iHD) userspace
+          pkgs.vpl-gpu-rt # oneVPL (QSV) runtime
         ];
-        extraPackages32 = with pkgs.pkgsi686Linux; [
+        extraPackages32 = [
           # Required for modern Intel GPUs (Xe iGPU and ARC)
-          intel-media-driver # VA-API (iHD) userspace
+          pkgs.pkgsi686Linux.intel-media-driver # VA-API (iHD) userspace
         ];
       };
       # May help if FFmpeg/VAAPI/QSV init fails (esp. on Arc with i915):

@@ -15,13 +15,13 @@
       ...
     }:
     {
-      environment.systemPackages = with pkgs; [
-        onlyoffice-desktopeditors
-        libreoffice-qt6-fresh
-        hunspell
-        hunspellDicts.en-gb-large
+      environment.systemPackages = [
+        pkgs.onlyoffice-desktopeditors
+        pkgs.libreoffice-qt6-fresh
+        pkgs.hunspell
+        pkgs.hunspellDicts.en-gb-large
         inputs'.affinity-nix.packages.v3
-        (writeShellApplication {
+        (pkgs.writeShellApplication {
           name = "affinity-fix";
           runtimeInputs = [ inputs'.affinity-nix.packages.v3 ];
           text = ''
@@ -37,27 +37,27 @@
               exec = item.name;
             };
           in
-          makeDesktopItem item
+          pkgs.makeDesktopItem item
         )
       ];
       i18n.inputMethod = {
         enable = true;
         # type = "ibus";
-        # ibus.engines = with pkgs.ibus-engines; [
-        #   typing-booster
-        #   openbangla-keyboard
+        # ibus.engines = [
+        #   pkgs.ibus-engines.typing-booster
+        #   pkgs.ibus-engines.openbangla-keyboard
         # ];
 
         type = "fcitx5";
         fcitx5.waylandFrontend = true;
-        fcitx5.addons = with pkgs; [
-          catppuccin-fcitx5
-          fcitx5-gtk
-          fcitx5-openbangla-keyboard
+        fcitx5.addons = [
+          pkgs.catppuccin-fcitx5
+          pkgs.fcitx5-gtk
+          pkgs.fcitx5-openbangla-keyboard
         ];
       };
-      fonts.packages = with pkgs; [
-        corefonts
+      fonts.packages = [
+        pkgs.corefonts
       ];
       systemd.user.tmpfiles.rules =
         lib.lists.forEach

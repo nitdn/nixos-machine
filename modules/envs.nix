@@ -20,24 +20,24 @@ in
       ];
       # List packages installed in system profile. To search, run:
       # $ nix search wget
-      environment.systemPackages = with pkgs; [
+      environment.systemPackages = [
         #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
         #  wget
-        adwaita-icon-theme
-        bat
-        dust
-        eza
-        ghostty
-        git
-        gparted
-        ldns # drill
-        openssl
-        pwgen
-        ripgrep
-        sops
-        trash-cli
-        vulkan-tools
-        wineWowPackages.stagingFull
+        pkgs.adwaita-icon-theme
+        pkgs.bat
+        pkgs.dust
+        pkgs.eza
+        pkgs.ghostty
+        pkgs.git
+        pkgs.gparted
+        pkgs.ldns # drill
+        pkgs.openssl
+        pkgs.pwgen
+        pkgs.ripgrep
+        pkgs.sops
+        pkgs.trash-cli
+        pkgs.vulkan-tools
+        pkgs.wineWowPackages.stagingFull
       ];
       environment.variables = {
         EDITOR = "hx";
