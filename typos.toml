@@ -6,3 +6,4 @@
 facter = "facter"
 browseable = "browseable"
 ede = "ede"
+substituters = "substituters"
