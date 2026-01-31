@@ -14,13 +14,14 @@
     options.niri = {
       includes = lib.mkOption {
         type = with lib.types; listOf str;
-        example = [
+        example = lib.literalExpression ''
+          [
           "dms/colors.kdl"
           "dms/layout.kdl"
           "dms/alttab.kdl"
           "dms/binds.kdl"
           "dms/outputs.kdl"
-        ];
+          ]'';
         default = [ ];
         description = ''
           Additional non-declarative input paths. Largely meant to be used
@@ -35,10 +36,11 @@
           };
         };
         default = { };
-        example = {
-          input.mouse.accel-speed = -0.5;
-          input.mouse.accel-profile = "flat";
-        };
+        example = lib.literalExpression ''
+          {
+            input.mouse.accel-speed = -0.5;
+            input.mouse.accel-profile = "flat";
+          }'';
         description = ''
           Niri configuration in nix format. This uses the home-manager
           KDL generator.
