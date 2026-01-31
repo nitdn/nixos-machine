@@ -24,19 +24,14 @@ in
         #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
         #  wget
         pkgs.adwaita-icon-theme
-        pkgs.bat
         pkgs.dust
-        pkgs.eza
-        pkgs.ghostty
         pkgs.git
         pkgs.gparted
         pkgs.ldns # drill
         pkgs.openssl
         pkgs.pwgen
         pkgs.ripgrep
-        pkgs.sops
         pkgs.trash-cli
-        pkgs.vulkan-tools
         (pkgs.writeShellApplication {
           name = "ns";
           runtimeInputs = with pkgs; [

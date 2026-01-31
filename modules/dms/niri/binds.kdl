@@ -1,9 +1,3 @@
-/*
- * SPDX-FileCopyrightText: 2026 Nitesh Kumar Debnath <nitkdnath@gmail.com>
- *
- * SPDX-License-Identifier: GPL-3.0-or-later
- */
-
 binds {
     Ctrl+Alt+Delete hotkey-overlay-title="Task Manager" { spawn "dms" "ipc" "call" "processlist" "toggle"; }
     Mod+Alt+L hotkey-overlay-title="Lock Screen" { spawn "dms" "ipc" "call" "lock" "lock"; }

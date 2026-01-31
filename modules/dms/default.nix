@@ -14,7 +14,24 @@ in
 {
   flake.modules.nixos.dms =
     { pkgs, ... }:
+    let
+      matugen.config = { };
+      matugen.templates.helix = {
+        input_path = "${inputs.matugen-themes}/helix.toml";
+        output_path = "/home/${user}/.config/helix/themes/matugen.toml";
+      };
+      helixTemplate = (pkgs.formats.toml { }).generate "matugen/config.toml" matugen;
+    in
     {
+      houses.users = {
+        ssmvabaa.files = [
+          {
+            type = "symlink";
+            source = helixTemplate;
+            target = ".config/matugen/config.toml";
+          }
+        ];
+      };
       programs.dms-shell = {
         enable = true;
         quickshell.package = inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.quickshell;
@@ -84,9 +101,12 @@ in
       packages.quickshell-cached =
         inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.quickshell;
 
-      packages.niri-dms-snapshot = pkgs.writeShellApplication {
-        name = "niri-dms-snapshot";
-        text = ''cp "$HOME"/.config/niri/dms/* "$HOME"/nixos-machine/modules/dms/niri/'';
+      packages.dms-snapshot = pkgs.writeShellApplication {
+        name = "dms-snapshot";
+        text = ''
+          cp "$HOME"/.config/niri/dms/* "$HOME"/nixos-machine/modules/dms/niri/
+          cp "$HOME"/.config/helix/themes/* "$HOME"/nixos-machine/modules/dms/helix/
+        '';
       };
       niri.settings = {
         environment."QT_QPA_PLATFORMTHEME" = "qt6ct";
@@ -101,6 +121,12 @@ in
         "dms/outputs.kdl"
         "dms/cursor.kdl"
         "dms/windowrules.kdl"
+      ];
+      wrappers.helix.pc.extraFiles = [
+        {
+          name = "themes/matugen.toml";
+          file.path = ./helix/matugen.toml;
+        }
       ];
       wrappers.kitty.pc.extraSettings =
         lib.strings.concatMapStringsSep "\n" (dmsPath: "include /home/${user}/.config/kitty/${dmsPath}")

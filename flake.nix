@@ -17,7 +17,7 @@
       flake = false;
     };
     epson-202101w = {
-      url = "file+https://download3.ebz.epson.net/dsc/f/03/00/15/15/02/f5cba2761f2f501363cdbf7e1b9b9879b0715aa5/epson-inkjet-printer-202101w-1.0.2-1.src.rpm";
+      url = "file+https://download-center.epson.com/f/module/c863d6cc-2e0c-48f5-8a70-b2c3843c647a/epson-inkjet-printer-202101w-1.0.2-1.src.rpm";
       flake = false;
     };
     nix-on-droid = {
@@ -84,6 +84,10 @@
     };
     DankLauncherKeys = {
       url = "github:AvengeMedia/dms-plugins?dir=DankLauncherKeys";
+      flake = false;
+    };
+    matugen-themes = {
+      url = "github:InioX/matugen-themes?dir=templates";
       flake = false;
     };
   };

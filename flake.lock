@@ -190,11 +190,11 @@
       "locked": {
         "narHash": "sha256-mr0rrlB4IWR0jq/PzeHLW5lO8u5rut1RU0MVUMfwXsM=",
         "type": "file",
-        "url": "https://download3.ebz.epson.net/dsc/f/03/00/15/15/02/f5cba2761f2f501363cdbf7e1b9b9879b0715aa5/epson-inkjet-printer-202101w-1.0.2-1.src.rpm"
+        "url": "https://download-center.epson.com/f/module/c863d6cc-2e0c-48f5-8a70-b2c3843c647a/epson-inkjet-printer-202101w-1.0.2-1.src.rpm"
       },
       "original": {
         "type": "file",
-        "url": "https://download3.ebz.epson.net/dsc/f/03/00/15/15/02/f5cba2761f2f501363cdbf7e1b9b9879b0715aa5/epson-inkjet-printer-202101w-1.0.2-1.src.rpm"
+        "url": "https://download-center.epson.com/f/module/c863d6cc-2e0c-48f5-8a70-b2c3843c647a/epson-inkjet-printer-202101w-1.0.2-1.src.rpm"
       }
     },
     "flake-compat": {
@@ -345,6 +345,24 @@
       "original": {
         "owner": "nix-community",
         "repo": "home-manager",
+        "type": "github"
+      }
+    },
+    "matugen-themes": {
+      "flake": false,
+      "locked": {
+        "dir": "templates",
+        "lastModified": 1772481165,
+        "narHash": "sha256-KNCg8tH/4U+uDtf9akVy4sc2BFnbAwWQksMw25IayL0=",
+        "owner": "InioX",
+        "repo": "matugen-themes",
+        "rev": "83a8673c4803c8d0d3fdb55df457bc8056911809",
+        "type": "github"
+      },
+      "original": {
+        "dir": "templates",
+        "owner": "InioX",
+        "repo": "matugen-themes",
         "type": "github"
       }
     },
@@ -672,6 +690,7 @@
         "epson-202101w": "epson-202101w",
         "flake-parts": "flake-parts",
         "home-manager": "home-manager",
+        "matugen-themes": "matugen-themes",
         "nix-index-database": "nix-index-database",
         "nix-on-droid": "nix-on-droid",
         "nixpkgs": "nixpkgs_2",
