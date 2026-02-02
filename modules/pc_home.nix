@@ -9,7 +9,6 @@
 }:
 {
   meta.username = "ssmvabaa";
-  meta.unfreeNames = [ "obsidian" ];
   flake.modules.homeManager.pc = moduleWithSystem (
     {
       pkgs,
@@ -55,7 +54,6 @@
         # '')
         #
         packages.naps2-wrapped
-        pkgs.obsidian
         pkgs.p7zip
         pkgs.tlrc
         pkgs.scantailor-universal

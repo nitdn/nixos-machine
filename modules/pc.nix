@@ -26,6 +26,7 @@ in
       nix.optimise.automatic = true;
 
       nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
+      nix.settings.substituters = [ "https://aseipp-nix-cache.freetls.fastly.net" ];
 
       nix.settings.trusted-users = [
         username
@@ -142,6 +143,7 @@ in
       ];
       environment.systemPackages = [
         pkgs.via
+        pkgs.nixpkgs-manual
       ];
 
       # Install firefox.
@@ -155,6 +157,7 @@ in
       programs.nix-index-database.comma.enable = true;
 
       documentation.dev.enable = true;
+
     };
   meta.unfreeNames = [ "via" ];
 }
