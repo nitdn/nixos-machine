@@ -26,14 +26,14 @@
           name = "affinity-fix";
           runtimeInputs = [ inputs'.affinity-nix.packages.v3 ];
           text = ''
-            affinity-v3 wine "$HOME/.local/share/affinity-v3/drive_c/Program Files/Affinity/Affinity/Affinity.exe"
+            affinity-v3 || affinity-v3
           '';
         })
         (
           let
             item = {
               name = "affinity-fix";
-              desktopName = "Affinity (workaround for plugin loader)";
+              desktopName = "Affinity (workaround for plugin-loader crash)";
               icon = "affinity-v3";
               exec = item.name;
             };
