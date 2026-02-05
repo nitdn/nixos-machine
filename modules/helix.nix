@@ -64,23 +64,7 @@ in
               "yaml"
             ];
           }
-          {
-            name = "yuck";
-            auto-format = true;
-            formatter.command = lib.getExe pkgs.parinfer-rust;
-          }
-          {
-            name = "just";
-            # auto-format = true; # This bugs out saving
-            language-servers = [ "just-lsp" ];
-          }
-
         ];
-
-        #justfile LSP
-        languages.language-server.just-lsp = {
-          command = lib.getExe pkgs.just-lsp;
-        };
         # YAML config
         languages.language-server.yaml-language-server.config.yaml = {
           format = {
@@ -89,7 +73,6 @@ in
           validation = true;
         };
       };
-      home.sessionVariables.EDITOR = "hx";
     };
   flake.modules.homeManager.pc = {
     imports = [ flakeModules.homeManager.helix ];
