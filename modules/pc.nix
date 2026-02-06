@@ -26,18 +26,23 @@ in
       nix.optimise.automatic = true;
 
       nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
-      nix.settings.substituters = [ "https://aseipp-nix-cache.freetls.fastly.net" ];
+      nix.settings = {
+        substituters = [
+          "https://aseipp-nix-cache.freetls.fastly.net"
+          "https://aseipp-nix-cache.global.ssl.fastly.net"
+        ];
 
-      nix.settings.trusted-users = [
-        username
-        "@wheel"
-      ];
-      nix.settings.experimental-features = [
-        "nix-command"
-        "flakes"
-        "auto-allocate-uids"
-      ];
-      nix.settings.auto-allocate-uids = true;
+        trusted-users = [
+          username
+          "@wheel"
+        ];
+        experimental-features = [
+          "nix-command"
+          "flakes"
+          "auto-allocate-uids"
+        ];
+        auto-allocate-uids = true;
+      };
 
       # Bootloader.
       boot.loader.limine.enable = true;
