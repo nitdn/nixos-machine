@@ -112,18 +112,16 @@
             dnsProvider = "rfc2136";
             environmentFile = "${pkgs.writeText "nsupdate-creds" ''
               RFC2136_NAMESERVER=ns1.${domain_name}
-              RFC2136_TSIG_FILE=${config.sops.secrets.acme-tsig-key.path}
+              RFC2136_TSIG_FILE=%d/acme-tsig-key
             ''}";
           };
         };
+        systemd.services."acme-wildcard.dns.${domain_name}".serviceConfig.LoadCredential =
+          "acme-tsig-key:${config.sops.secrets.named-tsig-key.path}";
 
         sops.secrets = {
           named-tsig-key = {
             owner = config.systemd.services.bind.serviceConfig.User;
-            key = "tsig-key";
-          };
-          acme-tsig-key = {
-            owner = config.systemd.services."acme-wildcard.dns.${domain_name}".serviceConfig.User;
             key = "tsig-key";
           };
         };

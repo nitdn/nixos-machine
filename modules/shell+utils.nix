@@ -70,6 +70,8 @@ in
           '')
           pkgs.wl-clipboard
         ];
+        # Required for bashInteractive; its gonna be bash anyway
+        programs.bash.enable = true;
         programs.direnv.enable = true;
         programs.zoxide.enable = true;
         programs.yazi = {

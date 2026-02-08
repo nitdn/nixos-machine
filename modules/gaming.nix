@@ -3,12 +3,14 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 {
+  lib,
   inputs,
   config,
   ...
 }:
 let
   homeModules = config.flake.modules.homeManager;
+  inherit (config.meta) username;
 in
 {
   meta.unfreeNames = [
@@ -16,17 +18,11 @@ in
     "steam-unwrapped"
   ];
   flake.modules.nixos.pc =
-    { pkgs, config, ... }:
+    { pkgs, ... }:
     let
       partialWrapper = definition: inputs.wrappers.lib.wrapPackage (definition // { inherit pkgs; });
     in
     {
-      imports = [ inputs.steam-presence.nixosModules.steam-presence ];
-
-      sops.secrets.steam-web-apiKey = {
-        mode = "0640";
-        group = "users";
-      };
       programs.steam = {
         enable = true;
         remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
@@ -39,33 +35,7 @@ in
           };
           extraArgs = "-system-composer";
         };
-        presence = {
-          enable = true;
-          # Either set the key directly (not recommended) or via file/secret
-          # steamApiKey = "YOUR_STEAM_WEB_API_KEY";
-          steamApiKeyFile = config.sops.secrets.steam-web-apiKey.path; # e.g. from agenix/sops
-          userIds = [ "76561198809805717" ];
-          localGames = {
-            enable = true;
-            games = [
-              ".kitty-wrapped"
-              ".zen-beta-wrapped"
-            ];
-          };
-          gamesFile = pkgs.writeText "games.txt" ''
-            .kitty-wrapped=Kitty Terminal
-            .zen=Zen Browser
-          '';
-          # Other optional settings
-        };
       };
-      systemd.user.tmpfiles.rules =
-        let
-          cfgDir = config.systemd.user.services.steam-presence.serviceConfig.WorkingDirectory;
-        in
-        [
-          "d ${cfgDir} - - - - -"
-        ];
       programs.gamemode.enable = true;
       programs.obs-studio = {
         enable = true;
@@ -82,6 +52,40 @@ in
           env.MANGOHUD_CONFIG = "no_display,fps_limit=165";
         })
       ];
+    };
+  flake.modules.nixos.tjmaxxer =
+    { pkgs, config, ... }:
+    {
+      imports = [ inputs.steam-presence.nixosModules.steam-presence ];
+
+      sops.secrets.steam-web-apiKey = {
+        owner = username;
+      };
+      systemd.user.services.steam-presence = {
+        serviceConfig = {
+          LoadCredential = "steam-api-key:${config.sops.secrets.steam-web-apiKey.path}";
+          WorkingDirectory = lib.mkForce "-%h/.local/state/steam-presence";
+        };
+      };
+      programs.steam.presence = {
+        enable = true;
+        # Either set the key directly (not recommended) or via file/secret
+        # steamApiKey = "YOUR_STEAM_WEB_API_KEY";
+        steamApiKeyFile = "/%d/steam-api-key"; # e.g. from agenix/sops
+        userIds = [ "76561198809805717" ];
+        localGames = {
+          enable = true;
+          games = [
+            ".kitty-wrapped"
+            ".zen-beta-wrapped"
+          ];
+        };
+        gamesFile = pkgs.writeText "games.txt" ''
+          .kitty-wrapped=Kitty Terminal
+          .zen=Zen Browser
+        '';
+        # Other optional settings
+      };
     };
   flake.modules.nixos.disko-elysium = {
     users.users.gaming = {

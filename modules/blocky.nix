@@ -12,18 +12,16 @@
       inherit (config.services.bind) domain_name;
       certFile = "/var/lib/acme/wildcard.dns.${domain_name}/fullchain.pem";
       keyFile = "/var/lib/acme/wildcard.dns.${domain_name}/key.pem";
-      blocky-group = config.users.groups.blocky-creds.name;
     in
     {
 
       systemd.services.blocky = {
-        environment.PGPASSFILE = config.sops.secrets.pgpass.path;
-        serviceConfig = {
-          SupplementaryGroups = [
-            "acme"
-            blocky-group
-          ];
-        };
+        environment.PGPASSFILE = "%d/pgpassFile";
+        serviceConfig.LoadCredential = [
+          "pgpassFile:${config.sops.secrets.pgpass.path}"
+          "cerFile:${certFile}"
+          "keyFile:${keyFile}"
+        ];
       };
       services.nginx.virtualHosts = {
         "dns.${domain_name}" = {
@@ -39,9 +37,6 @@
         };
       };
 
-      users.extraGroups = {
-        blocky-creds = { };
-      };
       sops.secrets.blocky_initdb = {
         owner = config.systemd.services.postgresql.serviceConfig.User;
         sopsFile = ../secrets/postgres-secrets.yaml;
@@ -50,8 +45,6 @@
 
       sops.secrets.pgpass = {
         sopsFile = ../secrets/postgres-secrets.yaml;
-        group = blocky-group;
-        mode = "0440";
       };
 
       networking.firewall.allowedTCPPorts = [
@@ -114,7 +107,8 @@
               "bypass*" = [ ];
             };
           };
-          inherit certFile keyFile;
+          certFile = "$CREDENTIALS_DIRECTORY/certfile";
+          keyFile = "$CREDENTIALS_DIRECTORY/keyFile";
           ede.enable = true;
           ecs = {
             useAsClient = true;
