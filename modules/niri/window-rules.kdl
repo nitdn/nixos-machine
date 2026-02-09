@@ -8,6 +8,18 @@ workspace "browser"
 workspace "terminal"
 workspace "photo-tools"
 
+binds {
+    Mod+1 {
+        focus-workspace "browser"
+    }
+    Mod+2 {
+        focus-workspace "terminal"
+    }
+    Mod+3 {
+        focus-workspace "photo-tools"
+    }
+}
+
 window-rule {
 	match app-id="zen-beta"
 	open-on-workspace "browser"
