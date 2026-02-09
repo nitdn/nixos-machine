@@ -58,26 +58,27 @@ stdenv.mkDerivation {
     cp -a README $out/doc/README.driver
   '';
 
-  meta = with lib; {
-    homepage = "http://download.ebz.epson.net/dsc/search/01/search/?OSC=LX";
-    description = "Epson printer driver (L3210 L3200 L1250 L1210)";
-    longDescription = ''
-      This software is a filter program used with the Common UNIX Printing
-      System (CUPS) under Linux. It supplies high quality printing with
-      Seiko Epson Color Ink Jet Printers.
+  meta =
+    let
+      inherit (lib) licenses platforms maintainers;
+    in
+    {
+      homepage = "http://download.ebz.epson.net/dsc/search/01/search/?OSC=LX";
+      description = "Epson printer driver (L3210 L3200 L1250 L1210)";
+      longDescription = ''
+        This software is a filter program used with the Common UNIX Printing
+        System (CUPS) under Linux. It supplies high quality printing with
+        Seiko Epson Color Ink Jet Printers.
 
-      To use the driver adjust your configuration.nix file:
-        services.printing = {
-          enable = true;
-          drivers = [ pkgs.epson-202101w ];
-        };
-    '';
-    license = with licenses; [
-      lgpl21
-      epson
-    ];
-    platforms = platforms.linux;
-    # The guy I stole this config from
-    maintainers = [ maintainers.lunarequest ];
-  };
+        To use the driver adjust your configuration.nix file:
+          services.printing = {
+            enable = true;
+            drivers = [ pkgs.epson-202101w ];
+          };
+      '';
+      license = lib.attrValues { inherit (licenses) lgpl21 epson; };
+      platforms = platforms.linux;
+      # The guy I stole this config from
+      maintainers = [ maintainers.lunarequest ];
+    };
 }

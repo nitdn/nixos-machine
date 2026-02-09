@@ -73,7 +73,6 @@
       # inputs.git-hooks.inputs.nixpkgs.follows = "nixpkgs";
       inputs.git-hooks.inputs.flake-compat.follows = "affinity-nix/flake-compat";
     };
-    import-tree.url = "github:vic/import-tree";
     quickshell = {
       url = "git+https://git.outfoxxed.me/quickshell/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -82,7 +81,15 @@
 
   outputs =
     { flake-parts, ... }@inputs:
-    flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
+    let
+      inherit (inputs.nixpkgs.lib.fileset) toList fileFilter;
+      import-tree = path: {
+        imports = toList (
+          fileFilter (file: file.hasExt "nix" && !(inputs.nixpkgs.lib.hasPrefix "_" file.name)) path
+        );
+      };
+    in
+    flake-parts.lib.mkFlake { inherit inputs; } (import-tree ./modules);
 
   nixConfig = {
     extra-substituters = [

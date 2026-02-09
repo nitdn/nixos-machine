@@ -49,7 +49,7 @@ in
       # This will generate a new key if the key specified above does not exist
       sops.age.generateKey = true;
 
-      nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) config.meta.unfreeNames;
+      nixpkgs.config.allowUnfreePredicate = pkg: lib.elem (lib.getName pkg) config.meta.unfreeNames;
       home-manager.users."${username}" = homeModules.pc;
     };
     work =

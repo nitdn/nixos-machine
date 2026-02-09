@@ -12,11 +12,12 @@
     }:
     let
       inherit (config.services.bind) domain_name IPv4 IPv6;
+      inherit (lib) mkOption types;
       journal_path = "/etc/bind/zones";
 
     in
     {
-      options.services.bind = with lib; {
+      options.services.bind = {
         domain_name = mkOption {
           type = types.str;
         };

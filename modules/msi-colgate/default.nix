@@ -3,6 +3,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 {
+  lib,
   config,
   inputs,
   moduleWithSystem,
@@ -36,11 +37,13 @@ in
   );
 
   flake.nixosConfigurations.msi-colgate = inputs.nixpkgs.lib.nixosSystem {
-    modules = with nixosModules; [
-      pc
-      work
-      msi-colgate
-      hmBase
-    ];
+    modules = lib.attrValues {
+      inherit (nixosModules)
+        pc
+        work
+        msi-colgate
+        hmBase
+        ;
+    };
   };
 }

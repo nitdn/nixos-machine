@@ -3,6 +3,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 {
+  lib,
   config,
   inputs,
   moduleWithSystem,
@@ -48,7 +49,7 @@ in
   );
 
   flake.nixosConfigurations.disko-elysium = inputs.nixpkgs.lib.nixosSystem {
-    modules = builtins.attrValues {
+    modules = lib.attrValues {
       inherit (nixosModules) pc disko-elysium hmBase;
 
     };

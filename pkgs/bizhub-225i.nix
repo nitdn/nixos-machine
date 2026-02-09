@@ -41,23 +41,27 @@ stdenv.mkDerivation {
     cp -a $src/Readme/ $out/doc/
     runHook postInstall
   '';
-  meta = with lib; {
-    homepage = "https://www.btapac.konicaminolta.com/index.html";
-    description = "KONICA MINOLTA bizhub 205i/225i/245i Linux Printer Driver";
-    longDescription = ''
-      This is the GDI driver (CUPS) for KONICA MINOLTA bizhub 225i.
+  meta =
+    let
+      inherit (lib) licenses intersectLists platforms;
+    in
+    {
+      homepage = "https://www.btapac.konicaminolta.com/index.html";
+      description = "KONICA MINOLTA bizhub 205i/225i/245i Linux Printer Driver";
+      longDescription = ''
+        This is the GDI driver (CUPS) for KONICA MINOLTA bizhub 225i.
 
 
-      To use the driver adjust your configuration.nix file:
-        services.printing = {
-          enable = true;
-          drivers = [ pkgs.konica-bizhub-225i ];
-        };
-    '';
-    license = with licenses; [
-      unfree
-    ];
-    platforms = intersectLists platforms.linux platforms.x86_64;
+        To use the driver adjust your configuration.nix file:
+          services.printing = {
+            enable = true;
+            drivers = [ pkgs.konica-bizhub-225i ];
+          };
+      '';
+      license = [
+        licenses.unfree
+      ];
+      platforms = intersectLists platforms.linux platforms.x86_64;
 
-  };
+    };
 }
