@@ -1,0 +1,23 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Nitesh Kumar Debnath <nitkdnath@gmail.com>
+ *
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ */
+
+workspace "browser"
+workspace "terminal"
+workspace "photo-tools"
+
+window-rule {
+	match app-id="zen-beta"
+	open-on-workspace "browser"
+}
+window-rule {
+	match app-id="zen-beta" title="AI Image Editor - Pixelcut — Zen Browser"
+	match app-id="zen-beta" title="WhatsApp Business — Zen Browser"
+	open-on-workspace "browser"
+}
+window-rule {
+	match app-id="kitty"
+	open-on-workspace "terminal"
+}

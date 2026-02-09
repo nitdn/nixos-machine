@@ -95,6 +95,7 @@
         _children = [
           { include = "${./default_binds.kdl}"; }
           { include = "${./default_config.kdl}"; }
+          { include = "${./window-rules.kdl}"; }
           { spawn-at-startup = "zen-beta"; }
           { spawn-at-startup = "ckb-next"; }
         ];

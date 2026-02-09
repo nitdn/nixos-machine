@@ -1,22 +1,19 @@
-/*
- * SPDX-FileCopyrightText: 2025 Nitesh Kumar Debnath <nitkdnath@gmail.com>
- *
- * SPDX-License-Identifier: GPL-3.0-or-later
- */
+// ! Auto-generated file. Do not edit directly.
+// Remove `include "dms/colors.kdl"` from your config to override.
 
 layout {
     background-color "transparent"
 
     focus-ring {
-        active-color   "#89dceb"
-        inactive-color "#6c7086"
-        urgent-color   "#f2b8b5"
+        active-color   "#1976d2"
+        inactive-color "#72777f"
+        urgent-color   "#b3261e"
     }
 
     border {
-        active-color   "#89dceb"
-        inactive-color "#6c7086"
-        urgent-color   "#f2b8b5"
+        active-color   "#1976d2"
+        inactive-color "#72777f"
+        urgent-color   "#b3261e"
     }
 
     shadow {
@@ -24,19 +21,19 @@ layout {
     }
 
     tab-indicator {
-        active-color   "#89dceb"
-        inactive-color "#6c7086"
-        urgent-color   "#f2b8b5"
+        active-color   "#1976d2"
+        inactive-color "#72777f"
+        urgent-color   "#b3261e"
     }
 
     insert-hint {
-        color "#89dceb80"
+        color "#1976d280"
     }
 }
 
 recent-windows {
     highlight {
-        active-color   "#24586a"
-        urgent-color   "#f2b8b5"
+        active-color   "#0d47a1"
+        urgent-color   "#b3261e"
     }
 }
