@@ -3,6 +3,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 {
+  lib,
   config,
   inputs,
   ...
@@ -42,6 +43,8 @@ in
       users.users.${username} = {
         enable = false;
         isNormalUser = true;
+        # For some reason it actually still fucking works
+        packages = lib.attrValues { inherit (pkgs) vlc; };
       };
       home-manager.users.${username} = homeModules.pc;
     };

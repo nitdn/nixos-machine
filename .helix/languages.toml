@@ -14,27 +14,9 @@ command = "nixfmt"
 auto-format = true
 name = "yaml"
 
-[language.formatter]
-args = ["fmt", "--stdin", "yaml"]
-command = "dprint"
-
-[[language]]
-auto-format = true
-name = "yuck"
-
-[language.formatter]
-command = "parinfer-rust"
-
-[[language]]
-language-servers = ["just-lsp"]
-name = "just"
-
-[language-server.just-lsp]
-command = "just-lsp"
-
 [language-server.nixd.config.nixd.options]
 nixos.expr = "(builtins.getFlake \"/home/ssmvabaa/nixos-machine\").nixosConfigurations.tjmaxxer.options"
-home-manager.expr = "(builtins.getFlake \"/home/ssmvabaa/nixos-machine\").nixosConfigurations.ssmvabaa.options.home-manager.users.type.getSubOptions []"
+home-manager.expr = "(builtins.getFlake \"/home/ssmvabaa/nixos-machine\").nixosConfigurations.tjmaxxer.options.home-manager.users.type.getSubOptions []"
 flake-parts.expr = "(builtins.getFlake \"/home/ssmvabaa/nixos-machine\").debug.options"
 flake-parts-perSystem.expr = "(builtins.getFlake \"/home/ssmvabaa/nixos-machine\").currentSystem.options"
 

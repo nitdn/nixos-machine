@@ -33,3 +33,9 @@ window-rule {
 	match app-id="kitty"
 	open-on-workspace "terminal"
 }
+// Open the Firefox picture-in-picture window as floating.
+window-rule {
+    match app-id="zen" title="^Picture-in-Picture$"
+
+    open-floating true
+}
