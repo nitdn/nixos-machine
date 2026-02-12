@@ -66,6 +66,7 @@
             pkgs.corefonts
             pkgs.noto-fonts
             pkgs.noto-fonts-color-emoji
+            pkgs.winePackages.fonts
           ]
           (pkg: ''
             C+ %h/.local/share/fonts/${pkg.pname} 0755 - - - ${pkg}/share/fonts/
