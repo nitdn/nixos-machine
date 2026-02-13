@@ -37,7 +37,6 @@ in
         pkgs.sops
         pkgs.trash-cli
         pkgs.vulkan-tools
-        pkgs.wineWowPackages.stagingFull
       ];
       environment.variables = {
         EDITOR = "hx";

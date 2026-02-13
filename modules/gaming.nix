@@ -110,6 +110,7 @@ in
           pkgs.gamescope
           pkgs.umu-launcher
           pkgs.winetricks
+          pkgs.wineWow64Packages.stagingFull
         ];
       };
     };

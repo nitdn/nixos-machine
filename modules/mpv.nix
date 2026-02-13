@@ -18,7 +18,7 @@
             vo=gpu
             hwdec=auto
           '';
-          "mpv.input".content = ''
+          "input.conf".content = ''
             WHEEL_UP seek 10
             WHEEL_DOWN seek -10
           '';
