@@ -13,7 +13,7 @@
   options.perSystem = flake-parts-lib.mkPerSystemOption (_: {
     options.niri = {
       includes = lib.mkOption {
-        type = with lib.types; listOf externalPath;
+        type = with lib.types; listOf str;
         example = [
           "dms/colors.kdl"
           "dms/layout.kdl"

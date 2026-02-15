@@ -15,7 +15,6 @@ jobs:
           - .#bizhub-225i
           - .#epson-l3212
           - .#naps2-wrapped
-          - .#quickshell-cached
           - .#devShells.x86_64-linux.default
     steps:
       - name: Generate a token
