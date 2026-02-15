@@ -65,6 +65,17 @@
       ];
     };
 
+    fileSystems."/nix" = {
+      device = "/dev/disk/by-partlabel/nixos-root-b";
+      fsType = "btrfs";
+      neededForBoot = true;
+      options = [
+        "subvol=@nix"
+        "noatime"
+        "compress=zstd"
+      ];
+    };
+
     fileSystems."/boot" = {
       device = "/dev/disk/by-partlabel/wd-efi";
       fsType = "vfat";

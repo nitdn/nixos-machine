@@ -107,6 +107,7 @@ in
               toPackage = name: text: pkgs.writeShellApplication { inherit name text; };
             in
             [
+              pkgs.bashInteractive
               pkgs.cloc
               pkgs.dix
               pkgs.hydra-check
