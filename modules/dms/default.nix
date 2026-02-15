@@ -3,6 +3,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 {
+  inputs,
   config,
   lib,
   ...
@@ -16,6 +17,7 @@ in
     {
       programs.dms-shell = {
         enable = true;
+        quickshell.package = inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.quickshell;
         systemd = {
           enable = true; # Systemd service for auto-start
           restartIfChanged = true; # Auto-restart dms.service when dms-shell changes
@@ -34,6 +36,7 @@ in
       ];
       services.displayManager.dms-greeter = {
         enable = true;
+        quickshell.package = inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.quickshell;
         compositor = {
           name = "niri"; # Or "hyprland" or "sway"
           customConfig = ''
@@ -71,6 +74,9 @@ in
   perSystem =
     { pkgs, ... }:
     {
+      # Provide this for building a binary cache through CI
+      packages.quickshell-cached =
+        inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.quickshell;
 
       packages.niri-dms-snapshot = pkgs.writeShellApplication {
         name = "niri-dms-snapshot";
@@ -81,7 +87,7 @@ in
         layer-rule.match._props.namespace = "^quickshell$";
         layer-rule.place-within-backdrop = true;
       };
-      niri.includes = [
+      niri.includes = lib.lists.map (dmsPath: "/home/${user}/.config/niri/${dmsPath}") [
         "dms/colors.kdl"
         "dms/layout.kdl"
         "dms/alttab.kdl"

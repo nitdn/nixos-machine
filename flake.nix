@@ -73,6 +73,10 @@
       # inputs.git-hooks.inputs.nixpkgs.follows = "nixpkgs";
       inputs.git-hooks.inputs.flake-compat.follows = "affinity-nix/flake-compat";
     };
+    quickshell = {
+      url = "git+https://git.outfoxxed.me/quickshell/quickshell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
