@@ -27,11 +27,6 @@ in
 
       nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
       nix.settings = {
-        substituters = [
-          "https://aseipp-nix-cache.freetls.fastly.net"
-          "https://aseipp-nix-cache.global.ssl.fastly.net"
-        ];
-
         trusted-users = [
           username
           "@wheel"
@@ -42,6 +37,9 @@ in
           "auto-allocate-uids"
         ];
         auto-allocate-uids = true;
+      };
+      nix.registry = {
+        nixpkgs.flake = inputs.nixpkgs;
       };
 
       # Bootloader.
