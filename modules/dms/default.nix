@@ -87,7 +87,7 @@ in
         layer-rule.match._props.namespace = "^quickshell$";
         layer-rule.place-within-backdrop = true;
       };
-      niri.includes = lib.lists.map (dmsPath: "/home/${user}/.config/niri/${dmsPath}") [
+      niri.includes = [
         "dms/colors.kdl"
         "dms/layout.kdl"
         "dms/alttab.kdl"

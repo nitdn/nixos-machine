@@ -45,6 +45,10 @@ in
       ];
       networking.hostName = "disko-elysium"; # Define your hostname.
       system.stateVersion = "25.05"; # Did you read the comment?
+      hardware.graphics = {
+        enable32Bit = true;
+      };
+      hardware.enableRedistributableFirmware = true;
     }
   );
 
