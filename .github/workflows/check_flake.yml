@@ -9,6 +9,13 @@ jobs:
   tests:
     name: "Run flake checks"
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+      matrix:
+        command:
+          - eval .#nixosConfigurations.disko-elysium.config.system.build.toplevel
+          - flake show
+          - flake check
     steps:
       - name: Generate a token
         id: generate-token
@@ -31,7 +38,8 @@ jobs:
           signingKey: "${{ secrets.CACHIX_SIGNING_KEY }}"
           # If you chose API tokens for write access OR if you have a private cache
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
-      - run: |
-          nix flake check --accept-flake-config \
+      - name: Check ${{ matrix.command }}
+        run: |
+          /usr/bin/time --output="$GITHUB_STEP_SUMMARY" nix ${{ matrix.command }} --accept-flake-config \
           --no-allow-import-from-derivation \
           --max-jobs 4 --cores 0
