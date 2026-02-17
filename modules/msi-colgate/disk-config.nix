@@ -2,68 +2,43 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-{ inputs, ... }:
 {
   flake.modules.nixos.msi-colgate = {
-    imports = [
-      inputs.disko.nixosModules.disko
-    ];
-    disko.devices = {
-      disk = {
-        main = {
-          type = "disk";
-          device = "/dev/disk/by-id/ata-CONSISTENT_SSD_S7_512GB_6IGIPGP17RTPT4UEBT5V";
-          content = {
-            type = "gpt";
-            partitions = {
-              ESP = {
-                priority = 1;
-                name = "ESP";
-                start = "1M";
-                end = "1G";
-                type = "EF00";
-                content = {
-                  type = "filesystem";
-                  format = "vfat";
-                  mountpoint = "/boot";
-                  mountOptions = [ "umask=0077" ];
-                };
-              };
-              plainSwap = {
-                size = "16G";
-                content = {
-                  type = "swap";
-                  discardPolicy = "both";
-                };
-              };
-              root = {
-                size = "100G";
-                content = {
-                  type = "btrfs";
-                  extraArgs = [ "-f" ]; # Override existing partition
-                  mountpoint = "/";
-                  mountOptions = [
-                    "compress=zstd"
-                    "noatime"
-                  ];
-                };
-              };
-              home = {
-                size = "200G";
-                content = {
-                  type = "btrfs";
-                  extraArgs = [ "-f" ]; # Override existing partition
-                  mountpoint = "/home";
-                  mountOptions = [
-                    "compress=zstd"
-                    "noatime"
-                  ];
-                };
-              };
-            };
-          };
-        };
-      };
+    fileSystems."/" = {
+      device = "/dev/disk/by-partlabel/disk-main-root";
+      fsType = "btrfs";
+      options = [
+        "subvol=@"
+        "compress=zstd"
+      ];
+    };
+    fileSystems."/home" = {
+      device = "/dev/disk/by-partlabel/disk-main-root";
+      fsType = "btrfs";
+      options = [
+        "subvol=@home"
+        "compress=zstd"
+      ];
+    };
+
+    fileSystems."/nix" = {
+      device = "/dev/disk/by-partlabel/disk-main-root";
+      fsType = "btrfs";
+      neededForBoot = true;
+      options = [
+        "subvol=@nix"
+        "noatime"
+        "compress=zstd"
+      ];
+    };
+
+    fileSystems."/boot" = {
+      device = "/dev/disk/by-partlabel/disk-main-ESP";
+      fsType = "vfat";
+      options = [
+        "fmask=0022"
+        "dmask=0022"
+      ];
     };
   };
 }

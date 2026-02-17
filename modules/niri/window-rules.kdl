@@ -27,7 +27,9 @@ window-rule {
 window-rule {
 	match app-id="zen-beta" title="AI Image Editor - Pixelcut — Zen Browser"
 	match app-id="zen-beta" title="WhatsApp Business — Zen Browser"
-	open-on-workspace "browser"
+	match app-id="affinity.exe"
+	match app-id="i_view64.exe"
+	open-on-workspace "photo-tools"
 }
 window-rule {
 	match app-id="kitty"
