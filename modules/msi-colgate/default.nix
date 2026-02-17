@@ -30,7 +30,6 @@ in
       imports = [
         generic.light
       ];
-      networking.useDHCP = true;
       hardware.facter.reportPath = ./facter.json;
       networking.hostName = "msi-colgate"; # Define your hostname.
     }

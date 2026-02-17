@@ -61,7 +61,7 @@ in
         imports = [
           generic.light
         ];
-        networking.useDHCP = true;
+        networking.useDHCP = lib.mkDefault true;
         users.users.${username} = {
           isNormalUser = true;
           extraGroups = [

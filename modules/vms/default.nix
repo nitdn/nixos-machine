@@ -22,24 +22,13 @@ in
     home-manager.users."vmtest" = homeModule;
   };
   flake.modules.nixos.pc = {
-    image.modules = {
-      iso = {
-        imports = [ nixosModules.vm ];
-        boot.supportedFilesystems = lib.mkForce [
-          "btrfs"
-          "cifs"
-          "erofs"
-          "ext4"
-          "f2fs"
-          "ntfs"
-          "squashfs"
-          "vfat"
-          "xfs"
-        ];
-      };
-    };
+    image.modules = lib.genAttrs [ "iso" "iso-installer" ] (_: {
+      imports = [ nixosModules.vm ];
+      boot.supportedFilesystems.zfs = lib.mkForce false;
+    });
     virtualisation.vmVariant = {
       imports = [ nixosModules.vm ];
     };
   };
+
 }

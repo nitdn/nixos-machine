@@ -53,6 +53,9 @@ in
         "zswap.shrinker_enabled=1" # whether to shrink the pool proactively on high memory pressure
       ];
       boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
+      boot.supportedFilesystems = {
+        exfat = true;
+      };
       services.fwupd.enable = true;
       services.btrfs.autoScrub.enable = lib.mkDefault true;
       hardware.facter.detected.dhcp.enable = false;

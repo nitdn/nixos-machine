@@ -18,124 +18,120 @@ in
     inputs.treefmt-nix.flakeModule
   ];
 
-  config = {
-    debug = true;
+  debug = true;
 
-    perSystem =
-      {
-        pkgs,
-        system,
-        config,
-        ...
-      }:
-      let
-        buildInputs = [
-          pkgs.makeWrapper
-          pkgs.libtiff.out
+  perSystem =
+    {
+      pkgs,
+      system,
+      config,
+      ...
+    }:
+    let
+      buildInputs = [
+        pkgs.makeWrapper
+        pkgs.libtiff.out
+      ];
+      scripts = {
+        throttle = ''
+          systemd-inhibit --what=sleep:shutdown \
+          systemd-run --user --scope \
+          --property=MemoryMax=4G --property=CPUQuota=50% \
+          --property=CPUWeight=500 "$@"'';
+        gc = ''
+          ${scripts.throttle} nh clean all --keep-since 7d
+        '';
+        home = ''
+          nh os switch .
+          nh home switch .
+        '';
+        license = ''
+          reuse annotate --copyright="Nitesh Kumar Debnath <nitkdnath@gmail.com>" \
+          --license="GPL-3.0-or-later" "$@"
+        '';
+        upgrade-elysium = ''
+          sudo ${pkgs.efibootmgr}/bin/efibootmgr -o 0001,2001,3001 # Fixes the issue with mangled UEFI
+          ${scripts.throttle} nh os switch .
+        '';
+        fetch = ''
+          jj git fetch --remote flake-mirror
+          jj rebase -r @ -d update_flake_lock_action@flake-mirror
+        '';
+        push-ci = ''
+          jj squash
+          jj git push -c @- --remote flake-mirror
+        '';
+        push-new = ''
+          jj desc && jj new
+          change_id=$(jj log -r @-  -T "change_id.short()" --no-graph)
+          push-ci
+          gh pr create --head push-"$change_id" --fill
+        '';
+        push-main = ''
+          jj bookmark set -r @- main
+          jj git push -r @- --remote flake-mirror --bookmark main
+          jj git push -r @- --remote origin
+        '';
+        pwget = ''
+          sops decrypt --extract "['$1']['password']" secrets/core.yaml
+        '';
+        remote-test = ''
+          remote="''${1:-vps01}"
+          ${scripts.throttle} nixos-rebuild test --flake . \
+          --build-host root@"$remote" \
+          --target-host root@"$remote" \
+          --option max-jobs 4
+        '';
+        remote-build = ''
+          remote="''${1:-vps01}"
+          ${scripts.throttle} nixos-rebuild build --flake . \
+          --build-host root@"$remote" \
+          --target-host root@"$remote" \
+          --option max-jobs 4
+        '';
+      };
+      toPackage = name: text: pkgs.writeShellApplication { inherit name text; };
+    in
+    {
+      _module.args.pkgs = import inputs.nixpkgs {
+        inherit system;
+        config.allowUnfreePredicate = pkg: lib.elem (lib.getName pkg) meta.unfreeNames;
+        overlays = [
+          inputs.nix-on-droid.overlays.default
         ];
-      in
-      {
-        _module.args.pkgs = import inputs.nixpkgs {
-          inherit system;
-          config.allowUnfreePredicate = pkg: lib.elem (lib.getName pkg) meta.unfreeNames;
-          overlays = [
-            inputs.nix-on-droid.overlays.default
-          ];
-        };
+      };
 
-        devShells.default = pkgs.mkShell {
-          packages =
-            let
-              scripts = {
-                throttle = ''
-                  systemd-inhibit --what=sleep:shutdown \
-                  systemd-run --user --scope \
-                  --property=MemoryMax=4G --property=CPUQuota=50% \
-                  --property=CPUWeight=500 "$@"'';
-                gc = ''
-                  ${scripts.throttle} nh clean all --keep-since 7d
-                '';
-                home = ''
-                  nh os switch .
-                  nh home switch .
-                '';
-                license = ''
-                  reuse annotate --copyright="Nitesh Kumar Debnath <nitkdnath@gmail.com>" \
-                  --license="GPL-3.0-or-later" "$@"
-                '';
-                upgrade-elysium = ''
-                  sudo ${pkgs.efibootmgr}/bin/efibootmgr -o 0001,2001,3001 # Fixes the issue with mangled UEFI
-                  ${scripts.throttle} nh os switch .
-                '';
-                fetch = ''
-                  jj git fetch --remote flake-mirror
-                  jj rebase -r @ -d update_flake_lock_action@flake-mirror
-                '';
-                push-ci = ''
-                  jj squash
-                  jj git push -c @- --remote flake-mirror
-                '';
-                push-new = ''
-                  jj desc && jj new
-                  change_id=$(jj log -r @-  -T "change_id.short()" --no-graph)
-                  push-ci
-                  gh pr create --head push-"$change_id" --fill
-                '';
-                push-main = ''
-                  jj bookmark set -r @- main
-                  jj git push -r @- --remote flake-mirror --bookmark main
-                  jj git push -r @- --remote origin
-                '';
-                pwget = ''
-                  sops decrypt --extract "['$1']['password']" secrets/core.yaml
-                '';
-                remote-test = ''
-                  remote="''${1:-vps01}"
-                  ${scripts.throttle} nixos-rebuild test --flake . \
-                  --build-host root@"$remote" \
-                  --target-host root@"$remote" \
-                  --option max-jobs 4
-                '';
-                remote-build = ''
-                  remote="''${1:-vps01}"
-                  ${scripts.throttle} nixos-rebuild build --flake . \
-                  --build-host root@"$remote" \
-                  --target-host root@"$remote" \
-                  --option max-jobs 4
-                '';
-              };
-              toPackage = name: text: pkgs.writeShellApplication { inherit name text; };
-            in
-            [
-              pkgs.bashInteractive
-              pkgs.cloc
-              pkgs.dix
-              pkgs.hydra-check
-              pkgs.jq
-              config.packages.jj-wrapped
-              pkgs.kdlfmt
-              pkgs.meld
-              pkgs.sops
-              pkgs.nixd
-              pkgs.nil
-              pkgs.nh
-              pkgs.nixfmt
-              pkgs.pandoc
-              pkgs.reuse
-              pkgs.tinymist
-              pkgs.typstyle
-              pkgs.vscode-langservers-extracted
-              (lib.mapAttrsToList toPackage scripts)
-            ];
-        };
-
-        packages.bizhub-225i = pkgs.callPackage ../../pkgs/bizhub-225i.nix {
+      devShells.default = pkgs.mkShell {
+        packages = [
+          pkgs.bashInteractive
+          pkgs.cloc
+          pkgs.dix
+          pkgs.hydra-check
+          pkgs.jq
+          config.packages.jj-wrapped
+          pkgs.kdlfmt
+          pkgs.meld
+          pkgs.sops
+          pkgs.nixd
+          pkgs.nil
+          pkgs.nh
+          pkgs.nixfmt
+          pkgs.pandoc
+          pkgs.reuse
+          pkgs.tinymist
+          pkgs.typstyle
+          pkgs.vscode-langservers-extracted
+          (lib.mapAttrsToList toPackage scripts)
+        ];
+      };
+      packages = {
+        bizhub-225i = pkgs.callPackage ../../pkgs/bizhub-225i.nix {
           inherit (inputs) bizhub-225i;
         };
-        packages.epson-l3212 = pkgs.callPackage ../../pkgs/epson-l3212.nix {
+        epson-l3212 = pkgs.callPackage ../../pkgs/epson-l3212.nix {
           inherit (inputs) epson-202101w;
         };
-        packages.naps2-wrapped = pkgs.naps2.overrideAttrs (
+        naps2-wrapped = pkgs.naps2.overrideAttrs (
           _finalAttrs: previousAttrs: {
             buildInputs = previousAttrs.buildInputs or [ ] ++ buildInputs;
             postFixup = previousAttrs.postFixup or "" + ''
@@ -145,46 +141,50 @@ in
             '';
           }
         );
-        checks.reuse =
-          pkgs.runCommand "reuse"
-            {
-              src = inputs.self.outPath;
-              nativeBuildInputs = [ pkgs.reuse ];
-            }
-            ''
-              cd $src
-              reuse lint | tac >&2
-              mkdir $out
-            '';
-
-        treefmt.programs = {
-          actionlint.enable = true;
-          just.enable = true;
-          nixfmt.enable = true;
-          statix.enable = true;
-          deadnix.enable = true;
-          shfmt.enable = true;
-          sqlfluff.dialect = "postgres";
-          sqlfluff.enable = true;
-          sqlfluff-lint.enable = true;
-          taplo.enable = true;
-          typstyle.enable = true;
-          typos.enable = true;
-          yamlfmt.enable = true;
-        };
-        treefmt.settings.excludes = [
-          "**/*.layout.json"
-          "secrets/*"
-          ".sops.yaml"
-          "**/facter.json"
-        ];
-        treefmt.programs.typos.excludes = [
-        ];
       };
+      checks.reuse =
+        pkgs.runCommand "reuse"
+          {
+            src = inputs.self.outPath;
+            nativeBuildInputs = [ pkgs.reuse ];
+          }
+          ''
+            cd $src
+            reuse lint | tac >&2
+            mkdir $out
+          '';
+      treefmt.programs =
+        lib.genAttrs
+          [
+            "actionlint"
+            "deadnix"
+            "just"
+            "nixfmt"
+            "shfmt"
+            "sqlfluff-lint"
+            "statix"
+            "taplo"
+            "typstyle"
+            "yamlfmt"
+            "sqlfluff"
+            "typos"
+          ]
+          (_: {
+            enable = true;
+          })
+        // {
+          sqlfluff.dialect = "postgres";
+        };
+      treefmt.settings.excludes = [
+        "**/*.layout.json"
+        "secrets/*"
+        ".sops.yaml"
+        "**/facter.json"
+      ];
+    };
 
-    systems = [
-      "aarch64-linux"
-      "x86_64-linux"
-    ];
-  };
+  systems = [
+    "aarch64-linux"
+    "x86_64-linux"
+  ];
 }
