@@ -62,7 +62,7 @@ in
           jj git push -c @- --remote flake-mirror
         '';
         push-new = ''
-          jj desc && jj new
+          jj commit
           change_id=$(jj log -r @-  -T "change_id.short()" --no-graph)
           push-ci
           gh pr create --head push-"$change_id" --fill
