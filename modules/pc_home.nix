@@ -70,6 +70,7 @@
       programs.gh.enable = true;
 
       programs.zen-browser.enable = true;
+      programs.zen-browser.suppressXdgMigrationWarning = true;
       # stylix.targets.zen-browser.profileNames = [ "Default" ];
 
       programs.vesktop.enable = true;

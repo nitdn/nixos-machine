@@ -23,10 +23,12 @@
     };
     nix-on-droid = {
       url = "github:nix-community/nix-on-droid/release-24.05";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.nixpkgs-docs.follows = "nixpkgs";
-
-      inputs.home-manager.follows = "home-manager";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        nixpkgs-docs.follows = "nixpkgs";
+        home-manager.follows = "home-manager";
+        nixpkgs-for-bootstrap.follows = "nixpkgs";
+      };
     };
     home-manager = {
       url = "github:nix-community/home-manager";
