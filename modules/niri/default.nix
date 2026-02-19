@@ -28,7 +28,12 @@
         '';
       };
       settings = lib.mkOption {
-        type = with lib.types; attrsOf anything;
+        type = lib.types.submodule {
+          freeformType = lib.types.anything;
+          options._children = lib.mkOption {
+            type = lib.types.listOf lib.types.anything;
+          };
+        };
         default = { };
         example = {
           input.mouse.accel-speed = -0.5;

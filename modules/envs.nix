@@ -37,6 +37,15 @@ in
         pkgs.sops
         pkgs.trash-cli
         pkgs.vulkan-tools
+        (pkgs.writeShellApplication {
+          name = "ns";
+          runtimeInputs = with pkgs; [
+            fzf
+            nix-search-tv
+          ];
+          text = ''exec "${pkgs.nix-search-tv.src}/nixpkgs.sh" "$@"'';
+        })
+        pkgs.wayscriber
       ];
       environment.variables = {
         EDITOR = "hx";
