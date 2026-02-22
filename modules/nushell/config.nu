@@ -16,12 +16,10 @@ let fish_completer = {|spans|
     }
 }
 
-$env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense'
+$env.CARAPACE_BRIDGES = 'fish,zsh,bash,inshellisense'
 
 let carapace_completer = {|spans: list<string>|
-    carapace $spans.0 nushell ...$spans
-    | from json
-    | if ($in | default [] | any {|| $in.display | str starts-with "ERR"}) { null } else { $in }
+    CARAPACE_LENIENT=1 carapace $spans.0 nushell ...$spans | from json
 }
 
 
