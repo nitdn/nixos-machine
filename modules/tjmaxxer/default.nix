@@ -22,6 +22,12 @@ in
       hardware.ckb-next.package = pkgs.ckb-next.overrideAttrs (old: {
         cmakeFlags = (old.cmakeFlags or [ ]) ++ [ "-DUSE_DBUS_MENU=0" ];
       });
+      # Enable OpenTabletDriver
+      hardware.opentabletdriver.enable = true;
+
+      # Required by OpenTabletDriver
+      hardware.uinput.enable = true;
+      boot.kernelModules = [ "uinput" ];
       hardware.graphics = {
         enable32Bit = true;
         extraPackages = [
