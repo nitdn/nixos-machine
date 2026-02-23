@@ -68,6 +68,8 @@ in
             "wheel"
             "input"
             "i2c"
+            "dialout"
+            "lp"
           ]; # Enable ‘sudo’ for the user.
           packages = [
             pkgs.tree

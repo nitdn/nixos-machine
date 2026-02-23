@@ -57,6 +57,7 @@ in
       environment.systemPackages = [
         pkgs.qt6Packages.qt6ct
         pkgs.adw-gtk3
+        pkgs.kdePackages.kdeconnect-kde
       ];
       systemd.user.tmpfiles.rules = [
         "L %C/wal/colors.json - - - - %C/wal/dank-pywalfox.json"
@@ -94,6 +95,7 @@ in
         "dms/binds.kdl"
         "dms/outputs.kdl"
         "dms/cursor.kdl"
+        "dms/windowrules.kdl"
       ];
       wrappers.kitty.pc.extraSettings =
         lib.strings.concatMapStringsSep "\n" (dmsPath: "include /home/${user}/.config/kitty/${dmsPath}")
