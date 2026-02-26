@@ -1,7 +1,3 @@
-.. SPDX-FileCopyrightText: 2025 Nitesh Kumar Debnath <nitkdnath@gmail.com>
-..
-.. SPDX-License-Identifier: GPL-3.0-or-later
-
 Wacky funcubular configs straight from the bugland!
 ===================================================
 
@@ -21,15 +17,14 @@ So I have around :math:`3\frac{1}{2}` machines and they are as follows:
 
    - Uses systemd-homed (brokey) for users
 
-   - Because it uses systemd-homed the home-manager NixOS module doesn’t
-     actually work so we use standalone home-manager
-
-   - Because we use standalone home-manager we have to duplicate some
-     inputs
+   - It used to use home-manager standalone but I found a funny
+     workaround so it does not anymore
 
 #. / disko-elysium: Very old very bad laptop.
 
    - Uses disko for partitioning
+
+     - Will not do that anymore disko is kinda mid lol
 
    - It plays Team Fortress 2 now
 
@@ -41,10 +36,11 @@ So I have around :math:`3\frac{1}{2}` machines and they are as follows:
 
    - It is my workhorse
 
-#. / vps01: This is a very cheap VPS I rented for a year because paying
-   for Adguard is stupid. It is actually like 4x as costly as Adguard.
+#. / vps01: This **was** a very cheap VPS I rented for a year because
+   paying for Adguard is stupid. It is actually like 4x as costly as
+   Adguard.
 
-   - Runs a lot of tools like:
+   - **Ran** a lot of tools like:
 
      #. Dolibarr
 
@@ -58,9 +54,11 @@ So I have around :math:`3\frac{1}{2}` machines and they are as follows:
 
      - Not FreshRSS yet, for some reason (I keep delaying it)
 
-   - Also uses disko for partitioning
+   - Also used disko for partitioning
 
      - And facter for hardware discovery
+
+       - but now everything uses facter because I hate my life
 
 #. / phone-home: This is actually just nix-on-droid, so it doesn’t count
    as a whole device really amirite gamers?
@@ -68,6 +66,8 @@ So I have around :math:`3\frac{1}{2}` machines and they are as follows:
    - Hardest to debug
 
    - Will probably die next year due to Google being predatory
+
+   - I have literally uninstalled it
 
 There are also a few packages, I will put them here:
 

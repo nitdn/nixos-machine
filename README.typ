@@ -13,12 +13,12 @@ So I have around $3 1 / 2$ machines and they are as follows:
     - No relation to TJ Maxx stores
     - Uses systemd-repart (brokey) for partitioning
     - Uses systemd-homed (brokey) for users
-    - Because it uses systemd-homed the home-manager NixOS module doesn't actually
-      work so we use standalone home-manager
-    - Because we use standalone home-manager we have to duplicate some inputs
+    - It used to use home-manager standalone but I found a funny workaround
+      so it does not anymore
 
 + / disko-elysium: Very old very bad laptop.
     - Uses disko for partitioning
+        - Will not do that anymore disko is kinda mid lol
     - It plays Team Fortress 2 now
 
 + / msi-colgate: Got this built in a shop
@@ -26,22 +26,24 @@ So I have around $3 1 / 2$ machines and they are as follows:
     - How will I ever acquire more DDR4 ram
     - It is my workhorse
 
-+ / vps01: This is a very cheap VPS I rented for a year because paying for
++ / vps01: This *was* a very cheap VPS I rented for a year because paying for
     Adguard is stupid. It is actually like 4x as costly as Adguard.
-    - Runs a lot of tools like:
+    - *Ran* a lot of tools like:
       + Dolibarr
       + Blocky
       + Paperless-NG, I almost never use it
       + Searx-NG, but I dont use it
       + An entire glue DNS server
       - Not FreshRSS yet, for some reason (I keep delaying it)
-    - Also uses disko for partitioning
+    - Also used disko for partitioning
       - And facter for hardware discovery
+        - but now everything uses facter because I hate my life
 
 + / phone-home: This is actually just nix-on-droid, so it doesn't count as a
     whole device really amirite gamers?
     - Hardest to debug
     - Will probably die next year due to Google being predatory
+    - I have literally uninstalled it
 
 There are also a few packages, I will put them here:
 + / bizhub-225i-ppds: Classic printer stuff, only packages for two distros
