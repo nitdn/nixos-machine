@@ -18,7 +18,7 @@ So I have around $3 1 / 2$ machines and they are as follows:
 
 + / disko-elysium: Very old very bad laptop.
     - Uses disko for partitioning
-        - Will not do that anymore disko is kinda mid lol
+      - Will not do that anymore disko is kinda mid lol
     - It plays Team Fortress 2 now
 
 + / msi-colgate: Got this built in a shop
