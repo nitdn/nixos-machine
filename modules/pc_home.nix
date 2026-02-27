@@ -11,13 +11,8 @@
   meta.username = "ssmvabaa";
   flake.modules.homeManager.pc = moduleWithSystem (
     {
-      pkgs,
-      config,
       ...
     }:
-    let
-      inherit (config) packages;
-    in
     {
       # Home Manager needs a bit of information about you and the paths it should
       # manage.
@@ -53,10 +48,6 @@
         #   echo "Hello, ${config.home.username}!"
         # '')
         #
-        packages.naps2-wrapped
-        pkgs.p7zip
-        pkgs.tlrc
-        pkgs.scantailor-universal
         # inputs'.typeman.packages.default # typeman currently fails
       ];
 
@@ -67,13 +58,8 @@
 
       # programs.keepassxc.enable = true;
 
-      programs.gh.enable = true;
-
-      programs.zen-browser.enable = true;
-      programs.zen-browser.suppressXdgMigrationWarning = true;
       # stylix.targets.zen-browser.profileNames = [ "Default" ];
 
-      programs.vesktop.enable = true;
     }
   );
   flake.modules.nixos.hmBase = {
@@ -84,9 +70,6 @@
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
       home-manager.startAsUserService = true;
-      home-manager.sharedModules = [
-        inputs.zen-browser.homeModules.default
-      ];
       home-manager.backupFileExtension = "backup";
     };
   };

@@ -51,6 +51,7 @@ in
           package = pkgs.mangohud;
           env.MANGOHUD_CONFIG = "no_display,fps_limit=165";
         })
+        pkgs.vesktop
       ];
     };
   flake.modules.nixos.tjmaxxer =

@@ -1,28 +1,24 @@
 # SPDX-FileCopyrightText: 2025 Nitesh Kumar Debnath <nitkdnath@gmail.com>
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
-
-{ config, ... }:
+{
+  config,
+  lib,
+  moduleWithSystem,
+  ...
+}:
 let
-  flakeModules = config.flake.modules;
+  nixosModules = config.flake.modules.nixos;
 in
 {
-  flake.modules.homeManager.helix =
+  perSystem =
     {
       pkgs,
-      lib,
+      config,
       ...
     }:
-    {
-      programs.helix = {
-        enable = true;
-        defaultEditor = true;
-        extraPackages = [
-          pkgs.nixd
-          pkgs.taplo
-          pkgs.yaml-language-server
-        ];
-
+    let
+      wrappers.helix.pc = {
         settings = {
           theme = lib.mkDefault "catppuccin_mocha";
           editor = {
@@ -51,34 +47,48 @@ in
           {
             name = "nix";
             auto-format = true;
-            formatter.command = lib.getExe pkgs.nixfmt;
-
-          }
-          {
-            name = "yaml";
-            auto-format = true;
-            formatter.command = lib.getExe pkgs.dprint;
-            formatter.args = [
-              "fmt"
-              "--stdin"
-              "yaml"
-            ];
           }
         ];
-        # YAML config
-        languages.language-server.yaml-language-server.config.yaml = {
-          format = {
-            enable = true;
-          };
-          validation = true;
+        extraPackages = [
+          pkgs.nixd
+          pkgs.nil
+        ];
+      };
+      wrappers.helix.work = wrappers.helix.pc // {
+        settings = {
+          theme = "catppuccin_latte";
         };
       };
+      packages.helix-wrapped = config.wrappers.helix.pc.wrapper;
+    in
+    {
+      inherit wrappers packages;
     };
-  flake.modules.homeManager.pc = {
-    imports = [ flakeModules.homeManager.helix ];
-    # stylix.targets.helix.enable = false;
-  };
-  flake.modules.homeManager.droid = {
-    imports = [ config.flake.modules.homeManager.helix ];
-  };
+  flake.modules.nixos.helix =
+    {
+      config,
+      pkgs,
+      ...
+    }:
+    let
+      cfg = config.programs.helix;
+    in
+    {
+      options.programs.helix.package = lib.mkPackageOption pkgs "helix" { };
+      config.environment.systemPackages = [ cfg.package ];
+    };
+  flake.modules.nixos.pc = moduleWithSystem (
+    { config, ... }:
+    {
+      imports = [ nixosModules.helix ];
+      programs.helix.package = lib.mkDefault config.packages.helix-wrapped;
+    }
+  );
+  flake.modules.nixos.work = moduleWithSystem (
+    { config, ... }:
+    {
+      programs.helix.package = config.wrappers.helix.work.wrapper;
+    }
+
+  );
 }

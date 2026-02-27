@@ -121,6 +121,7 @@ in
           pkgs.tinymist
           pkgs.typstyle
           pkgs.vscode-langservers-extracted
+          pkgs.yaml-language-server
           (lib.mapAttrsToList toPackage scripts)
         ];
       };

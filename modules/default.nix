@@ -73,6 +73,7 @@ in
           ]; # Enable ‘sudo’ for the user.
           packages = [
             pkgs.tree
+            pkgs.github-cli
           ];
         };
         environment.systemPackages = [

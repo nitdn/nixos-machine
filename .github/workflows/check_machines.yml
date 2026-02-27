@@ -43,7 +43,8 @@ jobs:
       - name: Build ${{ matrix.machine }}
         run: |
           cachix use nix-community
-          nix build  --max-jobs 4 --cores 0 --print-build-logs  --eval-profiler flamegraph \
+          nix build  --max-jobs 4 --cores 0 --print-build-logs --keep-going \
+          --eval-profiler flamegraph \
           .#nixosConfigurations.${{ matrix.machine }}.config.system.build.toplevel
           nix shell nixpkgs#inferno -c \
           inferno-flamegraph nix.profile > ${{ matrix.machine }}-build.svg

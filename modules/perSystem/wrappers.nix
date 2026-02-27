@@ -18,6 +18,7 @@
         "kitty"
         "niri"
         "jujutsu"
+        "helix"
       ];
       inherit (inputs) wrappers;
       inherit (lib.types) attrsOf submodule submoduleWith;

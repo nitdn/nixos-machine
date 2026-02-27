@@ -152,8 +152,6 @@ in
         pkgs.nixpkgs-manual
       ];
 
-      # Install firefox.
-      programs.firefox.enable = true;
       programs.nh = {
         enable = true;
         clean.enable = true;
