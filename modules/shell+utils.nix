@@ -14,7 +14,7 @@ in
   config = {
     meta.term = "kitty";
     perSystem =
-      { pkgs, config, ... }:
+      { pkgs, ... }:
 
       {
         niri.settings = {
@@ -50,13 +50,12 @@ in
           }]          
           alias y = yazi
         '';
-        packages.kittyWrapped = config.wrappers.kitty.pc.wrapper;
       };
     flake.modules.nixos.pc = moduleWithSystem (
       { config, pkgs, ... }:
       {
         environment.systemPackages = [
-          config.packages.kittyWrapped
+          config.packages.kitty-pc
           (pkgs.writeShellScriptBin "xterm" ''
             ${term} "$@"
           '')

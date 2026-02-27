@@ -12,26 +12,23 @@
 {
 
   options.perSystem = flake-parts-lib.mkPerSystemOption (
-    { pkgs, ... }:
+    _:
     let
       modules = [
         "kitty"
-        "niri"
         "jujutsu"
         "helix"
       ];
       inherit (inputs) wrappers;
-      inherit (lib.types) attrsOf submodule submoduleWith;
+      inherit (lib.types) attrsOf submodule deferredModuleWith;
       mkWrapperOption =
         moduleName:
         lib.mkOption {
           description = "${moduleName} config from lassulus/wrappers";
-          type = attrsOf (submoduleWith {
-            specialArgs = {
-              wlib = wrappers.lib;
-            };
-            modules = [
-              { pkgs = lib.mkDefault pkgs; }
+
+          type = attrsOf (deferredModuleWith {
+            staticModules = [
+              # { pkgs = lib.mkDefault pkgs; }
               "${wrappers}/modules/${moduleName}/module.nix"
               "${wrappers}/lib/modules/wrapper.nix"
               "${wrappers}/lib/modules/meta.nix"
@@ -48,4 +45,31 @@
       };
     }
   );
+  config.perSystem =
+    { pkgs, config, ... }:
+    let
+      inherit (inputs) wrappers;
+      mkName =
+        head: module:
+        lib.mapAttrs' (
+          attr: val:
+          lib.nameValuePair (head + "-" + attr)
+            (lib.evalModules {
+              modules = [
+                { pkgs = lib.mkDefault pkgs; }
+                val
+              ];
+              specialArgs = {
+                wlib = wrappers.lib;
+              };
+            }).config.wrapper
+        ) module;
+      packages = lib.foldlAttrs (
+        acc: head: module:
+        acc // mkName head module
+      ) { } config.wrappers;
+    in
+    {
+      inherit packages;
+    };
 }

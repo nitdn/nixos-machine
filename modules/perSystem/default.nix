@@ -104,9 +104,11 @@ in
       devShells.default = pkgs.mkShell {
         packages = [
           (lib.mapAttrsToList toPackage scripts)
-          config.packages.jj-wrapped
+          config.packages.jujutsu-pc
+          pkgs.bashInteractive
           pkgs.cloc
           pkgs.dix
+          pkgs.github-cli
           pkgs.hydra-check
           pkgs.jq
           pkgs.kdlfmt
@@ -123,7 +125,6 @@ in
           pkgs.typstyle
           pkgs.vscode-langservers-extracted
           pkgs.yaml-language-server
-          pkgs.bashInteractive
         ];
       };
       packages = {

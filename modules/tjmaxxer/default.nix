@@ -48,8 +48,6 @@ in
       users.users.${username} = {
         enable = false;
         isNormalUser = true;
-        # For some reason it actually still fucking works
-        packages = lib.attrValues { inherit (pkgs) vlc; };
       };
     };
   flake.nixosConfigurations.tjmaxxer = inputs.nixpkgs.lib.nixosSystem {

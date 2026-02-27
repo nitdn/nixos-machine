@@ -16,14 +16,14 @@
     }:
     {
       environment.systemPackages = [
-        pkgs.onlyoffice-desktopeditors
-        pkgs.libreoffice-qt6-fresh
         config.packages.naps2-wrapped
-        pkgs.hunspell
-        pkgs.hunspellDicts.en-gb-large
-        pkgs.logseq
         inputs'.affinity-nix.packages.v3
         inputs'.zen-browser.packages.default
+        pkgs.hunspell
+        pkgs.hunspellDicts.en-gb-large
+        pkgs.libreoffice-qt6-fresh
+        pkgs.logseq
+        pkgs.onlyoffice-desktopeditors
         (pkgs.writeShellApplication {
           name = "affinity-fix";
           runtimeInputs = [ inputs'.affinity-nix.packages.v3 ];

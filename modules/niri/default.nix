@@ -10,7 +10,7 @@
   ...
 }:
 {
-  options.perSystem = flake-parts-lib.mkPerSystemOption (_: {
+  options.perSystem = flake-parts-lib.mkPerSystemOption {
     options.niri = {
       includes = lib.mkOption {
         type = with lib.types; listOf str;
@@ -75,7 +75,7 @@
     };
   }
 
-  );
+  ;
   config.perSystem =
     { pkgs, config, ... }:
     let

@@ -9,22 +9,44 @@
   ...
 }:
 {
-  options.perSystem = flake-parts-lib.mkPerSystemOption (_: {
-    options.wrappers.nushell = lib.mkOption {
-      description = "Nushell wrapper options";
-      type = lib.types.attrsOf (
-        lib.types.submodule {
-          options.extraConfig = lib.mkOption {
-            description = "Nushell config";
-            type = lib.types.lines;
-            default = "";
-          };
-        }
-      );
-    };
-  });
+  options.perSystem = flake-parts-lib.mkPerSystemOption (
+    { config, ... }:
+    let
+      inherit (config) packages;
+      inherit (lib.types) attrsOf deferredModuleWith;
+      inherit (inputs) wrappers;
+      staticModules = [
+        "${wrappers}/modules/nushell/module.nix"
+        "${wrappers}/lib/modules/wrapper.nix"
+        "${wrappers}/lib/modules/meta.nix"
+        (
+          { config, ... }:
+          {
+            options.extraConfig = lib.mkOption {
+              description = "Nushell config";
+              type = lib.types.lines;
+              default = "";
+            };
+            config."config.nu".content = ''
+              ${config.extraConfig}
+              source ${./config.nu}
+              source ${packages.zoxide-nushell}
+            '';
+          }
+        )
+      ];
+    in
+    {
+      options.wrappers.nushell = lib.mkOption {
+        description = "Nushell wrapper options";
+        type = attrsOf (deferredModuleWith {
+          inherit staticModules;
+        });
+      };
+    }
+  );
   config.perSystem =
-    { pkgs, config, ... }:
+    { pkgs, ... }:
     {
       packages.zoxide-nushell =
         pkgs.runCommand "zoxide-nushell-integration"
@@ -51,32 +73,22 @@
               }
             ''} >> $out
           '';
-      packages.nuWrapped =
-        (inputs.wrappers.wrapperModules.nushell.apply {
-          inherit pkgs;
-          "config.nu".content = ''
-            ${config.wrappers.nushell.pc.extraConfig}
-            source ${./config.nu}
-            source ${config.packages.zoxide-nushell}
-          '';
-        }).wrapper;
       wrappers.kitty.pc.settings.shell = "nu";
     };
   config.flake.modules.nixos.pc = moduleWithSystem (
     { config, ... }:
     let
-      inherit (config.packages) nuWrapped;
+      inherit (config.packages) nushell-pc;
     in
     { pkgs, ... }:
     {
-      environment.shells = [ nuWrapped ];
+      environment.shells = [ nushell-pc ];
       environment.systemPackages = [
-        nuWrapped
+        nushell-pc
         # For completions
         pkgs.carapace
         pkgs.fish
         pkgs.zsh
-
       ];
     }
   );

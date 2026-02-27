@@ -14,7 +14,6 @@ in
   perSystem =
     {
       pkgs,
-      config,
       ...
     }:
     let
@@ -59,10 +58,9 @@ in
           theme = "catppuccin_latte";
         };
       };
-      packages.helix-wrapped = config.wrappers.helix.pc.wrapper;
     in
     {
-      inherit wrappers packages;
+      inherit wrappers;
     };
   flake.modules.nixos.helix =
     {
@@ -81,13 +79,13 @@ in
     { config, ... }:
     {
       imports = [ nixosModules.helix ];
-      programs.helix.package = lib.mkDefault config.packages.helix-wrapped;
+      programs.helix.package = lib.mkDefault config.packages.helix-pc;
     }
   );
   flake.modules.nixos.work = moduleWithSystem (
     { config, ... }:
     {
-      programs.helix.package = config.wrappers.helix.work.wrapper;
+      programs.helix.package = config.packages.helix-work;
     }
 
   );

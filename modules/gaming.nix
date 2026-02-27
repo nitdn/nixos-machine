@@ -50,13 +50,13 @@ in
           package = pkgs.mangohud;
           env.MANGOHUD_CONFIG = "no_display,fps_limit=165";
         })
-        pkgs.vesktop
-        pkgs.lutris
         pkgs.gamemode
         pkgs.gamescope
+        pkgs.lutris
         pkgs.umu-launcher
-        pkgs.winetricks
+        pkgs.vesktop
         pkgs.wineWow64Packages.stagingFull
+        pkgs.winetricks
       ];
     };
   flake.modules.nixos.tjmaxxer =
