@@ -103,26 +103,27 @@ in
 
       devShells.default = pkgs.mkShell {
         packages = [
-          pkgs.bashInteractive
+          (lib.mapAttrsToList toPackage scripts)
+          config.packages.jj-wrapped
           pkgs.cloc
           pkgs.dix
           pkgs.hydra-check
           pkgs.jq
-          config.packages.jj-wrapped
           pkgs.kdlfmt
           pkgs.meld
-          pkgs.sops
-          pkgs.nixd
-          pkgs.nil
           pkgs.nh
+          pkgs.nil
+          pkgs.nixd
           pkgs.nixfmt
           pkgs.pandoc
           pkgs.reuse
+          pkgs.sops
           pkgs.tinymist
+          pkgs.tokei
           pkgs.typstyle
           pkgs.vscode-langservers-extracted
           pkgs.yaml-language-server
-          (lib.mapAttrsToList toPackage scripts)
+          pkgs.bashInteractive
         ];
       };
       packages = {

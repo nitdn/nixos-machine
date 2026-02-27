@@ -6,25 +6,16 @@
   lib,
   config,
   inputs,
-  moduleWithSystem,
   ...
 }:
 let
-  homeModules = config.flake.modules.homeManager;
   nixosModules = config.flake.modules.nixos;
   inherit (config.meta) username;
-  inherit (config.flake.modules) generic;
 in
 {
-  flake.modules.nixos.disko-elysium = moduleWithSystem (
+  flake.modules.nixos.disko-elysium =
     { pkgs, ... }:
-    let
-      inherit homeModules;
-    in
     {
-      imports = [
-        generic.light
-      ];
       # boot.loader.efi.canTouchEfiVariables = false;
       networking.useDHCP = true;
       hardware.facter.reportPath = ./facter.json;
@@ -38,7 +29,6 @@ in
           pkgs.tree
         ];
       };
-      home-manager.users."${username}" = homeModules.pc;
       environment.systemPackages = [
         pkgs.vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
         pkgs.wget
@@ -49,13 +39,9 @@ in
         enable32Bit = true;
       };
       hardware.enableRedistributableFirmware = true;
-    }
-  );
+    };
 
   flake.nixosConfigurations.disko-elysium = inputs.nixpkgs.lib.nixosSystem {
-    modules = lib.attrValues {
-      inherit (nixosModules) pc disko-elysium hmBase;
-
-    };
+    modules = lib.attrValues { inherit (nixosModules) pc disko-elysium; };
   };
 }

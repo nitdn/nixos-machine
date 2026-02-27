@@ -2,10 +2,6 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-{ config, ... }:
-let
-  droidHome = config.flake.modules.homeManager.droid;
-in
 {
   flake.modules.nixos.droid =
     {
@@ -52,7 +48,7 @@ in
 
         # User-facing stuff that you really really want to have
         # vim # or some other editor, e.g. nano or neovim
-        # helix # home-manager uses the same path for programs.helix
+        pkgs.helix
         pkgs.git # Should just come standard with flakes
         pkgs.openssh
 
@@ -90,18 +86,5 @@ in
       # Set your time zone
       time.timeZone = "Asia/Kolkata";
 
-      # Configure home-manager
-      home-manager = {
-        config = droidHome;
-        backupFileExtension = "hm-bak";
-        useGlobalPkgs = true;
-        extraSpecialArgs = {
-          username = config.user.userName;
-        };
-      };
     };
-  flake.modules.homeManager.droid = {
-    # Read the changelog before changing this value
-    home.stateVersion = "24.05";
-  };
 }

@@ -9,7 +9,6 @@
   ...
 }:
 let
-  homeModules = config.flake.modules.homeManager;
   inherit (config.meta) username;
 in
 {
@@ -52,6 +51,12 @@ in
           env.MANGOHUD_CONFIG = "no_display,fps_limit=165";
         })
         pkgs.vesktop
+        pkgs.lutris
+        pkgs.gamemode
+        pkgs.gamescope
+        pkgs.umu-launcher
+        pkgs.winetricks
+        pkgs.wineWow64Packages.stagingFull
       ];
     };
   flake.modules.nixos.tjmaxxer =
@@ -93,26 +98,5 @@ in
       isNormalUser = true;
       password = "gaming";
     };
-    home-manager.users."gaming" = homeModules.pc;
   };
-
-  flake.modules.homeManager.pc =
-    { pkgs, ... }:
-    {
-      # programs.mangohud.enable = true;
-      # programs.mangohud.settings = {
-      #   fps_limit = 165;
-      #   no_display = true;
-      # };
-      programs.lutris = {
-        enable = true;
-        extraPackages = [
-          pkgs.gamemode
-          pkgs.gamescope
-          pkgs.umu-launcher
-          pkgs.winetricks
-          pkgs.wineWow64Packages.stagingFull
-        ];
-      };
-    };
 }

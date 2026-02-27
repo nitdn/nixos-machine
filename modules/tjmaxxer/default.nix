@@ -9,7 +9,6 @@
   ...
 }:
 let
-  homeModules = config.flake.modules.homeManager;
   nixosModules = config.flake.modules.nixos;
   inherit (config.meta) username;
 in
@@ -52,14 +51,8 @@ in
         # For some reason it actually still fucking works
         packages = lib.attrValues { inherit (pkgs) vlc; };
       };
-      home-manager.users.${username} = homeModules.pc;
     };
-
   flake.nixosConfigurations.tjmaxxer = inputs.nixpkgs.lib.nixosSystem {
-    modules = [
-      nixosModules.pc
-      nixosModules.tjmaxxer
-      nixosModules.hmBase
-    ];
+    modules = lib.attrValues { inherit (nixosModules) pc tjmaxxer; };
   };
 }

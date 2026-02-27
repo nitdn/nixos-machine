@@ -64,14 +64,7 @@ in
         "C+ %h/.config/niri/dms 0755 - - - ${./niri}"
         "z %h/.config/niri/dms/* 0644 - - - -"
       ];
-
     };
-  flake.modules.homeManager.pc = {
-    programs.kitty.extraConfig = ''
-      include dank-tabs.conf
-      include dank-theme.conf
-    '';
-  };
   perSystem =
     { pkgs, ... }:
     {

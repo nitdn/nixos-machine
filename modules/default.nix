@@ -9,9 +9,7 @@
   ...
 }:
 let
-  homeModules = config.flake.modules.homeManager;
   inherit (config.meta) username;
-  inherit (config.flake.modules) generic;
 in
 {
   options = {
@@ -25,11 +23,7 @@ in
       type = lib.types.str;
     };
   };
-
-  imports = [
-    inputs.home-manager.flakeModules.home-manager
-  ];
-
+  config.meta.username = "ssmvabaa";
   config.flake.modules.nixos = {
     pc = {
       imports = [
@@ -50,17 +44,10 @@ in
       sops.age.generateKey = true;
 
       nixpkgs.config.allowUnfreePredicate = pkg: lib.elem (lib.getName pkg) config.meta.unfreeNames;
-      home-manager.users."${username}" = homeModules.pc;
     };
     work =
       { pkgs, ... }:
-      let
-        inherit homeModules;
-      in
       {
-        imports = [
-          generic.light
-        ];
         networking.useDHCP = lib.mkDefault true;
         users.users.${username} = {
           isNormalUser = true;
@@ -80,12 +67,8 @@ in
           pkgs.vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
           pkgs.wget
         ];
-        home-manager.sharedModules = [
-          homeModules.light
-        ];
         system.stateVersion = "25.05"; # Did you read the comment?
       };
-
     vps = {
       imports = [
         inputs.sops-nix.nixosModules.sops

@@ -5,7 +5,6 @@
 { config, lib, ... }:
 
 let
-  homeModule = config.flake.modules.homeManager.pc;
   nixosModules = config.flake.modules.nixos;
 in
 {
@@ -19,7 +18,6 @@ in
       extraGroups = [ "wheel" ];
       initialPassword = "vmtest";
     };
-    home-manager.users."vmtest" = homeModule;
   };
   flake.modules.nixos.pc = {
     image.modules = lib.genAttrs [ "iso" "iso-installer" ] (_: {

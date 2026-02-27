@@ -24,8 +24,6 @@
 
         # list of extra special args for Nix-on-Droid modules
         inherit pkgs;
-        # set path to home-manager flake
-        home-manager-path = inputs.home-manager.outPath;
       };
     };
 }

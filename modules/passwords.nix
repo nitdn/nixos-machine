@@ -18,7 +18,4 @@ in
         unitConfig.ConditionUser = username;
       };
     };
-  flake.modules.homeManager.pc = {
-    # services.syncthing.enable = true;
-  };
 }

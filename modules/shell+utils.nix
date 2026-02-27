@@ -8,7 +8,6 @@
   ...
 }:
 let
-  homeModules = config.flake.modules.homeManager;
   inherit (config.meta) term;
 in
 {
@@ -53,13 +52,6 @@ in
         '';
         packages.kittyWrapped = config.wrappers.kitty.pc.wrapper;
       };
-    flake.modules.homeManager.shells = {
-      home.sessionVariables.TERMINAL = term;
-    };
-    flake.modules.homeManager = {
-      pc.imports = [ homeModules.shells ];
-      droid.imports = [ homeModules.shells ];
-    };
     flake.modules.nixos.pc = moduleWithSystem (
       { config, pkgs, ... }:
       {
