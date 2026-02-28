@@ -27,7 +27,7 @@ in
         enableVPN = true; # VPN management widget
         enableDynamicTheming = true; # Wallpaper-based theming (matugen)
         enableAudioWavelength = true; # Audio visualizer (cava)
-        # enableCalendarEvents = true; # Calendar integration (khal)
+        enableCalendarEvents = true; # Calendar integration (khal)
       };
       programs.dsearch.enable = true;
       services.displayManager.gdm.enable = false;

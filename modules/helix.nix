@@ -14,7 +14,6 @@ in
   perSystem =
     {
       pkgs,
-      config,
       ...
     }:
     let
@@ -54,11 +53,8 @@ in
           pkgs.nil
         ];
       };
-      wrappers.helix.work = {
-        imports = [ config.wrappers.helix.pc ];
-        settings = {
-          theme = "catppuccin_latte";
-        };
+      wrappers.helix.work = lib.recursiveUpdate wrappers.helix.pc {
+        settings.theme = "catppuccin_latte";
       };
     in
     {
