@@ -8,23 +8,15 @@
   flake-parts-lib,
   ...
 }:
-{
-  options.perSystem = flake-parts-lib.mkPerSystemOption (
-    { pkgs, config, ... }:
+let
+  inherit (inputs) wrappers;
+  wlr-wrapper =
+    { config, wlib, ... }:
     let
-      # Define the settings format used for this program
-      settingsFormat = pkgs.formats.yaml { };
-      inherit (inputs) wrappers;
-      wlr-which-key-wrapped = wrappers.lib.wrapPackage {
-        inherit pkgs;
-        package = pkgs.wlr-which-key;
-        args = [
-          (settingsFormat.generate "wlr-config.yaml" config.wlr-which-key.settings)
-        ];
-      };
+      settingsFormat = config.pkgs.formats.yaml { };
     in
     {
-      options.wlr-which-key = {
+      options = {
         settings = lib.mkOption {
           # Setting this type allows for correct merging behavior
           inherit (settingsFormat) type;
@@ -43,8 +35,38 @@
             for more information.
           '';
         };
+        configFile = lib.mkOption {
+          type = wlib.types.file config.pkgs;
+          default.path = settingsFormat.generate "wlr-config.yaml" config.settings;
+        };
       };
-      config.packages = { inherit wlr-which-key-wrapped; };
+      config.package = config.pkgs.wlr-which-key;
+      config.args = [
+        "${config.configFile.path}"
+      ];
+    };
+  staticModules = [
+    wlr-wrapper
+    "${wrappers}/lib/modules/wrapper.nix"
+    "${wrappers}/lib/modules/meta.nix"
+  ];
+in
+{
+  options.perSystem = flake-parts-lib.mkPerSystemOption (
+    { config, ... }:
+    let
+      # Define the settings format used for this program
+      inherit (lib.types) attrsOf deferredModuleWith;
+      inherit (config.packages) wlr-which-key-wrapped;
+    in
+    {
+      options.wrappers.wlr-which-key = lib.mkOption {
+        description = "wlr-which-key wrapper options";
+        type = attrsOf (deferredModuleWith {
+          inherit staticModules;
+        });
+      };
+      config.wrappers.wlr-which-key.wrapped.imports = [ ];
       config.niri.settings = {
         _children = [
           {

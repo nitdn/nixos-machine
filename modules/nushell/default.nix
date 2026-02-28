@@ -8,33 +8,32 @@
   lib,
   ...
 }:
+let
+  inherit (inputs) wrappers;
+  staticModules = [
+    "${wrappers}/modules/nushell/module.nix"
+    "${wrappers}/lib/modules/wrapper.nix"
+    "${wrappers}/lib/modules/meta.nix"
+    (
+      { config, ... }:
+      {
+        options.extraConfig = lib.mkOption {
+          description = "Nushell config";
+          type = lib.types.lines;
+          default = "";
+        };
+        config."config.nu".content = ''
+          ${config.extraConfig}
+          source ${./config.nu}
+        '';
+      }
+    )
+  ];
+in
 {
   options.perSystem = flake-parts-lib.mkPerSystemOption (
-    { config, ... }:
     let
-      inherit (config) packages;
       inherit (lib.types) attrsOf deferredModuleWith;
-      inherit (inputs) wrappers;
-      staticModules = [
-        "${wrappers}/modules/nushell/module.nix"
-        "${wrappers}/lib/modules/wrapper.nix"
-        "${wrappers}/lib/modules/meta.nix"
-        (
-          { config, ... }:
-          {
-            options.extraConfig = lib.mkOption {
-              description = "Nushell config";
-              type = lib.types.lines;
-              default = "";
-            };
-            config."config.nu".content = ''
-              ${config.extraConfig}
-              source ${./config.nu}
-              source ${packages.zoxide-nushell}
-            '';
-          }
-        )
-      ];
     in
     {
       options.wrappers.nushell = lib.mkOption {
@@ -46,7 +45,10 @@
     }
   );
   config.perSystem =
-    { pkgs, ... }:
+    { pkgs, config, ... }:
+    let
+      inherit (config) packages;
+    in
     {
       packages.zoxide-nushell =
         pkgs.runCommand "zoxide-nushell-integration"
@@ -74,6 +76,9 @@
             ''} >> $out
           '';
       wrappers.kitty.pc.settings.shell = "nu";
+      wrappers.nushell.pc.extraConfig = ''
+        source ${packages.zoxide-nushell}
+      '';
     };
   config.flake.modules.nixos.pc = moduleWithSystem (
     { config, ... }:
