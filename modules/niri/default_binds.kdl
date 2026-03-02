@@ -15,7 +15,7 @@ binds {
         focus-workspace 1
     }
     Mod+B {
-        spawn "zen-beta"
+        spawn "zen"
     }
     Mod+BracketLeft {
         consume-or-expel-window-left

@@ -83,7 +83,7 @@ in
           enable = true;
           games = [
             ".kitty-wrapped"
-            ".zen-beta-wrapped"
+            ".zen"
           ];
         };
         gamesFile = pkgs.writeText "games.txt" ''

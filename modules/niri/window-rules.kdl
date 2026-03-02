@@ -21,12 +21,12 @@ binds {
 }
 
 window-rule {
-	match app-id="zen-beta"
+	match app-id="zen"
 	open-on-workspace "browser"
 }
 window-rule {
-	match app-id="zen-beta" title="AI Image Editor - Pixelcut — Zen Browser"
-	match app-id="zen-beta" title="WhatsApp Business — Zen Browser"
+	match app-id="zen" title="AI Image Editor - Pixa — Zen Browser"
+	match app-id="zen" title="WhatsApp Business — Zen Browser"
 	match app-id="affinity.exe"
 	match app-id="i_view64.exe"
 	open-on-workspace "photo-tools"
