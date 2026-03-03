@@ -83,26 +83,6 @@ in
         environment."QT_QPA_PLATFORMTHEME" = "qt6ct";
         layer-rule.match._props.namespace = "^quickshell$";
         layer-rule.place-within-backdrop = true;
-        environment = {
-          SSH_AUTH_SOCK = "/run/user/1000/gcr/ssh";
-        };
-
-        _children = [
-          {
-            spawn-at-startup = [
-              "systemctl"
-              "--user"
-              "import-environment"
-              "SSH_AUTH_SOCK"
-            ];
-          }
-          {
-            spawn-at-startup = [
-              "valent"
-              "--gapplication-service"
-            ];
-          }
-        ];
       };
       niri.includes = [
         "dms/colors.kdl"
