@@ -54,7 +54,10 @@ in
         configHome = "/home/${user}";
       };
       hardware.i2c.enable = true;
-      programs.kdeconnect.enable = true;
+      programs.kdeconnect = {
+        enable = true;
+        package = pkgs.valent;
+      };
       environment.systemPackages = [
         pkgs.qt6Packages.qt6ct
         pkgs.adw-gtk3
