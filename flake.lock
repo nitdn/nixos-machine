@@ -1,5 +1,41 @@
 {
   "nodes": {
+    "DankKDEConnect": {
+      "flake": false,
+      "locked": {
+        "dir": "DankKDEConnect",
+        "lastModified": 1771958934,
+        "narHash": "sha256-/155wFIotV9xiZzX9XRGs3ANjBcLJwS4kNDDNO6WkF0=",
+        "owner": "AvengeMedia",
+        "repo": "dms-plugins",
+        "rev": "141841fc85e01494df6d217bd5a27c65da87256d",
+        "type": "github"
+      },
+      "original": {
+        "dir": "DankKDEConnect",
+        "owner": "AvengeMedia",
+        "repo": "dms-plugins",
+        "type": "github"
+      }
+    },
+    "DankLauncherKeys": {
+      "flake": false,
+      "locked": {
+        "dir": "DankLauncherKeys",
+        "lastModified": 1771958934,
+        "narHash": "sha256-/155wFIotV9xiZzX9XRGs3ANjBcLJwS4kNDDNO6WkF0=",
+        "owner": "AvengeMedia",
+        "repo": "dms-plugins",
+        "rev": "141841fc85e01494df6d217bd5a27c65da87256d",
+        "type": "github"
+      },
+      "original": {
+        "dir": "DankLauncherKeys",
+        "owner": "AvengeMedia",
+        "repo": "dms-plugins",
+        "type": "github"
+      }
+    },
     "affinity-nix": {
       "inputs": {
         "elemental-wine-source": "elemental-wine-source",
@@ -627,6 +663,8 @@
     },
     "root": {
       "inputs": {
+        "DankKDEConnect": "DankKDEConnect",
+        "DankLauncherKeys": "DankLauncherKeys",
         "affinity-nix": "affinity-nix",
         "authentik-nix": "authentik-nix",
         "bizhub-225i": "bizhub-225i",

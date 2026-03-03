@@ -78,6 +78,14 @@
       url = "git+https://git.outfoxxed.me/quickshell/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    DankKDEConnect = {
+      url = "github:AvengeMedia/dms-plugins?dir=DankKDEConnect";
+      flake = false;
+    };
+    DankLauncherKeys = {
+      url = "github:AvengeMedia/dms-plugins?dir=DankLauncherKeys";
+      flake = false;
+    };
   };
 
   outputs =
