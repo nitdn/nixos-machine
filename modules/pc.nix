@@ -15,6 +15,7 @@ in
   flake.modules.nixos.pc =
     {
       pkgs,
+      config,
       ...
     }:
     {
@@ -84,6 +85,22 @@ in
       # services.desktopManager.cosmic.enable = true;
 
       # Set your time zone.
+      assertions = [
+        {
+          assertion = config.time.timeZone != "America/Los_Angeles";
+          message = ''
+            NixOS is known to cause cancer in the state of California.
+            Please contact your local representative for details.
+          '';
+        }
+        {
+          assertion = config.time.timeZone != "America/Denver";
+          message = ''
+            I dont even know what is going on in the state of Colorado
+            but thats also not allowed anymore.
+          '';
+        }
+      ];
       time.timeZone = "Asia/Kolkata";
 
       # Select internationalisation properties.

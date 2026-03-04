@@ -1,0 +1,33 @@
+# SPDX-FileCopyrightText: 2025 Nitesh Kumar Debnath <nitkdnath@gmail.com>
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+name: "Build installer ISO images"
+on:
+  workflow_dispatch:
+jobs:
+  images:
+    name: "Build machines"
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    strategy:
+      matrix:
+        machine: [tjmaxxer, disko-elysium, msi-colgate]
+    steps:
+      - name: Maximize Runner Space
+        uses: justinthelaw/maximize-github-runner-space@master
+        with:
+          remove-android: "true"
+      - uses: actions/checkout@v6
+      - uses: cachix/install-nix-action@v31
+      - name: Build ${{ matrix.machine }}
+        run: |
+          cachix use nix-community
+          nix build  --max-jobs 64 --max-substitution-jobs 64  --cores 0  \
+          .#nixosConfigurations.${{ matrix.machine }}.config.system.build.images.iso-installer
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        # if: github.ref_type == 'tag'
+        with:
+          files: result
+          prerelease: true
