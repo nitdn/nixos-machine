@@ -17,7 +17,6 @@ in
     { pkgs, ... }:
     {
       # boot.loader.efi.canTouchEfiVariables = false;
-      networking.useDHCP = true;
       hardware.facter.reportPath = ./facter.json;
       users.users.${username} = {
         isNormalUser = true;

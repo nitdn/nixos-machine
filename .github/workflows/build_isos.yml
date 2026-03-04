@@ -22,12 +22,11 @@ jobs:
       - uses: cachix/install-nix-action@v31
       - name: Build ${{ matrix.machine }}
         run: |
-          cachix use nix-community
           nix build  --max-jobs 64 --max-substitution-jobs 64  --cores 0  \
+          --accept-flake-config --out-link installer-${{ matrix.machine }}.iso \
           .#nixosConfigurations.${{ matrix.machine }}.config.system.build.images.iso-installer
       - name: Release
         uses: softprops/action-gh-release@v2
-        # if: github.ref_type == 'tag'
+        if: github.ref_type == 'tag'
         with:
-          files: result
-          prerelease: true
+          files: installer-*
