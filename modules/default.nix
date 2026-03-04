@@ -50,7 +50,6 @@ in
     work =
       { pkgs, ... }:
       {
-        networking.useDHCP = lib.mkDefault true;
         users.users.${username} = {
           isNormalUser = true;
           extraGroups = [

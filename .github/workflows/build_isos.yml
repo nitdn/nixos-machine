@@ -22,8 +22,8 @@ jobs:
       - uses: cachix/install-nix-action@v31
       - name: Build ${{ matrix.machine }}
         run: |
-          cachix use nix-community
           nix build  --max-jobs 64 --max-substitution-jobs 64  --cores 0  \
+          --accept-flake-config \
           .#nixosConfigurations.${{ matrix.machine }}.config.system.build.images.iso-installer
       - name: Release
         uses: softprops/action-gh-release@v2
