@@ -120,6 +120,7 @@ in
           pkgs.pandoc
           pkgs.reuse
           pkgs.sops
+          pkgs.taplo
           pkgs.tinymist
           pkgs.tokei
           pkgs.typstyle

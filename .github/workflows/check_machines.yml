@@ -5,6 +5,10 @@ name: "Test machines"
 on:
   # push:
   workflow_call:
+permissions:
+  contents: write
+  pages: write
+  id-token: write
 jobs:
   tests:
     name: "Build machines"
@@ -33,21 +37,24 @@ jobs:
       - uses: cachix/install-nix-action@v31
         with:
           github_access_token: ${{ steps.generate-token.outputs.token }}
-      - uses: cachix/cachix-action@3ba601ff5bbb07c7220846facfa2cd81eeee15a1
-        with:
-          name: machines
-          # If you chose signing key for write access
-          # signingKey: "${{ secrets.CACHIX_SIGNING_KEY }}"
-          # If you chose API tokens for write access OR if you have a private cache
-          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+      - uses: randymarsh77/static-nix-cache/setup@7e5e0f2e1ce2e252c5bd173122d069a139edbd51
       - name: Build ${{ matrix.machine }}
         run: |
-          cachix use nix-community
-          nix build  --max-jobs 4 --cores 0 --print-build-logs --keep-going \
-          --eval-profiler flamegraph \
+          nix build  --max-jobs 64 --cores 0 --max-substitution-jobs 64 \
+           --print-build-logs --keep-going --eval-profiler flamegraph \
+          --accept-flake-config \
           .#nixosConfigurations.${{ matrix.machine }}.config.system.build.toplevel
           nix shell nixpkgs#inferno -c \
           inferno-flamegraph nix.profile > ${{ matrix.machine }}-build.svg
+      - uses: randymarsh77/static-nix-cache/deploy@7e5e0f2e1ce2e252c5bd173122d069a139edbd51
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          static: ./site
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./site
+      - uses: actions/deploy-pages@v4
+        id: pages
       - uses: actions/upload-artifact@v6
         id: eval-artifact
         with:
