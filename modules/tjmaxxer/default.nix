@@ -18,9 +18,6 @@ in
     {
       hardware.facter.reportPath = ./facter.json;
       hardware.ckb-next.enable = true;
-      hardware.ckb-next.package = pkgs.ckb-next.overrideAttrs (old: {
-        cmakeFlags = (old.cmakeFlags or [ ]) ++ [ "-DUSE_DBUS_MENU=0" ];
-      });
       # Enable OpenTabletDriver
       hardware.opentabletdriver.enable = true;
 
