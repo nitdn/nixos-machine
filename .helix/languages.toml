@@ -6,19 +6,10 @@
 auto-format = true
 name = "nix"
 
-[[language]]
-auto-format = true
-name = "yaml"
-
 [language-server.nixd.config.nixd.options]
 nixos.expr = "(builtins.getFlake \"/home/ssmvabaa/nixos-machine\").nixosConfigurations.tjmaxxer.options"
 flake-parts.expr = "(builtins.getFlake \"/home/ssmvabaa/nixos-machine\").debug.options"
 flake-parts-perSystem.expr = "(builtins.getFlake \"/home/ssmvabaa/nixos-machine\").currentSystem.options"
-
-[language-server.yaml-language-server.config.yaml]
-validation = true
-[language-server.yaml-language-server.config.yaml.format]
-enable = true
 
 [language-server.tinymist]
 command = "tinymist"
