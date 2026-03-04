@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
+      contents: write
     strategy:
       matrix:
         machine: [tjmaxxer, disko-elysium, msi-colgate]
@@ -22,12 +23,13 @@ jobs:
       - uses: cachix/install-nix-action@v31
       - name: Build ${{ matrix.machine }}
         run: |
-          nix build  --max-jobs 64 --max-substitution-jobs 64  --cores 0  \
-          --accept-flake-config \
-          .#nixosConfigurations.${{ matrix.machine }}.config.system.build.images.iso-installer
+          echo ${{ github.sha }} > Release.txt
+          # nix build  --max-jobs 64 --max-substitution-jobs 64  --cores 0  \
+          # --accept-flake-config \
+          # .#nixosConfigurations.${{ matrix.machine }}.config.system.build.images.iso-installer
       - name: Release
         uses: softprops/action-gh-release@v2
         # if: github.ref_type == 'tag'
         with:
-          files: result
+          files: Release-*
           prerelease: true
