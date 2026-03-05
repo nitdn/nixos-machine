@@ -23,6 +23,7 @@ in
     image.modules = lib.genAttrs [ "iso" "iso-installer" ] (_: {
       imports = [ nixosModules.vm ];
       boot.supportedFilesystems.zfs = lib.mkForce false;
+      isoImage.squashfsCompression = "zstd -Xcompression-level 3";
     });
     virtualisation.vmVariant = {
       imports = [ nixosModules.vm ];

@@ -6,10 +6,10 @@ on:
   workflow_dispatch:
 jobs:
   images:
-    name: "Build machines"
+    name: "Build machine images"
     runs-on: ubuntu-latest
     permissions:
-      pull-requests: write
+      contents: write
     strategy:
       matrix:
         machine: [tjmaxxer, disko-elysium, msi-colgate]
@@ -21,12 +21,14 @@ jobs:
       - uses: actions/checkout@v6
       - uses: cachix/install-nix-action@v31
       - name: Build ${{ matrix.machine }}
+        id: build-iso
         run: |
           nix build  --max-jobs 64 --max-substitution-jobs 64  --cores 0  \
-          --accept-flake-config --out-link installer-${{ matrix.machine }}.iso \
+          --accept-flake-config --out-link installer-${{ matrix.machine }} \
           .#nixosConfigurations.${{ matrix.machine }}.config.system.build.images.iso-installer
+          ls installer-${{ matrix.machine }}/iso/*
       - name: Release
         uses: softprops/action-gh-release@v2
-        if: github.ref_type == 'tag'
         with:
-          files: installer-*
+          tag_name: trunk
+          files: installer-${{ matrix.machine }}/iso/*

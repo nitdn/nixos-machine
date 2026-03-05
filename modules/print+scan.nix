@@ -30,6 +30,7 @@
 
       hardware.sane.enable = true;
       services.ipp-usb.enable = true;
+      hardware.sane.openFirewall = true;
       hardware.sane.extraBackends = [
         pkgs.sane-airscan
       ];
