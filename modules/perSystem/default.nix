@@ -61,11 +61,16 @@ in
           jj squash
           jj git push -c @- --remote flake-mirror
         '';
+        push-pr = ''
+          revset="''${1:-@-}"
+          change_id=$(jj log -r "$revset"  -T "change_id.short()" --no-graph)
+          gh pr create --head push-"$change_id" --fill
+        '';
         push-new = ''
           jj commit
           change_id=$(jj log -r @-  -T "change_id.short()" --no-graph)
-          push-ci
-          gh pr create --head push-"$change_id" --fill
+          jj git push -c @- --remote flake-mirror
+          push-pr "$change_id"
         '';
         push-main = ''
           jj bookmark set -r @- main
