@@ -9,14 +9,6 @@ jobs:
   tests:
     name: "Build packages"
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        package:
-          - .#bizhub-225i
-          - .#epson-l3212
-          - .#naps2-wrapped
-          - .#quickshell-cached
-          - .#devShells.x86_64-linux.default
     steps:
       - name: Generate a token
         id: generate-token
@@ -42,4 +34,4 @@ jobs:
       - name: Build ${{ matrix.package }}
         run: |
           nix build --max-jobs 4 --cores 0 --print-build-logs \
-          ${{ matrix.package }}
+          {.#bizhub-225i,.#epson-l3212,.#naps2-wrapped,.#quickshell-cached,.#devShells.x86_64-linux.default}
