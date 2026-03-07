@@ -124,10 +124,16 @@ in
       ];
       wrappers.helix.pc.extraFiles = [
         {
-          name = "themes/matugen.toml";
-          file.path = ./helix/matugen.toml;
+          name = "themes/matugen_dark.toml";
+          file.path = ./helix/matugen_dark.toml;
+        }
+        {
+          name = "themes/matugen_light.toml";
+          file.path = ./helix/matugen_light.toml;
         }
       ];
+      wrappers.helix.pc.settings.theme = "matugen_dark";
+      wrappers.helix.work.settings.theme = lib.mkForce "matugen_light";
       wrappers.kitty.pc.extraSettings =
         lib.strings.concatMapStringsSep "\n" (dmsPath: "include /home/${user}/.config/kitty/${dmsPath}")
           [
