@@ -32,19 +32,7 @@ jobs:
           # If you chose API tokens for write access OR if you have a private cache
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
       - name: Check flakes
+        shell: nix shell github:Mic92/nix-fast-build --command bash --noprofile --norc -eo pipefail {0}
         run: |
-          nix flake check \
-          --accept-flake-config \
-          --no-allow-import-from-derivation \
-          --max-jobs 4 --cores 0
-          echo '### Eval times:' >> "$GITHUB_STEP_SUMMARY"
-          echo '```' >> "$GITHUB_STEP_SUMMARY"
-          /usr/bin/time --output="$GITHUB_STEP_SUMMARY" --append \
-          nix eval \
-          .#nixosConfigurations.disko-elysium.config.system.build.toplevel \
-           --substituters " " \
-           --option eval-cache false --json --read-only \
-          --accept-flake-config \
-          --no-allow-import-from-derivation \
-          --max-jobs 4 --cores 0
-          echo '```' >> "$GITHUB_STEP_SUMMARY"
+          nix-fast-build --no-nom --skip-cached --cachix-cache machines \
+          --option allow-import-from-derivation false

@@ -31,7 +31,7 @@ jobs:
           signingKey: "${{ secrets.CACHIX_SIGNING_KEY }}"
           # If you chose API tokens for write access OR if you have a private cache
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
-      - name: Build ${{ matrix.package }}
+      - name: Build packages
         run: |
           nix build --max-jobs 4 --cores 0 --print-build-logs \
           {.#bizhub-225i,.#epson-l3212,.#naps2-wrapped,.#quickshell-cached,.#devShells.x86_64-linux.default}

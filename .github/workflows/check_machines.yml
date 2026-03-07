@@ -11,14 +11,10 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
-    # strategy:
-    #   matrix:
-    #     machine: [tjmaxxer, disko-elysium, msi-colgate]
+    strategy:
+      matrix:
+        machine: [tjmaxxer, disko-elysium, msi-colgate]
     steps:
-      # - name: Maximize Runner Space
-      #   uses: justinthelaw/maximize-github-runner-space@master
-      #   with:
-      #     remove-android: "true"
       - name: Generate a token
         id: generate-token
         uses: actions/create-github-app-token@v2
@@ -41,10 +37,12 @@ jobs:
           # If you chose API tokens for write access OR if you have a private cache
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
       - run: cachix use nix-community
-      - name: Build machines
+      - name: Build machine ${{ matrix.machine }}
         shell: nix shell github:Mic92/nix-fast-build --command bash --noprofile --norc -eo pipefail {0}
         run: |
-          for machine in tjmaxxer disko-elysium msi-colgate; do
-            nix-fast-build --no-nom --skip-cached --cachix-cache machines \
-            --flake=.#nixosConfigurations."${machine}".config.system.build.toplevel
-          done
+          nix-fast-build --no-nom --skip-cached --cachix-cache machines \
+          --flake=.#nixosConfigurations.${{ matrix.machine }}.config.system.build.toplevel
+        # for machine in tjmaxxer disko-elysium msi-colgate; do
+        #   nix-fast-build --no-nom --skip-cached --cachix-cache machines \
+        #   --flake=.#nixosConfigurations."${machine}".config.system.build.toplevel
+        # done

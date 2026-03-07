@@ -36,7 +36,7 @@ in
         throttle = ''
           systemd-inhibit --what=sleep:shutdown \
           systemd-run --user --scope \
-          --property=MemoryMax=4G --property=CPUQuota=50% \
+          --property=MemoryMax=8G \
           --property=CPUWeight=500 "$@"'';
         gc = ''
           ${scripts.throttle} nh clean all --keep-since 7d
@@ -50,7 +50,8 @@ in
           --license="GPL-3.0-or-later" "$@"
         '';
         upgrade-elysium = ''
-          sudo ${pkgs.efibootmgr}/bin/efibootmgr -o 0001,2001,3001 # Fixes the issue with mangled UEFI
+          nix run github:Mic92/nix-fast-build -- \
+          --flake=.#nixosConfigurations.disko-elysium.config.system.build.toplevel
           ${scripts.throttle} nh os switch .
         '';
         fetch = ''
