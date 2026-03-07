@@ -11,9 +11,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
-    strategy:
-      matrix:
-        machine: [tjmaxxer, disko-elysium, msi-colgate]
     steps:
       - name: Generate a token
         id: generate-token
@@ -37,12 +34,10 @@ jobs:
           # If you chose API tokens for write access OR if you have a private cache
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
       - run: cachix use nix-community
-      - name: Build machine ${{ matrix.machine }}
+      - name: Build machines
         shell: nix shell github:Mic92/nix-fast-build --command bash --noprofile --norc -eo pipefail {0}
         run: |
-          nix-fast-build --no-nom --skip-cached --cachix-cache machines \
-          --flake=.#nixosConfigurations.${{ matrix.machine }}.config.system.build.toplevel
-        # for machine in tjmaxxer disko-elysium msi-colgate; do
-        #   nix-fast-build --no-nom --skip-cached --cachix-cache machines \
-        #   --flake=.#nixosConfigurations."${machine}".config.system.build.toplevel
-        # done
+          for machine in tjmaxxer disko-elysium msi-colgate; do
+            nix-fast-build --no-nom --skip-cached --cachix-cache machines \
+            --flake=.#nixosConfigurations."${machine}".config.system.build.toplevel
+          done
