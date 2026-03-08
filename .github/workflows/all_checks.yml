@@ -9,20 +9,15 @@ jobs:
   # in the calling workflow, you can reference them even if
   # they are not explicitly defined in the on key. For more
   # information, see Workflow syntax for GitHub Actions.
+  check_machines:
+    uses: ./.github/workflows/check_machines.yml
+    secrets: inherit
   check_flake:
     uses: ./.github/workflows/check_flake.yml
     secrets: inherit
-  check_machines:
-    uses: ./.github/workflows/check_machines.yml
-    permissions:
-      pull-requests: write
-    secrets: inherit
-  check_packages:
-    uses: ./.github/workflows/check_packages.yml
-    secrets: inherit
   all_checks:
-    needs: [check_flake, check_machines, check_packages]
-    runs-on: ubuntu-latest
+    needs: [check_machines, check_flake]
+    runs-on: ubuntu-slim
     steps:
       # FIXME: One day github actions will not be atrocious
       # and we will not have to do this anymore

@@ -9,24 +9,10 @@ jobs:
   tests:
     name: "Build machines"
     runs-on: ubuntu-latest
-    permissions:
-      pull-requests: write
     steps:
-      - name: Generate a token
-        id: generate-token
-        uses: actions/create-github-app-token@v2
-        with:
-          app-id: ${{ vars.APP_ID }}
-          private-key: ${{ secrets.APP_PRIVATE_KEY }}
       - uses: actions/checkout@v6
-        with:
-          # NOTE: Needs token for running actions
-          token: ${{ steps.generate-token.outputs.token }}
-          persist-credentials: false
       - uses: cachix/install-nix-action@v31
-        with:
-          github_access_token: ${{ steps.generate-token.outputs.token }}
-      - uses: cachix/cachix-action@3ba601ff5bbb07c7220846facfa2cd81eeee15a1
+      - uses: cachix/cachix-action@bea8a506457e59a062336709ee10a5677fd9a59e
         with:
           name: machines
           # If you chose signing key for write access
