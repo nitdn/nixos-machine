@@ -50,9 +50,8 @@ in
           --license="GPL-3.0-or-later" "$@"
         '';
         upgrade-elysium = ''
-          nix run github:Mic92/nix-fast-build -- \
-          --flake=.#nixosConfigurations.disko-elysium.config.system.build.toplevel
-          ${scripts.throttle} nh os switch .
+          nix run github:Mic92/nix-fast-build -- --flake=.#nixosConfigurations.disko-elysium.config.system.build.toplevel
+          nh os switch .
         '';
         fetch = ''
           jj git fetch --remote flake-mirror
