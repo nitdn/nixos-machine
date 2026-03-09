@@ -71,6 +71,7 @@ in
           OBS_VKCAPTURE = true;
           RADV_TEX_ANISO = 16;
         };
+        extraArgs = "-system-composer";
       };
       sops.secrets.steam-web-apiKey = {
         owner = username;
