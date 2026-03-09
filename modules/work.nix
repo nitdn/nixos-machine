@@ -23,6 +23,7 @@
         pkgs.hunspellDicts.en-gb-large
         pkgs.libreoffice-qt6-fresh
         pkgs.logseq
+        pkgs.zathura
         pkgs.onlyoffice-desktopeditors
         (pkgs.writeShellApplication {
           name = "affinity-fix";

@@ -86,6 +86,10 @@
       url = "github:AvengeMedia/dms-plugins?dir=DankLauncherKeys";
       flake = false;
     };
+    emojiLauncher = {
+      url = "github:devnullvoid/dms-emoji-launcher";
+      flake = false;
+    };
     matugen-themes = {
       url = "github:InioX/matugen-themes?dir=templates";
       flake = false;

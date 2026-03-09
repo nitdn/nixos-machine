@@ -20,14 +20,18 @@ in
         input_path = "${inputs.matugen-themes}/helix.toml";
         output_path = "/home/${user}/.config/helix/themes/matugen.toml";
       };
-      helixTemplate = (pkgs.formats.toml { }).generate "matugen/config.toml" matugen;
+      matugen.templates.zathura = {
+        input_path = "${inputs.matugen-themes}/zathura-colors";
+        output_path = "/home/${user}/.config/zathura/zathurarc";
+      };
+      matugenTemplate = (pkgs.formats.toml { }).generate "matugen/config.toml" matugen;
     in
     {
       houses.users = {
         ssmvabaa.files = [
           {
             type = "symlink";
-            source = helixTemplate;
+            source = matugenTemplate;
             target = ".config/matugen/config.toml";
           }
         ];
@@ -45,15 +49,16 @@ in
         enableDynamicTheming = true; # Wallpaper-based theming (matugen)
         enableAudioWavelength = true; # Audio visualizer (cava)
         enableCalendarEvents = true; # Calendar integration (khal)
-        plugins.DankKDEConnect = {
-          enable = true;
-          src = inputs.DankKDEConnect;
-        };
-        plugins.DankLauncherKeys = {
-          enable = true;
-          src = inputs.DankLauncherKeys;
-        };
-
+        plugins =
+          lib.genAttrs
+            [
+              "DankKDEConnect"
+              "DankLauncherKeys"
+              "emojiLauncher"
+            ]
+            (name: {
+              src = inputs.${name};
+            });
       };
       programs.dsearch.enable = true;
       services.displayManager.gdm.enable = false;
