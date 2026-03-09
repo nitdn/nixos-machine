@@ -26,14 +26,15 @@ in
         enable = true;
         remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
         dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-        package = pkgs.steam.override {
-          extraEnv = {
-            # MANGOHUD = true; maybe too dangerous to enable by default
-            OBS_VKCAPTURE = true;
-            RADV_TEX_ANISO = 16;
-          };
-          extraArgs = "-system-composer";
-        };
+        package = lib.mkDefault (
+          pkgs.steam.override {
+            extraEnv = {
+              MANGOHUD = true;
+              OBS_VKCAPTURE = true;
+              RADV_TEX_ANISO = 16;
+            };
+          }
+        );
       };
       programs.gamemode.enable = true;
       programs.obs-studio = {
@@ -64,6 +65,13 @@ in
     {
       imports = [ inputs.steam-presence.nixosModules.steam-presence ];
 
+      programs.steam.package = pkgs.steam.override {
+        extraEnv = {
+          MANGOHUD = true;
+          OBS_VKCAPTURE = true;
+          RADV_TEX_ANISO = 16;
+        };
+      };
       sops.secrets.steam-web-apiKey = {
         owner = username;
       };
