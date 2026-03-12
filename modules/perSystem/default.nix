@@ -32,70 +32,6 @@ in
         pkgs.makeWrapper
         pkgs.libtiff.out
       ];
-      scripts = {
-        throttle = ''
-          systemd-inhibit --what=sleep:shutdown \
-          systemd-run --user --scope \
-          --property=MemoryMax=8G \
-          --property=CPUWeight=500 "$@"'';
-        gc = ''
-          ${scripts.throttle} nh clean all --keep-since 7d
-        '';
-        home = ''
-          nh os switch .
-          nh home switch .
-        '';
-        license = ''
-          reuse annotate --copyright="Nitesh Kumar Debnath <nitkdnath@gmail.com>" \
-          --license="GPL-3.0-or-later" "$@"
-        '';
-        upgrade-elysium = ''
-          nix run github:Mic92/nix-fast-build -- --flake=.#nixosConfigurations.disko-elysium.config.system.build.toplevel
-          nh os switch .
-        '';
-        fetch = ''
-          jj git fetch --remote flake-mirror
-          jj rebase -r @ -d update_flake_lock_action@flake-mirror
-        '';
-        push-ci = ''
-          jj squash
-          jj git push -c @- --remote flake-mirror
-        '';
-        push-pr = ''
-          revset="''${1:-@-}"
-          change_id=$(jj log -r "$revset"  -T "change_id.short()" --no-graph)
-          gh pr create --head push-"$change_id" --fill
-        '';
-        push-new = ''
-          jj commit
-          change_id=$(jj log -r @-  -T "change_id.short()" --no-graph)
-          jj git push -c @- --remote flake-mirror
-          push-pr "$change_id"
-        '';
-        push-main = ''
-          jj bookmark set -r @- main
-          jj git push -r @- --remote flake-mirror --bookmark main
-          jj git push -r @- --remote origin
-        '';
-        pwget = ''
-          sops decrypt --extract "['$1']['password']" secrets/core.yaml
-        '';
-        remote-test = ''
-          remote="''${1:-vps01}"
-          ${scripts.throttle} nixos-rebuild test --flake . \
-          --build-host root@"$remote" \
-          --target-host root@"$remote" \
-          --option max-jobs 4
-        '';
-        remote-build = ''
-          remote="''${1:-vps01}"
-          ${scripts.throttle} nixos-rebuild build --flake . \
-          --build-host root@"$remote" \
-          --target-host root@"$remote" \
-          --option max-jobs 4
-        '';
-      };
-      toPackage = name: text: pkgs.writeShellApplication { inherit name text; };
     in
     {
       _module.args.pkgs = import inputs.nixpkgs {
@@ -107,8 +43,8 @@ in
       };
 
       devShells.default = pkgs.mkShell {
+        inputsFrom = [ config.devShells.commands ];
         packages = [
-          (lib.mapAttrsToList toPackage scripts)
           config.packages.jujutsu-pc
           pkgs.bashInteractive
           pkgs.cloc
