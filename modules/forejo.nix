@@ -3,10 +3,25 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 { config, ... }:
+let
+  nixosModules = config.flake.modules.nixos;
+  inherit (config.meta) username;
+in
 {
+  flake.modules.nixos.podman = {
+    virtualisation = {
+      containers.enable = true;
+      podman = {
+        enable = true;
+        dockerCompat = true;
+        defaultNetwork.settings.dns_enabled = true; # Required for containers under podman-compose to be able to talk to each other.
+      };
+    };
+  };
   flake.modules.nixos.vps =
     { pkgs, config, ... }:
     {
+      imports = [ nixosModules.podman ];
       services.gitea-actions-runner = {
         package = pkgs.forgejo-runner;
         instances.codeberg-vps01 = {
@@ -24,16 +39,18 @@
           };
         };
       };
-      virtualisation.docker.enable = true;
       sops.secrets.forgejo-runner-token = { };
     };
   flake.modules.nixos.pc =
     { pkgs, ... }:
     {
-      virtualisation.podman = {
-        enable = true;
-        dockerCompat = true;
+      imports = [ nixosModules.podman ];
+      users.users.${username} = {
+        extraGroups = [
+          "podman"
+        ];
       };
+
       environment.systemPackages = [ pkgs.distrobox ];
     };
   perSystem =

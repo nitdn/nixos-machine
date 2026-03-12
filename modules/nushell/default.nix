@@ -10,6 +10,23 @@
 }:
 let
   inherit (inputs) wrappers;
+  zoxide_completer = /* nu */ ''
+    def "nu-complete zoxide path" [context: string] {
+        let parts = $context | split row " " | skip 1
+        {
+          options: {
+            sort: false,
+            completion_algorithm: substring,
+            case_sensitive: false,
+          },
+          completions: (^zoxide query --list --exclude $env.PWD -- ...$parts | lines),
+        }
+      }
+
+    def --env --wrapped z [...rest: string@"nu-complete zoxide path"] {
+      __zoxide_z ...$rest
+    }
+  '';
   staticModules = [
     "${wrappers}/modules/nushell/module.nix"
     "${wrappers}/lib/modules/wrapper.nix"
@@ -24,7 +41,6 @@ let
         };
         config."config.nu".content = ''
           ${config.extraConfig}
-          source ${./config.nu}
         '';
       }
     )
@@ -45,39 +61,23 @@ in
     }
   );
   config.perSystem =
-    { pkgs, config, ... }:
+    { pkgs, ... }:
     let
-      inherit (config) packages;
-    in
-    {
-      packages.zoxide-nushell =
+      zoxide-nushell =
         pkgs.runCommand "zoxide-nushell-integration"
           {
             nativeBuildInputs = [ pkgs.zoxide ];
           }
           ''
             zoxide init nushell > $out
-            echo ${lib.strings.escapeShellArg ''
-              def "nu-complete zoxide path" [context: string] {
-                  let parts = $context | split row " " | skip 1
-                  {
-                    options: {
-                      sort: false,
-                      completion_algorithm: substring,
-                      case_sensitive: false,
-                    },
-                    completions: (^zoxide query --list --exclude $env.PWD -- ...$parts | lines),
-                  }
-                }
-
-              def --env --wrapped z [...rest: string@"nu-complete zoxide path"] {
-                __zoxide_z ...$rest
-              }
-            ''} >> $out
+            echo ${lib.strings.escapeShellArg zoxide_completer} >> $out
           '';
+    in
+    {
       wrappers.kitty.pc.settings.shell = "nu";
       wrappers.nushell.pc.extraConfig = ''
-        source ${packages.zoxide-nushell}
+        source ${zoxide-nushell}
+        source $"($nu.cache-dir)/carapace.nu"
       '';
     };
   config.flake.modules.nixos.pc = moduleWithSystem (
