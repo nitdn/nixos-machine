@@ -52,7 +52,7 @@ let
         nh os switch .
     }
 
-    def main [] { }
+    def main [] { help main }
   '';
 in
 {
