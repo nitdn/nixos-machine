@@ -82,7 +82,7 @@
     { pkgs, config, ... }:
     let
       # Define the settings format used for this program
-      generator = inputs.home-manager.lib.hm.generators.toKDL { };
+      generator = (import "${inputs.home-manager-lib}/generators.nix" { inherit lib; }).toKDL { };
       niriConfigWithoutIncludes =
         (generator config.niri.settings)
         + ''include "${pkgs.writeText "niri-extraConfig" config.niri.extraConfig}"'';

@@ -37,9 +37,6 @@ in
       _module.args.pkgs = import inputs.nixpkgs {
         inherit system;
         config.allowUnfreePredicate = pkg: lib.elem (lib.getName pkg) meta.unfreeNames;
-        overlays = [
-          inputs.nix-on-droid.overlays.default
-        ];
       };
 
       devShells.default = pkgs.mkShell {

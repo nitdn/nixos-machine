@@ -50,22 +50,22 @@
         pkgs.openssl
       ];
 
-      services.authentik = {
-        # other authentik options as in the example configuration at the top
-        enable = true;
-        # The environmentFile needs to be on the target host!
-        # Best use something like sops-nix or agenix to manage it
-        environmentFile = config.sops.secrets.authentik-env.path;
-        settings = {
-          disable_startup_analytics = true;
-          avatars = "initials";
-        };
-        nginx = {
-          enable = true;
-          enableACME = true;
-          host = "auth.${domain_name}";
-        };
-      };
+      # services.authentik = {
+      #   # other authentik options as in the example configuration at the top
+      #   enable = true;
+      #   # The environmentFile needs to be on the target host!
+      #   # Best use something like sops-nix or agenix to manage it
+      #   environmentFile = config.sops.secrets.authentik-env.path;
+      #   settings = {
+      #     disable_startup_analytics = true;
+      #     avatars = "initials";
+      #   };
+      #   nginx = {
+      #     enable = true;
+      #     enableACME = true;
+      #     host = "auth.${domain_name}";
+      #   };
+      # };
 
       sops.secrets.authentik-env = {
         sopsFile = ../secrets/authentik.env;

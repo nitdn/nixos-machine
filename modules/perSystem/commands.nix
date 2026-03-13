@@ -45,7 +45,7 @@ let
         reuse annotate
         --copyright="Nitesh Kumar Debnath <nitkdnath@gmail.com>"
         --license="GPL-3.0-or-later" ...$args
-    )} 
+    )}
 
     def "main upgrade" [ machine: string ] {
         nix run github:Mic92/nix-fast-build -- --flake=.#nixosConfigurations.($machine).config.system.build.toplevel
@@ -59,7 +59,27 @@ in
   perSystem =
     { pkgs, ... }:
     let
-      command_package = pkgs.writers.writeNuBin "run" command_string;
+      command_package =
+        pkgs.writers.writeNuBin "run"
+          {
+          }
+          (
+            command_string
+            + ''
+              def "main eval" [hostname: string=tjmaxxer] {(
+                time nix eval .#nixosConfigurations.($hostname).config.system.build.toplevel
+                --substituters " " --no-eval-cache --read-only
+              )}
+
+              def "main eval profiler" [hostname: string=tjmaxxer] {
+                 (nix eval .#nixosConfigurations.($hostname).config.system.build.toplevel
+                  --impure --eval-profiler flamegraph --eval-profiler-frequency 9999)
+                 (${pkgs.inferno}/bin/inferno-flamegraph
+                  --width 10000 nix.profile o> result-($hostname).svg)
+                 zen result-($hostname).svg
+              }
+            ''
+          );
     in
     {
       devShells.commands = pkgs.mkShell {

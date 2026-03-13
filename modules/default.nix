@@ -72,7 +72,6 @@ in
     vps = {
       imports = [
         inputs.sops-nix.nixosModules.sops
-        inputs.authentik-nix.nixosModules.default
       ];
     };
   };

@@ -12,18 +12,9 @@
       url = "github:youwen5/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-on-droid = {
-      url = "github:nix-community/nix-on-droid/release-24.05";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        nixpkgs-docs.follows = "nixpkgs";
-        home-manager.follows = "home-manager";
-        nixpkgs-for-bootstrap.follows = "nixpkgs";
-      };
-    };
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
+    home-manager-lib = {
+      url = "github:nix-community/home-manager?dir=modules/lib";
+      flake = false;
     };
     wrappers = {
       url = "github:lassulus/wrappers";
@@ -46,13 +37,13 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    authentik-nix = {
-      url = "github:nix-community/authentik-nix";
-      ## optional overrides. Note that using a different version of nixpkgs
-      # can cause issues, especially with python dependencies
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-parts.follows = "flake-parts";
-    };
+    # authentik-nix = {
+    #   url = "github:nix-community/authentik-nix";
+    #   ## optional overrides. Note that using a different version of nixpkgs
+    #   # can cause issues, especially with python dependencies
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    #   inputs.flake-parts.follows = "flake-parts";
+    # };
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -60,14 +51,15 @@
     affinity-nix = {
       url = "github:mrshmllow/affinity-nix";
       inputs.nixpkgs.follows = "nixpkgs";
-      # inputs.nixpkgs-wine.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
       inputs.treefmt-nix.follows = "treefmt-nix";
-      # inputs.git-hooks.inputs.nixpkgs.follows = "nixpkgs";
-      inputs.git-hooks.inputs.flake-compat.follows = "affinity-nix/flake-compat";
+      inputs.flake-compat.follows = "";
+      inputs.git-hooks.inputs.nixpkgs.follows = "";
+      inputs.git-hooks.inputs.gitignore.follows = "";
+      inputs.git-hooks.inputs.flake-compat.follows = "";
     };
     quickshell = {
-      url = "git+https://git.outfoxxed.me/quickshell/quickshell";
+      url = "https://git.outfoxxed.me/quickshell/quickshell/archive/master.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     bizhub-225i = {
