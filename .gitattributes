@@ -4,4 +4,5 @@
 
 /flake.lock linguist-generated=true
 facter.json linguist-generated=true
+_sources/* linguist-generated=true
 *.layout.json linguist-generated=true

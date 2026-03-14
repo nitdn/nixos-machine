@@ -3,13 +3,11 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 {
-  inputs,
   lib,
   flake-parts-lib,
   ...
 }:
 let
-  inherit (inputs) wrappers;
   wlr-wrapper =
     { config, wlib, ... }:
     let
@@ -45,11 +43,6 @@ let
         "${config.configFile.path}"
       ];
     };
-  staticModules = [
-    wlr-wrapper
-    "${wrappers}/lib/modules/wrapper.nix"
-    "${wrappers}/lib/modules/meta.nix"
-  ];
 in
 {
   options.perSystem = flake-parts-lib.mkPerSystemOption (
@@ -63,7 +56,10 @@ in
       options.wrappers.wlr-which-key = lib.mkOption {
         description = "wlr-which-key wrapper options";
         type = attrsOf (deferredModuleWith {
-          inherit staticModules;
+          staticModules = [
+            wlr-wrapper
+          ]
+          ++ config.wrapperModules;
         });
       };
       config.wrappers.wlr-which-key.wrapped.imports = [ ];

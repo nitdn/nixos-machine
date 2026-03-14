@@ -5,7 +5,7 @@
 {
   lib,
   stdenv,
-  epson-202101w,
+  src,
   rpmextract,
   autoreconfHook,
   file,
@@ -21,7 +21,7 @@ stdenv.mkDerivation {
   pname = "epson-202101w";
   inherit version;
 
-  src = epson-202101w;
+  inherit src;
 
   nativeBuildInputs = [
     rpmextract

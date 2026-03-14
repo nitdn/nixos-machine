@@ -9,18 +9,26 @@
   flake-parts-lib,
   ...
 }:
+let
+  inherit (inputs) wrappers;
+  inherit (lib.types)
+    listOf
+    attrsOf
+    submodule
+    deferredModule
+    deferredModuleWith
+    ;
+  modules = [
+    "kitty"
+    "jujutsu"
+    "helix"
+  ];
+in
 {
 
   options.perSystem = flake-parts-lib.mkPerSystemOption (
-    _:
+    { config, ... }:
     let
-      modules = [
-        "kitty"
-        "jujutsu"
-        "helix"
-      ];
-      inherit (inputs) wrappers;
-      inherit (lib.types) attrsOf submodule deferredModuleWith;
       mkWrapperOption =
         moduleName:
         lib.mkOption {
@@ -30,17 +38,22 @@
             staticModules = [
               # { pkgs = lib.mkDefault pkgs; }
               "${wrappers}/modules/${moduleName}/module.nix"
-              "${wrappers}/lib/modules/wrapper.nix"
-              "${wrappers}/lib/modules/meta.nix"
-            ];
+            ]
+            ++ config.wrapperModules;
           });
         };
+      wrapperModules = lib.mkOption {
+        type = listOf deferredModule;
+      };
     in
     {
-      options.wrappers = lib.mkOption {
-        description = "Wrappers from lassulus/wrappers";
-        type = submodule {
-          options = lib.genAttrs modules mkWrapperOption;
+      options = {
+        inherit wrapperModules;
+        wrappers = lib.mkOption {
+          description = "Wrappers from lassulus/wrappers";
+          type = submodule {
+            options = lib.genAttrs modules mkWrapperOption;
+          };
         };
       };
     }
@@ -71,5 +84,9 @@
     in
     {
       inherit packages;
+      wrapperModules = [
+        "${inputs.wrappers}/lib/modules/wrapper.nix"
+        "${inputs.wrappers}/lib/modules/meta.nix"
+      ];
     };
 }

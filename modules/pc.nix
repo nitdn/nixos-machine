@@ -166,7 +166,6 @@ in
       ];
       environment.systemPackages = [
         pkgs.via
-        pkgs.nixpkgs-manual
       ];
 
       programs.nh = {

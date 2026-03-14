@@ -27,27 +27,10 @@ let
       __zoxide_z ...$rest
     }
   '';
-  staticModules = [
-    "${wrappers}/modules/nushell/module.nix"
-    "${wrappers}/lib/modules/wrapper.nix"
-    "${wrappers}/lib/modules/meta.nix"
-    (
-      { config, ... }:
-      {
-        options.extraConfig = lib.mkOption {
-          description = "Nushell config";
-          type = lib.types.lines;
-          default = "";
-        };
-        config."config.nu".content = ''
-          ${config.extraConfig}
-        '';
-      }
-    )
-  ];
 in
 {
   options.perSystem = flake-parts-lib.mkPerSystemOption (
+    { config, ... }:
     let
       inherit (lib.types) attrsOf deferredModuleWith;
     in
@@ -55,7 +38,22 @@ in
       options.wrappers.nushell = lib.mkOption {
         description = "Nushell wrapper options";
         type = attrsOf (deferredModuleWith {
-          inherit staticModules;
+          staticModules = config.wrapperModules ++ [
+            "${wrappers}/modules/nushell/module.nix"
+            (
+              { config, ... }:
+              {
+                options.extraConfig = lib.mkOption {
+                  description = "Nushell config";
+                  type = lib.types.lines;
+                  default = "";
+                };
+                config."config.nu".content = ''
+                  ${config.extraConfig}
+                '';
+              }
+            )
+          ];
         });
       };
     }
@@ -72,12 +70,20 @@ in
             zoxide init nushell > $out
             echo ${lib.strings.escapeShellArg zoxide_completer} >> $out
           '';
+      carapace-nushell =
+        pkgs.runCommand "carapace-nushell-integration"
+          {
+            nativeBuildInputs = [ pkgs.carapace ];
+          }
+          ''
+            carapace _carapace nushell > $out
+          '';
     in
     {
       wrappers.kitty.pc.settings.shell = "nu";
       wrappers.nushell.pc.extraConfig = ''
         source ${zoxide-nushell}
-        source $"($nu.cache-dir)/carapace.nu"
+        source ${carapace-nushell}
       '';
     };
   config.flake.modules.nixos.pc = moduleWithSystem (

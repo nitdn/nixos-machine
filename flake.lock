@@ -1,41 +1,5 @@
 {
   "nodes": {
-    "DankKDEConnect": {
-      "flake": false,
-      "locked": {
-        "dir": "DankKDEConnect",
-        "lastModified": 1771958934,
-        "narHash": "sha256-/155wFIotV9xiZzX9XRGs3ANjBcLJwS4kNDDNO6WkF0=",
-        "owner": "AvengeMedia",
-        "repo": "dms-plugins",
-        "rev": "141841fc85e01494df6d217bd5a27c65da87256d",
-        "type": "github"
-      },
-      "original": {
-        "dir": "DankKDEConnect",
-        "owner": "AvengeMedia",
-        "repo": "dms-plugins",
-        "type": "github"
-      }
-    },
-    "DankLauncherKeys": {
-      "flake": false,
-      "locked": {
-        "dir": "DankLauncherKeys",
-        "lastModified": 1771958934,
-        "narHash": "sha256-/155wFIotV9xiZzX9XRGs3ANjBcLJwS4kNDDNO6WkF0=",
-        "owner": "AvengeMedia",
-        "repo": "dms-plugins",
-        "rev": "141841fc85e01494df6d217bd5a27c65da87256d",
-        "type": "github"
-      },
-      "original": {
-        "dir": "DankLauncherKeys",
-        "owner": "AvengeMedia",
-        "repo": "dms-plugins",
-        "type": "github"
-      }
-    },
     "affinity-nix": {
       "inputs": {
         "elemental-wine-source": "elemental-wine-source",
@@ -66,19 +30,6 @@
         "owner": "mrshmllow",
         "repo": "affinity-nix",
         "type": "github"
-      }
-    },
-    "bizhub-225i": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1695231418,
-        "narHash": "sha256-urrs4DUFz3KFvX7G0xFLHauijlxNLa2evpPhYzbA8fU=",
-        "type": "tarball",
-        "url": "https://public.integration.yamayuri.kiku8101.com/publicdownload/download?fileId=B2C0B6D9-C563-4377-B77B-33BBAC4A5EC8"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://public.integration.yamayuri.kiku8101.com/publicdownload/download?fileId=B2C0B6D9-C563-4377-B77B-33BBAC4A5EC8"
       }
     },
     "disko": {
@@ -118,34 +69,6 @@
         "ref": "affinity-photo3-wine9.13-part3",
         "repo": "wine",
         "type": "gitlab"
-      }
-    },
-    "emojiLauncher": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1772404513,
-        "narHash": "sha256-5VpvUbFeatfuGdnUlNa5FB78R4dN1Zw9r/uWpUxHHfU=",
-        "owner": "devnullvoid",
-        "repo": "dms-emoji-launcher",
-        "rev": "cb5a2ae79084f84890135005ed2e60567307e690",
-        "type": "github"
-      },
-      "original": {
-        "owner": "devnullvoid",
-        "repo": "dms-emoji-launcher",
-        "type": "github"
-      }
-    },
-    "epson-202101w": {
-      "flake": false,
-      "locked": {
-        "narHash": "sha256-mr0rrlB4IWR0jq/PzeHLW5lO8u5rut1RU0MVUMfwXsM=",
-        "type": "file",
-        "url": "https://download-center.epson.com/f/module/c863d6cc-2e0c-48f5-8a70-b2c3843c647a/epson-inkjet-printer-202101w-1.0.2-1.src.rpm"
-      },
-      "original": {
-        "type": "file",
-        "url": "https://download-center.epson.com/f/module/c863d6cc-2e0c-48f5-8a70-b2c3843c647a/epson-inkjet-printer-202101w-1.0.2-1.src.rpm"
       }
     },
     "flake-parts": {
@@ -219,24 +142,6 @@
         "dir": "modules/lib",
         "owner": "nix-community",
         "repo": "home-manager",
-        "type": "github"
-      }
-    },
-    "matugen-themes": {
-      "flake": false,
-      "locked": {
-        "dir": "templates",
-        "lastModified": 1773080387,
-        "narHash": "sha256-MwS46euT8AjGyst3/P88LEq567wbb3ILAcDRX28CrRM=",
-        "owner": "InioX",
-        "repo": "matugen-themes",
-        "rev": "e213a4ce7da91c69af91e1152390bf5cca346636",
-        "type": "github"
-      },
-      "original": {
-        "dir": "templates",
-        "owner": "InioX",
-        "repo": "matugen-themes",
         "type": "github"
       }
     },
@@ -352,16 +257,10 @@
     },
     "root": {
       "inputs": {
-        "DankKDEConnect": "DankKDEConnect",
-        "DankLauncherKeys": "DankLauncherKeys",
         "affinity-nix": "affinity-nix",
-        "bizhub-225i": "bizhub-225i",
         "disko": "disko",
-        "emojiLauncher": "emojiLauncher",
-        "epson-202101w": "epson-202101w",
         "flake-parts": "flake-parts",
         "home-manager-lib": "home-manager-lib",
-        "matugen-themes": "matugen-themes",
         "nix-index-database": "nix-index-database",
         "nixpkgs": "nixpkgs",
         "quickshell": "quickshell",

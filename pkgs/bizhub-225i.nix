@@ -7,8 +7,9 @@
   stdenv,
   cups,
   autoPatchelfHook,
-  bizhub-225i,
+  src,
   rpmextract,
+  unzip,
 }:
 let
   cpu = stdenv.hostPlatform.linuxArch;
@@ -18,6 +19,7 @@ stdenv.mkDerivation {
   pname = "konica-bizhub-225i";
   version = "2.0.1";
   nativeBuildInputs = [
+    unzip
     rpmextract
     autoPatchelfHook
   ];
@@ -25,20 +27,20 @@ stdenv.mkDerivation {
     cups
   ];
 
-  src = bizhub-225i;
+  inherit src;
 
-  unpackPhase = ''
-    rpmextract $src/For_${cpu}/konica-minolta-245igdi-cups-2.01-0.${cpu}.rpm
-    for ppd in usr/share/cups/model/KonicaMinolta/*; do
-      substituteInPlace $ppd --replace-fail "/usr" $out
-      substituteInPlace $ppd --replace "/cups/lib" "/lib/cups"
-    done
+  buildPhase = ''
+    rpmextract For_${cpu}/konica-minolta-245igdi-cups-2.01-0.${cpu}.rpm
+     for ppd in usr/share/cups/model/KonicaMinolta/*; do
+       substituteInPlace $ppd --replace-fail "/usr" $out
+     done
   '';
 
   installPhase = ''
     runHook preInstall
+    ls .
     cp -a usr/ $out/
-    cp -a $src/Readme/ $out/doc/
+    cp -a Readme/ $out/doc/
     runHook postInstall
   '';
   meta =

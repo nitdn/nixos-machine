@@ -24,6 +24,6 @@ jobs:
         shell: nix shell github:Mic92/nix-fast-build --command bash --noprofile --norc -eo pipefail {0}
         run: |
           for machine in tjmaxxer disko-elysium msi-colgate; do
-            nix-fast-build --no-nom --skip-cached --cachix-cache machines \
+            nix-fast-build --no-nom --skip-cached \
             --flake=.#nixosConfigurations."${machine}".config.system.build.toplevel
           done

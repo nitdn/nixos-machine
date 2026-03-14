@@ -1,0 +1,74 @@
+{
+    "bizhub-225i": {
+        "cargoLock": null,
+        "date": null,
+        "extract": null,
+        "name": "bizhub-225i",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "name": "bizhub-225i.zip",
+            "sha256": "sha256-iF3FVSqDsjs6i4xeDMsUSb+0woCJ5/1lq7R0fe+x/HU=",
+            "type": "url",
+            "url": "https://public.integration.yamayuri.kiku8101.com/publicdownload/download?fileId=B2C0B6D9-C563-4377-B77B-33BBAC4A5EC8"
+        },
+        "version": "2.0.1"
+    },
+    "dms-plugins": {
+        "cargoLock": null,
+        "date": "2026-02-24",
+        "extract": null,
+        "name": "dms-plugins",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "AvengeMedia",
+            "repo": "dms-plugins",
+            "rev": "141841fc85e01494df6d217bd5a27c65da87256d",
+            "sha256": "sha256-/155wFIotV9xiZzX9XRGs3ANjBcLJwS4kNDDNO6WkF0=",
+            "sparseCheckout": [],
+            "type": "github"
+        },
+        "version": "141841fc85e01494df6d217bd5a27c65da87256d"
+    },
+    "epson-202101w": {
+        "cargoLock": null,
+        "date": null,
+        "extract": null,
+        "name": "epson-202101w",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "name": null,
+            "sha256": "sha256-n0Ff2wfhPruYhzAH0GrhpYpkddiQ3rkYukvZyRgrn54=",
+            "type": "url",
+            "url": "https://download-center.epson.com/f/module/c863d6cc-2e0c-48f5-8a70-b2c3843c647a/epson-inkjet-printer-202101w-1.0.2-1.src.rpm"
+        },
+        "version": "1.0.2"
+    },
+    "matugen-themes": {
+        "cargoLock": null,
+        "date": "2026-03-09",
+        "extract": null,
+        "name": "matugen-themes",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "InioX",
+            "repo": "matugen-themes",
+            "rev": "e213a4ce7da91c69af91e1152390bf5cca346636",
+            "sha256": "sha256-MwS46euT8AjGyst3/P88LEq567wbb3ILAcDRX28CrRM=",
+            "sparseCheckout": [],
+            "type": "github"
+        },
+        "version": "e213a4ce7da91c69af91e1152390bf5cca346636"
+    }
+}

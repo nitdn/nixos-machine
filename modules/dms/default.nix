@@ -6,6 +6,7 @@
   inputs,
   config,
   lib,
+  getSystem,
   ...
 }:
 let
@@ -15,13 +16,16 @@ in
   flake.modules.nixos.dms =
     { pkgs, ... }:
     let
+      perSystem = getSystem pkgs.stdenv.hostPlatform.system;
+      inherit (perSystem.nvfetched) dms-plugins matugen-themes;
+      matugenThemes = "${matugen-themes.src}/templates";
       matugen.config = { };
       matugen.templates.helix = {
-        input_path = "${inputs.matugen-themes}/helix.toml";
+        input_path = "${matugenThemes}/helix.toml";
         output_path = "/home/${user}/.config/helix/themes/matugen.toml";
       };
       matugen.templates.zathura = {
-        input_path = "${inputs.matugen-themes}/zathura-colors";
+        input_path = "${matugenThemes}/zathura-colors";
         output_path = "/home/${user}/.config/zathura/zathurarc";
       };
       matugenTemplate = (pkgs.formats.toml { }).generate "matugen/config.toml" matugen;
@@ -57,7 +61,7 @@ in
               "emojiLauncher"
             ]
             (name: {
-              src = inputs.${name};
+              src = "${dms-plugins.src}/${name}";
             });
       };
       programs.dsearch.enable = true;

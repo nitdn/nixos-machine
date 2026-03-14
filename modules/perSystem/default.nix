@@ -32,6 +32,7 @@ in
         pkgs.makeWrapper
         pkgs.libtiff.out
       ];
+      inherit (config.nvfetched) bizhub-225i epson-202101w;
     in
     {
       _module.args.pkgs = import inputs.nixpkgs {
@@ -55,6 +56,7 @@ in
           pkgs.nil
           pkgs.nixd
           pkgs.nixfmt
+          pkgs.nvfetcher
           pkgs.pandoc
           pkgs.reuse
           pkgs.sops
@@ -68,10 +70,10 @@ in
       };
       packages = {
         bizhub-225i = pkgs.callPackage ../../pkgs/bizhub-225i.nix {
-          inherit (inputs) bizhub-225i;
+          inherit (bizhub-225i) src;
         };
         epson-l3212 = pkgs.callPackage ../../pkgs/epson-l3212.nix {
-          inherit (inputs) epson-202101w;
+          inherit (epson-202101w) src;
         };
         naps2-wrapped = pkgs.naps2.overrideAttrs (
           _finalAttrs: previousAttrs: {
@@ -122,6 +124,7 @@ in
         "secrets/*"
         ".sops.yaml"
         "**/facter.json"
+        "_**"
       ];
     };
 

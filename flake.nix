@@ -62,30 +62,6 @@
       url = "https://git.outfoxxed.me/quickshell/quickshell/archive/master.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    bizhub-225i = {
-      url = "tarball+https://public.integration.yamayuri.kiku8101.com/publicdownload/download?fileId=B2C0B6D9-C563-4377-B77B-33BBAC4A5EC8";
-      flake = false;
-    };
-    epson-202101w = {
-      url = "file+https://download-center.epson.com/f/module/c863d6cc-2e0c-48f5-8a70-b2c3843c647a/epson-inkjet-printer-202101w-1.0.2-1.src.rpm";
-      flake = false;
-    };
-    DankKDEConnect = {
-      url = "github:AvengeMedia/dms-plugins?dir=DankKDEConnect";
-      flake = false;
-    };
-    DankLauncherKeys = {
-      url = "github:AvengeMedia/dms-plugins?dir=DankLauncherKeys";
-      flake = false;
-    };
-    emojiLauncher = {
-      url = "github:devnullvoid/dms-emoji-launcher";
-      flake = false;
-    };
-    matugen-themes = {
-      url = "github:InioX/matugen-themes?dir=templates";
-      flake = false;
-    };
   };
 
   outputs =
