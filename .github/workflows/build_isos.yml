@@ -15,8 +15,7 @@ jobs:
       - uses: cachix/install-nix-action@v31
       - shell: nix shell github:Mic92/nix-fast-build --command bash --noprofile --norc -eo pipefail {0}
         run: |
-          nix-fast-build --no-nom --skip-cached \
-          --flake=.#nixosConfigurations.isoBootstrap.config.system\
+          nix build .#nixosConfigurations.isoBootstrap.config.system\
           .build.images.iso-installer
       - name: Release
         uses: softprops/action-gh-release@v2
