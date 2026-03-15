@@ -10,7 +10,7 @@
   ...
 }:
 let
-  user = config.meta.username;
+  inherit (config.meta) username;
 in
 {
   flake.modules.nixos.dms =
@@ -22,11 +22,11 @@ in
       matugen.config = { };
       matugen.templates.helix = {
         input_path = "${matugenThemes}/helix.toml";
-        output_path = "/home/${user}/.config/helix/themes/matugen.toml";
+        output_path = "/home/${username}/.config/helix/themes/matugen.toml";
       };
       matugen.templates.zathura = {
         input_path = "${matugenThemes}/zathura-colors";
-        output_path = "/home/${user}/.config/zathura/zathurarc";
+        output_path = "/home/${username}/.config/zathura/zathurarc";
       };
       matugenTemplate = (pkgs.formats.toml { }).generate "matugen/config.toml" matugen;
     in
@@ -86,7 +86,7 @@ in
           '';
         };
         # Sync your user's DankMaterialShell theme with the greeter. You'll probably want this
-        configHome = "/home/${user}";
+        configHome = "/home/${username}";
       };
       hardware.i2c.enable = true;
       programs.kdeconnect = {
@@ -144,7 +144,7 @@ in
       wrappers.helix.pc.settings.theme = "matugen_dark";
       wrappers.helix.work.settings.theme = lib.mkForce "matugen_light";
       wrappers.kitty.pc.extraSettings =
-        lib.strings.concatMapStringsSep "\n" (dmsPath: "include /home/${user}/.config/kitty/${dmsPath}")
+        lib.strings.concatMapStringsSep "\n" (dmsPath: "include /home/${username}/.config/kitty/${dmsPath}")
           [
             "dank-tabs.conf"
             "dank-theme.conf"

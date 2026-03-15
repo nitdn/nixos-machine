@@ -95,7 +95,6 @@
         flake = "git+https://codeberg.org/nitdn/nixos-machine.git";
         allowReboot = true;
       };
-      networking.hostName = "vps01";
 
       boot.loader.grub = {
         # no need to set devices, disko will add all devices that have a EF02 partition to the list already
@@ -103,15 +102,7 @@
         efiSupport = true;
         efiInstallAsRemovable = true;
       };
-      services.openssh.enable = true;
       time.timeZone = "Asia/Kolkata";
-
-      users.users.root.openssh.authorizedKeys.keys = [
-        # change this to your ssh key
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAbQpjuFSDUDRO1j6gvxqI+zGsm4nRtXGxRbup8uzR8E ssmvabaa@tjmaxxer"
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHFAs8o5K95ZQdqZQqXLhRvjfNHfC3RB5a/OLZKcBm7a nix-on-droid@localhost"
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBDcnwk3vUJDAzD4m28LZHUBju3Fb7J613R7FW4RtR4t ssmvabaa@msi-colgate"
-      ];
 
       # This will add secrets.yml to the nix store
       # You can avoid this by adding a string to the full path instead, i.e.

@@ -8,6 +8,7 @@
     modules = [
       config.flake.modules.nixos.vps
       {
+        config.networking.hostName = "vps01";
         config.hardware.facter.reportPath =
           if builtins.pathExists ./facter.json then
             ./facter.json

@@ -60,6 +60,25 @@ in
         pkgs.winetricks
       ];
     };
+  flake.modules.nixos.disko-elysium =
+    {
+      pkgs,
+      ...
+    }:
+    {
+      users.users.gaming = {
+        isNormalUser = true;
+        password = "gaming";
+      };
+      programs.steam.package = pkgs.steam.override {
+        extraEnv = {
+          MANGOHUD = true;
+          OBS_VKCAPTURE = true;
+          RADV_TEX_ANISO = 16;
+        };
+        extraArgs = "-system-composer";
+      };
+    };
   flake.modules.nixos.tjmaxxer =
     { pkgs, config, ... }:
     {
@@ -102,10 +121,4 @@ in
         # Other optional settings
       };
     };
-  flake.modules.nixos.disko-elysium = {
-    users.users.gaming = {
-      isNormalUser = true;
-      password = "gaming";
-    };
-  };
 }

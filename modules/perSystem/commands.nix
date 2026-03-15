@@ -4,6 +4,8 @@
 
 let
   command_string = /* nu */ ''
+    def hostnames [] { [ "tjmaxxer", "msi-colgate", "disko-elysium" ] } 
+
     def "main ci" [] {
         jj squash
         jj git push -c @- --remote flake-mirror
@@ -47,9 +49,15 @@ let
         --license="GPL-3.0-or-later" ...$args
     )}
 
-    def "main upgrade" [ machine: string ] {
+    def "main fast" [ machine: string@hostnames ] {
         nix run github:Mic92/nix-fast-build -- --flake=.#nixosConfigurations.($machine).config.system.build.toplevel
         nh os switch .
+    }
+
+    def "main deploy" [ --switch (-s), hostname: string@hostnames ] {
+        let command = if $switch { "switch" } else { "test" }
+        (nh os $command .
+        --hostname $hostname --target-host $"ssmvabaa@($hostname).local")
     }
 
     def main [] { help main }
