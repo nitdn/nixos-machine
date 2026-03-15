@@ -40,5 +40,11 @@ in
     vps = {
       imports = [ nixosModules.secureSSH ];
     };
+    isoBootstrap =
+      { pkgs, ... }:
+      {
+        systemd.services.sshd.wantedBy = pkgs.lib.mkForce [ "multi-user.target" ];
+        users.users.root.openssh.authorizedKeys.keys = trusted_ssh_keys;
+      };
   };
 }

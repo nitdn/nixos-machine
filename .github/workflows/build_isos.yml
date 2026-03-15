@@ -3,32 +3,23 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 name: "Build installer ISO images"
 on:
-  workflow_dispatch:
+  push:
 jobs:
   images:
-    name: "Build machine images"
+    name: "Build a minimal image"
     runs-on: ubuntu-latest
     permissions:
       contents: write
-    strategy:
-      matrix:
-        machine: [tjmaxxer, disko-elysium, msi-colgate]
     steps:
-      - name: Maximize Runner Space
-        uses: justinthelaw/maximize-github-runner-space@master
-        with:
-          remove-android: "true"
       - uses: actions/checkout@v6
       - uses: cachix/install-nix-action@v31
-      - name: Build ${{ matrix.machine }}
-        id: build-iso
+      - shell: nix shell github:Mic92/nix-fast-build --command bash --noprofile --norc -eo pipefail {0}
         run: |
-          nix build  --max-jobs 64 --max-substitution-jobs 64  --cores 0  \
-          --accept-flake-config --out-link installer-${{ matrix.machine }} \
-          .#nixosConfigurations.${{ matrix.machine }}.config.system.build.images.iso-installer
-          ls installer-${{ matrix.machine }}/iso/*
+          nix-fast-build --no-nom --skip-cached \
+          --flake=.#nixosConfigurations.isoBootstrap.config.system\
+          .build.images.iso-installer
       - name: Release
         uses: softprops/action-gh-release@v2
+        if: github.ref_type == 'tag'
         with:
-          tag_name: trunk
-          files: installer-${{ matrix.machine }}/iso/*
+          files: result/iso/*
