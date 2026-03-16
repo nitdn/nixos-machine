@@ -11,7 +11,6 @@ in
   flake.modules.nixos.pc =
     { pkgs, ... }:
     {
-
       security.sudo.extraRules = [
         {
           users = [ username ];
@@ -23,7 +22,6 @@ in
       environment.systemPackages = [
         #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
         #  wget
-        pkgs.adwaita-icon-theme
         pkgs.dust
         pkgs.git
         pkgs.gparted
@@ -40,7 +38,6 @@ in
           ];
           text = ''exec "${pkgs.nix-search-tv.src}/nixpkgs.sh" "$@"'';
         })
-        pkgs.wayscriber
       ];
       environment.variables = {
         EDITOR = "hx";

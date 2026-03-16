@@ -20,7 +20,5 @@ jobs:
           # If you chose API tokens for write access OR if you have a private cache
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
       - name: Check flakes
-        shell: nix shell github:Mic92/nix-fast-build --command bash --noprofile --norc -eo pipefail {0}
         run: |
-          nix-fast-build --no-nom --skip-cached --cachix-cache machines \
-          --option allow-import-from-derivation false
+          nix flake check --no-allow-import-from-derivation --no-eval-cache

@@ -120,17 +120,27 @@
         '';
       };
     };
-  config.flake.modules.nixos.pc = moduleWithSystem (
-    { config, pkgs, ... }:
-    {
-      programs.niri.enable = true;
-      environment.systemPackages = [
-        pkgs.xwayland-satellite
-      ];
-      systemd.user.tmpfiles.rules = [
-        "L+ %h/.config/niri/config.kdl - - - - ${config.packages.niri-config}"
-      ];
-    }
-
-  );
+  config.flake.modules.nixos = {
+    pc = moduleWithSystem (
+      { config, ... }:
+      let
+        inherit (config.packages) niri-config;
+      in
+      { pkgs, config, ... }:
+      {
+        programs.niri.enable = true;
+        environment.systemPackages = lib.mkIf config.programs.niri.enable [
+          pkgs.xwayland-satellite
+          pkgs.adwaita-icon-theme
+          pkgs.wayscriber
+        ];
+        systemd.user.tmpfiles.rules = [
+          "L+ %h/.config/niri/config.kdl - - - - ${niri-config}"
+        ];
+      }
+    );
+    iso = {
+      programs.niri.enable = lib.mkForce false;
+    };
+  };
 }
