@@ -10,20 +10,8 @@ jobs:
     name: "Run flake checks"
     runs-on: ubuntu-latest
     steps:
-      - name: Generate a token
-        id: generate-token
-        uses: actions/create-github-app-token@v2
-        with:
-          app-id: ${{ vars.APP_ID }}
-          private-key: ${{ secrets.APP_PRIVATE_KEY }}
       - uses: actions/checkout@v6
-        with:
-          # NOTE: Needs token for running actions
-          token: ${{ steps.generate-token.outputs.token }}
-          persist-credentials: false
       - uses: cachix/install-nix-action@v31
-        with:
-          github_access_token: ${{ steps.generate-token.outputs.token }}
       - uses: cachix/cachix-action@3ba601ff5bbb07c7220846facfa2cd81eeee15a1
         with:
           name: machines
@@ -34,5 +22,5 @@ jobs:
       - name: Check flakes
         shell: nix shell github:Mic92/nix-fast-build --command bash --noprofile --norc -eo pipefail {0}
         run: |
-          nix-fast-build --no-nom --skip-cached \
+          nix-fast-build --no-nom --skip-cached --cachix-cache machines \
           --option allow-import-from-derivation false

@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - uses: cachix/install-nix-action@v31
-      - uses: cachix/cachix-action@bea8a506457e59a062336709ee10a5677fd9a59e
+      - uses: cachix/cachix-action@2b33705a8232e51ac94414b3b8c203d0a5e42ca3
         with:
           name: machines
           # If you chose signing key for write access
@@ -24,6 +24,6 @@ jobs:
         shell: nix shell github:Mic92/nix-fast-build --command bash --noprofile --norc -eo pipefail {0}
         run: |
           for machine in tjmaxxer disko-elysium msi-colgate; do
-            nix-fast-build --no-nom --skip-cached \
+            nix-fast-build --no-nom --skip-cached --cachix-cache machines \
             --flake=.#nixosConfigurations."${machine}".config.system.build.toplevel
           done

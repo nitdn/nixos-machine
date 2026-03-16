@@ -14,23 +14,24 @@ let
   nixosModules = config.flake.modules.nixos;
 in
 {
-  flake.modules.nixos.secureSSH = {
-    services.openssh = {
-      enable = true;
-      settings = {
-        PasswordAuthentication = false;
-        KbdInteractiveAuthentication = false;
-        PermitRootLogin = "no";
-        AllowUsers = [
-          username
-          "sandbox"
-        ];
-      };
-    };
-    services.fail2ban.enable = true;
-  };
   flake.modules.nixos = {
-    disko-elysium =
+    secureSSH = {
+      services.openssh = {
+        enable = true;
+        settings = {
+          PasswordAuthentication = false;
+          KbdInteractiveAuthentication = false;
+          PermitRootLogin = "no";
+          AllowUsers = [
+            username
+            "sandbox"
+          ];
+        };
+      };
+      services.fail2ban.enable = true;
+    };
+
+    pc =
       { pkgs, ... }:
       {
         imports = [ nixosModules.secureSSH ];

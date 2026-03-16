@@ -15,7 +15,18 @@ in
 
   flake.modules.nixos.msi-colgate = {
     hardware.facter.reportPath = ./facter.json;
-    networking.hostName = "msi-colgate"; # Define your hostname.
+    networking = {
+      hostName = "msi-colgate";
+      interfaces = {
+        enp34s0 = {
+          wakeOnLan.enable = true;
+        };
+      };
+      firewall = {
+        allowedUDPPorts = [ 9 ];
+      };
+    }; # Define your hostname.
+
   };
 
   flake.nixosConfigurations.msi-colgate = inputs.nixpkgs.lib.nixosSystem {
