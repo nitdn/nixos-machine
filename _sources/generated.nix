@@ -31,20 +31,20 @@
     pname = "epson-202101w";
     version = "1.0.2";
     src = fetchurl {
-      url = "https://download-center.epson.com/f/module/c863d6cc-2e0c-48f5-8a70-b2c3843c647a/epson-inkjet-printer-202101w-1.0.2-1.src.rpm";
+      url = "https://web.archive.org/web/20260318090110/https://download-center.epson.com/f/module/c863d6cc-2e0c-48f5-8a70-b2c3843c647a/epson-inkjet-printer-202101w-1.0.2-1.src.rpm";
       sha256 = "sha256-n0Ff2wfhPruYhzAH0GrhpYpkddiQ3rkYukvZyRgrn54=";
     };
   };
   matugen-themes = {
     pname = "matugen-themes";
-    version = "e213a4ce7da91c69af91e1152390bf5cca346636";
+    version = "d880aeec9209ce56134c661c085535f8db5fa332";
     src = fetchFromGitHub {
       owner = "InioX";
       repo = "matugen-themes";
-      rev = "e213a4ce7da91c69af91e1152390bf5cca346636";
+      rev = "d880aeec9209ce56134c661c085535f8db5fa332";
       fetchSubmodules = false;
-      sha256 = "sha256-MwS46euT8AjGyst3/P88LEq567wbb3ILAcDRX28CrRM=";
+      sha256 = "sha256-QNJSej9S6l32STwgHXHij8cYp1QtozOv7nSzj3bGE/s=";
     };
-    date = "2026-03-09";
+    date = "2026-03-17";
   };
 }

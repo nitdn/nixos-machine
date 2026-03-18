@@ -2,15 +2,15 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-{ config, ... }:
+{ lib, config, ... }:
 let
   nixosModules = config.flake.modules.nixos;
 in
 {
   flake.modules.nixos.thunar =
-    { pkgs, ... }:
+    { pkgs, config, ... }:
     {
-      programs = {
+      programs = lib.mkIf config.hardware.graphics.enable {
         thunar.enable = true;
         thunar.plugins = [
           pkgs.thunar-archive-plugin

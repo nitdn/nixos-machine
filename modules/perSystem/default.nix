@@ -10,12 +10,14 @@
 }:
 let
   inherit (config) meta;
+  inherit (inputs) flake-parts treefmt-nix wrappers;
 in
 {
   imports = [
     # Optional: use external flake logic, e.g.
-    inputs.flake-parts.flakeModules.modules
-    inputs.treefmt-nix.flakeModule
+    flake-parts.flakeModules.modules
+    treefmt-nix.flakeModule
+    wrappers.flakeModules.wrappers
   ];
 
   debug = true;

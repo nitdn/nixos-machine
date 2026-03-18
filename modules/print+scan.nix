@@ -2,38 +2,49 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-{ moduleWithSystem, ... }:
+{ config, lib, ... }:
+let
+  inherit (config.flake) packages;
+in
 {
   meta.unfreeNames = [
     "konica-bizhub-225i"
     "epson-202101w"
   ];
-  flake.modules.nixos.pc = moduleWithSystem (
+  flake.modules.nixos.pc =
     {
-      config,
       pkgs,
+      config,
       ...
     }:
     let
-      inherit (config) packages;
+      inherit (pkgs.stdenv.hostPlatform) system;
+      inherit (packages.${system})
+        bizhub-225i
+        epson-l3212
+        ;
     in
     {
-      # Enable CUPS to print documents.
-      services.printing.enable = true;
-      services.system-config-printer.enable = true;
-      programs.system-config-printer.enable = true;
-      # services.printing.logLevel = "debug";
-      services.printing.drivers = [
-        packages.bizhub-225i
-        packages.epson-l3212
-      ];
-
-      hardware.sane.enable = true;
-      services.ipp-usb.enable = true;
-      hardware.sane.openFirewall = true;
-      hardware.sane.extraBackends = [
-        pkgs.sane-airscan
-      ];
-    }
-  );
+      services = lib.mkIf config.hardware.graphics.enable {
+        # Enable CUPS to print documents.
+        printing.enable = true;
+        system-config-printer.enable = true;
+        # services.printing.logLevel = "debug";
+        printing.drivers = [
+          bizhub-225i
+          epson-l3212
+        ];
+        ipp-usb.enable = true;
+      };
+      programs = lib.mkIf config.services.printing.enable {
+        system-config-printer.enable = true;
+      };
+      hardware = lib.mkIf config.hardware.graphics.enable {
+        sane.enable = true;
+        sane.openFirewall = true;
+        sane.extraBackends = [
+          pkgs.sane-airscan
+        ];
+      };
+    };
 }

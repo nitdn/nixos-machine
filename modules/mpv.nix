@@ -8,7 +8,7 @@
     { pkgs, ... }:
     {
       environment.systemPackages = [
-        (inputs.wrappers.wrapperModules.mpv.apply {
+        (inputs.wrappers.wrappers.mpv.wrap {
           inherit pkgs;
           scripts = [
             pkgs.mpvScripts.uosc
@@ -18,11 +18,11 @@
             vo=gpu
             hwdec=auto
           '';
-          "input.conf".content = ''
+          "mpv.input".content = ''
             WHEEL_UP seek 10
             WHEEL_DOWN seek -10
           '';
-        }).wrapper
+        })
       ];
     };
 }

@@ -76,8 +76,6 @@ in
 
       # Enable networking
       # networking.networkmanager.enable = true;
-      services.displayManager.gdm.enable = lib.mkDefault true;
-      services.displayManager.gdm.autoSuspend = false;
       services.gvfs.enable = true;
       services.udisks2.enable = true;
       services.power-profiles-daemon.enable = true;
@@ -117,14 +115,14 @@ in
 
       services.dbus.implementation = "broker";
 
-      fonts.packages = [
+      fonts.packages = lib.mkIf config.hardware.graphics.enable [
         pkgs.noto-fonts
         pkgs.noto-fonts-color-emoji
         pkgs.atkinson-hyperlegible-next
         pkgs.nerd-fonts.jetbrains-mono
       ];
 
-      fonts.fontconfig.defaultFonts = {
+      fonts.fontconfig.defaultFonts = lib.mkIf config.hardware.graphics.enable {
         sansSerif = [
           "Atkinson Hyperlegible Next"
           "Noto Sans Bengali"
@@ -148,7 +146,7 @@ in
       # Enable sound with pipewire.
       services.pulseaudio.enable = false;
       security.rtkit.enable = true;
-      services.pipewire = {
+      services.pipewire = lib.mkIf config.hardware.graphics.enable {
         enable = true;
         alsa.enable = true;
         alsa.support32Bit = true;
@@ -164,7 +162,7 @@ in
         pkgs.sane-airscan
         pkgs.via
       ];
-      environment.systemPackages = [
+      environment.systemPackages = lib.mkIf config.hardware.graphics.enable [
         pkgs.via
       ];
 

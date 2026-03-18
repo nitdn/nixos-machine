@@ -4,7 +4,6 @@
 
 {
   lib,
-  flake-parts-lib,
   ...
 }:
 let
@@ -14,6 +13,7 @@ let
       settingsFormat = config.pkgs.formats.yaml { };
     in
     {
+      imports = [ wlib.modules.default ];
       options = {
         settings = lib.mkOption {
           # Setting this type allows for correct merging behavior
@@ -39,31 +39,17 @@ let
         };
       };
       config.package = config.pkgs.wlr-which-key;
-      config.args = [
-        "${config.configFile.path}"
+      config.addFlag = [
+        config.configFile.path
       ];
     };
 in
 {
-  options.perSystem = flake-parts-lib.mkPerSystemOption (
+  flake.wrappers.wlr-which-key-wrapped.imports = [ wlr-wrapper ];
+  perSystem =
     { config, ... }:
-    let
-      # Define the settings format used for this program
-      inherit (lib.types) attrsOf deferredModuleWith;
-      inherit (config.packages) wlr-which-key-wrapped;
-    in
     {
-      options.wrappers.wlr-which-key = lib.mkOption {
-        description = "wlr-which-key wrapper options";
-        type = attrsOf (deferredModuleWith {
-          staticModules = [
-            wlr-wrapper
-          ]
-          ++ config.wrapperModules;
-        });
-      };
-      config.wrappers.wlr-which-key.wrapped.imports = [ ];
-      config.niri.settings = {
+      niri.settings = {
         _children = [
           {
             spawn-at-startup = [
@@ -72,8 +58,7 @@ in
             ];
           }
         ];
-        binds."Mod+W".spawn = lib.getExe wlr-which-key-wrapped;
+        binds."Mod+W".spawn = lib.getExe config.packages.wlr-which-key-wrapped;
       };
-    }
-  );
+    };
 }

@@ -20,11 +20,12 @@ jobs:
         with:
           # NOTE: Needs token for running actions
           token: ${{ steps.generate-token.outputs.token }}
-      - uses: DeterminateSystems/determinate-nix-action@v3
-      - uses: DeterminateSystems/update-flake-lock@v28
+      - uses: cachix/install-nix-action@v31
+      - run: nix run ".#runCommand" -- lock
+      - uses: peter-evans/create-pull-request@v8
         with:
-          pr-title: "Update Nix flake inputs" # Title of PR to be created
-          pr-labels: | # Labels to be set on the PR
+          title: "Update Nix flake inputs" # Title of PR to be created
+          labels: | # Labels to be set on the PR
             dependencies
             automated
           token: ${{ steps.generate-token.outputs.token }}

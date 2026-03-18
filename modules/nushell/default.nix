@@ -2,14 +2,12 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 {
-  inputs,
-  moduleWithSystem,
-  flake-parts-lib,
+  config,
   lib,
   ...
 }:
 let
-  inherit (inputs) wrappers;
+  inherit (config.flake) wrappers;
   zoxide_completer = /* nu */ ''
     def "nu-complete zoxide path" [context: string] {
         let parts = $context | split row " " | skip 1
@@ -29,79 +27,50 @@ let
   '';
 in
 {
-  options.perSystem = flake-parts-lib.mkPerSystemOption (
-    { config, ... }:
-    let
-      inherit (lib.types) attrsOf deferredModuleWith;
-    in
-    {
-      options.wrappers.nushell = lib.mkOption {
-        description = "Nushell wrapper options";
-        type = attrsOf (deferredModuleWith {
-          staticModules = config.wrapperModules ++ [
-            "${wrappers}/modules/nushell/module.nix"
-            (
-              { config, ... }:
-              {
-                options.extraConfig = lib.mkOption {
-                  description = "Nushell config";
-                  type = lib.types.lines;
-                  default = "";
-                };
-                config."config.nu".content = ''
-                  ${config.extraConfig}
-                '';
-              }
-            )
-          ];
-        });
+  flake = {
+    wrappers.nushell-pc =
+      { wlib, pkgs, ... }:
+      let
+        zoxide-nushell =
+          pkgs.runCommand "zoxide-nushell-integration"
+            {
+              nativeBuildInputs = [ pkgs.zoxide ];
+            }
+            ''
+              zoxide init nushell > $out
+              echo ${lib.strings.escapeShellArg zoxide_completer} >> $out
+            '';
+        carapace-nushell =
+          pkgs.runCommand "carapace-nushell-integration"
+            {
+              nativeBuildInputs = [ pkgs.carapace ];
+            }
+            ''
+              carapace _carapace nushell > $out
+            '';
+      in
+      {
+        imports = [ wlib.wrapperModules.nushell ];
+        "config.nu".content = ''
+          source ${zoxide-nushell}
+          source ${carapace-nushell}
+        '';
       };
-    }
-  );
-  config.perSystem =
-    { pkgs, ... }:
-    let
-      zoxide-nushell =
-        pkgs.runCommand "zoxide-nushell-integration"
-          {
-            nativeBuildInputs = [ pkgs.zoxide ];
-          }
-          ''
-            zoxide init nushell > $out
-            echo ${lib.strings.escapeShellArg zoxide_completer} >> $out
-          '';
-      carapace-nushell =
-        pkgs.runCommand "carapace-nushell-integration"
-          {
-            nativeBuildInputs = [ pkgs.carapace ];
-          }
-          ''
-            carapace _carapace nushell > $out
-          '';
-    in
-    {
-      wrappers.kitty.pc.settings.shell = "nu";
-      wrappers.nushell.pc.extraConfig = ''
-        source ${zoxide-nushell}
-        source ${carapace-nushell}
-      '';
-    };
-  config.flake.modules.nixos.pc = moduleWithSystem (
-    { config, ... }:
-    let
-      inherit (config.packages) nushell-pc;
-    in
-    { pkgs, ... }:
-    {
-      environment.shells = [ nushell-pc ];
-      environment.systemPackages = [
-        nushell-pc
-        # For completions
-        pkgs.carapace
-        pkgs.fish
-        pkgs.zsh
-      ];
-    }
-  );
-
+    wrappers.kitty-pc.settings.shell = "nu";
+    modules.nixos.pc =
+      { pkgs, ... }:
+      let
+        nushell-pc = wrappers.nushell-pc.wrap { inherit pkgs; };
+      in
+      {
+        environment.shells = [ nushell-pc ];
+        environment.systemPackages = [
+          nushell-pc
+          # For completions
+          pkgs.carapace
+          pkgs.fish
+          pkgs.zsh
+        ];
+      };
+  };
 }

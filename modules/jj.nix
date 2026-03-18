@@ -1,14 +1,15 @@
 # SPDX-FileCopyrightText: 2025 Nitesh Kumar Debnath <nitkdnath@gmail.com>
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
-
+{ config, ... }:
+let
+  inherit (config.flake) wrappers;
+in
 {
-  moduleWithSystem,
-  ...
-}:
-{
-  perSystem = {
-    wrappers.jujutsu.pc = {
+  flake.wrappers.jujutsu-pc =
+    { wlib, ... }:
+    {
+      imports = [ wlib.wrapperModules.jujutsu ];
       settings.user.name = "Nitesh Kumar Debnath";
       settings.user.email = "nitkdnath@gmail.com";
       settings.signing = {
@@ -45,11 +46,12 @@
       '';
     };
 
-  };
-  flake.modules.nixos.pc = moduleWithSystem (
-    { config, ... }:
+  flake.modules.nixos.pc =
     {
-      environment.systemPackages = [ config.packages.jujutsu-pc ];
-    }
-  );
+      pkgs,
+      ...
+    }:
+    {
+      environment.systemPackages = [ (wrappers.jujutsu-pc.wrap { inherit pkgs; }) ];
+    };
 }

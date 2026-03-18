@@ -4,11 +4,14 @@
 
 {
   inputs,
+  config,
   lib,
   flake-parts-lib,
-  moduleWithSystem,
   ...
 }:
+let
+  inherit (config.flake) packages;
+in
 {
   options.perSystem = flake-parts-lib.mkPerSystemOption {
     options.niri = {
@@ -121,12 +124,12 @@
       };
     };
   config.flake.modules.nixos = {
-    pc = moduleWithSystem (
-      { config, ... }:
-      let
-        inherit (config.packages) niri-config;
-      in
+    pc =
       { pkgs, config, ... }:
+      let
+        inherit (pkgs.stdenv.hostPlatform) system;
+        inherit (packages.${system}) niri-config;
+      in
       {
         programs.niri.enable = true;
         environment.systemPackages = lib.mkIf config.programs.niri.enable [
@@ -137,8 +140,7 @@
         systemd.user.tmpfiles.rules = [
           "L+ %h/.config/niri/config.kdl - - - - ${niri-config}"
         ];
-      }
-    );
+      };
     iso = {
       programs.niri.enable = lib.mkForce false;
     };

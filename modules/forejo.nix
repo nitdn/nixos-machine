@@ -2,7 +2,7 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-{ config, ... }:
+{ lib, config, ... }:
 let
   nixosModules = config.flake.modules.nixos;
   inherit (config.meta) username;
@@ -42,7 +42,7 @@ in
       sops.secrets.forgejo-runner-token = { };
     };
   flake.modules.nixos.pc =
-    { pkgs, ... }:
+    { pkgs, config, ... }:
     {
       imports = [ nixosModules.podman ];
       users.users.${username} = {
@@ -51,7 +51,7 @@ in
         ];
       };
 
-      environment.systemPackages = [ pkgs.distrobox ];
+      environment.systemPackages = lib.mkIf config.hardware.graphics.enable [ pkgs.distrobox ];
     };
   # perSystem =
   #   { pkgs, ... }:

@@ -9,7 +9,7 @@ url.name = "bizhub-225i.zip"
 
 [epson-202101w]
 src.manual = "1.0.2"
-fetch.url = "https://download-center.epson.com/f/module/c863d6cc-2e0c-48f5-8a70-b2c3843c647a/epson-inkjet-printer-202101w-1.0.2-1.src.rpm"
+fetch.url = "https://web.archive.org/web/20260318090110/https://download-center.epson.com/f/module/c863d6cc-2e0c-48f5-8a70-b2c3843c647a/epson-inkjet-printer-202101w-1.0.2-1.src.rpm"
 
 [dms-plugins]
 src.git = "https://github.com/AvengeMedia/dms-plugins.git"

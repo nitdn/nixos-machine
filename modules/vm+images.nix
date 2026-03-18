@@ -10,6 +10,7 @@
 
 let
   nixosModules = config.flake.modules.nixos;
+  inherit (lib) mkForce;
 in
 {
   flake.modules.nixos = {
@@ -29,9 +30,14 @@ in
       {
         imports = [ (modulesPath + "/installer/cd-dvd/installation-cd-minimal.nix") ];
         # Repart will just try to endlessly initialize hardware that may not exist
-        hardware.facter = lib.mkForce { };
-        hardware.graphics = lib.mkForce { enable = false; };
-        boot.initrd.systemd.repart.device = lib.mkForce null;
+        services.fwupd.enable = mkForce false;
+        services.udisks2.enable = mkForce false;
+        services.gvfs.enable = mkForce false;
+        services.power-profiles-daemon.enable = mkForce true;
+        programs.nh = mkForce { };
+        hardware.facter = mkForce { };
+        hardware.graphics = mkForce { enable = false; };
+        boot.initrd.systemd.repart.device = mkForce null;
         nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
         services.btrfs.autoScrub.enable = false;
         isoImage.squashfsCompression = "zstd -Xcompression-level 6";
