@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: 2026 Nitesh Kumar Debnath <nitkdnath@gmail.com>
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
-
+{ lib, ... }:
 let
   command_string = /* nu */ ''
     def hostnames [] { [ "tjmaxxer", "msi-colgate", "disko-elysium" ] } 
@@ -61,44 +61,48 @@ let
     }
 
     def "main lock" [] {
-      nix flake check --commit-lock-file
-      nvfetcher --commit-changes
+      nix flake update
+      nvfetcher
     }
 
+    def "main eval" [hostname: string=tjmaxxer] {(
+      time nix eval .#nixosConfigurations.($hostname).config.system.build.toplevel
+      --substituters " " --no-eval-cache --read-only
+    )}
+
+    def "main eval profiler" [hostname: string=tjmaxxer] {
+       (nix eval .#nixosConfigurations.($hostname).config.system.build.toplevel
+        --impure --eval-profiler flamegraph --eval-profiler-frequency 9999)
+       (inferno-flamegraph
+        --width 10000 nix.profile o> result-($hostname).svg)
+       zen result-($hostname).svg
+    }
     def main [] { help main }
   '';
+  command_package =
+    pkgs:
+    pkgs.writers.writeNuBin "run" {
+      makeWrapperArgs = [
+        "--prefix"
+        "PATH"
+        ":"
+        "${lib.makeBinPath [
+          pkgs.sops
+          pkgs.jujutsu
+          pkgs.nvfetcher
+          pkgs.inferno
+        ]}"
+      ];
+    } command_string;
 in
 {
   perSystem =
-    { pkgs, ... }:
-    let
-      command_package =
-        pkgs.writers.writeNuBin "run"
-          {
-          }
-          (
-            command_string
-            + ''
-              def "main eval" [hostname: string=tjmaxxer] {(
-                time nix eval .#nixosConfigurations.($hostname).config.system.build.toplevel
-                --substituters " " --no-eval-cache --read-only
-              )}
-
-              def "main eval profiler" [hostname: string=tjmaxxer] {
-                 (nix eval .#nixosConfigurations.($hostname).config.system.build.toplevel
-                  --impure --eval-profiler flamegraph --eval-profiler-frequency 9999)
-                 (${pkgs.inferno}/bin/inferno-flamegraph
-                  --width 10000 nix.profile o> result-($hostname).svg)
-                 zen result-($hostname).svg
-              }
-            ''
-          );
-    in
+    { pkgs, config, ... }:
     {
-      packages.runCommand = command_package;
+      packages.runCommand = command_package pkgs;
       devShells.commands = pkgs.mkShell {
         packages = [
-          command_package
+          config.packages.runCommand
         ];
       };
     };

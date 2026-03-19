@@ -50,7 +50,6 @@ let
     };
   helix-work = {
     imports = [ config.flake.wrapperModules.helix-pc ];
-    settings.theme = lib.mkDefault "catppuccin_latte";
   };
 in
 {
