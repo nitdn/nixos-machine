@@ -35,7 +35,7 @@ in
 
       {
         houses.users = {
-          ssmvabaa.files = [
+          ${username}.files = [
             {
               type = "symlink";
               source = matugenTemplate;

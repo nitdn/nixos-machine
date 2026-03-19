@@ -9,8 +9,7 @@
       packages.dms-snapshot = pkgs.writeShellApplication {
         name = "dms-snapshot";
         text = ''
-          cp "$HOME"/.config/niri/dms/* "$HOME"/nixos-machine/modules/dms/niri/
-          cp "$HOME"/.config/helix/themes/* "$HOME"/nixos-machine/modules/dms/helix/
+          cp "$HOME"/.config/niri/dms/*.kdl "$HOME"/nixos-machine/modules/dms/niri/
         '';
       };
       niri.settings = {

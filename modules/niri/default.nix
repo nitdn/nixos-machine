@@ -10,6 +10,7 @@
   ...
 }:
 let
+  inherit (config.meta) username;
   inherit (config.flake) packages;
 in
 {
@@ -19,12 +20,13 @@ in
         type = with lib.types; listOf str;
         example = lib.literalExpression ''
           [
-          "dms/colors.kdl"
-          "dms/layout.kdl"
-          "dms/alttab.kdl"
-          "dms/binds.kdl"
-          "dms/outputs.kdl"
-          ]'';
+            "dms/colors.kdl"
+            "dms/layout.kdl"
+            "dms/alttab.kdl"
+            "dms/binds.kdl"
+            "dms/outputs.kdl"
+          ]
+        '';
         default = [ ];
         description = ''
           Additional non-declarative input paths. Largely meant to be used
@@ -43,7 +45,8 @@ in
           {
             input.mouse.accel-speed = -0.5;
             input.mouse.accel-profile = "flat";
-          }'';
+          }
+        '';
         description = ''
           Niri configuration in nix format. This uses the home-manager
           KDL generator.
@@ -137,8 +140,12 @@ in
           pkgs.adwaita-icon-theme
           pkgs.wayscriber
         ];
-        systemd.user.tmpfiles.rules = [
-          "L+ %h/.config/niri/config.kdl - - - - ${niri-config}"
+        houses.users.${username}.files = [
+          {
+            type = "symlink";
+            source = niri-config;
+            target = ".config/niri.config.kdl";
+          }
         ];
       };
   };

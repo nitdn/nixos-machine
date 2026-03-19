@@ -20,7 +20,6 @@ in
         types
         strings
         mkOption
-        literalExpression
         ;
       inherit (types) attrsOf submodule;
       inherit (strings) hasPrefix normalizePath concatStringsSep;
@@ -34,7 +33,7 @@ in
           };
         });
         default = { };
-        example = literalExpression ''
+        example = lib.literalExpression ''
           {
             exampleUser = {
               files = [

@@ -18,15 +18,7 @@ let
         settings = lib.mkOption {
           # Setting this type allows for correct merging behavior
           inherit (settingsFormat) type;
-          default = {
-            menu = [
-              {
-                key = "s";
-                desc = "Annotate screen";
-                cmd = "pkill -SIGUSR1 wayscriber";
-              }
-            ];
-          };
+          default = { };
           description = ''
             Settings for wlr-which-key. See
             https://github.com/MaxVerevkin/wlr-which-key?tab=readme-ov-file#configuration
@@ -45,7 +37,41 @@ let
     };
 in
 {
-  flake.wrappers.wlr-which-key-wrapped.imports = [ wlr-wrapper ];
+  flake.wrappers.wlr-which-key-wrapped = {
+    imports = [ wlr-wrapper ];
+    settings.menu = [
+      {
+        key = "s";
+        desc = "Annotate screen";
+        cmd = "pkill -SIGUSR1 wayscriber";
+      }
+      {
+        key = "n";
+        desc = "Toggle Notifications";
+        cmd = "dms ipc call notifications toggle";
+      }
+      {
+        key = "d";
+        desc = "Toggle dashboard";
+        cmd = "dms ipc call dash toggle overview";
+      }
+      {
+        key = "l";
+        desc = "Open logseq";
+        cmd = "logseq";
+      }
+      {
+        key = "f";
+        desc = "Toggle window floating";
+        cmd = "niri msg action toggle-window-floating";
+      }
+      {
+        key = "t";
+        desc = "Set dynamic cast window";
+        cmd = "niri msg action set-dynamic-cast-window";
+      }
+    ];
+  };
   perSystem =
     { config, ... }:
     {
