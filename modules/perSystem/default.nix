@@ -44,31 +44,34 @@ in
 
       devShells.default = pkgs.mkShell {
         inputsFrom = [ config.devShells.commands ];
-        packages = [
-          config.packages.jujutsu-pc
-          pkgs.bashInteractive
-          pkgs.cloc
-          pkgs.dix
-          pkgs.github-cli
-          pkgs.hydra-check
-          pkgs.jq
-          pkgs.kdlfmt
-          pkgs.meld
-          pkgs.nh
-          pkgs.nil
-          pkgs.nixd
-          pkgs.nixfmt
-          pkgs.nvfetcher
-          pkgs.pandoc
-          pkgs.reuse
-          pkgs.sops
-          pkgs.taplo
-          pkgs.tinymist
-          pkgs.tokei
-          pkgs.typstyle
-          pkgs.vscode-langservers-extracted
-          pkgs.yaml-language-server
-        ];
+        packages = lib.attrValues {
+          inherit (config.packages) jujutsu-pc;
+          inherit (pkgs)
+            bashInteractive
+            cloc
+            dix
+            github-cli
+            hydra-check
+            jq
+            kdlfmt
+            meld
+            nh
+            nil
+            nixd
+            nixfmt
+            nvfetcher
+            onefetch
+            pandoc
+            reuse
+            sops
+            taplo
+            tinymist
+            tokei
+            typstyle
+            vscode-langservers-extracted
+            yaml-language-server
+            ;
+        };
       };
       packages = {
         bizhub-225i = pkgs.callPackage ../../pkgs/bizhub-225i.nix {
