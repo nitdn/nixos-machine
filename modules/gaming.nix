@@ -62,14 +62,6 @@ in
           pkgs.winetricks
         ];
       };
-    iso = {
-      programs = lib.genAttrs [ "gamemode" "steam" "obs-studio" ] (
-        _:
-        lib.mkForce {
-          enable = false;
-        }
-      );
-    };
     disko-elysium =
       {
         pkgs,

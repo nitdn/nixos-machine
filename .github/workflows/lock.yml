@@ -21,10 +21,15 @@ jobs:
           # NOTE: Needs token for running actions
           token: ${{ steps.generate-token.outputs.token }}
       - uses: cachix/install-nix-action@v31
+      - name: Set git authors
+        run: |
+          git config user.name "${{ github.actor }}"
+          git config user.email "${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com"
       - run: nix run ".#runCommand" -- lock
       - uses: peter-evans/create-pull-request@v8
         with:
-          title: "Update Nix flake inputs" # Title of PR to be created
+          title: "Update nix inputs" # Title of PR to be created
+          branch: update_flake_lock_action
           labels: | # Labels to be set on the PR
             dependencies
             automated

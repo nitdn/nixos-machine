@@ -141,8 +141,5 @@ in
           "L+ %h/.config/niri/config.kdl - - - - ${niri-config}"
         ];
       };
-    iso = {
-      programs.niri.enable = lib.mkForce false;
-    };
   };
 }

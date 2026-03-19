@@ -3,6 +3,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 {
+  inputs,
   config,
   lib,
   ...
@@ -10,9 +11,21 @@
 
 let
   nixosModules = config.flake.modules.nixos;
-  inherit (lib) mkForce;
 in
 {
+  perSystem =
+    { system, ... }:
+    let
+      isoBootstrap = inputs.nixpkgs.lib.nixosSystem {
+        inherit system;
+        modules = [
+          nixosModules.iso
+        ];
+      };
+    in
+    {
+      packages.isoBootstrap = isoBootstrap.config.system.build.images.iso-installer;
+    };
   flake.modules.nixos = {
     vm = {
       services.btrfs.autoScrub.enable = false;
@@ -25,26 +38,10 @@ in
         initialPassword = "vmtest";
       };
     };
-    iso =
-      { modulesPath, ... }:
-      {
-        imports = [ (modulesPath + "/installer/cd-dvd/installation-cd-minimal.nix") ];
-        # Repart will just try to endlessly initialize hardware that may not exist
-        services.fwupd.enable = mkForce false;
-        services.udisks2.enable = mkForce false;
-        services.gvfs.enable = mkForce false;
-        services.power-profiles-daemon.enable = mkForce true;
-        programs.nh = mkForce { };
-        hardware.facter = mkForce { };
-        hardware.graphics = mkForce { enable = false; };
-        boot.initrd.systemd.repart.device = mkForce null;
-        nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-        services.btrfs.autoScrub.enable = false;
-        isoImage.squashfsCompression = "zstd -Xcompression-level 6";
-      };
+    iso = {
+      image.modules.iso-installer.isoImage.squashfsCompression = "zstd -Xcompression-level 6";
+    };
     pc = {
-      image.modules.iso.imports = [ nixosModules.iso ];
-      image.modules.iso-installer.imports = [ nixosModules.iso ];
       virtualisation.vmVariant = {
         imports = [ nixosModules.vm ];
       };
