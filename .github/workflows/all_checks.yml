@@ -18,6 +18,8 @@ jobs:
   all_checks:
     needs: [check_machines, check_flake]
     runs-on: ubuntu-slim
+    permissions:
+      contents: read
     steps:
       # FIXME: One day github actions will not be atrocious
       # and we will not have to do this anymore

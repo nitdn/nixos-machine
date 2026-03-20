@@ -9,24 +9,27 @@ on:
 jobs:
   nix-flake-update:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - name: Generate a token
         id: generate-token
-        uses: actions/create-github-app-token@v2
+        uses: actions/create-github-app-token@fee1f7d63c2ff003460e3d139729b119787bc349 # v2
         with:
           app-id: ${{ vars.APP_ID }}
           private-key: ${{ secrets.APP_PRIVATE_KEY }}
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
         with:
           # NOTE: Needs token for running actions
           token: ${{ steps.generate-token.outputs.token }}
-      - uses: cachix/install-nix-action@v31
+          persist-credentials: false
+      - uses: cachix/install-nix-action@1ca7d21a94afc7c957383a2d217460d980de4934 # v31
       - name: Set git authors
         run: |
-          git config user.name "${{ github.actor }}"
-          git config user.email "${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com"
+          git config user.name "${GITHUB_ACTOR}"
+          git config user.email "${GITHUB_ACTOR_ID}+${GITHUB_ACTOR}@users.noreply.github.com"
       - run: nix run ".#runCommand" -- lock
-      - uses: peter-evans/create-pull-request@v8
+      - uses: peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0 # v8
         with:
           title: "Update nix inputs" # Title of PR to be created
           branch: update_flake_lock_action

@@ -10,8 +10,10 @@ jobs:
     name: "Build machines"
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
-      - uses: cachix/install-nix-action@v31
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        with:
+          persist-credentials: false
+      - uses: cachix/install-nix-action@1ca7d21a94afc7c957383a2d217460d980de4934 # v31
       - uses: cachix/cachix-action@2b33705a8232e51ac94414b3b8c203d0a5e42ca3
         with:
           name: machines
