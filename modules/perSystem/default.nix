@@ -59,6 +59,7 @@ in
             nil
             nixd
             nixfmt
+            nix-fast-build
             nvfetcher
             onefetch
             pandoc

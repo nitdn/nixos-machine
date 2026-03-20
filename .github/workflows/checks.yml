@@ -1,0 +1,58 @@
+# SPDX-FileCopyrightText: 2025 Nitesh Kumar Debnath <nitkdnath@gmail.com>
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+name: "All nixos-machines checks"
+on:
+  push:
+jobs:
+  check_machines:
+    name: "Build machines"
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        with:
+          persist-credentials: false
+      - uses: cachix/install-nix-action@1ca7d21a94afc7c957383a2d217460d980de4934 # v31
+      - uses: cachix/cachix-action@2b33705a8232e51ac94414b3b8c203d0a5e42ca3
+        with:
+          name: machines
+          # If you chose signing key for write access
+          # signingKey: "${{ secrets.CACHIX_SIGNING_KEY }}"
+          # If you chose API tokens for write access OR if you have a private cache
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+      - run: cachix use nix-community
+      - name: Build machines
+        shell: nix shell github:Mic92/nix-fast-build --command bash --noprofile --norc -eo pipefail {0}
+        run: |
+          nix-fast-build --no-nom --skip-cached --cachix-cache machines \
+          --flake=.#packages.x86_64-linux
+      - name: Release ISO files
+        uses: softprops/action-gh-release@153bb8e04406b158c6c84fc1615b65b24149a1fe # v2
+        if: github.ref_type == 'tag'
+        with:
+          files: result-isoBootstrap/iso/*
+  check_flake:
+    name: "Run flake checks"
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        with:
+          persist-credentials: false
+      - uses: cachix/install-nix-action@1ca7d21a94afc7c957383a2d217460d980de4934 # v31
+      - uses: cachix/cachix-action@3ba601ff5bbb07c7220846facfa2cd81eeee15a1
+        with:
+          name: machines
+          # If you chose signing key for write access
+          # signingKey: "${{ secrets.CACHIX_SIGNING_KEY }}"
+          # If you chose API tokens for write access OR if you have a private cache
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+      - name: Check flakes
+        shell: nix shell github:Mic92/nix-fast-build --command bash --noprofile --norc -eo pipefail {0}
+        run: |
+          nix-fast-build --no-nom --skip-cached --cachix-cache machines \
+          --option allow-import-from-derivation false \
+          --option eval-cache false
