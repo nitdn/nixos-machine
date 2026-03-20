@@ -55,7 +55,6 @@
       inputs.treefmt-nix.follows = "treefmt-nix";
       inputs.flake-compat.follows = "";
       inputs.git-hooks.inputs.nixpkgs.follows = "";
-      inputs.git-hooks.inputs.gitignore.follows = "";
       inputs.git-hooks.inputs.flake-compat.follows = "";
     };
     quickshell = {

@@ -70,6 +70,7 @@ in
             typstyle
             vscode-langservers-extracted
             yaml-language-server
+            zizmor
             ;
         };
       };
@@ -107,7 +108,7 @@ in
           [
             "actionlint"
             "deadnix"
-            "just"
+            "flake-edit"
             "nixfmt"
             "shfmt"
             "sqlfluff-lint"
@@ -117,6 +118,7 @@ in
             "yamlfmt"
             "sqlfluff"
             "typos"
+            "zizmor"
           ]
           (_: {
             enable = true;

@@ -11,6 +11,7 @@
 let
   nixosModules = config.flake.modules.nixos;
   inherit (config.meta) username;
+  cfg = config.flake.nixosConfigurations.tjmaxxer.config;
 in
 {
   flake.modules.nixos.tjmaxxer =
@@ -50,4 +51,5 @@ in
   flake.nixosConfigurations.tjmaxxer = inputs.nixpkgs.lib.nixosSystem {
     modules = lib.attrValues { inherit (nixosModules) pc tjmaxxer; };
   };
+  perSystem.packages.tjmaxxer = cfg.system.build.toplevel;
 }
