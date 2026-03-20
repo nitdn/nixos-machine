@@ -9,7 +9,7 @@ jobs:
     name: "Build machines"
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
         with:
@@ -28,6 +28,7 @@ jobs:
         run: |
           nix-fast-build --no-nom --skip-cached --cachix-cache machines \
           --flake=.#packages.x86_64-linux
+          ls
       - name: Release ISO files
         uses: softprops/action-gh-release@153bb8e04406b158c6c84fc1615b65b24149a1fe # v2
         if: github.ref_type == 'tag'
