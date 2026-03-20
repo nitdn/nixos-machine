@@ -28,11 +28,6 @@ jobs:
         run: |
           nix-fast-build --no-nom --skip-cached --cachix-cache machines \
           --flake=.#packages.x86_64-linux
-      - name: Release ISO files
-        uses: softprops/action-gh-release@153bb8e04406b158c6c84fc1615b65b24149a1fe # v2
-        if: github.ref_type == 'tag'
-        with:
-          files: result-isoBootstrap/iso/*
   check_flake:
     name: "Run flake checks"
     runs-on: ubuntu-latest

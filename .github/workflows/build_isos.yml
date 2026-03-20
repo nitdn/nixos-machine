@@ -1,0 +1,24 @@
+# SPDX-FileCopyrightText: 2025 Nitesh Kumar Debnath <nitkdnath@gmail.com>
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+name: "Build installer ISO images"
+on:
+  push:
+jobs:
+  images:
+    name: "Build a minimal image"
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        with:
+          persist-credentials: false
+      - uses: cachix/install-nix-action@1ca7d21a94afc7c957383a2d217460d980de4934 # v31
+      - run: |
+          nix build .#isoBootstrap
+      - name: Release
+        uses: softprops/action-gh-release@153bb8e04406b158c6c84fc1615b65b24149a1fe # v2
+        if: github.ref_type == 'tag'
+        with:
+          files: result/iso/*
