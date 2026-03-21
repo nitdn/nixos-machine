@@ -50,6 +50,27 @@
         },
         "version": "1.0.2"
     },
+    "home-manager-lib": {
+        "cargoLock": null,
+        "date": "2026-03-20",
+        "extract": null,
+        "name": "home-manager-lib",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "nix-community",
+            "repo": "home-manager",
+            "rev": "9670de2921812bc4e0452f6e3efd8c859696c183",
+            "sha256": "sha256-FOnZjElEI8pqqCvB6K/1JRHTE8o4rer8driivTpq2uo=",
+            "sparseCheckout": [],
+            "type": "github"
+        },
+        "version": "9670de2921812bc4e0452f6e3efd8c859696c183"
+    },
     "matugen-themes": {
         "cargoLock": null,
         "date": "2026-03-17",
@@ -70,5 +91,67 @@
             "type": "github"
         },
         "version": "d880aeec9209ce56134c661c085535f8db5fa332"
+    },
+    "nix-index-database": {
+        "cargoLock": null,
+        "date": "2026-03-15",
+        "extract": null,
+        "name": "nix-index-database",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "nix-community",
+            "repo": "nix-index-database",
+            "rev": "8faeb68130df077450451b6734a221ba0d6cde42",
+            "sha256": "sha256-mHSRNrT1rjeYBgkAlj07dW3+1nFEgAd8Gu6lgyfT9DU=",
+            "sparseCheckout": [],
+            "type": "github"
+        },
+        "version": "8faeb68130df077450451b6734a221ba0d6cde42"
+    },
+    "quickshell": {
+        "cargoLock": null,
+        "date": "2026-03-19",
+        "extract": null,
+        "name": "quickshell",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "rev": "6a244c3c560b45f3b860ed6c0fc54d0291ab6f57",
+            "sha256": "sha256-XV/WgkkZ6OLJ+W0vrD4bXB7/ErQysc5R5lrkT2/VBVs=",
+            "sparseCheckout": [],
+            "type": "git",
+            "url": "https://git.outfoxxed.me/quickshell/quickshell.git"
+        },
+        "version": "6a244c3c560b45f3b860ed6c0fc54d0291ab6f57"
+    },
+    "steam-presence": {
+        "cargoLock": null,
+        "date": "2026-03-09",
+        "extract": null,
+        "name": "steam-presence",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "JustTemmie",
+            "repo": "steam-presence",
+            "rev": "4cc1169ee14c07ca86bdda7d56ad2f6e439b0967",
+            "sha256": "sha256-yxgw/7oej8ryYD9ohECa04jEPztHhydC8ifV+w/VibY=",
+            "sparseCheckout": [],
+            "type": "github"
+        },
+        "version": "4cc1169ee14c07ca86bdda7d56ad2f6e439b0967"
     }
 }

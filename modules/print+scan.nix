@@ -7,10 +7,6 @@ let
   inherit (config.flake) packages;
 in
 {
-  meta.unfreeNames = [
-    "konica-bizhub-225i"
-    "epson-202101w"
-  ];
   flake.modules.nixos.pc =
     {
       pkgs,

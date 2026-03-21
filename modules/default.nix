@@ -6,18 +6,19 @@
   config,
   inputs,
   lib,
+  withSystem,
   ...
 }:
 let
   inherit (config.meta) username;
+  dummySystem = "x86_64-linux"; # dummy value as the fetcher doesnt really care
+  nvfetcher = config.flake.nvfetcher.${dummySystem};
+
 in
 {
   options = {
     meta.username = lib.mkOption {
       type = lib.types.str;
-    };
-    meta.unfreeNames = lib.mkOption {
-      type = lib.types.listOf lib.types.str;
     };
     meta.term = lib.mkOption {
       type = lib.types.str;
@@ -26,12 +27,21 @@ in
   config.meta.username = "ssmvabaa";
   config.flake.modules.nixos = {
     pc =
-      { pkgs, ... }:
+      {
+        pkgs,
+        config,
+        ...
+      }:
       {
         imports = [
           inputs.sops-nix.nixosModules.sops
-          inputs.nix-index-database.nixosModules.default
+          "${nvfetcher.nix-index-database.src}/nixos-module.nix"
         ];
+        # Use the configured pkgs from perSystem
+        nixpkgs.pkgs = withSystem config.nixpkgs.hostPlatform.system (
+          { pkgs, ... }: # perSystem module arguments
+          pkgs
+        );
         # This will add secrets.yml to the nix store
         # You can avoid this by adding a string to the full path instead, i.e.
         # sops.defaultSopsFile = "/root/.sops/secrets/example.yaml";
@@ -45,7 +55,6 @@ in
           packages = lib.attrValues { inherit (pkgs) vlc github-cli; };
         };
 
-        nixpkgs.config.allowUnfreePredicate = pkg: lib.elem (lib.getName pkg) config.meta.unfreeNames;
       };
     work =
       { pkgs, ... }:

@@ -49,7 +49,9 @@ in
       };
     };
   flake.nixosConfigurations.tjmaxxer = inputs.nixpkgs.lib.nixosSystem {
-    modules = lib.attrValues { inherit (nixosModules) pc tjmaxxer; };
+    modules = lib.attrValues {
+      inherit (nixosModules) pc tjmaxxer;
+    };
   };
   perSystem.packages.tjmaxxer = cfg.system.build.toplevel;
 }

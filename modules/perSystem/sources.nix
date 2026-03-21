@@ -8,17 +8,15 @@
   ...
 }:
 let
-  inherit (lib.types) attrsOf anything;
+  inherit (lib.types)
+    attrsOf
+    ;
+  inherit (flake-parts-lib) mkTransposedPerSystemModule;
 in
-{
-  options.perSystem = flake-parts-lib.mkPerSystemOption (_: {
-    options.nvfetched = lib.mkOption {
-      type = attrsOf anything;
-    };
-  });
-  config.perSystem =
-    { pkgs, ... }:
-    {
-      nvfetched = pkgs.callPackage ../../_sources/generated.nix { };
-    };
+mkTransposedPerSystemModule {
+  name = "nvfetcher";
+  option = lib.mkOption {
+    type = attrsOf lib.types.anything;
+  };
+  file = ./sources.nix;
 }

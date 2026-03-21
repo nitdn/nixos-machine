@@ -7,9 +7,6 @@ let
   inherit (config.flake) packages;
 in
 {
-  meta.unfreeNames = [
-    "corefonts"
-  ];
   perSystem.niri.settings.spawn-at-startup = [
     "ibus"
     "start"

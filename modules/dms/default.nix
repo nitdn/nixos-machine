@@ -3,26 +3,27 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 {
-  inputs,
   config,
   lib,
-  getSystem,
   ...
 }:
 let
   inherit (config.meta) username;
+  inherit (config.flake) nvfetcher;
   dms =
     { pkgs, config, ... }:
     let
       inherit (pkgs.stdenv.hostPlatform) system;
-      perSystem = getSystem system;
-      inherit (perSystem.nvfetched) dms-plugins;
+      inherit (nvfetcher.${system}) dms-plugins;
+      quickshell-src = nvfetcher.${system}.quickshell.src;
+      quickshell = pkgs.callPackage quickshell-src { };
+
       cfg = config.programs.dms-shell;
     in
     {
       programs.dms-shell = {
         enable = true;
-        quickshell.package = inputs.quickshell.packages.${system}.quickshell;
+        quickshell.package = quickshell;
         systemd = {
           enable = true;
           restartIfChanged = true;
@@ -50,7 +51,7 @@ let
       ];
       services.displayManager.dms-greeter = {
         enable = true;
-        quickshell.package = inputs.quickshell.packages.${system}.quickshell;
+        quickshell.package = quickshell;
         compositor = {
           name = "niri"; # Or "hyprland" or "sway"
           customConfig = ''

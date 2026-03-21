@@ -5,11 +5,9 @@
 {
   lib,
   inputs,
-  config,
   ...
 }:
 let
-  inherit (config) meta;
   inherit (inputs) flake-parts treefmt-nix wrappers;
 in
 {
@@ -34,13 +32,16 @@ in
         pkgs.makeWrapper
         pkgs.libtiff.out
       ];
-      inherit (config.nvfetched) bizhub-225i epson-202101w;
+      inherit (config.nvfetcher) bizhub-225i epson-202101w;
     in
     {
       _module.args.pkgs = import inputs.nixpkgs {
         inherit system;
-        config.allowUnfreePredicate = pkg: lib.elem (lib.getName pkg) meta.unfreeNames;
+        config = {
+          allowUnfree = true;
+        };
       };
+      nvfetcher = pkgs.callPackage ../../_sources/generated.nix { };
 
       devShells.default = pkgs.mkShell {
         inputsFrom = [ config.devShells.commands ];

@@ -177,5 +177,4 @@ in
       documentation.dev.enable = true;
 
     };
-  meta.unfreeNames = [ "via" ];
 }

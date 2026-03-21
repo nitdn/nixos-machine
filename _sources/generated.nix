@@ -35,6 +35,18 @@
       sha256 = "sha256-n0Ff2wfhPruYhzAH0GrhpYpkddiQ3rkYukvZyRgrn54=";
     };
   };
+  home-manager-lib = {
+    pname = "home-manager-lib";
+    version = "9670de2921812bc4e0452f6e3efd8c859696c183";
+    src = fetchFromGitHub {
+      owner = "nix-community";
+      repo = "home-manager";
+      rev = "9670de2921812bc4e0452f6e3efd8c859696c183";
+      fetchSubmodules = false;
+      sha256 = "sha256-FOnZjElEI8pqqCvB6K/1JRHTE8o4rer8driivTpq2uo=";
+    };
+    date = "2026-03-20";
+  };
   matugen-themes = {
     pname = "matugen-themes";
     version = "d880aeec9209ce56134c661c085535f8db5fa332";
@@ -46,5 +58,43 @@
       sha256 = "sha256-QNJSej9S6l32STwgHXHij8cYp1QtozOv7nSzj3bGE/s=";
     };
     date = "2026-03-17";
+  };
+  nix-index-database = {
+    pname = "nix-index-database";
+    version = "8faeb68130df077450451b6734a221ba0d6cde42";
+    src = fetchFromGitHub {
+      owner = "nix-community";
+      repo = "nix-index-database";
+      rev = "8faeb68130df077450451b6734a221ba0d6cde42";
+      fetchSubmodules = false;
+      sha256 = "sha256-mHSRNrT1rjeYBgkAlj07dW3+1nFEgAd8Gu6lgyfT9DU=";
+    };
+    date = "2026-03-15";
+  };
+  quickshell = {
+    pname = "quickshell";
+    version = "6a244c3c560b45f3b860ed6c0fc54d0291ab6f57";
+    src = fetchgit {
+      url = "https://git.outfoxxed.me/quickshell/quickshell.git";
+      rev = "6a244c3c560b45f3b860ed6c0fc54d0291ab6f57";
+      fetchSubmodules = false;
+      deepClone = false;
+      leaveDotGit = false;
+      sparseCheckout = [ ];
+      sha256 = "sha256-XV/WgkkZ6OLJ+W0vrD4bXB7/ErQysc5R5lrkT2/VBVs=";
+    };
+    date = "2026-03-19";
+  };
+  steam-presence = {
+    pname = "steam-presence";
+    version = "4cc1169ee14c07ca86bdda7d56ad2f6e439b0967";
+    src = fetchFromGitHub {
+      owner = "JustTemmie";
+      repo = "steam-presence";
+      rev = "4cc1169ee14c07ca86bdda7d56ad2f6e439b0967";
+      fetchSubmodules = false;
+      sha256 = "sha256-yxgw/7oej8ryYD9ohECa04jEPztHhydC8ifV+w/VibY=";
+    };
+    date = "2026-03-09";
   };
 }

@@ -12,24 +12,12 @@
       url = "github:youwen5/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    home-manager-lib = {
-      url = "github:nix-community/home-manager?dir=modules/lib";
-      flake = false;
-    };
     wrappers = {
       url = "github:BirdeeHub/nix-wrapper-modules";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-index-database = {
-      url = "github:nix-community/nix-index-database";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     sops-nix = {
       url = "github:Mic92/sops-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    steam-presence = {
-      url = "github:JustTemmie/steam-presence";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     flake-parts.url = "github:hercules-ci/flake-parts";
@@ -54,12 +42,6 @@
       inputs.flake-parts.follows = "flake-parts";
       inputs.treefmt-nix.follows = "treefmt-nix";
       inputs.flake-compat.follows = "";
-      inputs.git-hooks.inputs.nixpkgs.follows = "";
-      inputs.git-hooks.inputs.flake-compat.follows = "";
-    };
-    quickshell = {
-      url = "https://git.outfoxxed.me/quickshell/quickshell/archive/master.tar.gz";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 

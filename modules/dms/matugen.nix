@@ -5,12 +5,12 @@
 {
   config,
   lib,
-  getSystem,
   ...
 }:
 
 let
   inherit (config.meta) username;
+  inherit (config.flake) nvfetcher;
 in
 {
   flake = {
@@ -18,8 +18,7 @@ in
       { pkgs, ... }:
       let
         inherit (pkgs.stdenv.hostPlatform) system;
-        perSystem = getSystem system;
-        inherit (perSystem.nvfetched) matugen-themes;
+        inherit (nvfetcher.${system}) matugen-themes;
         matugenThemes = "${matugen-themes.src}/templates";
         matugen.config = { };
         matugen.templates.helix = {
