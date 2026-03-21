@@ -144,7 +144,7 @@ in
           {
             type = "symlink";
             source = niri-config;
-            target = ".config/niri.config.kdl";
+            target = ".config/niri/config.kdl";
           }
         ];
       };

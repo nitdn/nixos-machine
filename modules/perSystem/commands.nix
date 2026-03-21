@@ -72,6 +72,7 @@ let
 
     def "main eval profiler" [hostname: string=tjmaxxer] {
        (nix eval .#nixosConfigurations.($hostname).config.system.build.toplevel
+        --substituters " " --no-eval-cache --read-only
         --impure --eval-profiler flamegraph --eval-profiler-frequency 9999)
        (inferno-flamegraph
         --width 10000 nix.profile o> result-($hostname).svg)

@@ -10,7 +10,12 @@ in
   meta.unfreeNames = [
     "corefonts"
   ];
-  perSystem.niri.settings.spawn-at-startup = "ibus start --type wayland";
+  perSystem.niri.settings.spawn-at-startup = [
+    "ibus"
+    "start"
+    "--type"
+    "wayland"
+  ];
   flake.modules.nixos.pc =
     {
       pkgs,
@@ -21,9 +26,17 @@ in
     let
       inherit (pkgs.stdenv.hostPlatform) system;
       cfg = config.hardware.graphics;
+
+      # Nixpkgs makes some truly degenerate ibus desktop entries
+      killIbusAutostart = pkgs.writeTextFile {
+        name = "kill-autostart-ibus-daemon";
+        destination = "/etc/xdg/autostart/ibus-daemon.desktop";
+        text = "";
+      };
     in
     lib.mkIf cfg.enable {
       environment.systemPackages = [
+        (lib.mkForce killIbusAutostart)
         packages.${system}.naps2-wrapped
         inputs.affinity-nix.packages.${system}.v3
         inputs.zen-browser.packages.${system}.default
