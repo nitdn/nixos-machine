@@ -73,19 +73,12 @@ in
       };
       fonts.packages = [
         pkgs.corefonts
+        pkgs.winePackages.fonts
       ];
-      systemd.user.tmpfiles.rules =
-        lib.lists.forEach
-          [
-            pkgs.corefonts
-            pkgs.noto-fonts
-            pkgs.noto-fonts-color-emoji
-            pkgs.winePackages.fonts
-          ]
-          (pkg: ''
-            C+ %h/.local/share/fonts/${pkg.pname} 0755 - - - ${pkg}/share/fonts/
-            z %h/.local/share/fonts/${pkg.pname}/* 0755 - - -
-          '');
+      systemd.user.tmpfiles.rules = lib.lists.forEach config.fonts.packages (pkg: ''
+        C+ %h/.local/share/fonts/${pkg.pname} 0755 - - - ${pkg}/share/fonts/
+        z %h/.local/share/fonts/${pkg.pname}/* 0755 - - -
+      '');
     };
 
 }

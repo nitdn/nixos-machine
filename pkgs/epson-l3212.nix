@@ -5,6 +5,8 @@
 {
   lib,
   stdenv,
+  pname,
+  version,
   src,
   rpmextract,
   autoreconfHook,
@@ -14,14 +16,10 @@
 }:
 
 let
-  version = "1.0.2";
-  filterVersion = "1.0.2";
+  filterVersion = version;
 in
 stdenv.mkDerivation {
-  pname = "epson-202101w";
-  inherit version;
-
-  inherit src;
+  inherit pname version src;
 
   nativeBuildInputs = [
     rpmextract

@@ -31,16 +31,9 @@ in
         };
         matugenTemplate = (pkgs.formats.toml { }).generate "matugen/config.toml" matugen;
       in
-
       {
-        houses.users = {
-          ${username}.files = [
-            {
-              type = "symlink";
-              source = matugenTemplate;
-              target = ".config/matugen/config.toml";
-            }
-          ];
+        systemd.user.services.dms.serviceConfig = {
+          BindPaths = [ "${matugenTemplate}:%E/matugen/config.toml" ];
         };
       };
     wrappers = {

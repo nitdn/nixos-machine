@@ -147,6 +147,9 @@ in
             target = ".config/niri/config.kdl";
           }
         ];
+        systemd.user.services.dms.serviceConfig = {
+          BindPaths = [ "${niri-config}:%E/niri/config.kdl" ];
+        };
       };
   };
 }

@@ -7,6 +7,8 @@
   stdenv,
   cups,
   autoPatchelfHook,
+  pname,
+  version,
   src,
   rpmextract,
   unzip,
@@ -16,8 +18,8 @@ let
 in
 
 stdenv.mkDerivation {
-  pname = "konica-bizhub-225i";
-  version = "2.0.1";
+  inherit pname version src;
+
   nativeBuildInputs = [
     unzip
     rpmextract
@@ -26,8 +28,6 @@ stdenv.mkDerivation {
   buildInputs = [
     cups
   ];
-
-  inherit src;
 
   buildPhase = ''
     rpmextract For_${cpu}/konica-minolta-245igdi-cups-2.01-0.${cpu}.rpm

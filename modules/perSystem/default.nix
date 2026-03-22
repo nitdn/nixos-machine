@@ -77,12 +77,8 @@ in
         };
       };
       packages = {
-        bizhub-225i = pkgs.callPackage ../../pkgs/bizhub-225i.nix {
-          inherit (bizhub-225i) src;
-        };
-        epson-l3212 = pkgs.callPackage ../../pkgs/epson-l3212.nix {
-          inherit (epson-202101w) src;
-        };
+        bizhub-225i = pkgs.callPackage ../../pkgs/bizhub-225i.nix bizhub-225i;
+        epson-l3212 = pkgs.callPackage ../../pkgs/epson-l3212.nix epson-202101w;
         naps2-wrapped = pkgs.naps2.overrideAttrs (
           _finalAttrs: previousAttrs: {
             buildInputs = previousAttrs.buildInputs or [ ] ++ buildInputs;
