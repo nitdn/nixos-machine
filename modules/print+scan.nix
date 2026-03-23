@@ -19,9 +19,19 @@ in
         bizhub-225i
         epson-l3212
         ;
+      printerConfig.bizhub = {
+        location = "shop";
+        deviceUri = "usb://KONICA%20MINOLTA/225i?serial=ACN2041204913&interface=1";
+        model = "KonicaMinolta/225igdi.ppd";
+        ppdOptions = {
+          PageSize = "A4";
+          Duplexer = "true";
+        };
+
+      };
     in
     {
-      services = lib.mkIf config.hardware.graphics.enable {
+      services = {
         # Enable CUPS to print documents.
         printing.enable = true;
         system-config-printer.enable = true;
@@ -35,7 +45,24 @@ in
       programs = lib.mkIf config.services.printing.enable {
         system-config-printer.enable = true;
       };
-      hardware = lib.mkIf config.hardware.graphics.enable {
+      hardware = {
+        printers.ensurePrinters = [
+          (lib.recursiveUpdate printerConfig.bizhub {
+            name = "225i-single-sided";
+            ppdOptions = {
+              Duplex = "None";
+            };
+          })
+          (lib.recursiveUpdate printerConfig.bizhub {
+            name = "225i-double-sided";
+            ppdOptions = {
+              Duplex = "DuplexNoTumble";
+              OCM_TonerSave = "TRUE";
+            };
+          }
+
+          )
+        ];
         sane.enable = true;
         sane.openFirewall = true;
         sane.extraBackends = [

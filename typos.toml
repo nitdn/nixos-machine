@@ -7,3 +7,9 @@ facter = "facter"
 browseable = "browseable"
 ede = "ede"
 substituters = "substituters"
+
+[default]
+extend-ignore-words-re = [
+  # words with length <= 4 chars is likely noise
+  "^[a-zA-Z]{1,4}$",
+]
