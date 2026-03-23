@@ -52,7 +52,7 @@
     },
     "home-manager-lib": {
         "cargoLock": null,
-        "date": "2026-03-21",
+        "date": "2026-03-22",
         "extract": null,
         "name": "home-manager-lib",
         "passthru": null,
@@ -64,12 +64,12 @@
             "name": null,
             "owner": "nix-community",
             "repo": "home-manager",
-            "rev": "856b01ebd1de3f53c3929ce8082d9d67d799d816",
-            "sha256": "sha256-TVeIGOxnfSPM6JvkRkXHpJECnj1OG2dXkWMSA4elzzQ=",
+            "rev": "c6fe2944ad9f2444b2d767c4a5edee7c166e8a95",
+            "sha256": "sha256-yeiWCY9aAUUJ3ebMVjs0UZXRnT5x90MCtpbpOWiXrvM=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "856b01ebd1de3f53c3929ce8082d9d67d799d816"
+        "version": "c6fe2944ad9f2444b2d767c4a5edee7c166e8a95"
     },
     "matugen-themes": {
         "cargoLock": null,
@@ -94,7 +94,7 @@
     },
     "nix-index-database": {
         "cargoLock": null,
-        "date": "2026-03-15",
+        "date": "2026-03-22",
         "extract": null,
         "name": "nix-index-database",
         "passthru": null,
@@ -106,12 +106,12 @@
             "name": null,
             "owner": "nix-community",
             "repo": "nix-index-database",
-            "rev": "8faeb68130df077450451b6734a221ba0d6cde42",
-            "sha256": "sha256-mHSRNrT1rjeYBgkAlj07dW3+1nFEgAd8Gu6lgyfT9DU=",
+            "rev": "55b588747fa3d7fc351a11831c4b874dab992862",
+            "sha256": "sha256-gdYe9wTPl4ignDyXUl1LlICWj41+S0GB5lG1fKP17+A=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "8faeb68130df077450451b6734a221ba0d6cde42"
+        "version": "55b588747fa3d7fc351a11831c4b874dab992862"
     },
     "quickshell": {
         "cargoLock": null,
