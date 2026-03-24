@@ -22,7 +22,10 @@ in
         pkgs.kdePackages.ark
       ];
       services.tumbler.enable = true;
-      services.gvfs.enable = true;
+      services.gvfs = {
+        enable = true;
+        package = pkgs.gnome.gvfs;
+      };
     };
   flake.modules.nixos.pc.imports = [ nixosModules.thunar ];
 }
