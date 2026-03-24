@@ -14,27 +14,6 @@
         },
         "version": "2.0.1"
     },
-    "dms-plugins": {
-        "cargoLock": null,
-        "date": "2026-02-24",
-        "extract": null,
-        "name": "dms-plugins",
-        "passthru": null,
-        "pinned": false,
-        "src": {
-            "deepClone": false,
-            "fetchSubmodules": false,
-            "leaveDotGit": false,
-            "name": null,
-            "owner": "AvengeMedia",
-            "repo": "dms-plugins",
-            "rev": "141841fc85e01494df6d217bd5a27c65da87256d",
-            "sha256": "sha256-/155wFIotV9xiZzX9XRGs3ANjBcLJwS4kNDDNO6WkF0=",
-            "sparseCheckout": [],
-            "type": "github"
-        },
-        "version": "141841fc85e01494df6d217bd5a27c65da87256d"
-    },
     "epson-202101w": {
         "cargoLock": null,
         "date": null,
@@ -52,7 +31,7 @@
     },
     "home-manager-lib": {
         "cargoLock": null,
-        "date": "2026-03-23",
+        "date": "2026-03-24",
         "extract": null,
         "name": "home-manager-lib",
         "passthru": null,
@@ -64,12 +43,12 @@
             "name": null,
             "owner": "nix-community",
             "repo": "home-manager",
-            "rev": "bc357c75e3142a31b849ba49c5299fb52c61cf59",
-            "sha256": "sha256-OEBV+Y5I4Ldu98k0KvGXRfJYh+jjE8ocCSL/dxTGs1s=",
+            "rev": "61463d50fca2f07b39231f88ebeffbf1617d2094",
+            "sha256": "sha256-xISUnO64LVh+DhV6wMAbWJtWjw9eqUQBJE/NX4BcDlw=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "bc357c75e3142a31b849ba49c5299fb52c61cf59"
+        "version": "61463d50fca2f07b39231f88ebeffbf1617d2094"
     },
     "matugen-themes": {
         "cargoLock": null,
@@ -92,27 +71,6 @@
         },
         "version": "d880aeec9209ce56134c661c085535f8db5fa332"
     },
-    "nix-index-database": {
-        "cargoLock": null,
-        "date": "2026-03-22",
-        "extract": null,
-        "name": "nix-index-database",
-        "passthru": null,
-        "pinned": false,
-        "src": {
-            "deepClone": false,
-            "fetchSubmodules": false,
-            "leaveDotGit": false,
-            "name": null,
-            "owner": "nix-community",
-            "repo": "nix-index-database",
-            "rev": "55b588747fa3d7fc351a11831c4b874dab992862",
-            "sha256": "sha256-gdYe9wTPl4ignDyXUl1LlICWj41+S0GB5lG1fKP17+A=",
-            "sparseCheckout": [],
-            "type": "github"
-        },
-        "version": "55b588747fa3d7fc351a11831c4b874dab992862"
-    },
     "quickshell": {
         "cargoLock": null,
         "date": "2026-03-19",
@@ -132,26 +90,5 @@
             "url": "https://git.outfoxxed.me/quickshell/quickshell.git"
         },
         "version": "6a244c3c560b45f3b860ed6c0fc54d0291ab6f57"
-    },
-    "steam-presence": {
-        "cargoLock": null,
-        "date": "2026-03-09",
-        "extract": null,
-        "name": "steam-presence",
-        "passthru": null,
-        "pinned": false,
-        "src": {
-            "deepClone": false,
-            "fetchSubmodules": false,
-            "leaveDotGit": false,
-            "name": null,
-            "owner": "JustTemmie",
-            "repo": "steam-presence",
-            "rev": "4cc1169ee14c07ca86bdda7d56ad2f6e439b0967",
-            "sha256": "sha256-yxgw/7oej8ryYD9ohECa04jEPztHhydC8ifV+w/VibY=",
-            "sparseCheckout": [],
-            "type": "github"
-        },
-        "version": "4cc1169ee14c07ca86bdda7d56ad2f6e439b0967"
     }
 }

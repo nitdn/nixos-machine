@@ -43,6 +43,18 @@
       inputs.treefmt-nix.follows = "treefmt-nix";
       inputs.flake-compat.follows = "";
     };
+    dms-plugin-registry = {
+      url = "github:AvengeMedia/dms-plugin-registry";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    steam-presence = {
+      url = "github:JustTemmie/steam-presence";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =

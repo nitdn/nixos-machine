@@ -15,18 +15,6 @@
       sha256 = "sha256-iF3FVSqDsjs6i4xeDMsUSb+0woCJ5/1lq7R0fe+x/HU=";
     };
   };
-  dms-plugins = {
-    pname = "dms-plugins";
-    version = "141841fc85e01494df6d217bd5a27c65da87256d";
-    src = fetchFromGitHub {
-      owner = "AvengeMedia";
-      repo = "dms-plugins";
-      rev = "141841fc85e01494df6d217bd5a27c65da87256d";
-      fetchSubmodules = false;
-      sha256 = "sha256-/155wFIotV9xiZzX9XRGs3ANjBcLJwS4kNDDNO6WkF0=";
-    };
-    date = "2026-02-24";
-  };
   epson-202101w = {
     pname = "epson-202101w";
     version = "1.0.2";
@@ -37,15 +25,15 @@
   };
   home-manager-lib = {
     pname = "home-manager-lib";
-    version = "bc357c75e3142a31b849ba49c5299fb52c61cf59";
+    version = "61463d50fca2f07b39231f88ebeffbf1617d2094";
     src = fetchFromGitHub {
       owner = "nix-community";
       repo = "home-manager";
-      rev = "bc357c75e3142a31b849ba49c5299fb52c61cf59";
+      rev = "61463d50fca2f07b39231f88ebeffbf1617d2094";
       fetchSubmodules = false;
-      sha256 = "sha256-OEBV+Y5I4Ldu98k0KvGXRfJYh+jjE8ocCSL/dxTGs1s=";
+      sha256 = "sha256-xISUnO64LVh+DhV6wMAbWJtWjw9eqUQBJE/NX4BcDlw=";
     };
-    date = "2026-03-23";
+    date = "2026-03-24";
   };
   matugen-themes = {
     pname = "matugen-themes";
@@ -58,18 +46,6 @@
       sha256 = "sha256-QNJSej9S6l32STwgHXHij8cYp1QtozOv7nSzj3bGE/s=";
     };
     date = "2026-03-17";
-  };
-  nix-index-database = {
-    pname = "nix-index-database";
-    version = "55b588747fa3d7fc351a11831c4b874dab992862";
-    src = fetchFromGitHub {
-      owner = "nix-community";
-      repo = "nix-index-database";
-      rev = "55b588747fa3d7fc351a11831c4b874dab992862";
-      fetchSubmodules = false;
-      sha256 = "sha256-gdYe9wTPl4ignDyXUl1LlICWj41+S0GB5lG1fKP17+A=";
-    };
-    date = "2026-03-22";
   };
   quickshell = {
     pname = "quickshell";
@@ -84,17 +60,5 @@
       sha256 = "sha256-XV/WgkkZ6OLJ+W0vrD4bXB7/ErQysc5R5lrkT2/VBVs=";
     };
     date = "2026-03-19";
-  };
-  steam-presence = {
-    pname = "steam-presence";
-    version = "4cc1169ee14c07ca86bdda7d56ad2f6e439b0967";
-    src = fetchFromGitHub {
-      owner = "JustTemmie";
-      repo = "steam-presence";
-      rev = "4cc1169ee14c07ca86bdda7d56ad2f6e439b0967";
-      fetchSubmodules = false;
-      sha256 = "sha256-yxgw/7oej8ryYD9ohECa04jEPztHhydC8ifV+w/VibY=";
-    };
-    date = "2026-03-09";
   };
 }

@@ -11,10 +11,6 @@ url.name = "bizhub-225i.zip"
 src.manual = "1.0.2"
 fetch.url = "https://web.archive.org/web/20260318090110/https://download-center.epson.com/f/module/c863d6cc-2e0c-48f5-8a70-b2c3843c647a/epson-inkjet-printer-202101w-1.0.2-1.src.rpm"
 
-[dms-plugins]
-src.git = "https://github.com/AvengeMedia/dms-plugins.git"
-fetch.github = "AvengeMedia/dms-plugins"
-
 [matugen-themes]
 src.git = "https://github.com/InioX/matugen-themes.git"
 fetch.github = "InioX/matugen-themes"
@@ -22,14 +18,6 @@ fetch.github = "InioX/matugen-themes"
 [home-manager-lib]
 src.git = "https://github.com/nix-community/home-manager.git"
 fetch.github = "nix-community/home-manager"
-
-[steam-presence]
-src.git = "https://github.com/JustTemmie/steam-presence.git"
-fetch.github = "JustTemmie/steam-presence"
-
-[nix-index-database]
-src.git = "https://github.com/nix-community/nix-index-database.git"
-fetch.github = "nix-community/nix-index-database"
 
 [quickshell]
 src.git = "https://git.outfoxxed.me/quickshell/quickshell.git"

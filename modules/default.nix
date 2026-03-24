@@ -10,9 +10,7 @@
   ...
 }:
 let
-  inherit (config.meta) username;
-  dummySystem = "x86_64-linux"; # dummy value as the fetcher doesnt really care
-  nvfetcher = config.flake.nvfetcher.${dummySystem};
+  inherit (config.meta) username; # dummy value as the fetcher doesnt really care
 
 in
 {
@@ -35,7 +33,7 @@ in
       {
         imports = [
           inputs.sops-nix.nixosModules.sops
-          "${nvfetcher.nix-index-database.src}/nixos-module.nix"
+          inputs.nix-index-database.nixosModules.default
         ];
         # Use the configured pkgs from perSystem
         nixpkgs.pkgs = withSystem config.nixpkgs.hostPlatform.system (

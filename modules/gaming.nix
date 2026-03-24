@@ -9,9 +9,7 @@
   ...
 }:
 let
-  inherit (config.meta) username;
-  dummySystem = "x86_64-linux"; # dummy value as the fetcher doesnt really care
-  inherit (config.flake.nvfetcher.${dummySystem}) steam-presence;
+  inherit (config.meta) username; # dummy value as the fetcher doesnt really care
 in
 {
   flake.modules.nixos = {
@@ -82,7 +80,7 @@ in
     tjmaxxer =
       { pkgs, config, ... }:
       {
-        imports = [ "${steam-presence.src}/nix/nixos-modules/steam-presence.nix" ];
+        imports = [ inputs.steam-presence.nixosModules.steam-presence ];
 
         programs.steam.package = pkgs.steam.override {
           extraEnv = {

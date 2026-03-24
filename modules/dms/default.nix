@@ -3,6 +3,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 {
+  inputs,
   config,
   lib,
   ...
@@ -14,13 +15,13 @@ let
     { pkgs, config, ... }:
     let
       inherit (pkgs.stdenv.hostPlatform) system;
-      inherit (nvfetcher.${system}) dms-plugins;
       quickshell-src = nvfetcher.${system}.quickshell.src;
       quickshell = pkgs.callPackage quickshell-src { };
 
       cfg = config.programs.dms-shell;
     in
     {
+      imports = [ inputs.dms-plugin-registry.modules.default ];
       programs.dms-shell = {
         enable = true;
         quickshell.package = quickshell;
@@ -33,16 +34,11 @@ let
         enableDynamicTheming = true;
         enableAudioWavelength = true;
         enableCalendarEvents = true;
-        plugins =
-          lib.genAttrs
-            [
-              "DankKDEConnect"
-              "DankLauncherKeys"
-              "emojiLauncher"
-            ]
-            (name: {
-              src = "${dms-plugins.src}/${name}";
-            });
+        plugins = {
+          # Simply enable plugins by their ID (from the registry)
+          dankBatteryAlerts.enable = true;
+          dockerManager.enable = true;
+        };
       };
       programs.dsearch.enable = true;
       services.displayManager.gdm.enable = false;
