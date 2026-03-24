@@ -8,7 +8,12 @@
 }:
 let
   wlr-wrapper =
-    { config, wlib, ... }:
+    {
+      pkgs,
+      config,
+      wlib,
+      ...
+    }:
     let
       settingsFormat = config.pkgs.formats.yaml { };
     in
@@ -27,10 +32,16 @@ let
         };
         configFile = lib.mkOption {
           type = wlib.types.file config.pkgs;
-          default.path = settingsFormat.generate "wlr-config.yaml" config.settings;
+          default.path = config.constructFiles.generatedConfig.path;
+          # default.path = settingsFormat.generate "wlr-config.yaml" config.settings;
         };
       };
       config.package = config.pkgs.wlr-which-key;
+      config.constructFiles.generatedConfig = {
+        content = builtins.toJSON config.settings;
+        relPath = "${config.binName}-config.yaml";
+        builder = ''mkdir -p "$(dirname "$2")" && ${pkgs.remarshal}/bin/json2yaml "$1" "$2"'';
+      };
       config.addFlag = [
         config.configFile.path
       ];
