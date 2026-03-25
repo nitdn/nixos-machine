@@ -25,13 +25,13 @@
   };
   home-manager-lib = {
     pname = "home-manager-lib";
-    version = "61463d50fca2f07b39231f88ebeffbf1617d2094";
+    version = "1eb0549a1ab3fe3f5acf86668249be15fa0e64f7";
     src = fetchFromGitHub {
       owner = "nix-community";
       repo = "home-manager";
-      rev = "61463d50fca2f07b39231f88ebeffbf1617d2094";
+      rev = "1eb0549a1ab3fe3f5acf86668249be15fa0e64f7";
       fetchSubmodules = false;
-      sha256 = "sha256-xISUnO64LVh+DhV6wMAbWJtWjw9eqUQBJE/NX4BcDlw=";
+      sha256 = "sha256-0nGNxWDUH2Hzlj/R3Zf4FEK6fsFNB/dvewuboSRZqiI=";
     };
     date = "2026-03-24";
   };
