@@ -10,7 +10,6 @@
 }:
 let
   nixosModules = config.flake.modules.nixos;
-  cfg = config.flake.nixosConfigurations.msi-colgate.config;
 in
 {
 
@@ -33,5 +32,4 @@ in
   flake.nixosConfigurations.msi-colgate = inputs.nixpkgs.lib.nixosSystem {
     modules = lib.attrValues { inherit (nixosModules) pc work msi-colgate; };
   };
-  perSystem.packages.msi-colgate = cfg.system.build.toplevel;
 }

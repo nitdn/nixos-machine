@@ -16,6 +16,11 @@
       url = "github:BirdeeHub/nix-wrapper-modules";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    home-manager-lib = {
+      url = "github:nix-community/home-manager?dir=modules/lib";
+      flake = false;
+    };
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -53,6 +58,10 @@
     };
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    quickshell = {
+      url = "https://git.outfoxxed.me/quickshell/quickshell/archive/master.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

@@ -185,6 +185,24 @@
         "type": "github"
       }
     },
+    "home-manager-lib": {
+      "flake": false,
+      "locked": {
+        "dir": "modules/lib",
+        "lastModified": 1774379316,
+        "narHash": "sha256-0nGNxWDUH2Hzlj/R3Zf4FEK6fsFNB/dvewuboSRZqiI=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "1eb0549a1ab3fe3f5acf86668249be15fa0e64f7",
+        "type": "github"
+      },
+      "original": {
+        "dir": "modules/lib",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "type": "github"
+      }
+    },
     "nix-index-database": {
       "inputs": {
         "nixpkgs": [
@@ -293,14 +311,34 @@
         "url": "https://github.com/noahc3/AffinityPluginLoader/releases/download/v0.2.0/affinitypluginloader-plus-winefix.tar.xz"
       }
     },
+    "quickshell": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1774422996,
+        "narHash": "sha256-mWjBJIbiMPCpljAQDk8RYf+92/lYZ5npHe2r2SJ+QWc=",
+        "rev": "08058326f04e9b5e55c903b3702405a8d3556ac6",
+        "type": "tarball",
+        "url": "https://git.outfoxxed.me/api/v1/repos/quickshell/quickshell/archive/08058326f04e9b5e55c903b3702405a8d3556ac6.tar.gz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://git.outfoxxed.me/quickshell/quickshell/archive/master.tar.gz"
+      }
+    },
     "root": {
       "inputs": {
         "affinity-nix": "affinity-nix",
         "disko": "disko",
         "dms-plugin-registry": "dms-plugin-registry",
         "flake-parts": "flake-parts",
+        "home-manager-lib": "home-manager-lib",
         "nix-index-database": "nix-index-database",
         "nixpkgs": "nixpkgs_2",
+        "quickshell": "quickshell",
         "sops-nix": "sops-nix",
         "steam-presence": "steam-presence",
         "treefmt-nix": "treefmt-nix",

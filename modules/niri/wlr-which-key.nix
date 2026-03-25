@@ -9,7 +9,6 @@
 let
   wlr-wrapper =
     {
-      pkgs,
       config,
       wlib,
       ...
@@ -38,9 +37,8 @@ let
       };
       config.package = config.pkgs.wlr-which-key;
       config.constructFiles.generatedConfig = {
-        content = builtins.toJSON config.settings;
+        content = lib.generators.toYAML { } config.settings;
         relPath = "${config.binName}-config.yaml";
-        builder = ''mkdir -p "$(dirname "$2")" && ${pkgs.remarshal}/bin/json2yaml "$1" "$2"'';
       };
       config.addFlag = [
         config.configFile.path

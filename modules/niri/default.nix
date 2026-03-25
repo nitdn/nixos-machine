@@ -3,6 +3,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 {
+  inputs,
   config,
   lib,
   flake-parts-lib,
@@ -84,9 +85,14 @@ in
 
   ;
   config.perSystem =
-    { pkgs, config, ... }:
+    {
+      pkgs,
+      config,
+      inputs',
+      ...
+    }:
     let
-      home-manager-lib = "${config.nvfetcher.home-manager-lib.src}/modules/lib";
+      inherit (inputs) home-manager-lib;
       # Define the settings format used for this program
       generator = (import "${home-manager-lib}/generators.nix" { inherit lib; }).toKDL { };
       niriConfigWithoutIncludes =
@@ -109,7 +115,7 @@ in
           { include = "${./default_binds.kdl}"; }
           { include = "${./default_config.kdl}"; }
           { include = "${./window-rules.kdl}"; }
-          { spawn-at-startup = "zen"; }
+          { spawn-at-startup = lib.getExe inputs'.zen-browser.packages.default; }
           { spawn-at-startup = "ckb-next"; }
         ];
       };

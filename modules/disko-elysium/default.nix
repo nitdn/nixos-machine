@@ -11,7 +11,6 @@
 let
   nixosModules = config.flake.modules.nixos;
   inherit (config.meta) username;
-  cfg = config.flake.nixosConfigurations.disko-elysium.config;
 in
 {
   flake.modules.nixos.disko-elysium =
@@ -44,5 +43,4 @@ in
   flake.nixosConfigurations.disko-elysium = inputs.nixpkgs.lib.nixosSystem {
     modules = lib.attrValues { inherit (nixosModules) pc disko-elysium; };
   };
-  perSystem.packages.disko-elysium = cfg.system.build.toplevel;
 }

@@ -10,15 +10,15 @@
 
 let
   inherit (config.meta) username;
-  inherit (config.flake) nvfetcher;
+  inherit (config.flake) sources;
+
 in
 {
   flake = {
     modules.nixos.dms =
       { pkgs, ... }:
       let
-        inherit (pkgs.stdenv.hostPlatform) system;
-        inherit (nvfetcher.${system}) matugen-themes;
+        inherit (pkgs.callPackage sources.raw { }) matugen-themes;
         matugenThemes = "${matugen-themes.src}/templates";
         matugen.config = { };
         matugen.templates.helix = {

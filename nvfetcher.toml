@@ -15,10 +15,6 @@ fetch.url = "https://web.archive.org/web/20260318090110/https://download-center.
 src.git = "https://github.com/InioX/matugen-themes.git"
 fetch.github = "InioX/matugen-themes"
 
-[home-manager-lib]
-src.git = "https://github.com/nix-community/home-manager.git"
-fetch.github = "nix-community/home-manager"
-
 [quickshell]
 src.git = "https://git.outfoxxed.me/quickshell/quickshell.git"
 fetch.git = "https://git.outfoxxed.me/quickshell/quickshell.git"

@@ -10,14 +10,11 @@
 }:
 let
   inherit (config.meta) username;
-  inherit (config.flake) nvfetcher;
   dms =
     { pkgs, config, ... }:
     let
-      inherit (pkgs.stdenv.hostPlatform) system;
-      quickshell-src = nvfetcher.${system}.quickshell.src;
-      quickshell = pkgs.callPackage quickshell-src { };
-
+      # quickshell = inputs.quickshell.packages.${system}.default;
+      quickshell = import ../../pkgs/quickshell.nix { inherit pkgs; };
       cfg = config.programs.dms-shell;
     in
     {

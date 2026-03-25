@@ -108,5 +108,38 @@ in
           config.packages.runCommand
         ];
       };
+      devShells.default = pkgs.mkShell {
+        inputsFrom = [ config.devShells.commands ];
+        packages = lib.attrValues {
+          inherit (config.packages) jujutsu-pc;
+          inherit (pkgs)
+            bashInteractive
+            cloc
+            dix
+            github-cli
+            hydra-check
+            jq
+            kdlfmt
+            meld
+            nh
+            nil
+            nixd
+            nixfmt
+            nix-fast-build
+            nvfetcher
+            onefetch
+            pandoc
+            reuse
+            sops
+            taplo
+            tinymist
+            tokei
+            typstyle
+            vscode-langservers-extracted
+            yaml-language-server
+            zizmor
+            ;
+        };
+      };
     };
 }

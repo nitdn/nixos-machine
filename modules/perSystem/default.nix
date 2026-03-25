@@ -5,10 +5,12 @@
 {
   lib,
   inputs,
+  config,
   ...
 }:
 let
   inherit (inputs) flake-parts treefmt-nix wrappers;
+  inherit (config.flake) sources;
 in
 {
   imports = [
@@ -24,7 +26,6 @@ in
     {
       pkgs,
       system,
-      config,
       ...
     }:
     let
@@ -32,48 +33,14 @@ in
         pkgs.makeWrapper
         pkgs.libtiff.out
       ];
-      inherit (config.nvfetcher) bizhub-225i epson-202101w;
+
+      inherit (pkgs.callPackage sources.raw { }) bizhub-225i epson-202101w;
     in
     {
       _module.args.pkgs = import inputs.nixpkgs {
         inherit system;
         config = {
           allowUnfree = true;
-        };
-      };
-      nvfetcher = pkgs.callPackage ../../_sources/generated.nix { };
-
-      devShells.default = pkgs.mkShell {
-        inputsFrom = [ config.devShells.commands ];
-        packages = lib.attrValues {
-          inherit (config.packages) jujutsu-pc;
-          inherit (pkgs)
-            bashInteractive
-            cloc
-            dix
-            github-cli
-            hydra-check
-            jq
-            kdlfmt
-            meld
-            nh
-            nil
-            nixd
-            nixfmt
-            nix-fast-build
-            nvfetcher
-            onefetch
-            pandoc
-            reuse
-            sops
-            taplo
-            tinymist
-            tokei
-            typstyle
-            vscode-langservers-extracted
-            yaml-language-server
-            zizmor
-            ;
         };
       };
       packages = {
@@ -90,17 +57,6 @@ in
           }
         );
       };
-      checks.reuse =
-        pkgs.runCommand "reuse"
-          {
-            src = inputs.self.outPath;
-            nativeBuildInputs = [ pkgs.reuse ];
-          }
-          ''
-            cd $src
-            reuse lint | tac >&2
-            mkdir $out
-          '';
       treefmt.programs =
         lib.genAttrs
           [
