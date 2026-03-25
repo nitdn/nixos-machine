@@ -2,6 +2,11 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
+{ config, ... }:
+let
+  inherit (config.meta) username;
+in
+
 {
   flake.modules.nixos.work =
     { config, ... }:
@@ -21,7 +26,7 @@
             #"use sendfile" = "yes";
             #"max protocol" = "smb2";
             # note: localhost is the ipv6 localhost ::1
-            "hosts allow" = " 10.0. 192.168.0. 127.0.0.1 localhost";
+            "hosts allow" = "10.0. 192.168.0. 127.0.0.1 localhost";
             "hosts deny" = "0.0.0.0/0";
             "guest account" = "nobody";
             "map to guest" = "bad user";
@@ -49,6 +54,11 @@
         };
       };
 
+      # Make sure your user is in the samba group
+      users.users.${username} = {
+        isNormalUser = true;
+        extraGroups = [ "samba" ];
+      };
       services.samba-wsdd = {
         enable = true;
         openFirewall = true;

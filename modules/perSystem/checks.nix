@@ -5,11 +5,11 @@
 {
   lib,
   inputs,
-  config,
+  self,
   ...
 }:
 let
-  inherit (config.flake) nixosConfigurations;
+  inherit (self) nixosConfigurations;
 in
 {
   perSystem =
