@@ -14,8 +14,8 @@ jobs:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
         with:
           persist-credentials: false
-      - uses: cachix/install-nix-action@1ca7d21a94afc7c957383a2d217460d980de4934 # v31
-      - uses: cachix/cachix-action@3ba601ff5bbb07c7220846facfa2cd81eeee15a1
+      - uses: cachix/install-nix-action@51f3067b56fe8ae331890c77d4e454f6d60615ff # v31
+      - uses: cachix/cachix-action@1eb2ef646ac0255473d23a5907ad7b04ce94065c
         with:
           name: machines
           # If you chose signing key for write access
@@ -29,7 +29,8 @@ jobs:
         run: |
           nix-fast-build --no-nom --skip-cached \
           --option accept-flake-config true \
-          --cachix-cache machines --eval-max-memory-size 2048
+          --cachix-cache machines \
+          --flake .#checks.x86_64-linux
   check_ifd:
     name: "Run IFD checks"
     runs-on: ubuntu-latest
@@ -39,8 +40,8 @@ jobs:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
         with:
           persist-credentials: false
-      - uses: cachix/install-nix-action@1ca7d21a94afc7c957383a2d217460d980de4934 # v31
-      - uses: cachix/cachix-action@3ba601ff5bbb07c7220846facfa2cd81eeee15a1
+      - uses: cachix/install-nix-action@51f3067b56fe8ae331890c77d4e454f6d60615ff # v31
+      - uses: cachix/cachix-action@1eb2ef646ac0255473d23a5907ad7b04ce94065c
         with:
           name: machines
           # If you chose signing key for write access
