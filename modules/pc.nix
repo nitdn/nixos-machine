@@ -117,6 +117,7 @@ in
 
       fonts.packages = lib.mkIf config.hardware.graphics.enable [
         pkgs.noto-fonts
+        pkgs.noto-fonts-cjk-sans
         pkgs.noto-fonts-color-emoji
         pkgs.atkinson-hyperlegible-next
         pkgs.nerd-fonts.jetbrains-mono
