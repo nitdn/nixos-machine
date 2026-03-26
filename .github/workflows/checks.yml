@@ -31,7 +31,7 @@ jobs:
       - name: Check flakes
         shell: "nix develop -c bash -e {0}"
         run: |
-          nix-fast-build --no-nom --skip-cached \
+          nix-fast-build --no-nom \
           --option accept-flake-config true --cachix-cache machines \
           --eval-max-memory-size 12288 --eval-workers 8 \
           --flake ".#checks.$(nix eval --raw --impure --expr 'builtins.currentSystem')"
