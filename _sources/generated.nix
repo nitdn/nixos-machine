@@ -35,18 +35,4 @@
     };
     date = "2026-03-17";
   };
-  quickshell = {
-    pname = "quickshell";
-    version = "08058326f04e9b5e55c903b3702405a8d3556ac6";
-    src = fetchgit {
-      url = "https://git.outfoxxed.me/quickshell/quickshell.git";
-      rev = "08058326f04e9b5e55c903b3702405a8d3556ac6";
-      fetchSubmodules = false;
-      deepClone = false;
-      leaveDotGit = false;
-      sparseCheckout = [ ];
-      sha256 = "sha256-mWjBJIbiMPCpljAQDk8RYf+92/lYZ5npHe2r2SJ+QWc=";
-    };
-    date = "2026-03-25";
-  };
 }

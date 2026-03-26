@@ -13,8 +13,8 @@ let
   dms =
     { pkgs, config, ... }:
     let
-      # quickshell = inputs.quickshell.packages.${system}.default;
-      quickshell = import ../../pkgs/quickshell.nix { inherit pkgs; };
+      inherit (pkgs.stdenv.hostPlatform) system;
+      quickshell = inputs.quickshell.packages.${system}.default;
       cfg = config.programs.dms-shell;
     in
     {

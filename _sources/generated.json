@@ -49,25 +49,5 @@
             "type": "github"
         },
         "version": "d880aeec9209ce56134c661c085535f8db5fa332"
-    },
-    "quickshell": {
-        "cargoLock": null,
-        "date": "2026-03-25",
-        "extract": null,
-        "name": "quickshell",
-        "passthru": null,
-        "pinned": false,
-        "src": {
-            "deepClone": false,
-            "fetchSubmodules": false,
-            "leaveDotGit": false,
-            "name": null,
-            "rev": "08058326f04e9b5e55c903b3702405a8d3556ac6",
-            "sha256": "sha256-mWjBJIbiMPCpljAQDk8RYf+92/lYZ5npHe2r2SJ+QWc=",
-            "sparseCheckout": [],
-            "type": "git",
-            "url": "https://git.outfoxxed.me/quickshell/quickshell.git"
-        },
-        "version": "08058326f04e9b5e55c903b3702405a8d3556ac6"
     }
 }
