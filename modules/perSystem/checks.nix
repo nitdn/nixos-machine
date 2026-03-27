@@ -27,9 +27,14 @@ in
               reuse lint
               mkdir $out
             '';
-      }
-      // lib.genAttrs [ "tjmaxxer" "msi-colgate" "disko-elysium" ] (
-        name: nixosConfigurations.${name}.config.system.build.toplevel
-      );
+        machines = pkgs.runCommand "check-machines" {
+          src = ./.;
+          nativeBuildInputs = lib.map (name: nixosConfigurations.${name}.config.system.build.toplevel) [
+            "tjmaxxer"
+            "msi-colgate"
+            "disko-elysium"
+          ];
+        } "mkdir $out";
+      };
     };
 }
