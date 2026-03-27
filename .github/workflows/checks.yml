@@ -24,12 +24,8 @@ jobs:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
           extraPullNames: nix-community
           skipPush: true
-          # (optional) pre-build the shell separately to avoid skewing the run time of the next
-          # step and have clear point of failure should the shell fail to build
-      - name: Pre-build devShell
-        run: nix build --no-link .#devShells."$(nix eval --impure --raw --expr 'builtins.currentSystem')".default
       - name: Check flakes
-        shell: "nix develop -c bash -e {0}"
+        shell: "nix shell github:Mic92/nix-fast-build -c bash -e {0}"
         run: |
           nix-fast-build --no-nom --skip-cached \
           --option accept-flake-config true --cachix-cache machines \
