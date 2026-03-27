@@ -100,7 +100,12 @@ let
 in
 {
   perSystem =
-    { pkgs, config, ... }:
+    {
+      pkgs,
+      config,
+      inputs',
+      ...
+    }:
     {
       packages.runCommand = command_package pkgs config;
       devShells.commands = pkgs.mkShell {
@@ -112,6 +117,7 @@ in
         inputsFrom = [ config.devShells.commands ];
         packages = lib.attrValues {
           inherit (config.packages) jujutsu-pc;
+          inherit (inputs'.nix-fast-build.packages) nix-fast-build;
           inherit (pkgs)
             bashInteractive
             cloc
@@ -125,7 +131,6 @@ in
             nil
             nixd
             nixfmt
-            nix-fast-build
             nvfetcher
             onefetch
             pandoc

@@ -203,6 +203,32 @@
         "type": "github"
       }
     },
+    "nix-fast-build": {
+      "inputs": {
+        "flake-parts": [
+          "flake-parts"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "treefmt-nix": [
+          "treefmt-nix"
+        ]
+      },
+      "locked": {
+        "lastModified": 1774153458,
+        "narHash": "sha256-7XLKuyLDsQAy5Ssf4r7EpPT7DHPwI3/TgYl7wfuNkAg=",
+        "owner": "Mic92",
+        "repo": "nix-fast-build",
+        "rev": "066bb98bf0b8f7e648a2c1dd5216d307d936e302",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Mic92",
+        "repo": "nix-fast-build",
+        "type": "github"
+      }
+    },
     "nix-index-database": {
       "inputs": {
         "nixpkgs": [
@@ -336,6 +362,7 @@
         "dms-plugin-registry": "dms-plugin-registry",
         "flake-parts": "flake-parts",
         "home-manager-lib": "home-manager-lib",
+        "nix-fast-build": "nix-fast-build",
         "nix-index-database": "nix-index-database",
         "nixpkgs": "nixpkgs_2",
         "quickshell": "quickshell",

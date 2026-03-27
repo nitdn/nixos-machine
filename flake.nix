@@ -64,6 +64,12 @@
       url = "https://git.outfoxxed.me/quickshell/quickshell/archive/master.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-fast-build = {
+      url = "github:Mic92/nix-fast-build";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-parts.follows = "flake-parts";
+      inputs.treefmt-nix.follows = "treefmt-nix";
+    };
   };
 
   outputs =
