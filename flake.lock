@@ -59,11 +59,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1774488301,
-        "narHash": "sha256-QPxn5cQZj6qd4xZF0lC1RAtOtpRA3ys2veUKi8Hz9N8=",
+        "lastModified": 1774574652,
+        "narHash": "sha256-koqb+VuxUimCwS3Iftc9tHDrNGA5evQc3lebfmYHz7k=",
         "owner": "AvengeMedia",
         "repo": "dms-plugin-registry",
-        "rev": "9bb83ca2dfb910619f34ead22d586e16f3a38610",
+        "rev": "45a4c0938fa4945b7eaf2b1fac43fabdaf8798e5",
         "type": "github"
       },
       "original": {
@@ -189,11 +189,11 @@
       "flake": false,
       "locked": {
         "dir": "modules/lib",
-        "lastModified": 1774379316,
-        "narHash": "sha256-0nGNxWDUH2Hzlj/R3Zf4FEK6fsFNB/dvewuboSRZqiI=",
+        "lastModified": 1774561634,
+        "narHash": "sha256-3q1xsREjqdVIIwQQDZQ9y0YdBzP8gAxdwKoKnZSzJtU=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "1eb0549a1ab3fe3f5acf86668249be15fa0e64f7",
+        "rev": "7c046c63ac3b467c1d589b99d531da5b6520825a",
         "type": "github"
       },
       "original": {
@@ -429,11 +429,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1774400689,
-        "narHash": "sha256-hHABVYL0rxhVIzc7hZEpvE0eiCKPnevte73Tn6FRolo=",
+        "lastModified": 1774538285,
+        "narHash": "sha256-KRDNQDEWjB2O5SRH/oUTzi34cNxlIT8sab0FK2uqZ2g=",
         "owner": "BirdeeHub",
         "repo": "nix-wrapper-modules",
-        "rev": "54645978682ff99594a1d1666dde6fac6a8134f2",
+        "rev": "15d740b2bfc545189a569147da7718457c12758e",
         "type": "github"
       },
       "original": {
