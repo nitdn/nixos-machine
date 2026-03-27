@@ -23,6 +23,18 @@
       sha256 = "sha256-n0Ff2wfhPruYhzAH0GrhpYpkddiQ3rkYukvZyRgrn54=";
     };
   };
+  home-manager-lib = {
+    pname = "home-manager-lib";
+    version = "9df3a639007cfe0d074433f7fc225ea94f877d08";
+    src = fetchFromGitHub {
+      owner = "nix-community";
+      repo = "home-manager";
+      rev = "9df3a639007cfe0d074433f7fc225ea94f877d08";
+      fetchSubmodules = false;
+      sha256 = "sha256-1WelwA45Xm4glTG8R9IX9jYeFKDG2HbR79jAauLezUE=";
+    };
+    date = "2026-03-27";
+  };
   matugen-themes = {
     pname = "matugen-themes";
     version = "d880aeec9209ce56134c661c085535f8db5fa332";

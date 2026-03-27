@@ -17,16 +17,29 @@ let
   # but can everywhere else.
   sourcesJson = builtins.fromJSON (builtins.readFile ../_sources/generated.json);
 
-  modules = builtins.mapAttrs (
-    _name: value:
-    let
-      src = fetchTarball {
-        url = "${value.src.url}/archive/${value.src.rev}.tar.gz";
-        inherit (value.src) sha256;
-      };
-    in
-    value // { inherit src; }
-  ) sourcesJson;
+  modules =
+    builtins.mapAttrs
+      (
+        _name: value:
+        let
+          src = fetchTree {
+            inherit (value.src)
+              owner
+              repo
+              rev
+              type
+              ;
+          };
+        in
+        value // { inherit src; }
+      )
+      (
+        removeAttrs sourcesJson [
+          "bizhub-225i"
+          "epson-202101w"
+          "matugen-themes"
+        ]
+      );
 
 in
 {

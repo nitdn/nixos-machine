@@ -15,6 +15,7 @@ in
         thunar.plugins = [
           pkgs.thunar-archive-plugin
           pkgs.thunar-volman
+          pkgs.thunar-shares-plugin
         ];
         xfconf.enable = true;
       };

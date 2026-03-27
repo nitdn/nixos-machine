@@ -185,24 +185,6 @@
         "type": "github"
       }
     },
-    "home-manager-lib": {
-      "flake": false,
-      "locked": {
-        "dir": "modules/lib",
-        "lastModified": 1774561634,
-        "narHash": "sha256-3q1xsREjqdVIIwQQDZQ9y0YdBzP8gAxdwKoKnZSzJtU=",
-        "owner": "nix-community",
-        "repo": "home-manager",
-        "rev": "7c046c63ac3b467c1d589b99d531da5b6520825a",
-        "type": "github"
-      },
-      "original": {
-        "dir": "modules/lib",
-        "owner": "nix-community",
-        "repo": "home-manager",
-        "type": "github"
-      }
-    },
     "nix-fast-build": {
       "inputs": {
         "flake-parts": [
@@ -361,7 +343,6 @@
         "disko": "disko",
         "dms-plugin-registry": "dms-plugin-registry",
         "flake-parts": "flake-parts",
-        "home-manager-lib": "home-manager-lib",
         "nix-fast-build": "nix-fast-build",
         "nix-index-database": "nix-index-database",
         "nixpkgs": "nixpkgs_2",

@@ -11,7 +11,7 @@
 }:
 let
   inherit (config.meta) username;
-  inherit (config.flake) packages;
+  inherit (config.flake) packages sources;
 in
 {
   options.perSystem = flake-parts-lib.mkPerSystemOption {
@@ -92,7 +92,7 @@ in
       ...
     }:
     let
-      inherit (inputs) home-manager-lib;
+      home-manager-lib = "${sources.modules.home-manager-lib.src}/modules/lib";
       # Define the settings format used for this program
       generator = (import "${home-manager-lib}/generators.nix" { inherit lib; }).toKDL { };
       niriConfigWithoutIncludes =
