@@ -33,8 +33,8 @@ jobs:
         run: |
           nix-fast-build --no-nom --skip-cached \
           --option accept-flake-config true --cachix-cache machines \
-          --eval-max-memory-size 12288 --eval-workers 8 \
-          --flake ".#checks.$(nix eval --raw --impure --expr 'builtins.currentSystem')"
+          # --eval-max-memory-size 12288 --eval-workers 8 \
+          # --flake ".#checks.$(nix eval --raw --impure --expr 'builtins.currentSystem')"
   check_ifd:
     name: "Run IFD checks"
     runs-on: ubuntu-latest
