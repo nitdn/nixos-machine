@@ -18,3 +18,7 @@ fetch.github = "InioX/matugen-themes"
 [home-manager-lib]
 src.git = "https://github.com/nix-community/home-manager.git"
 fetch.github = "nix-community/home-manager"
+
+[quickshell]
+src.git = "https://git.outfoxxed.me/quickshell/quickshell.git"
+fetch.tarball = "https://git.outfoxxed.me/quickshell/quickshell/archive/master.tar.gz"

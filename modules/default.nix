@@ -22,14 +22,18 @@ let
       (
         _name: value:
         let
-          src = fetchTree {
-            inherit (value.src)
-              owner
-              repo
-              rev
-              type
-              ;
-          };
+          trimmedSrc = removeAttrs value.src [
+            "name"
+            "deepClone"
+            "fetchSubmodules"
+            "sha256"
+            "sparseCheckout"
+            "leaveDotGit"
+            "fetchSubModules"
+          ];
+          src = fetchTree (
+            trimmedSrc // (if value.src.type == "tarball" then { narHash = value.src.sha256; } else { })
+          );
         in
         value // { inherit src; }
       )

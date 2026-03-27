@@ -103,7 +103,6 @@ in
     {
       pkgs,
       config,
-      inputs',
       ...
     }:
     {
@@ -117,7 +116,6 @@ in
         inputsFrom = [ config.devShells.commands ];
         packages = lib.attrValues {
           inherit (config.packages) jujutsu-pc;
-          inherit (inputs'.nix-fast-build.packages) nix-fast-build;
           inherit (pkgs)
             bashInteractive
             cloc

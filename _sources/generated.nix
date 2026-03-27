@@ -47,4 +47,13 @@
     };
     date = "2026-03-17";
   };
+  quickshell = {
+    pname = "quickshell";
+    version = "08058326f04e9b5e55c903b3702405a8d3556ac6";
+    src = fetchTarball {
+      url = "https://git.outfoxxed.me/quickshell/quickshell/archive/master.tar.gz";
+      sha256 = "sha256-mWjBJIbiMPCpljAQDk8RYf+92/lYZ5npHe2r2SJ+QWc=";
+    };
+    date = "2026-03-25";
+  };
 }

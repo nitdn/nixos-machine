@@ -185,32 +185,6 @@
         "type": "github"
       }
     },
-    "nix-fast-build": {
-      "inputs": {
-        "flake-parts": [
-          "flake-parts"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "treefmt-nix": [
-          "treefmt-nix"
-        ]
-      },
-      "locked": {
-        "lastModified": 1774153458,
-        "narHash": "sha256-7XLKuyLDsQAy5Ssf4r7EpPT7DHPwI3/TgYl7wfuNkAg=",
-        "owner": "Mic92",
-        "repo": "nix-fast-build",
-        "rev": "066bb98bf0b8f7e648a2c1dd5216d307d936e302",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Mic92",
-        "repo": "nix-fast-build",
-        "type": "github"
-      }
-    },
     "nix-index-database": {
       "inputs": {
         "nixpkgs": [
@@ -319,34 +293,14 @@
         "url": "https://github.com/noahc3/AffinityPluginLoader/releases/download/v0.2.0/affinitypluginloader-plus-winefix.tar.xz"
       }
     },
-    "quickshell": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1774422996,
-        "narHash": "sha256-mWjBJIbiMPCpljAQDk8RYf+92/lYZ5npHe2r2SJ+QWc=",
-        "rev": "08058326f04e9b5e55c903b3702405a8d3556ac6",
-        "type": "tarball",
-        "url": "https://git.outfoxxed.me/api/v1/repos/quickshell/quickshell/archive/08058326f04e9b5e55c903b3702405a8d3556ac6.tar.gz"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://git.outfoxxed.me/quickshell/quickshell/archive/master.tar.gz"
-      }
-    },
     "root": {
       "inputs": {
         "affinity-nix": "affinity-nix",
         "disko": "disko",
         "dms-plugin-registry": "dms-plugin-registry",
         "flake-parts": "flake-parts",
-        "nix-fast-build": "nix-fast-build",
         "nix-index-database": "nix-index-database",
         "nixpkgs": "nixpkgs_2",
-        "quickshell": "quickshell",
         "sops-nix": "sops-nix",
         "steam-presence": "steam-presence",
         "treefmt-nix": "treefmt-nix",

@@ -10,11 +10,11 @@
 }:
 let
   inherit (config.meta) username;
+  inherit (config.flake) sources;
   dms =
     { pkgs, config, ... }:
     let
-      inherit (pkgs.stdenv.hostPlatform) system;
-      quickshell = inputs.quickshell.packages.${system}.default;
+      quickshell = pkgs.callPackage sources.modules.quickshell.src { };
       cfg = config.programs.dms-shell;
     in
     {

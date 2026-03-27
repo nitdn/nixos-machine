@@ -23,7 +23,7 @@ jobs:
           # If you chose API tokens for write access OR if you have a private cache
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
           extraPullNames: nix-community
-          skipPush: true
+          # skipPush: true
       - name: Check flakes
         shell: "nix shell github:Mic92/nix-fast-build -c bash -e {0}"
         run: |
