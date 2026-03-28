@@ -33,8 +33,8 @@ let
         enableCalendarEvents = true;
         plugins = {
           # Simply enable plugins by their ID (from the registry)
-          dankBatteryAlerts.enable = true;
-          dockerManager.enable = true;
+          dankKDEConnect.enable = true;
+          emojiLauncher.enable = true;
         };
       };
       programs.dsearch.enable = true;
