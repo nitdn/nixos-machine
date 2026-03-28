@@ -23,7 +23,7 @@ jobs:
           # NOTE: Needs token for running actions
           token: ${{ steps.generate-token.outputs.token }}
           persist-credentials: false
-      - uses: cachix/install-nix-action@1ca7d21a94afc7c957383a2d217460d980de4934 # v31
+      - uses: cachix/install-nix-action@e1ac057965e5be579300ea6beb1f0e9a8a607344 #master
       - name: Set git authors
         run: |
           git config user.name "${GITHUB_ACTOR}"
