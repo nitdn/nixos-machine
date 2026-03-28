@@ -1,88 +1,88 @@
 {
-  "bizhub-225i": {
-    "cargoLock": null,
-    "date": null,
-    "extract": null,
-    "name": "bizhub-225i",
-    "passthru": null,
-    "pinned": false,
-    "src": {
-      "name": "bizhub-225i.zip",
-      "sha256": "sha256-iF3FVSqDsjs6i4xeDMsUSb+0woCJ5/1lq7R0fe+x/HU=",
-      "type": "url",
-      "url": "https://public.integration.yamayuri.kiku8101.com/publicdownload/download?fileId=B2C0B6D9-C563-4377-B77B-33BBAC4A5EC8"
+    "bizhub-225i": {
+        "cargoLock": null,
+        "date": null,
+        "extract": null,
+        "name": "bizhub-225i",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "name": "bizhub-225i.zip",
+            "sha256": "sha256-iF3FVSqDsjs6i4xeDMsUSb+0woCJ5/1lq7R0fe+x/HU=",
+            "type": "url",
+            "url": "https://public.integration.yamayuri.kiku8101.com/publicdownload/download?fileId=B2C0B6D9-C563-4377-B77B-33BBAC4A5EC8"
+        },
+        "version": "2.0.1"
     },
-    "version": "2.0.1"
-  },
-  "epson-202101w": {
-    "cargoLock": null,
-    "date": null,
-    "extract": null,
-    "name": "epson-202101w",
-    "passthru": null,
-    "pinned": false,
-    "src": {
-      "name": null,
-      "sha256": "sha256-n0Ff2wfhPruYhzAH0GrhpYpkddiQ3rkYukvZyRgrn54=",
-      "type": "url",
-      "url": "https://web.archive.org/web/20260318090110/https://download-center.epson.com/f/module/c863d6cc-2e0c-48f5-8a70-b2c3843c647a/epson-inkjet-printer-202101w-1.0.2-1.src.rpm"
+    "epson-202101w": {
+        "cargoLock": null,
+        "date": null,
+        "extract": null,
+        "name": "epson-202101w",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "name": null,
+            "sha256": "sha256-n0Ff2wfhPruYhzAH0GrhpYpkddiQ3rkYukvZyRgrn54=",
+            "type": "url",
+            "url": "https://web.archive.org/web/20260318090110/https://download-center.epson.com/f/module/c863d6cc-2e0c-48f5-8a70-b2c3843c647a/epson-inkjet-printer-202101w-1.0.2-1.src.rpm"
+        },
+        "version": "1.0.2"
     },
-    "version": "1.0.2"
-  },
-  "home-manager-lib": {
-    "cargoLock": null,
-    "date": "2026-03-27",
-    "extract": null,
-    "name": "home-manager-lib",
-    "passthru": null,
-    "pinned": false,
-    "src": {
-      "deepClone": false,
-      "fetchSubmodules": false,
-      "leaveDotGit": false,
-      "name": null,
-      "owner": "nix-community",
-      "repo": "home-manager",
-      "rev": "9df3a639007cfe0d074433f7fc225ea94f877d08",
-      "sha256": "sha256-1WelwA45Xm4glTG8R9IX9jYeFKDG2HbR79jAauLezUE=",
-      "sparseCheckout": [],
-      "type": "github"
+    "home-manager-lib": {
+        "cargoLock": null,
+        "date": "2026-03-27",
+        "extract": null,
+        "name": "home-manager-lib",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "nix-community",
+            "repo": "home-manager",
+            "rev": "02371c05a04a2876cf92e2d67a259e8f87399068",
+            "sha256": "sha256-UNNi14XiqRWWjO8ykbFwA5wRwx7EscsC+GItOVpuGjc=",
+            "sparseCheckout": [],
+            "type": "github"
+        },
+        "version": "02371c05a04a2876cf92e2d67a259e8f87399068"
     },
-    "version": "9df3a639007cfe0d074433f7fc225ea94f877d08"
-  },
-  "matugen-themes": {
-    "cargoLock": null,
-    "date": "2026-03-17",
-    "extract": null,
-    "name": "matugen-themes",
-    "passthru": null,
-    "pinned": false,
-    "src": {
-      "deepClone": false,
-      "fetchSubmodules": false,
-      "leaveDotGit": false,
-      "name": null,
-      "owner": "InioX",
-      "repo": "matugen-themes",
-      "rev": "d880aeec9209ce56134c661c085535f8db5fa332",
-      "sha256": "sha256-QNJSej9S6l32STwgHXHij8cYp1QtozOv7nSzj3bGE/s=",
-      "sparseCheckout": [],
-      "type": "github"
+    "matugen-themes": {
+        "cargoLock": null,
+        "date": "2026-03-17",
+        "extract": null,
+        "name": "matugen-themes",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "InioX",
+            "repo": "matugen-themes",
+            "rev": "d880aeec9209ce56134c661c085535f8db5fa332",
+            "sha256": "sha256-QNJSej9S6l32STwgHXHij8cYp1QtozOv7nSzj3bGE/s=",
+            "sparseCheckout": [],
+            "type": "github"
+        },
+        "version": "d880aeec9209ce56134c661c085535f8db5fa332"
     },
-    "version": "d880aeec9209ce56134c661c085535f8db5fa332"
-  },
-  "quickshell": {
-    "cargoLock": null,
-    "date": "2026-03-25",
-    "extract": null,
-    "name": "quickshell",
-    "passthru": null,
-    "pinned": false,
-    "src": {
-      "sha256": "sha256-mWjBJIbiMPCpljAQDk8RYf+92/lYZ5npHe2r2SJ+QWc=",
-      "type": "tarball",
-      "url": "https://git.outfoxxed.me/quickshell/quickshell/archive/master.tar.gz"
-    },
-    "version": "08058326f04e9b5e55c903b3702405a8d3556ac6"
-  }
+    "quickshell": {
+        "cargoLock": null,
+        "date": "2026-03-25",
+        "extract": null,
+        "name": "quickshell",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "sha256": "sha256-mWjBJIbiMPCpljAQDk8RYf+92/lYZ5npHe2r2SJ+QWc=",
+            "type": "tarball",
+            "url": "https://git.outfoxxed.me/quickshell/quickshell/archive/master.tar.gz"
+        },
+        "version": "08058326f04e9b5e55c903b3702405a8d3556ac6"
+    }
 }
