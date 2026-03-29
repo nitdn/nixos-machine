@@ -28,6 +28,10 @@ in
     };
   flake.modules.nixos = {
     vm = {
+      virtualisation.qemu.options = [
+        "-display gtk,gl=es"
+        "-device virtio-vga-gl"
+      ];
       services.btrfs.autoScrub.enable = false;
       hardware.facter.reportPath = lib.mkForce null;
       boot.initrd.systemd.repart.device = lib.mkForce null;

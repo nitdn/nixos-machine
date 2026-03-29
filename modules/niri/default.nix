@@ -156,5 +156,21 @@ in
           BindPaths = [ "${niri-config}:%E/niri/config.kdl" ];
         };
       };
+    vm =
+      { pkgs, ... }:
+      let
+        inherit (pkgs.stdenv.hostPlatform) system;
+        inherit (packages.${system}) niri-config;
+      in
+      {
+        houses.users.vmtest.files = [
+          {
+            type = "symlink";
+            source = niri-config;
+            target = ".config/niri/config.kdl";
+          }
+        ];
+
+      };
   };
 }
