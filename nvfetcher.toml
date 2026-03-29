@@ -21,4 +21,4 @@ fetch.github = "nix-community/home-manager"
 
 [quickshell]
 src.git = "https://git.outfoxxed.me/quickshell/quickshell.git"
-fetch.tarball = "https://git.outfoxxed.me/quickshell/quickshell/archive/master.tar.gz"
+fetch.tarball = "https://git.outfoxxed.me/quickshell/quickshell/archive/$ver.tar.gz"

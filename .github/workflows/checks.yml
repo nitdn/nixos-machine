@@ -26,6 +26,8 @@ jobs:
           extraPullNames: nix-community
           # skipPush: true
       - uses: DeterminateSystems/magic-nix-cache-action@1828eb4e5414b8dfe36daae53ea3e4b8c3fdec7a # main
+        with:
+          use-flakehub: false
       - name: Check flakes
         shell: "nix shell github:Mic92/nix-fast-build -c bash -e {0}"
         run: |
