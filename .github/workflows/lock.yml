@@ -10,30 +10,32 @@ jobs:
   nix-flake-update:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
     steps:
-      - name: Generate a token
-        id: generate-token
-        uses: actions/create-github-app-token@f8d387b68d61c58ab83c6c016672934102569859 # v3.0.0
-        with:
-          app-id: ${{ vars.APP_ID }}
-          private-key: ${{ secrets.APP_PRIVATE_KEY }}
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
         with:
-          # NOTE: Needs token for running actions
-          token: ${{ steps.generate-token.outputs.token }}
           persist-credentials: false
       - uses: cachix/install-nix-action@e1ac057965e5be579300ea6beb1f0e9a8a607344 #master
-      - name: Set git authors
+      - name: Set git authors and branch
         run: |
           git config user.name "${GITHUB_ACTOR}"
           git config user.email "${GITHUB_ACTOR_ID}+${GITHUB_ACTOR}@users.noreply.github.com"
+          git switch --create update_flake_lock_action
       - run: nix run ".#runCommand" -- lock
-      - uses: peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0 # v8
-        with:
-          title: "Update nix inputs" # Title of PR to be created
-          branch: update_flake_lock_action
-          labels: | # Labels to be set on the PR
-            dependencies
-            automated
-          token: ${{ steps.generate-token.outputs.token }}
+      - name: Push to repo
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh auth setup-git
+          git push --set-upstream origin update_flake_lock_action --force
+          gh pr create --head update_flake_lock_action \
+          --title "Update inputs" \
+          --body "TODO: Actually figure out how to put the git log here" \
+          --label dependencies \
+          --label automated
+  call-flake-checks:
+    permissions:
+      contents: read
+      id-token: write
+    needs: nix-flake-update
+    uses: ./.github/workflows/checks.yml

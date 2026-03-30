@@ -18,7 +18,7 @@ jobs:
       - run: |
           nix build .#isoBootstrap
       - name: Release
-        uses: softprops/action-gh-release@153bb8e04406b158c6c84fc1615b65b24149a1fe # v2
         if: github.ref_type == 'tag'
-        with:
-          files: result/iso/*
+        run: |
+          gh release create "${GITHUB_REF_NAME}"
+          gh release upload "${GITHUB_REF_NAME}" result/iso/*
