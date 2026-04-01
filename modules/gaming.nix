@@ -20,6 +20,7 @@ in
         partialWrapper = definition: inputs.wrappers.lib.wrapPackage (definition // { inherit pkgs; });
       in
       {
+        boot.kernelModules = [ "ntsync" ];
         programs.steam = {
           enable = true;
           remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
@@ -49,6 +50,7 @@ in
             package = pkgs.mangohud;
             env.MANGOHUD_CONFIG = "no_display,fps_limit=165";
           })
+          pkgs.easyeffects
           pkgs.gamemode
           pkgs.gamescope
           pkgs.lutris
