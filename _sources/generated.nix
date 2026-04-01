@@ -25,15 +25,15 @@
   };
   home-manager-lib = {
     pname = "home-manager-lib";
-    version = "a184bd2f8426087bae93f203403cd4b86c99e57d";
+    version = "f2d3e04e278422c7379e067e323734f3e8c585a7";
     src = fetchFromGitHub {
       owner = "nix-community";
       repo = "home-manager";
-      rev = "a184bd2f8426087bae93f203403cd4b86c99e57d";
+      rev = "f2d3e04e278422c7379e067e323734f3e8c585a7";
       fetchSubmodules = false;
-      sha256 = "sha256-0Utnqo+FbB+0CVUi0MI3oonF0Kuzy9VcgRkxl53Euvk=";
+      sha256 = "sha256-kScKj3qJDIWuN9/6PMmgy5esrTUkYinrO5VvILik/zw=";
     };
-    date = "2026-03-30";
+    date = "2026-03-31";
   };
   matugen-themes = {
     pname = "matugen-themes";
@@ -49,11 +49,11 @@
   };
   quickshell = {
     pname = "quickshell";
-    version = "ee1100eb98d5033d8d4b76bf9fb0e720fec4c191";
+    version = "d6122277409783377059be6399004eb090a6008e";
     src = fetchTarball {
-      url = "https://git.outfoxxed.me/quickshell/quickshell/archive/ee1100eb98d5033d8d4b76bf9fb0e720fec4c191.tar.gz";
-      sha256 = "sha256-xxtoCIonfzlaYUb8B39Mho12TY8PU3Qy1FytCQ6JUCk=";
+      url = "https://git.outfoxxed.me/quickshell/quickshell/archive/d6122277409783377059be6399004eb090a6008e.tar.gz";
+      sha256 = "sha256-KWU38p8zEtgFOL5KZoWeqWVv27uBFLX3N+Ih+TFs9/0=";
     };
-    date = "2026-03-29";
+    date = "2026-03-31";
   };
 }
