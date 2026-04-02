@@ -35,6 +35,7 @@ let
           # Simply enable plugins by their ID (from the registry)
           dankKDEConnect.enable = true;
           emojiLauncher.enable = true;
+          calculator.enable = true;
         };
       };
       programs.dsearch.enable = true;
@@ -69,6 +70,8 @@ let
       environment.systemPackages = lib.mkIf cfg.enable [
         pkgs.qt6Packages.qt6ct
         pkgs.adw-gtk3
+        pkgs.qalculate-qt
+        pkgs.libqalculate
       ];
     };
 in
