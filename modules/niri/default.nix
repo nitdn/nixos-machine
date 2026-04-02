@@ -106,9 +106,10 @@ in
         input.mouse.accel-speed = lib.mkDefault 0.001;
         input.mouse.accel-profile = "flat";
         input.keyboard.xkb.options = "compose:caps";
-        "output \"DP-2\"" = {
+        "output \"Microstep MSI G244F BB4H113A00079\"" = {
           transform = "normal";
           mode = "1920x1080";
+          variable-refresh-rate = [ ];
         };
         _children = [
           { include = "${./default_binds.kdl}"; }

@@ -75,6 +75,11 @@ in
         cmd = "niri msg action toggle-window-floating";
       }
       {
+        key = "v";
+        desc = "Turn off VRR (if the manure hits the sediment)";
+        cmd = ''niri msg output "Microstep MSI G244F BB4H113A00079" vrr off'';
+      }
+      {
         key = "t";
         desc = "Set dynamic cast window";
         cmd = "niri msg action set-dynamic-cast-window";

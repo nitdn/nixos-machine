@@ -54,6 +54,7 @@ in
         "zswap.shrinker_enabled=1" # whether to shrink the pool proactively on high memory pressure
       ];
       boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
+      hardware.enableRedistributableFirmware = lib.mkDefault true;
       boot.supportedFilesystems = {
         exfat = true;
       };

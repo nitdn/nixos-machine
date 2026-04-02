@@ -38,7 +38,6 @@ in
       };
       # May help if FFmpeg/VAAPI/QSV init fails (esp. on Arc with i915):
       hardware.enableRedistributableFirmware = true;
-      boot.kernelParams = [ "i915.enable_guc=3" ];
       networking.hostName = "tjmaxxer"; # Define your hostname.
       # I did not read the comment
       system.stateVersion = "24.11";
