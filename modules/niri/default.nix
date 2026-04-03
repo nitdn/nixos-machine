@@ -119,6 +119,7 @@ in
           { spawn-at-startup = "ckb-next"; }
         ];
       };
+      packages.niri-unstable = inputs'.niri.packages.default;
       packages.niri-config = pkgs.writeTextFile {
         name = "niri-config";
         text = finalNiriConfig;

@@ -13,7 +13,7 @@ let
 in
 {
   perSystem =
-    { pkgs, ... }:
+    { pkgs, config, ... }:
     {
       checks = {
         reuse =
@@ -28,12 +28,12 @@ in
               mkdir $out
             '';
         machines = pkgs.runCommand "check-machines" {
-          src = ./.;
-          nativeBuildInputs = lib.map (name: nixosConfigurations.${name}.config.system.build.toplevel) [
-            "tjmaxxer"
-            "msi-colgate"
-            "disko-elysium"
-          ];
+          nativeBuildInputs = lib.map (name: nixosConfigurations.${name}.config.system.build.toplevel) (
+            lib.attrNames (lib.removeAttrs nixosConfigurations [ "vps01" ])
+          );
+        } "mkdir $out";
+        packages = pkgs.runCommand "check-packages" {
+          nativeBuildInputs = lib.attrVals [ "niri-unstable" ] config.packages;
         } "mkdir $out";
       };
     };
