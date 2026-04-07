@@ -43,12 +43,12 @@
             "name": null,
             "owner": "nix-community",
             "repo": "home-manager",
-            "rev": "7e7269ac064bea120d7b23daed432a096617872d",
-            "sha256": "sha256-pm1SDX9Tj4eHWwjtDEqSU+5QZO7nHHqU8GT0JtbI9rc=",
+            "rev": "5de7dbd151b0bd65d45785553d4a22d832733ffc",
+            "sha256": "sha256-ikws/ssAmG20AGrEwBuwspwPlkubJu34mB+Uz2fJBJs=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "7e7269ac064bea120d7b23daed432a096617872d"
+        "version": "5de7dbd151b0bd65d45785553d4a22d832733ffc"
     },
     "matugen-themes": {
         "cargoLock": null,
@@ -73,16 +73,16 @@
     },
     "quickshell": {
         "cargoLock": null,
-        "date": "2026-04-04",
+        "date": "2026-04-06",
         "extract": null,
         "name": "quickshell",
         "passthru": null,
         "pinned": false,
         "src": {
-            "sha256": "sha256-rWJ//l6k1hwe/A2fNdzuvEuHedBQkMIHLU9eNTu4N7I=",
+            "sha256": "sha256-pRQ1g7YpFrYBB8B6QUSKb3ttGzcQs3Guu8GwDuuSBt0=",
             "type": "tarball",
-            "url": "https://git.outfoxxed.me/quickshell/quickshell/archive/ad5fd9116e25bc502468f4dfa884ee027887c51c.tar.gz"
+            "url": "https://git.outfoxxed.me/quickshell/quickshell/archive/7c5a6c4bd4be1f258aa47626cf5cde02215adad2.tar.gz"
         },
-        "version": "ad5fd9116e25bc502468f4dfa884ee027887c51c"
+        "version": "7c5a6c4bd4be1f258aa47626cf5cde02215adad2"
     }
 }

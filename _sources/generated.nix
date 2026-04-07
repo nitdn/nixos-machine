@@ -25,13 +25,13 @@
   };
   home-manager-lib = {
     pname = "home-manager-lib";
-    version = "7e7269ac064bea120d7b23daed432a096617872d";
+    version = "5de7dbd151b0bd65d45785553d4a22d832733ffc";
     src = fetchFromGitHub {
       owner = "nix-community";
       repo = "home-manager";
-      rev = "7e7269ac064bea120d7b23daed432a096617872d";
+      rev = "5de7dbd151b0bd65d45785553d4a22d832733ffc";
       fetchSubmodules = false;
-      sha256 = "sha256-pm1SDX9Tj4eHWwjtDEqSU+5QZO7nHHqU8GT0JtbI9rc=";
+      sha256 = "sha256-ikws/ssAmG20AGrEwBuwspwPlkubJu34mB+Uz2fJBJs=";
     };
     date = "2026-04-06";
   };
@@ -49,11 +49,11 @@
   };
   quickshell = {
     pname = "quickshell";
-    version = "ad5fd9116e25bc502468f4dfa884ee027887c51c";
+    version = "7c5a6c4bd4be1f258aa47626cf5cde02215adad2";
     src = fetchTarball {
-      url = "https://git.outfoxxed.me/quickshell/quickshell/archive/ad5fd9116e25bc502468f4dfa884ee027887c51c.tar.gz";
-      sha256 = "sha256-rWJ//l6k1hwe/A2fNdzuvEuHedBQkMIHLU9eNTu4N7I=";
+      url = "https://git.outfoxxed.me/quickshell/quickshell/archive/7c5a6c4bd4be1f258aa47626cf5cde02215adad2.tar.gz";
+      sha256 = "sha256-pRQ1g7YpFrYBB8B6QUSKb3ttGzcQs3Guu8GwDuuSBt0=";
     };
-    date = "2026-04-04";
+    date = "2026-04-06";
   };
 }
