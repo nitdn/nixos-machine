@@ -59,11 +59,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1775521398,
-        "narHash": "sha256-3/HzSBAz6ZQJOEHyqdSgRkzbIxTfZi5jCjpK1HAKRjY=",
+        "lastModified": 1775611601,
+        "narHash": "sha256-qHO90a2KcPMjGoNRNlHwfbC+53DNcDZ+Ff7pnyNL5Hc=",
         "owner": "AvengeMedia",
         "repo": "dms-plugin-registry",
-        "rev": "5ec7ac4c08dba6cb0bc9a3c04a84d9b6796615de",
+        "rev": "db6733400494c83307a4ef91724839ea61082f10",
         "type": "github"
       },
       "original": {
@@ -193,11 +193,11 @@
         "rust-overlay": []
       },
       "locked": {
-        "lastModified": 1775389417,
-        "narHash": "sha256-6hFJBpP31H97upBDHJVPsm++io+9pjgApbXfxD0dCFo=",
+        "lastModified": 1775561155,
+        "narHash": "sha256-TK2IrqQivRcwqJa0suZMbcsN17CtA8Uu0v7CDnLATb0=",
         "owner": "niri-wm",
         "repo": "niri",
-        "rev": "d1a0380eed224363749f1704ca3ff2ab1690b7f2",
+        "rev": "599db847f857b8a7ff78ce02f15acab5d5d9fee1",
         "type": "github"
       },
       "original": {
@@ -413,11 +413,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1775505758,
-        "narHash": "sha256-akjVahwblAas9ea/pCopiQcmzAkNpRmPxh4j1nHPNV4=",
+        "lastModified": 1775616916,
+        "narHash": "sha256-ufUNp5C4UWvHEn09WrRjqqL5WkEL7Eq/ClOU6g4uYCM=",
         "owner": "BirdeeHub",
         "repo": "nix-wrapper-modules",
-        "rev": "483f1b2e52c919a4eb495b441b2245289406ed6b",
+        "rev": "2ff8e871442a7c59725768a5419f7f7fb1632847",
         "type": "github"
       },
       "original": {
