@@ -25,27 +25,27 @@
   };
   home-manager-lib = {
     pname = "home-manager-lib";
-    version = "5de7dbd151b0bd65d45785553d4a22d832733ffc";
+    version = "6f35bb97991f796f1f19734dc3db0f4c50b14e18";
     src = fetchFromGitHub {
       owner = "nix-community";
       repo = "home-manager";
-      rev = "5de7dbd151b0bd65d45785553d4a22d832733ffc";
+      rev = "6f35bb97991f796f1f19734dc3db0f4c50b14e18";
       fetchSubmodules = false;
-      sha256 = "sha256-ikws/ssAmG20AGrEwBuwspwPlkubJu34mB+Uz2fJBJs=";
+      sha256 = "sha256-YdT9fCIuil4zkqJQyOMBpOEu/iHTyJhfVMS6ZYJ1mxs=";
     };
-    date = "2026-04-06";
+    date = "2026-04-07";
   };
   matugen-themes = {
     pname = "matugen-themes";
-    version = "bc50591c14470569ca08cb30069c79d44ed6e1dd";
+    version = "6bb794de5aefca8161ad597b1a08566f04afd668";
     src = fetchFromGitHub {
       owner = "InioX";
       repo = "matugen-themes";
-      rev = "bc50591c14470569ca08cb30069c79d44ed6e1dd";
+      rev = "6bb794de5aefca8161ad597b1a08566f04afd668";
       fetchSubmodules = false;
-      sha256 = "sha256-+UamZIlpE40RN4EJUEi7Jonn0MAg0FNYY2OArnQ51wo=";
+      sha256 = "sha256-T49wgxUGlVh/5nTkKZfMR5kzGh8/pMpPAlhtku36jw4=";
     };
-    date = "2026-04-05";
+    date = "2026-04-07";
   };
   quickshell = {
     pname = "quickshell";
