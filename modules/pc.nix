@@ -35,10 +35,9 @@ in
         experimental-features = [
           "nix-command"
           "flakes"
-          "auto-allocate-uids"
         ];
-        auto-allocate-uids = true;
       };
+
       nix.registry = {
         nixpkgs.flake = inputs.nixpkgs;
       };

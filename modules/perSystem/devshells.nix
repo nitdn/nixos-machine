@@ -50,7 +50,7 @@ let
     )}
 
     def "main fast" [ machine: string@hostnames ] {
-      nix run github:Mic92/nix-fast-build -- --flake=.#nixosConfigurations.($machine).config.system.build.toplevel
+      nix-fast-build --flake=.#nixosConfigurations.($machine).config.system.build.toplevel
       nh os switch .
     }
 
@@ -91,7 +91,9 @@ let
           lib.makeBinPath [
             pkgs.inferno
             pkgs.nvfetcher
+            pkgs.lixPackageSets.latest.nix-fast-build
             config.packages.jujutsu-pc
+
           ]
 
         }"

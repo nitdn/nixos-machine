@@ -36,7 +36,7 @@ jobs:
           extraPullNames: nix-community
           # skipPush: true
       - name: Check flakes
-        shell: "nix shell github:Mic92/nix-fast-build -c bash -e {0}"
+        shell: "nix shell nixpkgs#lixPackageSets.latest.nix-fast-build -c bash -e {0}"
         run: |
           nix-fast-build --no-nom --skip-cached \
           --option accept-flake-config true --cachix-cache machines \

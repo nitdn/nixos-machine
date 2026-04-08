@@ -24,6 +24,16 @@
     boot.initrd.systemd.repart.enable = true;
     boot.initrd.systemd.repart.device = "/dev/disk/by-id/nvme-WD_BLACK_SN770_1TB_24184R805268";
 
+    nix.settings = {
+      auto-allocate-uids = true;
+      use-cgroups = true;
+      extra-system-features = [ "uid-range" ];
+      experimental-features = [
+        "auto-allocate-uids"
+        "cgroups"
+      ];
+    };
+
     systemd.repart.partitions."30-boot" = {
       Type = "esp";
       SizeMinBytes = "1G";
