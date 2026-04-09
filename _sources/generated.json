@@ -31,7 +31,7 @@
     },
     "home-manager-lib": {
         "cargoLock": null,
-        "date": "2026-04-07",
+        "date": "2026-04-08",
         "extract": null,
         "name": "home-manager-lib",
         "passthru": null,
@@ -43,16 +43,16 @@
             "name": null,
             "owner": "nix-community",
             "repo": "home-manager",
-            "rev": "6f35bb97991f796f1f19734dc3db0f4c50b14e18",
-            "sha256": "sha256-YdT9fCIuil4zkqJQyOMBpOEu/iHTyJhfVMS6ZYJ1mxs=",
+            "rev": "7ba4ee4228ed36123c7cb75d50524b43514ef992",
+            "sha256": "sha256-oBYyowo6yfgb95Z78s3uTnAd9KkpJpwzjJbfnpLaM2Y=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "6f35bb97991f796f1f19734dc3db0f4c50b14e18"
+        "version": "7ba4ee4228ed36123c7cb75d50524b43514ef992"
     },
     "matugen-themes": {
         "cargoLock": null,
-        "date": "2026-04-07",
+        "date": "2026-04-08",
         "extract": null,
         "name": "matugen-themes",
         "passthru": null,
@@ -64,25 +64,25 @@
             "name": null,
             "owner": "InioX",
             "repo": "matugen-themes",
-            "rev": "6bb794de5aefca8161ad597b1a08566f04afd668",
-            "sha256": "sha256-T49wgxUGlVh/5nTkKZfMR5kzGh8/pMpPAlhtku36jw4=",
+            "rev": "15fe2c14b2c2e45207d8dcdf76e1d2e678e49d72",
+            "sha256": "sha256-8D/wNx31Kxgq/8IR80+d0Kn5WECQD0/f6sCruoAEmvE=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "6bb794de5aefca8161ad597b1a08566f04afd668"
+        "version": "15fe2c14b2c2e45207d8dcdf76e1d2e678e49d72"
     },
     "quickshell": {
         "cargoLock": null,
-        "date": "2026-04-06",
+        "date": "2026-04-08",
         "extract": null,
         "name": "quickshell",
         "passthru": null,
         "pinned": false,
         "src": {
-            "sha256": "sha256-pRQ1g7YpFrYBB8B6QUSKb3ttGzcQs3Guu8GwDuuSBt0=",
+            "sha256": "sha256-HjoClXqkEFR8o2LRBLQOKFpHr9Nr5EkO83neeV3Qrjo=",
             "type": "tarball",
-            "url": "https://git.outfoxxed.me/quickshell/quickshell/archive/7c5a6c4bd4be1f258aa47626cf5cde02215adad2.tar.gz"
+            "url": "https://git.outfoxxed.me/quickshell/quickshell/archive/7208f68bb7f4bf7e476b828decde1321ae544f5d.tar.gz"
         },
-        "version": "7c5a6c4bd4be1f258aa47626cf5cde02215adad2"
+        "version": "7208f68bb7f4bf7e476b828decde1321ae544f5d"
     }
 }
