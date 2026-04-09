@@ -18,4 +18,4 @@ updates:
     schedule:
       interval: "daily"
       time: "05:00"
-      timezone: "IN"
+      timezone: "IST"
