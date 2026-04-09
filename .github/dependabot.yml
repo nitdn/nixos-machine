@@ -11,7 +11,7 @@ updates:
     directory: "/" # Location of package manifests
     groups:
       github-actions:
-        applies-to: "version-updates"
+        patterns: "*"
     schedule:
       interval: "weekly"
     cooldown:
@@ -20,7 +20,7 @@ updates:
     directory: "/"
     groups:
       nix:
-        applies-to: "version-updates"
+        patterns: "*"
     schedule:
       interval: "daily"
       time: "05:00"
