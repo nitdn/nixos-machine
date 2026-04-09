@@ -52,9 +52,6 @@ jobs:
         with:
           persist-credentials: false
           ref: ${{ inputs.ref }}
-      - uses: cachix/install-nix-action@96951a368ba55167b55f1c916f7d416bac6505fe
-      - name: Switch to Lix
-        run: |
-          curl -sSf -L "https://git.lix.systems/lix-project/lix/raw/tag/2.95.1/misc/upgrade-lix.sh" | sudo --preserve-env=PATH bash -s -- 2.95.1
+      - uses: canidae-solutions/lix-quick-install-action@cdb5d0931be2223edbb9bad884341fcacdac298f # v4
       - name: Check IFD
         run: "nix flake check --no-build --no-allow-import-from-derivation"
