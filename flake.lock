@@ -185,6 +185,42 @@
         "type": "github"
       }
     },
+    "home-manager-lib": {
+      "flake": false,
+      "locked": {
+        "dir": "modules/lib",
+        "lastModified": 1775683737,
+        "narHash": "sha256-oBYyowo6yfgb95Z78s3uTnAd9KkpJpwzjJbfnpLaM2Y=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "7ba4ee4228ed36123c7cb75d50524b43514ef992",
+        "type": "github"
+      },
+      "original": {
+        "dir": "modules/lib",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "type": "github"
+      }
+    },
+    "matugen-themes": {
+      "flake": false,
+      "locked": {
+        "dir": "templates",
+        "lastModified": 1775624189,
+        "narHash": "sha256-8D/wNx31Kxgq/8IR80+d0Kn5WECQD0/f6sCruoAEmvE=",
+        "owner": "InioX",
+        "repo": "matugen-themes",
+        "rev": "15fe2c14b2c2e45207d8dcdf76e1d2e678e49d72",
+        "type": "github"
+      },
+      "original": {
+        "dir": "templates",
+        "owner": "InioX",
+        "repo": "matugen-themes",
+        "type": "github"
+      }
+    },
     "niri": {
       "inputs": {
         "nixpkgs": [
@@ -314,15 +350,36 @@
         "url": "https://github.com/noahc3/AffinityPluginLoader/releases/download/v0.2.0/affinitypluginloader-plus-winefix.tar.xz"
       }
     },
+    "quickshell": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1775720097,
+        "narHash": "sha256-p+vqkCuFfVNyQBo370wr6MebNUvz55RZiC0m8YKUhvQ=",
+        "rev": "d4c92973b53d9fa34cc110d3b974eb6bde5b3027",
+        "type": "tarball",
+        "url": "https://git.outfoxxed.me/api/v1/repos/quickshell/quickshell/archive/d4c92973b53d9fa34cc110d3b974eb6bde5b3027.tar.gz?rev=d4c92973b53d9fa34cc110d3b974eb6bde5b3027"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://git.outfoxxed.me/quickshell/quickshell/archive/master.tar.gz"
+      }
+    },
     "root": {
       "inputs": {
         "affinity-nix": "affinity-nix",
         "disko": "disko",
         "dms-plugin-registry": "dms-plugin-registry",
         "flake-parts": "flake-parts",
+        "home-manager-lib": "home-manager-lib",
+        "matugen-themes": "matugen-themes",
         "niri": "niri",
         "nix-index-database": "nix-index-database",
         "nixpkgs": "nixpkgs_2",
+        "quickshell": "quickshell",
         "sops-nix": "sops-nix",
         "steam-presence": "steam-presence",
         "treefmt-nix": "treefmt-nix",

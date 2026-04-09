@@ -9,12 +9,16 @@ version: 2
 updates:
   - package-ecosystem: "github-actions" # See documentation for possible values
     directory: "/" # Location of package manifests
+    groups:
+      github-actions:
     schedule:
       interval: "weekly"
     cooldown:
       default-days: 7
   - package-ecosystem: "nix"
     directory: "/"
+    groups:
+      nix:
     schedule:
       interval: "daily"
       time: "05:00"

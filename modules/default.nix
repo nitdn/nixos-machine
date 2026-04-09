@@ -10,41 +10,7 @@
   ...
 }:
 let
-  inherit (config.meta) username; # dummy value as the fetcher doesnt really care
-  # a way to fetch nix files via nvfetcher and import them in the config
-  # basically parse the json crated by nvfetcher, and use fetchTarball
-  # nvfetcher uses fetchers from nixpkgs by default, so we can't use the generated.nix file here
-  # but can everywhere else.
-  sourcesJson = builtins.fromJSON (builtins.readFile ../_sources/generated.json);
-
-  modules =
-    builtins.mapAttrs
-      (
-        _name: value:
-        let
-          trimmedSrc = removeAttrs value.src [
-            "name"
-            "deepClone"
-            "fetchSubmodules"
-            "sha256"
-            "sparseCheckout"
-            "leaveDotGit"
-            "fetchSubModules"
-          ];
-          src = fetchTree (
-            trimmedSrc // (if value.src.type == "tarball" then { narHash = value.src.sha256; } else { })
-          );
-        in
-        value // { inherit src; }
-      )
-      (
-        removeAttrs sourcesJson [
-          "bizhub-225i"
-          "epson-202101w"
-          "matugen-themes"
-        ]
-      );
-
+  inherit (config.meta) username;
 in
 {
   options = {
@@ -64,7 +30,6 @@ in
     };
   };
   config.meta.username = "ssmvabaa";
-  config.flake.sources.modules = modules;
   config.flake.sources.raw = ../_sources/generated.nix;
 
   config.flake.modules.nixos = {

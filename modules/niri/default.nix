@@ -3,6 +3,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 {
+  inputs,
   config,
   lib,
   flake-parts-lib,
@@ -10,7 +11,8 @@
 }:
 let
   inherit (config.meta) username;
-  inherit (config.flake) packages sources;
+  inherit (config.flake) packages;
+  inherit (inputs) home-manager-lib;
 in
 {
   options.perSystem = flake-parts-lib.mkPerSystemOption {
@@ -91,9 +93,8 @@ in
       ...
     }:
     let
-      home-manager-lib = "${sources.modules.home-manager-lib.src}/modules/lib";
       # Define the settings format used for this program
-      generator = (import "${home-manager-lib}/generators.nix" { inherit lib; }).toKDL { };
+      generator = (import "${home-manager-lib}/modules/lib/generators.nix" { inherit lib; }).toKDL { };
       niriConfigWithoutIncludes =
         (generator config.niri.settings)
         + ''include "${pkgs.writeText "niri-extraConfig" config.niri.extraConfig}"'';

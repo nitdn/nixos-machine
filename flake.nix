@@ -60,6 +60,18 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    matugen-themes = {
+      url = "github:InioX/matugen-themes?dir=templates";
+      flake = false;
+    };
+    home-manager-lib = {
+      url = "github:nix-community/home-manager?dir=modules/lib";
+      flake = false;
+    };
+    quickshell = {
+      url = "tarball+https://git.outfoxxed.me/quickshell/quickshell/archive/master.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =

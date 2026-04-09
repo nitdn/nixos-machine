@@ -3,6 +3,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 {
+  inputs,
   config,
   lib,
   ...
@@ -10,7 +11,7 @@
 
 let
   inherit (config.meta) username;
-  inherit (config.flake) sources;
+  inherit (inputs) matugen-themes;
 
 in
 {
@@ -18,8 +19,7 @@ in
     modules.nixos.dms =
       { pkgs, ... }:
       let
-        inherit (pkgs.callPackage sources.raw { }) matugen-themes;
-        matugenThemes = "${matugen-themes.src}/templates";
+        matugenThemes = matugen-themes;
         matugen.config = { };
         matugen.templates.helix = {
           input_path = "${matugenThemes}/helix.toml";
