@@ -10,10 +10,10 @@
       environment.systemPackages = [
         (inputs.wrappers.wrappers.mpv.wrap {
           inherit pkgs;
-          scripts = [
-            pkgs.mpvScripts.uosc
-            pkgs.mpvScripts.sponsorblock
-          ];
+          script = {
+            uosc.path = pkgs.mpvScripts.uosc;
+            sponsorblock.path = pkgs.mpvScripts.sponsorblock;
+          };
           "mpv.conf".content = ''
             vo=gpu
             hwdec=auto

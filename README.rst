@@ -6,19 +6,15 @@ Wacky funcubular configs straight from the bugland!
 Whats even happening here?
 --------------------------
 
-So I have around :math:`3\frac{1}{2}` machines and they are as follows:
+So I have around :math:`3` machines and they are as follows:
 
-#. / tjmaxxer: My gaming beast. It hits :math:`T_{\text{Jmax}}` in no
-   time.
+#. / tjmaxxer: My gaming beast. It hits :math:`T_{j}`\ Max in no time.
 
    - No relation to TJ Maxx stores
 
    - Uses systemd-repart (brokey) for partitioning
 
    - Uses systemd-homed (brokey) for users
-
-   - It used to use home-manager standalone but I found a funny
-     workaround so it does not anymore
 
 #. / disko-elysium: Very old very bad laptop.
 
@@ -46,28 +42,17 @@ So I have around :math:`3\frac{1}{2}` machines and they are as follows:
 
      #. Blocky
 
-     #. Paperless-NG, I almost never use it
+     #. Paperless-NG
 
-     #. Searx-NG, but I dont use it
+     #. Searx-NG
 
      #. An entire glue DNS server
-
-     - Not FreshRSS yet, for some reason (I keep delaying it)
 
    - Also used disko for partitioning
 
      - And facter for hardware discovery
 
        - but now everything uses facter because I hate my life
-
-#. / phone-home: This is actually just nix-on-droid, so it doesn’t count
-   as a whole device really amirite gamers?
-
-   - Hardest to debug
-
-   - Will probably die next year due to Google being predatory
-
-   - I have literally uninstalled it
 
 There are also a few packages, I will put them here:
 
