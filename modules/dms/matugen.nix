@@ -19,7 +19,7 @@ in
     modules.nixos.dms =
       { pkgs, ... }:
       let
-        matugenThemes = matugen-themes;
+        matugenThemes = "${matugen-themes}/templates";
         matugen.config = { };
         matugen.templates.helix = {
           input_path = "${matugenThemes}/helix.toml";
