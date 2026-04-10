@@ -19,11 +19,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1775775175,
-        "narHash": "sha256-eaBMX66VVEen6Gq1tXdBn1/GLPvMFUp8BaWdLHSurxo=",
+        "lastModified": 1775783274,
+        "narHash": "sha256-Ebvn8gN4Vw4FJBQZxKm3sV9Cw+/99IwT7U83zIsboN8=",
         "owner": "mrshmllow",
         "repo": "affinity-nix",
-        "rev": "d4bf4ed84b50f614a5512a06339cc6b0688e9910",
+        "rev": "1aa96ece7d3c39aee027b126005cf401cfb591f2",
         "type": "github"
       },
       "original": {
@@ -59,11 +59,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1775697484,
-        "narHash": "sha256-16JaQOyY+vnj3l6zPs6E4raSwb1lX98b47hIl5n/tkw=",
+        "lastModified": 1775784476,
+        "narHash": "sha256-uw89nHZ0M5P0YAhmCuPyZR7WwF5z/zg1aV3c0FDDTQ0=",
         "owner": "AvengeMedia",
         "repo": "dms-plugin-registry",
-        "rev": "2feded9599e087da5e6bccb6379cdf4c549fe912",
+        "rev": "7b2c2ef013d26c5a8ef28b5c58a07b1d1d19d057",
         "type": "github"
       },
       "original": {
@@ -189,11 +189,11 @@
       "flake": false,
       "locked": {
         "dir": "modules/lib",
-        "lastModified": 1775776384,
-        "narHash": "sha256-aZIP2JiVj/AgeSzsArb6lUGEC8MxlGqmvost9wCn1PY=",
+        "lastModified": 1775781825,
+        "narHash": "sha256-L5yKTpR+alrZU2XYYvIxCeCP4LBHU5jhwSj7H1VAavg=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "505e91f877dab9754c9d4197bc92927342c4c31e",
+        "rev": "e35c39fca04fee829cecdf839a50eb9b54d8a701",
         "type": "github"
       },
       "original": {
@@ -311,11 +311,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1775423009,
-        "narHash": "sha256-hvNLo3SaIwi6+Cm5NMLyFQYJrYagpsYap4EfQe9CQpc=",
-        "rev": "68d8aa3d661f0e6bd5862291b5bb263b2a6595c9",
+        "lastModified": 1775710090,
+        "narHash": "sha256-WGjBfvXv/mcg5yBg+AtK1Q3FHyXfjAAeJROmg7DLYfM=",
+        "rev": "4c1018dae018162ec878d42fec712642d214fdfa",
         "type": "tarball",
-        "url": "https://releases.nixos.org/nixos/unstable/nixos-26.05pre975402.68d8aa3d661f/nixexprs.tar.xz"
+        "url": "https://releases.nixos.org/nixos/unstable/nixos-26.05pre977467.4c1018dae018/nixexprs.tar.xz?lastModified=1775710090&rev=4c1018dae018162ec878d42fec712642d214fdfa"
       },
       "original": {
         "type": "tarball",

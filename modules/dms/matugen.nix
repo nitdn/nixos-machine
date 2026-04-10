@@ -44,7 +44,7 @@ in
         matugen_light = lib.readFile ./helix/matugen_light.toml;
       };
 
-      kitty-pc.settings.include = lib.map (dmsPath: "/home/${username}/.config/kitty/${dmsPath}") [
+      kitty-pc.extraSettings.include = lib.map (dmsPath: "/home/${username}/.config/kitty/${dmsPath}") [
         "dank-tabs.conf"
         "dank-theme.conf"
       ];

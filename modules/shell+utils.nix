@@ -13,56 +13,23 @@ let
   kittyWrapper =
     { wlib, config, ... }:
     let
-      kittyKeyValueFormat = config.pkgs.formats.keyValue {
-        listsAsDuplicateKeys = true;
+      importsGeneratorArgs = {
         mkKeyValue = lib.generators.mkKeyValueDefault { } " ";
+        listsAsDuplicateKeys = true;
       };
+      importsType = config.pkgs.formats.keyValue importsGeneratorArgs;
+      importsGenerate = lib.generators.toKeyValue importsGeneratorArgs;
     in
     {
-      imports = [ wlib.modules.default ];
-      options = {
-        settings = lib.mkOption {
-          inherit (kittyKeyValueFormat) type;
-          default = { };
-          description = ''
-            Configuration for kitty.
-            The fast, feature-rich, GPU based terminal emulator.
-          '';
-        };
-
-        extraSettings = lib.mkOption {
-          type = lib.types.lines;
-          default = "";
-          description = ''
-            Extra lines appended to the config file.
-            This can be used to maintain order for settings.
-          '';
-        };
-        "kitty.conf" = lib.mkOption {
-          type = wlib.types.file config.pkgs;
-          default.path =
-            let
-              fileName = "kitty.conf";
-              base = kittyKeyValueFormat.generate fileName config.settings;
-            in
-            if config.extraSettings != "" then
-              config.pkgs.concatText fileName [
-                base
-                (config.pkgs.writeText "extraSettings" config.extraSettings)
-              ]
-            else
-              base;
-          description = ''
-            Raw configuration for kitty.
-          '';
-        };
+      imports = [ wlib.wrapperModules.kitty ];
+      options.extraSettings = lib.mkOption {
+        inherit (importsType) type;
+        default = { };
+        description = ''
+          Extra settings for kitty that may not be
+          encoded by the wrapper correctly'';
       };
-      config = {
-        flags = {
-          "--config" = toString config."kitty.conf".path;
-        };
-        package = config.pkgs.kitty;
-      };
+      config.extraConfig = importsGenerate config.extraSettings;
     };
 in
 {
@@ -75,12 +42,15 @@ in
   flake = {
     wrappers.kitty-pc = {
       imports = [ kittyWrapper ];
+      font.name = "monospace";
+      font.size = 14;
+      keybindings = {
+        f2 = "launch --cwd=current --type os-window";
+      };
       settings = {
-        "map" = "f2 launch --cwd=current --type os-window";
         scrollback_lines = 10000;
         enable_audio_bell = false;
         update_check_interval = 0;
-        font_size = 14;
         enabled_layouts = "horizontal";
       };
     };
