@@ -49,7 +49,8 @@ in
             name = "affinity-fix";
             runtimeInputs = [ inputs.affinity-nix.packages.${system}.v3 ];
             text = ''
-              affinity-v3 || affinity-v3
+              # We are so unbelievably cooked
+              affinity-v3 wine "$HOME/.local/share/affinity-v3/drive_c/Program Files/Affinity/Affinity/Affinity.exe"
             '';
           })
           (
