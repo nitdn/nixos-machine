@@ -45,6 +45,7 @@ in
           pkgs.logseq
           pkgs.zathura
           pkgs.onlyoffice-desktopeditors
+          pkgs.mesa.opencl
           (pkgs.writeShellApplication {
             name = "affinity-fix";
             runtimeInputs = [ inputs.affinity-nix.packages.${system}.v3 ];

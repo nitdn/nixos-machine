@@ -29,6 +29,7 @@ in
         extraPackages = [
           # Required for modern Intel GPUs (Xe iGPU and ARC)
           pkgs.intel-media-driver # VA-API (iHD) userspace
+          pkgs.intel-compute-runtime # For Intel 12th Gen and newer
           pkgs.vpl-gpu-rt # oneVPL (QSV) runtime
         ];
         extraPackages32 = [
