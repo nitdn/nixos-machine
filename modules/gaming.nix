@@ -29,7 +29,6 @@ in
         programs.steam.package = lib.mkDefault (
           pkgs.steam.override {
             extraEnv = {
-              MANGOHUD = true;
               OBS_VKCAPTURE = true;
               RADV_TEX_ANISO = 16;
             };
@@ -83,14 +82,33 @@ in
       { pkgs, config, ... }:
       {
         imports = [ inputs.steam-presence.nixosModules.steam-presence ];
-
-        programs.steam.package = pkgs.steam.override {
-          extraEnv = {
-            MANGOHUD = true;
-            OBS_VKCAPTURE = true;
-            RADV_TEX_ANISO = 16;
+        programs.steam = {
+          gamescopeSession.enable = true;
+          package = pkgs.steam.override {
+            extraEnv = {
+              OBS_VKCAPTURE = true;
+            };
+            extraArgs = "-system-composer";
           };
-          extraArgs = "-system-composer";
+          presence = {
+            enable = true;
+            # Either set the key directly (not recommended) or via file/secret
+            # steamApiKey = "YOUR_STEAM_WEB_API_KEY";
+            steamApiKeyFile = "/%d/steam-api-key"; # e.g. from agenix/sops
+            userIds = [ "76561198809805717" ];
+            localGames = {
+              enable = true;
+              games = [
+                ".kitty-wrapped"
+                ".zen"
+              ];
+            };
+            gamesFile = pkgs.writeText "games.txt" ''
+              .kitty-wrapped=Kitty Terminal
+              .zen=Zen Browser
+            '';
+            # Other optional settings
+          };
         };
         sops.secrets.steam-web-apiKey = {
           owner = username;
@@ -100,25 +118,6 @@ in
             LoadCredential = "steam-api-key:${config.sops.secrets.steam-web-apiKey.path}";
             WorkingDirectory = lib.mkForce "-%h/.local/state/steam-presence";
           };
-        };
-        programs.steam.presence = {
-          enable = true;
-          # Either set the key directly (not recommended) or via file/secret
-          # steamApiKey = "YOUR_STEAM_WEB_API_KEY";
-          steamApiKeyFile = "/%d/steam-api-key"; # e.g. from agenix/sops
-          userIds = [ "76561198809805717" ];
-          localGames = {
-            enable = true;
-            games = [
-              ".kitty-wrapped"
-              ".zen"
-            ];
-          };
-          gamesFile = pkgs.writeText "games.txt" ''
-            .kitty-wrapped=Kitty Terminal
-            .zen=Zen Browser
-          '';
-          # Other optional settings
         };
       };
   };

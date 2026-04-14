@@ -1,0 +1,10 @@
+# SPDX-FileCopyrightText: 2026 Nitesh Kumar Debnath <nitkdnath@gmail.com>
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+{
+    indent: 4
+    line_length: 80
+    margin: 1
+    exclude: ["vendor/**", "target/**"]
+}

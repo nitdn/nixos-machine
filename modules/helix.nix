@@ -2,13 +2,13 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 {
-  config,
   lib,
+  config,
   ...
 }:
 let
-  nixosModules = config.flake.modules.nixos;
   inherit (config.flake) wrappers;
+  nixosModules = config.flake.modules.nixos;
   helix-pc =
     { wlib, pkgs, ... }:
     {
@@ -16,13 +16,21 @@ let
       settings = {
         theme = lib.mkDefault "catppuccin_mocha";
         editor = {
+          line-number = "relative";
           end-of-line-diagnostics = "hint";
           inline-diagnostics.cursor-line = "warning";
           # lsp.display-inlay-hints = true;
         };
+        editor.statusline = {
+          center = [
+            "file-type"
+            "primary-selection-length"
+            "total-line-numbers"
+          ];
+        };
         editor.cursor-shape = {
-          normal = "block";
           insert = "bar";
+          normal = "block";
           select = "underline";
         };
         keys = {
@@ -33,7 +41,20 @@ let
           select = {
             tab = "extend_parent_node_end";
             S-tab = "extend_parent_node_start";
-
+            C-j = [
+              "extend_to_line_bounds"
+              "delete_selection"
+              "move_line_down"
+              "paste_before"
+              "select_mode"
+            ];
+            C-k = [
+              "extend_to_line_bounds"
+              "delete_selection"
+              "move_line_up"
+              "paste_before"
+              "select_mode"
+            ];
           };
         };
       };

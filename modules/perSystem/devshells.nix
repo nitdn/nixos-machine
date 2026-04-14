@@ -131,6 +131,7 @@ in
             nil
             nixd
             nixfmt
+            nufmt
             nvfetcher
             onefetch
             pandoc
