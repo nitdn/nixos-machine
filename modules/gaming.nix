@@ -83,7 +83,6 @@ in
       {
         imports = [ inputs.steam-presence.nixosModules.steam-presence ];
         programs.steam = {
-          gamescopeSession.enable = true;
           package = pkgs.steam.override {
             extraEnv = {
               OBS_VKCAPTURE = true;
