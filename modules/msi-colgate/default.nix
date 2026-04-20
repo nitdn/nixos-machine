@@ -15,6 +15,7 @@ in
 
   flake.modules.nixos.msi-colgate = {
     hardware.facter.reportPath = ./facter.json;
+    hardware.amdgpu.opencl.enable = true;
     system.stateVersion = "25.05"; # Did you read the comment?
     networking = {
       hostName = "msi-colgate";
