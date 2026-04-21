@@ -93,11 +93,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1776649836,
-        "narHash": "sha256-MrRMavOqxOMprBqKTpFH1BHLNZYIuV6RlZpnz+TiS04=",
+        "lastModified": 1776765883,
+        "narHash": "sha256-vK7G1VBbnWx6vjmk5qz7CkgkSDsCtbzPo5aum3PRjCg=",
         "owner": "AvengeMedia",
         "repo": "dms-plugin-registry",
-        "rev": "a87d716bb765bdafb7821b609314fe5b2f924f1a",
+        "rev": "8765da0c14dd289f788ba8982db6e023a175fd1a",
         "type": "github"
       },
       "original": {
@@ -245,11 +245,11 @@
       "flake": false,
       "locked": {
         "dir": "modules/lib",
-        "lastModified": 1776721614,
-        "narHash": "sha256-zGuW7C4tsScib2560yE5VV6lY/MdRs30aU9cbg3RP+U=",
+        "lastModified": 1776777932,
+        "narHash": "sha256-0R3Yow/NzSeVGUke5tL7CCkqmss4Vmi6BbV6idHzq/8=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "c555a4a34a260493be5adb795c54e013c58f2d34",
+        "rev": "5d5640599a0050b994330328b9fd45709c909720",
         "type": "github"
       },
       "original": {
@@ -285,11 +285,11 @@
         "rust-overlay": []
       },
       "locked": {
-        "lastModified": 1776706941,
-        "narHash": "sha256-nnv27JD0FOOqs1Hh67kydXFzZoEu8e0QyMf0R9AXaIw=",
+        "lastModified": 1776800113,
+        "narHash": "sha256-8UFcj0LV4zZ0gTX96LlbzpmBfYkoXsfb3ETg7GeRup8=",
         "owner": "niri-wm",
         "repo": "niri",
-        "rev": "e9c182a13c1d12762351ec01ce0ec711d41b0337",
+        "rev": "e472b5b0f13d91fdf0e5d07551f68177d25043d0",
         "type": "github"
       },
       "original": {
@@ -421,11 +421,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1776589301,
-        "narHash": "sha256-3g+BPNYwKrjOtBaQi1cLBEtLKtDLZAS01gFd6/ybtlE=",
+        "lastModified": 1776761300,
+        "narHash": "sha256-0CTVYyznIl8QC6PpMoOSM2Qo4sIdHp3j3wV8lU7wON8=",
         "ref": "refs/heads/master",
-        "rev": "9a54119893bdd30fec628063322bc726f96afc1f",
-        "revCount": 803,
+        "rev": "d60498adc038526b3d155e8ad61e51e78e6e32eb",
+        "revCount": 804,
         "type": "git",
         "url": "https://git.outfoxxed.me/quickshell/quickshell"
       },
@@ -477,11 +477,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1776119890,
-        "narHash": "sha256-Zm6bxLNnEOYuS/SzrAGsYuXSwk3cbkRQZY0fJnk8a5M=",
+        "lastModified": 1776771786,
+        "narHash": "sha256-DRFGPfFV6hbrfO9a1PH1FkCi7qR5FgjSqsQGGvk1rdI=",
         "owner": "Mic92",
         "repo": "sops-nix",
-        "rev": "d4971dd58c6627bfee52a1ad4237637c0a2fb0cd",
+        "rev": "bef289e2248991f7afeb95965c82fbcd8ff72598",
         "type": "github"
       },
       "original": {
@@ -553,11 +553,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1776725287,
-        "narHash": "sha256-sWDmhXcoV1NVC2IdJa30yprNNkc0NDjHZDt0uZwrNCY=",
+        "lastModified": 1776791364,
+        "narHash": "sha256-m/DOfBFaE5D3cvGTaUg5B/KfOu8Xnsf9cPUqEE4bdlU=",
         "owner": "BirdeeHub",
         "repo": "nix-wrapper-modules",
-        "rev": "3e6c285230026674fb633504d052249229dc9b08",
+        "rev": "5990deeef50b0f8857ead3ff33a17c52459a650c",
         "type": "github"
       },
       "original": {
