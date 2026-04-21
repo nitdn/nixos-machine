@@ -72,7 +72,7 @@ in
           ibus.waylandFrontend = true;
           ibus.engines = [
             pkgs.ibus-engines.typing-booster
-            pkgs.ibus-engines.openbangla-keyboard
+            pkgs.openbangla-keyboard
           ];
         };
         fonts.packages = [
