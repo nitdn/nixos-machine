@@ -53,9 +53,7 @@ in
           pkgs.gamemode
           pkgs.gamescope
           pkgs.lutris
-          pkgs.umu-launcher
           pkgs.vesktop
-          pkgs.wineWow64Packages.stagingFull
           pkgs.winetricks
         ];
       };

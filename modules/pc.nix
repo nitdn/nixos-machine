@@ -175,6 +175,12 @@ in
       programs.nix-index-database.comma.enable = true;
 
       documentation.dev.enable = true;
+      programs.appimage.enable = true;
+      programs.appimage.package = pkgs.appimage-run.override {
+        extraPkgs = pkgs: [
+          pkgs.icu
+        ];
+      };
 
     };
 }

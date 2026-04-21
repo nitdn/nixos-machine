@@ -29,6 +29,11 @@ in
       };
     };
   };
+  imports = [
+    inputs.flake-parts.flakeModules.modules
+    inputs.wrappers.flakeModules.wrappers
+  ];
+
   config.meta.username = "ssmvabaa";
   config.flake.sources.raw = ../_sources/generated.nix;
 

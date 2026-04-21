@@ -67,6 +67,7 @@ let
       extraPackages = [
         pkgs.nixd
         pkgs.nil
+        pkgs.prettier
       ];
     };
   helix-work = {

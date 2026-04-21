@@ -9,15 +9,13 @@
   ...
 }:
 let
-  inherit (inputs) flake-parts treefmt-nix wrappers;
+  inherit (inputs) treefmt-nix;
   inherit (config.flake) sources;
 in
 {
   imports = [
     # Optional: use external flake logic, e.g.
-    flake-parts.flakeModules.modules
     treefmt-nix.flakeModule
-    wrappers.flakeModules.wrappers
   ];
 
   debug = true;
