@@ -45,7 +45,7 @@ in
       font.name = "monospace";
       font.size = 14;
       keybindings = {
-        f2 = "launch --cwd=current --type os-window";
+        f2 = "launch --copy-env --type os-window";
       };
       settings = {
         scrollback_lines = 10000;
@@ -85,6 +85,20 @@ in
           '')
           pkgs.wl-clipboard
         ];
+        fonts.fontconfig.localConf = /* xml */ ''
+          <?xml version="1.0"?>
+          <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+          <fontconfig>
+            <match target="scan">
+              <test name="family">
+                <string>Noto Sans Mono</string>
+              </test>
+              <edit name="spacing">
+                <int>100</int>
+              </edit>
+            </match>
+          </fontconfig>
+        '';
         # Required for bashInteractive; its gonna be bash anyway
         programs.bash.enable = true;
         programs.direnv.enable = true;

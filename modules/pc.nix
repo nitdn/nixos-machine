@@ -119,7 +119,7 @@ in
         pkgs.noto-fonts-cjk-sans
         pkgs.noto-fonts-color-emoji
         pkgs.atkinson-hyperlegible-next
-        pkgs.nerd-fonts.jetbrains-mono
+        pkgs.jetbrains-mono
       ];
 
       fonts.fontconfig.defaultFonts = lib.mkIf config.hardware.graphics.enable {
@@ -132,10 +132,10 @@ in
           "Noto Serif Bengali"
         ];
         monospace = [
-          "JetBrainsMono Nerd Font"
-          "Noto Sans Bengali"
+          "JetBrains Mono"
         ];
       };
+      fonts.fontDir.enable = true;
 
       # Configure keymap in X11
       services.xserver.xkb = {

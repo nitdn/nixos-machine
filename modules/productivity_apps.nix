@@ -46,6 +46,7 @@ in
           pkgs.zathura
           pkgs.onlyoffice-desktopeditors
           pkgs.mesa.opencl
+          pkgs.wineWow64Packages.stagingFull
           (pkgs.writeShellApplication {
             name = "affinity-fix";
             runtimeInputs = [ inputs.affinity-nix.packages.${system}.v3 ];
