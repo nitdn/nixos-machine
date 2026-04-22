@@ -18,6 +18,11 @@ in
     {
       hardware.facter.reportPath = ./facter.json;
       hardware.ckb-next.enable = true;
+      services.hardware.openrgb = {
+        enable = true;
+        package = pkgs.openrgb-with-all-plugins;
+      };
+
       # Enable OpenTabletDriver
       hardware.opentabletdriver.enable = true;
 
