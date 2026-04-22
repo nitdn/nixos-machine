@@ -5,7 +5,9 @@
 {
   flake.modules.nixos.pc =
     let
-      tls_auth_name = "dns.adguard-dns.com";
+      tls_auth_name = "jmfa1wa82x.cloudflare-gateway.com";
+      v4_address = "172.64.36.1";
+      v6_address = "2a06:98c1:54::c2e2";
     in
     {
       networking.domain = "home.arpa";
@@ -27,11 +29,11 @@
           tls_query_padding_blocksize = 128;
           upstream_recursive_servers = [
             {
-              address_data = "94.140.14.14";
+              address_data = v4_address;
               inherit tls_auth_name;
             }
             {
-              address_data = "2a10:50c0::ad1:ff";
+              address_data = v6_address;
               inherit tls_auth_name;
             }
           ];
