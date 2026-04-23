@@ -3,11 +3,13 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 {
+  config,
   lib,
   ...
 }:
-{
-  flake.wrappers.wlr-which-key-wrapped =
+let
+  inherit (config.flake) wrappers;
+  wlr-which-key-wrapped =
     {
       wlib,
       ...
@@ -52,6 +54,25 @@
         }
       ];
     };
+in
+{
+  flake.wrappers = {
+    inherit wlr-which-key-wrapped;
+    niri-pc =
+      { pkgs, ... }:
+      {
+        settings = {
+          spawn-at-startup = [
+            [
+              "wayscriber"
+              "--daemon"
+            ]
+          ];
+          binds."Mod+W".spawn = lib.getExe (wrappers.wlr-which-key-wrapped.wrap { inherit pkgs; });
+
+        };
+      };
+  };
   perSystem =
     { config, ... }:
     {

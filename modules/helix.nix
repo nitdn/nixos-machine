@@ -8,7 +8,6 @@
 }:
 let
   inherit (config.flake) wrappers;
-  nixosModules = config.flake.modules.nixos;
   helix-pc =
     { wlib, pkgs, ... }:
     {
@@ -70,36 +69,30 @@ let
         pkgs.prettier
       ];
     };
-  helix-work = {
+  helix-light = {
     imports = [ config.flake.wrapperModules.helix-pc ];
   };
 in
 {
-  flake.wrappers = { inherit helix-pc helix-work; };
-  flake.modules.nixos.helix =
+  flake.wrappers = { inherit helix-pc helix-light; };
+  flake.modules.nixos.darkMode =
     {
-      config,
       pkgs,
       ...
     }:
-    let
-      cfg = config.programs.helix;
-      finalPackage = wrappers."helix-${cfg.variant}".wrap { inherit pkgs; };
-    in
     {
-      options.programs.helix.variant = lib.mkOption {
-        type = lib.types.enum [
-          "pc"
-          "work"
-        ];
-      };
-      config.environment.systemPackages = [ finalPackage ];
+      config.environment.systemPackages = [
+        (wrappers.helix-pc.wrap { inherit pkgs; })
+      ];
     };
-  flake.modules.nixos.pc = {
-    imports = [ nixosModules.helix ];
-    programs.helix.variant = lib.mkDefault "pc";
-  };
-  flake.modules.nixos.work = {
-    programs.helix.variant = "work";
-  };
+  flake.modules.nixos.lightMode =
+    {
+      pkgs,
+      ...
+    }:
+    {
+      config.environment.systemPackages = [
+        (wrappers.helix-light.wrap { inherit pkgs; })
+      ];
+    };
 }

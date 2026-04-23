@@ -72,6 +72,10 @@
       url = "git+https://git.outfoxxed.me/quickshell/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    noctalia-colorschemes = {
+      url = "github:noctalia-dev/noctalia-colorschemes";
+      flake = false;
+    };
   };
 
   outputs =

@@ -19,12 +19,12 @@ let
     {
       imports = [ inputs.dms-plugin-registry.modules.default ];
       programs.dms-shell = {
-        enable = true;
+        enable = false;
         quickshell.package = quickshell;
-        systemd = {
-          enable = true;
-          restartIfChanged = true;
-        };
+        # systemd = {
+        #   enable = true;
+        #   restartIfChanged = true;
+        # };
         enableSystemMonitoring = true;
         enableVPN = true;
         enableDynamicTheming = true;

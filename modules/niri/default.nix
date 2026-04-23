@@ -10,8 +10,7 @@
   ...
 }:
 let
-  inherit (config.meta) username;
-  inherit (config.flake) packages;
+  inherit (config.flake) wrappers packages;
   inherit (inputs) home-manager-lib;
 in
 {
@@ -134,46 +133,92 @@ in
         '';
       };
     };
+  config.flake.wrappers.niri-pc =
+    {
+      wlib,
+      pkgs,
+      config,
+      ...
+    }:
+    {
+      imports = [
+        wlib.wrapperModules.niri
+      ];
+      options.extraConfigLines = lib.mkOption {
+        default = "";
+        type = lib.types.lines;
+        description = ''
+          Escape hatch string option added to the config file for
+          options that might not be representable otherwise,
+          due to `config.settings` in this module being required to be an attribute set.
+
+          This one is based on Lines instead of strings for extensibility.
+        '';
+      };
+
+      config = {
+        package = packages.${pkgs.stdenv.hostPlatform.system}.niri-unstable;
+        extraConfigLines = ''
+          include "${./default_binds.kdl}"
+          include "${./default_config.kdl}"
+          include "${./window-rules.kdl}"
+        '';
+        settings = {
+          extraConfig = config.extraConfigLines;
+          spawn-at-startup = [
+            (lib.getExe inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default)
+          ];
+          environment = {
+            QT_QPA_PLATFORMTHEME = "qt6ct";
+          };
+          input = {
+            keyboard = {
+              xkb.options = "compose:caps";
+            };
+            mouse = {
+              accel-profile = "flat";
+              accel-speed = 0.001;
+            };
+          };
+          layout = {
+            gaps = 4;
+            border = {
+              width = 2;
+            };
+            focus-ring = {
+              width = 2;
+            };
+          };
+          window-rule = [
+            {
+              geometry-corner-radius = 12;
+              clip-to-geometry = true;
+              tiled-state = true;
+              draw-border-with-background = false;
+            }
+          ];
+
+          outputs = {
+            "Microstep MSI G244F BB4H113A00079" = {
+              mode = "1920x1080";
+              transform = "normal";
+              variable-refresh-rate = _: { };
+            };
+          };
+        };
+      };
+    };
   config.flake.modules.nixos = {
     pc =
       { pkgs, config, ... }:
-      let
-        inherit (pkgs.stdenv.hostPlatform) system;
-        inherit (packages.${system}) niri-config;
-      in
       {
         programs.niri.enable = true;
+        programs.niri.package = wrappers.niri-pc.wrap { inherit pkgs; };
         environment.systemPackages = lib.mkIf config.programs.niri.enable [
           pkgs.xwayland-satellite
           pkgs.adwaita-icon-theme
           pkgs.wayscriber
         ];
-        houses.users.${username}.files = [
-          {
-            type = "symlink";
-            source = niri-config;
-            target = ".config/niri/config.kdl";
-          }
-        ];
-        systemd.user.services.dms.serviceConfig = {
-          BindPaths = [ "${niri-config}:%E/niri/config.kdl" ];
-        };
-      };
-    vm =
-      { pkgs, ... }:
-      let
-        inherit (pkgs.stdenv.hostPlatform) system;
-        inherit (packages.${system}) niri-config;
-      in
-      {
-        houses.users.vmtest.files = [
-          {
-            type = "symlink";
-            source = niri-config;
-            target = ".config/niri/config.kdl";
-          }
-        ];
-
       };
   };
 }

@@ -11,12 +11,6 @@ binds {
     Ctrl+Print {
         screenshot-screen
     }
-    Mod+1 {
-        focus-workspace 1
-    }
-    Mod+B {
-        spawn "zen"
-    }
     Mod+BracketLeft {
         consume-or-expel-window-left
     }
@@ -158,9 +152,6 @@ binds {
     Mod+Slash {
         show-hotkey-overlay
     }
-    Mod+T {
-        spawn "kitty"
-    }
     Mod+U {
         focus-workspace-up
     }
@@ -171,9 +162,3 @@ binds {
         screenshot show-pointer=false
     }
 }
-animations {
-    workspace-switch {
-        spring damping-ratio=1.0 epsilon=0.0001 stiffness=1000
-    }
-}
-

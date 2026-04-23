@@ -14,8 +14,12 @@
       };
       niri.settings = {
         environment."QT_QPA_PLATFORMTHEME" = "qt6ct";
-        layer-rule.match._props.namespace = "^quickshell$";
-        layer-rule.place-within-backdrop = true;
+        layer-rule._children = [
+          {
+            match._props.namespace = "^quickshell$";
+            place-within-backdrop = true;
+          }
+        ];
       };
       niri.includes = [
         "dms/colors.kdl"

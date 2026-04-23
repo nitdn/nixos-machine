@@ -8,11 +8,13 @@ let
   nixosModules = config.flake.modules.nixos;
 in
 {
-  perSystem.niri.settings.spawn-at-startup = [
-    "ibus"
-    "start"
-    "--type"
-    "wayland"
+  flake.wrappers.niri-pc.settings.spawn-at-startup = [
+    [
+      "ibus"
+      "start"
+      "--type"
+      "wayland"
+    ]
   ];
   flake.modules.nixos = {
     productivity =

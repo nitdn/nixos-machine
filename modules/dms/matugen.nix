@@ -38,7 +38,7 @@ in
       };
     wrappers = {
       helix-pc.settings.theme = "matugen_dark";
-      helix-work.settings.theme = lib.mkForce "matugen_light";
+      helix-light.settings.theme = lib.mkForce "matugen_light";
       helix-pc.themes = {
         matugen_dark = lib.readFile ./helix/matugen_dark.toml;
         matugen_light = lib.readFile ./helix/matugen_light.toml;
