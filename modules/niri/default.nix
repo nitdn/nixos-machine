@@ -85,13 +85,15 @@ in
     pc =
       { pkgs, config, ... }:
       {
-        programs.regreet.enable = true;
+        fonts.packages = [ pkgs.nerd-fonts.symbols-only ];
+        services.displayManager.gdm.enable = true;
         programs.niri.enable = true;
         programs.niri.package = wrappers.niri-pc.wrap { inherit pkgs; };
         environment.systemPackages = lib.mkIf config.programs.niri.enable [
           pkgs.xwayland-satellite
           pkgs.adwaita-icon-theme
           pkgs.wayscriber
+          pkgs.kdePackages.qt6ct
         ];
       };
   };

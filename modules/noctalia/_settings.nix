@@ -197,7 +197,7 @@
             colorizeSystemIcon = "none";
             colorizeSystemText = "none";
             customIconPath = "";
-            enableColorization = false;
+            enableColorization = true;
             icon = "noctalia";
             id = "ControlCenter";
             useDistroLogo = true;
@@ -208,7 +208,7 @@
     brightness = {
       backlightDeviceMappings = [ ];
       brightnessStep = 5;
-      enableDdcSupport = false;
+      enableDdcSupport = true;
       enforceMinimum = true;
     };
     calendar = {
@@ -2089,22 +2089,22 @@
           path = "Vesper";
         }
       ];
-      timestamp = 1777008400;
+      timestamp = 1776956796;
     };
     desktopWidgetsEditMode = false;
     display = {
-      HDMI-A-1 = {
+      DP-2 = {
         connected = true;
-        height = 900;
-        name = "HDMI-A-1";
-        physical_height = 0;
-        physical_width = 0;
-        refresh_rate = 59997;
+        height = 1080;
+        name = "DP-2";
+        physical_height = 290;
+        physical_width = 530;
+        refresh_rate = 165001;
         scale = 1;
         transform = "Normal";
-        vrr_enabled = false;
-        vrr_supported = false;
-        width = 1600;
+        vrr_enabled = true;
+        vrr_supported = true;
+        width = 1920;
         x = 0;
         y = 0;
       };
@@ -2113,14 +2113,14 @@
     lockScreenActive = false;
     noctaliaPerformanceMode = false;
     notificationsState = {
-      lastSeenTs = 1777024332000;
+      lastSeenTs = 1764425305000;
     };
     openedPanel = "";
     ui = {
       settingsSidebarExpanded = true;
     };
     wallpapers = {
-      HDMI-A-1 = "/nix/store/jjd0k65z3n5b6p7r3fb7ajy0map0wanr-noctalia-shell-4.7.6/share/noctalia-shell/Assets/Wallpaper/noctalia.png";
+      DP-2 = "/nix/store/jjd0k65z3n5b6p7r3fb7ajy0map0wanr-noctalia-shell-4.7.6/share/noctalia-shell/Assets/Wallpaper/noctalia.png";
     };
   };
 }
