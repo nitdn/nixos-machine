@@ -34,11 +34,6 @@ let
 in
 {
   meta.term = "kitty";
-
-  perSystem.niri.settings = {
-    binds."Mod+T".spawn = term;
-    "spawn-at-startup \"${term}\"" = { };
-  };
   flake = {
     wrappers = {
       kitty-pc = {

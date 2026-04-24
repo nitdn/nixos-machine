@@ -23,16 +23,6 @@ let
           cmd = "pkill -SIGUSR1 wayscriber";
         }
         {
-          key = "n";
-          desc = "Toggle Notifications";
-          cmd = "dms ipc call notifications toggle";
-        }
-        {
-          key = "d";
-          desc = "Toggle dashboard";
-          cmd = "dms ipc call dash toggle overview";
-        }
-        {
           key = "l";
           desc = "Open logseq";
           cmd = "logseq";
@@ -68,24 +58,11 @@ in
               "--daemon"
             ]
           ];
-          binds."Mod+W".spawn = lib.getExe (wrappers.wlr-which-key-wrapped.wrap { inherit pkgs; });
-
+          binds."Mod+W" = _: {
+            props.hotkey-overlay-title = "Launch wlr-which-key";
+            content.spawn = lib.getExe (wrappers.wlr-which-key-wrapped.wrap { inherit pkgs; });
+          };
         };
       };
   };
-  perSystem =
-    { config, ... }:
-    {
-      niri.settings = {
-        _children = [
-          {
-            spawn-at-startup = [
-              "wayscriber"
-              "--daemon"
-            ];
-          }
-        ];
-        binds."Mod+W".spawn = lib.getExe config.packages.wlr-which-key-wrapped;
-      };
-    };
 }

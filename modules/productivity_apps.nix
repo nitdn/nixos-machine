@@ -36,10 +36,10 @@ in
         };
       in
       lib.mkIf cfg.enable {
+        nixpkgs.overlays = [ inputs.affinity-nix.overlays.default ];
         environment.systemPackages = [
           (lib.mkForce killIbusAutostart)
           packages.${system}.naps2-wrapped
-          inputs.affinity-nix.packages.${system}.v3
           inputs.zen-browser.packages.${system}.default
           pkgs.hunspell
           pkgs.hunspellDicts.en-gb-large
@@ -49,14 +49,15 @@ in
           pkgs.onlyoffice-desktopeditors
           pkgs.mesa.opencl
           pkgs.wineWow64Packages.stagingFull
-          (pkgs.writeShellApplication {
-            name = "affinity-fix";
-            runtimeInputs = [ inputs.affinity-nix.packages.${system}.v3 ];
-            text = ''
-              # We are so unbelievably cooked
-              affinity-v3 wine "$HOME/.local/share/affinity-v3/drive_c/Program Files/Affinity/Affinity/Affinity.exe"
-            '';
-          })
+          # pkgs.affinity-v3
+          # (pkgs.writeShellApplication {
+          #   name = "affinity-fix";
+          #   runtimeInputs = [ pkgs.affinity-v3 ];
+          #   text = ''
+          #     # We are so unbelievably cooked
+          #     affinity-v3 wine "$HOME/.local/share/affinity-v3/drive_c/Program Files/Affinity/Affinity/Affinity.exe"
+          #   '';
+          # })
           (
             let
               item = {
@@ -82,10 +83,6 @@ in
           pkgs.corefonts
           pkgs.winePackages.fonts
         ];
-        systemd.user.tmpfiles.rules = lib.lists.forEach config.fonts.packages (pkg: ''
-          C+ %h/.local/share/fonts/${pkg.pname} 0755 - - - ${pkg}/share/fonts/
-          z %h/.local/share/fonts/${pkg.pname}/* 0755 - - -
-        '');
       };
     work.imports = [ nixosModules.productivity ];
     tjmaxxer.imports = [ nixosModules.productivity ];

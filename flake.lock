@@ -22,11 +22,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1776949098,
-        "narHash": "sha256-rqp4XGkcirU3dlcvJiFhxmQuwV1E6UzDpElB8/2qqZ0=",
+        "lastModified": 1776999315,
+        "narHash": "sha256-M1BPLSoBJ+vnqBvZEa2CoPW0DRce0je5ligEdfLWusc=",
         "owner": "mrshmllow",
         "repo": "affinity-nix",
-        "rev": "9989df33b2aa6ad66441a2c83b817652754d8705",
+        "rev": "bb02b422a0cff2d936564495d3bb8290101426ac",
         "type": "github"
       },
       "original": {
@@ -241,39 +241,18 @@
         "type": "github"
       }
     },
-    "home-manager-lib": {
-      "flake": false,
+    "import-tree": {
       "locked": {
-        "dir": "modules/lib",
-        "lastModified": 1776985957,
-        "narHash": "sha256-HPOU1POb2ITx4qhcJMIodgkIgIALz4vUs8kSpMSq3Uw=",
-        "owner": "nix-community",
-        "repo": "home-manager",
-        "rev": "99814d2a6773f76b383b549e198caec913de3421",
+        "lastModified": 1773693634,
+        "narHash": "sha256-BtZ2dtkBdSUnFPPFc+n0kcMbgaTxzFNPv2iaO326Ffg=",
+        "owner": "vic",
+        "repo": "import-tree",
+        "rev": "c41e7d58045f9057880b0d85e1152d6a4430dbf1",
         "type": "github"
       },
       "original": {
-        "dir": "modules/lib",
-        "owner": "nix-community",
-        "repo": "home-manager",
-        "type": "github"
-      }
-    },
-    "matugen-themes": {
-      "flake": false,
-      "locked": {
-        "dir": "templates",
-        "lastModified": 1775909126,
-        "narHash": "sha256-r1k+4jwv9hNXzR6VNSOCE+f3Z9b6KGycMrlDWGNHo+U=",
-        "owner": "InioX",
-        "repo": "matugen-themes",
-        "rev": "ce2e8f0d2b38706b6a66db675aeedc3b6d2d7ddb",
-        "type": "github"
-      },
-      "original": {
-        "dir": "templates",
-        "owner": "InioX",
-        "repo": "matugen-themes",
+        "owner": "vic",
+        "repo": "import-tree",
         "type": "github"
       }
     },
@@ -381,22 +360,6 @@
         "type": "github"
       }
     },
-    "noctalia-colorschemes": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1776215299,
-        "narHash": "sha256-zF8fYne7VoEspKADo7atnSKRXVwOZ8qn8xbDhdDQCFA=",
-        "owner": "noctalia-dev",
-        "repo": "noctalia-colorschemes",
-        "rev": "d82d8994be9de097c713f02ec5426484e3666e4f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "noctalia-dev",
-        "repo": "noctalia-colorschemes",
-        "type": "github"
-      }
-    },
     "on-linux": {
       "flake": false,
       "locked": {
@@ -430,39 +393,16 @@
         "type": "github"
       }
     },
-    "quickshell": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1776854048,
-        "narHash": "sha256-lLbV66V3RMNp1l8/UelmR4YzoJ5ONtgvEtiUMJATH/o=",
-        "ref": "refs/heads/master",
-        "rev": "783c953987dc56ff0601abe6845ed96f1d00495a",
-        "revCount": 806,
-        "type": "git",
-        "url": "https://git.outfoxxed.me/quickshell/quickshell"
-      },
-      "original": {
-        "type": "git",
-        "url": "https://git.outfoxxed.me/quickshell/quickshell"
-      }
-    },
     "root": {
       "inputs": {
         "affinity-nix": "affinity-nix",
         "disko": "disko",
         "dms-plugin-registry": "dms-plugin-registry",
         "flake-parts": "flake-parts",
-        "home-manager-lib": "home-manager-lib",
-        "matugen-themes": "matugen-themes",
+        "import-tree": "import-tree",
         "niri": "niri",
         "nix-index-database": "nix-index-database",
         "nixpkgs": "nixpkgs_2",
-        "noctalia-colorschemes": "noctalia-colorschemes",
-        "quickshell": "quickshell",
         "sops-nix": "sops-nix",
         "steam-presence": "steam-presence",
         "treefmt-nix": "treefmt-nix",
@@ -570,11 +510,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1776924494,
-        "narHash": "sha256-/DAu081O5/lTZx5H9jjhwOaLX9/xjclEJbQaMuE9v5k=",
+        "lastModified": 1777021790,
+        "narHash": "sha256-LWFEnxRnI6ajb1i5NfycvTi9/EY2CM/IYIEAXEazqRI=",
         "owner": "BirdeeHub",
         "repo": "nix-wrapper-modules",
-        "rev": "f19dbc49919b60adf51ad234bc8efcdb85ac5811",
+        "rev": "787ec64506c39faea133ea185491715e5128d35d",
         "type": "github"
       },
       "original": {

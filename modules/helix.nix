@@ -13,7 +13,7 @@ let
     {
       imports = [ wlib.wrapperModules.helix ];
       settings = {
-        theme = lib.mkDefault "catppuccin_mocha";
+        theme = lib.mkDefault "rose_pine";
         editor = {
           line-number = "relative";
           end-of-line-diagnostics = "hint";
@@ -71,6 +71,7 @@ let
     };
   helix-light = {
     imports = [ config.flake.wrapperModules.helix-pc ];
+    settings.theme = "rose_pine_dawn";
   };
 in
 {

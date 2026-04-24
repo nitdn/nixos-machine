@@ -3,7 +3,6 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 {
-  inputs,
   config,
   lib,
   ...
@@ -14,12 +13,12 @@ in
 {
   flake.wrappers = {
     noctalia-pc =
-      { wlib, config, ... }:
+      { wlib, ... }:
       {
         imports = [
           wlib.wrapperModules.noctalia-shell
         ];
-        inherit ((import ./settings.nixon)) settings;
+        inherit ((import ./_settings.nix)) settings;
         plugins = {
           sources = [
             {
@@ -37,10 +36,6 @@ in
           version = 2;
         };
         outOfStoreConfig = lib.mkDefault "/tmp/noctalia-pc/";
-        constructFiles.theme = {
-          content = lib.readFile "${inputs.noctalia-colorschemes}/Everdeer/Everdeer.json";
-          relPath = "${config.generatedConfigDirname}/colorschemes/Everdeer/Everdeer.json";
-        };
       };
     noctalia-light = {
       imports = [
@@ -50,15 +45,14 @@ in
       settings.colorSchemes.darkMode = lib.mkForce false;
     };
     niri-pc =
-      { pkgs, ... }:
       let
-        noctaliaExe = lib.getExe (wrappers.noctalia-pc.wrap { inherit pkgs; });
+        noctaliaExe = "noctalia-shell";
       in
       {
-        extraConfigLines = ''
-          include optional=true "~/.config/niri/noctalia.kdl"
-        '';
         settings = {
+          extraConfig = ''
+            include optional=true "~/.config/niri/noctalia.kdl"
+          '';
           spawn-at-startup = [
             noctaliaExe
             [
@@ -66,13 +60,42 @@ in
               "--gapplication-service"
             ]
           ];
-          binds."Mod+Space".spawn = [
-            noctaliaExe
-            "ipc"
-            "call"
-            "launcher"
-            "toggle"
-          ];
+          binds."Mod+Space" = _: {
+            props = {
+              hotkey-overlay-title = "Toggle launcher";
+            };
+            content.spawn = [
+              noctaliaExe
+              "ipc"
+              "call"
+              "launcher"
+              "toggle"
+            ];
+          };
+          binds."Mod+E" = _: {
+            props = {
+              hotkey-overlay-title = "Toggle Calendar/Clock";
+            };
+            content.spawn = [
+              noctaliaExe
+              "ipc"
+              "call"
+              "calendar"
+              "toggle"
+            ];
+          };
+          binds."Mod+Escape" = _: {
+            props = {
+              hotkey-overlay-title = "Toggle logout menu";
+            };
+            content.spawn = [
+              noctaliaExe
+              "ipc"
+              "call"
+              "sessionMenu"
+              "toggle"
+            ];
+          };
 
           layer-rules = [
             {
@@ -90,7 +113,18 @@ in
           };
         };
       };
+    kitty-pc = {
+      extraSettings.include = [ "~/.config/kitty/themes/noctalia.conf" ];
+    };
   };
+  flake.modules.nixos.pc =
+    { pkgs, ... }:
+    {
+      environment.systemPackages = [
+        pkgs.nwg-look
+        pkgs.adw-gtk3
+      ];
+    };
   flake.modules.nixos.darkMode =
     { pkgs, ... }:
     {
@@ -105,37 +139,5 @@ in
       environment.systemPackages = [
         (wrappers.noctalia-light.wrap { inherit pkgs; })
       ];
-    };
-  perSystem =
-    { config, ... }:
-    {
-      niri.settings = {
-        _children = [
-          {
-            spawn-at-startup = [
-              (lib.getExe config.packages.noctalia-pc)
-            ];
-            # Set the regular wallpaper on the backdrop.
-            layer-rule._children = [
-              {
-                match._props.namespace = "^noctalia-wallpaper*";
-                place-within-backdrop = true;
-              }
-            ];
-          }
-        ];
-
-        # Set transparent workspace background color so you see the backdrop at all times.
-        layout = {
-          background-color = "transparent";
-        };
-
-        # Optionally, disable the workspace shadows in the overview.
-        overview = {
-          workspace-shadow = {
-            off = { };
-          };
-        };
-      };
     };
 }

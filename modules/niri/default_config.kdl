@@ -8,22 +8,6 @@
 // "/-" comments out the following node.
 // Check the wiki for a full description of the configuration:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Introduction
-config-notification {
-    disable-failed
-}
-// Outputs from existing configuration
-/-output "eDP-2" {
-    mode "2560x1600@239.998993"
-    position x=2560 y=0
-    variable-refresh-rate
-}
-
-
-gestures {
-    hot-corners {
-        off
-    }
-}
 
 // Input device configuration.
 // Find the full list of options on the wiki:
@@ -103,10 +87,6 @@ layout {
     }
     struts {
     }
-}
-layer-rule {
-    match namespace="^quickshell$"
-    place-within-backdrop true
 }
 overview {
     workspace-shadow {

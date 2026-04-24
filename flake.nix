@@ -26,6 +26,7 @@
       inputs.rust-overlay.follows = "";
     };
     flake-parts.url = "github:hercules-ci/flake-parts";
+    import-tree.url = "github:vic/import-tree";
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -60,33 +61,12 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    matugen-themes = {
-      url = "github:InioX/matugen-themes?dir=templates";
-      flake = false;
-    };
-    home-manager-lib = {
-      url = "github:nix-community/home-manager?dir=modules/lib";
-      flake = false;
-    };
-    quickshell = {
-      url = "git+https://git.outfoxxed.me/quickshell/quickshell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    noctalia-colorschemes = {
-      url = "github:noctalia-dev/noctalia-colorschemes";
-      flake = false;
-    };
   };
 
   outputs =
     { flake-parts, ... }@inputs:
     let
-      inherit (inputs.nixpkgs.lib.fileset) toList fileFilter;
-      import-tree = path: {
-        imports = toList (
-          fileFilter (file: file.hasExt "nix" && !(inputs.nixpkgs.lib.hasPrefix "_" file.name)) path
-        );
-      };
+      inherit (inputs) import-tree;
     in
     flake-parts.lib.mkFlake { inherit inputs; } (import-tree ./modules);
 
