@@ -32,9 +32,9 @@ in
       ];
       config = {
         package = packages.${pkgs.stdenv.hostPlatform.system}.niri-unstable;
+
         settings = {
           extraConfig = ''
-            include "${./default_binds.kdl}"
             include "${./default_config.kdl}"
             include "${./window-rules.kdl}"
           '';
@@ -50,7 +50,7 @@ in
             };
             mouse = {
               accel-profile = "flat";
-              accel-speed = 0.001;
+              accel-speed = -0.8;
             };
           };
           layout = {
@@ -66,8 +66,6 @@ in
             {
               geometry-corner-radius = 12;
               clip-to-geometry = true;
-              tiled-state = true;
-              draw-border-with-background = false;
             }
           ];
 

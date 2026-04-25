@@ -84,7 +84,7 @@ in
               "toggle"
             ];
           };
-          binds."Mod+Escape" = _: {
+          binds."Mod+Delete" = _: {
             props = {
               hotkey-overlay-title = "Toggle logout menu";
             };

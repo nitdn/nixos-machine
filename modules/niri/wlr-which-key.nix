@@ -58,7 +58,7 @@ in
               "--daemon"
             ]
           ];
-          binds."Mod+W" = _: {
+          binds."Mod+S" = _: {
             props.hotkey-overlay-title = "Launch wlr-which-key";
             content.spawn = lib.getExe (wrappers.wlr-which-key-wrapped.wrap { inherit pkgs; });
           };

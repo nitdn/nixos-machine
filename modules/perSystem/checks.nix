@@ -33,7 +33,7 @@ in
           );
         } "mkdir $out";
         packages = pkgs.runCommand "check-packages" {
-          nativeBuildInputs = lib.attrVals [ "niri-unstable" ] config.packages;
+          nativeBuildInputs = lib.attrVals [ ] config.packages;
         } "mkdir $out";
       };
     };
