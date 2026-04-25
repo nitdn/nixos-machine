@@ -55,10 +55,10 @@ in
           '';
           spawn-at-startup = [
             noctaliaExe
-            [
-              "valent"
-              "--gapplication-service"
-            ]
+            # [
+            #   "valent"
+            #   "--gapplication-service"
+            # ]
           ];
           binds."Mod+Space" = _: {
             props = {

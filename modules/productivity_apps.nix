@@ -37,6 +37,10 @@ in
       in
       lib.mkIf cfg.enable {
         nixpkgs.overlays = [ inputs.affinity-nix.overlays.default ];
+        programs.kdeconnect = {
+          enable = true;
+          package = pkgs.valent;
+        };
         environment.systemPackages = [
           (lib.mkForce killIbusAutostart)
           packages.${system}.naps2-wrapped

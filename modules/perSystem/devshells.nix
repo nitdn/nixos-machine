@@ -66,12 +66,12 @@ let
     }
 
     def "main eval" [hostname: string=tjmaxxer] {(
-      time nix eval .#nixosConfigurations.($hostname).config.system.build.toplevel
+      time nix eval ".#nixosConfigurations.($hostname).config.system.build.toplevel"
       --substituters " " --no-eval-cache --read-only
     )}
 
     def "main eval profiler" [hostname: string=tjmaxxer] {
-       (nix eval .#nixosConfigurations.($hostname).config.system.build.toplevel
+       (nix eval ".#nixosConfigurations.($hostname).config.system.build.toplevel"
         --substituters " " --no-eval-cache --read-only
         --impure --eval-profiler flamegraph --eval-profiler-frequency 9999)
        (inferno-flamegraph
@@ -87,16 +87,12 @@ let
         "--prefix"
         "PATH"
         ":"
-        "${
-          lib.makeBinPath [
-            pkgs.inferno
-            pkgs.nvfetcher
-            pkgs.lixPackageSets.latest.nix-fast-build
-            config.packages.jujutsu-pc
-
-          ]
-
-        }"
+        "${lib.makeBinPath [
+          pkgs.inferno
+          pkgs.nvfetcher
+          pkgs.lixPackageSets.latest.nix-fast-build
+          config.packages.jujutsu-pc
+        ]}"
       ];
     } command_string;
 in
@@ -120,7 +116,6 @@ in
           inherit (config.packages) jujutsu-pc;
           inherit (pkgs)
             bashInteractive
-            cloc
             dix
             github-cli
             hydra-check

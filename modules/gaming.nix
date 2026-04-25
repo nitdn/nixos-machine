@@ -66,9 +66,8 @@ in
           pkgs.easyeffects
           pkgs.gamemode
           pkgs.gamescope
-          pkgs.lutris
+          # pkgs.lutris
           pkgs.vesktop
-          pkgs.winetricks
         ];
       };
     disko-elysium =

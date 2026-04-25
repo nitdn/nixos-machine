@@ -86,26 +86,6 @@
         "type": "github"
       }
     },
-    "dms-plugin-registry": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1777041352,
-        "narHash": "sha256-aQ5QsWtbuiPMMGH+oWf+NaW+Go7hahqOWoLp/0V1Z3Q=",
-        "owner": "AvengeMedia",
-        "repo": "dms-plugin-registry",
-        "rev": "622f25235ec0969479c1d03247ef15c8bc07cee9",
-        "type": "github"
-      },
-      "original": {
-        "owner": "AvengeMedia",
-        "repo": "dms-plugin-registry",
-        "type": "github"
-      }
-    },
     "elemental-wine-source": {
       "flake": false,
       "locked": {
@@ -397,7 +377,6 @@
       "inputs": {
         "affinity-nix": "affinity-nix",
         "disko": "disko",
-        "dms-plugin-registry": "dms-plugin-registry",
         "flake-parts": "flake-parts",
         "import-tree": "import-tree",
         "niri": "niri",
