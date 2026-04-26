@@ -305,7 +305,7 @@
     };
     dock = {
       animationSpeed = 1;
-      backgroundOpacity = 1;
+      backgroundOpacity = 0.7;
       colorizeIcons = false;
       deadOpacity = 0.6;
       displayMode = "auto_hide";
@@ -645,17 +645,17 @@
       fontDefaultScale = 1;
       fontFixed = "JetBrains Mono";
       fontFixedScale = 1;
-      panelBackgroundOpacity = 1;
+      panelBackgroundOpacity = 0.7;
       panelsAttachedToBar = true;
       scrollbarAlwaysVisible = true;
-      settingsPanelMode = "centered";
+      settingsPanelMode = "attached";
       settingsPanelSideBarCardStyle = false;
       tooltipsEnabled = true;
-      translucentWidgets = false;
+      translucentWidgets = true;
     };
     wallpaper = {
       automationEnabled = false;
-      directory = "/home/ssmvabaa/Pictures/Wallpapers";
+      directory = "~/wallpapers";
       enableMultiMonitorDirectories = false;
       enabled = true;
       favorites = [ ];
@@ -687,7 +687,7 @@
       useOriginalImages = false;
       useSolidColor = false;
       useWallhaven = false;
-      viewMode = "single";
+      viewMode = "recursive";
       wallhavenApiKey = "";
       wallhavenCategories = "111";
       wallhavenOrder = "desc";
@@ -2120,7 +2120,7 @@
       settingsSidebarExpanded = true;
     };
     wallpapers = {
-      DP-2 = "/nix/store/jjd0k65z3n5b6p7r3fb7ajy0map0wanr-noctalia-shell-4.7.6/share/noctalia-shell/Assets/Wallpaper/noctalia.png";
+      DP-2 = "/home/ssmvabaa/wallpapers/wall.png";
     };
   };
 }

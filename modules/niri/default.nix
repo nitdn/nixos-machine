@@ -62,13 +62,6 @@ in
               width = 2;
             };
           };
-          window-rule = [
-            {
-              geometry-corner-radius = 12;
-              clip-to-geometry = true;
-            }
-          ];
-
           outputs = {
             "Microstep MSI G244F BB4H113A00079" = {
               mode = "1920x1080";

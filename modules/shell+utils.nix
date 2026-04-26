@@ -48,6 +48,7 @@ in
           enable_audio_bell = false;
           update_check_interval = 0;
           enabled_layouts = "horizontal";
+          background_opacity = 0.8;
         };
       };
       niri-pc.settings = {

@@ -104,6 +104,23 @@ in
             }
           ];
 
+          window-rules = [
+            {
+              geometry-corner-radius = 20;
+              clip-to-geometry = true;
+            }
+
+            {
+              background-effect = {
+                blur = true;
+              };
+            }
+          ];
+
+          debug = {
+            honor-xdg-activation-with-invalid-serial = _: { };
+          };
+
           layout = {
             background-color = "transparent";
           };
