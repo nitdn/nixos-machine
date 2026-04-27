@@ -21,6 +21,7 @@ in
       in
       {
         boot.kernelModules = [ "ntsync" ];
+        programs.gamescope.enable = true;
         programs.steam = {
           enable = true;
           remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
@@ -65,7 +66,6 @@ in
           })
           pkgs.easyeffects
           pkgs.gamemode
-          pkgs.gamescope
           # pkgs.lutris
           pkgs.vesktop
         ];
