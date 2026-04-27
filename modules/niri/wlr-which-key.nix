@@ -34,7 +34,7 @@ let
         }
         {
           key = "v";
-          desc = "Turn off VRR (if the manure hits the sediment)";
+          desc = "Turn off VRR (if the manure hits the windmill)";
           cmd = ''niri msg output "Microstep MSI G244F BB4H113A00079" vrr off'';
         }
         {
