@@ -35,7 +35,7 @@ jobs:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
           extraPullNames: nix-community
           # skipPush: true
-      - uses: DeterminateSystems/magic-nix-cache-action@b4a9864e3a8ab8179be30f2e70fd71fe9996bb9d # main
+      # - uses: DeterminateSystems/magic-nix-cache-action@b4a9864e3a8ab8179be30f2e70fd71fe9996bb9d # main
       - name: Check flakes
         shell: "nix shell nixpkgs#lixPackageSets.latest.nix-fast-build -c bash -e {0}"
         run: |
