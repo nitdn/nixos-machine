@@ -26,7 +26,6 @@ jobs:
           persist-credentials: false
           ref: ${{ inputs.ref }}
       - uses: canidae-solutions/lix-quick-install-action@cdb5d0931be2223edbb9bad884341fcacdac298f # v4
-      - uses: DeterminateSystems/magic-nix-cache-action@b4a9864e3a8ab8179be30f2e70fd71fe9996bb9d # main
       - uses: cachix/cachix-action@1eb2ef646ac0255473d23a5907ad7b04ce94065c # master
         with:
           name: machines
@@ -36,6 +35,7 @@ jobs:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
           extraPullNames: nix-community
           # skipPush: true
+      - uses: DeterminateSystems/magic-nix-cache-action@b4a9864e3a8ab8179be30f2e70fd71fe9996bb9d # main
       - name: Check flakes
         shell: "nix shell nixpkgs#lixPackageSets.latest.nix-fast-build -c bash -e {0}"
         run: |
