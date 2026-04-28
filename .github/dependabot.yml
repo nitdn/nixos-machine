@@ -16,7 +16,7 @@ updates:
       interval: "weekly"
     cooldown:
       default-days: 7
-  - package-ecosystem: "nix"
+  - package-ecosystem: "nix" # zizmor: ignore[dependabot-cooldown]
     directory: "/"
     groups:
       nix:
@@ -25,5 +25,3 @@ updates:
       interval: "daily"
       time: "05:00"
       timezone: "Asia/Kolkata"
-    cooldown:
-      default-days: 7
