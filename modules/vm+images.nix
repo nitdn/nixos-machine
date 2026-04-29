@@ -43,7 +43,12 @@ in
       };
     };
     iso = {
+      imports = [ nixosModules.binary-caches ];
       image.modules.iso-installer.isoImage.squashfsCompression = "zstd -Xcompression-level 6";
+      nix.settings.experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
     };
     pc = {
       virtualisation.vmVariant = {

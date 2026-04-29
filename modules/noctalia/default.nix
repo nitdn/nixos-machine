@@ -49,10 +49,15 @@ in
         noctaliaExe = "noctalia-shell";
       in
       {
+        extraSettings = [
+          {
+            include = [
+              { optional = true; }
+              "~/.config/niri/noctalia.kdl"
+            ];
+          }
+        ];
         settings = {
-          extraConfig = ''
-            include optional=true "~/.config/niri/noctalia.kdl"
-          '';
           spawn-at-startup = [
             noctaliaExe
             # [

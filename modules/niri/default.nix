@@ -9,17 +9,9 @@
   ...
 }:
 let
-  inherit (config.flake) wrappers packages;
+  inherit (config.flake) wrappers;
 in
 {
-  config.perSystem =
-    {
-      inputs',
-      ...
-    }:
-    {
-      packages.niri-unstable = inputs'.niri.packages.default;
-    };
   config.flake.wrappers.niri-pc =
     {
       wlib,
@@ -31,13 +23,11 @@ in
         wlib.wrapperModules.niri
       ];
       config = {
-        package = packages.${pkgs.stdenv.hostPlatform.system}.niri-unstable;
-
+        extraSettings = [
+          { include = ./default_config.kdl; }
+          { include = ./window-rules.kdl; }
+        ];
         settings = {
-          extraConfig = ''
-            include "${./default_config.kdl}"
-            include "${./window-rules.kdl}"
-          '';
           spawn-at-startup = [
             (lib.getExe inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default)
           ];
@@ -77,7 +67,8 @@ in
             "Microstep MSI G244F BB4H113A00079" = {
               mode = "1920x1080";
               transform = "normal";
-              variable-refresh-rate = _: { };
+              # Its bugging again
+              # variable-refresh-rate = _: { };
             };
           };
         };
@@ -86,11 +77,23 @@ in
   config.flake.modules.nixos = {
     pc =
       { pkgs, config, ... }:
+      let
+        niriPkg = wrappers.niri-pc.wrap { inherit pkgs; };
+      in
       {
         fonts.packages = [ pkgs.nerd-fonts.symbols-only ];
         services.displayManager.gdm.enable = true;
         programs.niri.enable = true;
-        programs.niri.package = wrappers.niri-pc.wrap { inherit pkgs; };
+        programs.niri.package = niriPkg;
+        # don't kick me out of the session on rebuild
+        systemd.user.services.niri = {
+          # add to the existing service, as drop-in so it doesn't generate the other sections
+          overrideStrategy = "asDropin";
+          # Display managers dont need to be sandboxed
+          enableDefaultPath = false;
+          stopIfChanged = false;
+          restartIfChanged = false;
+        };
         environment.systemPackages = lib.mkIf config.programs.niri.enable [
           pkgs.xwayland-satellite
           pkgs.adwaita-icon-theme
