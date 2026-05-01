@@ -51,8 +51,13 @@ in
       ];
     };
     pc = {
+      imports = [
+        inputs.microvm.nixosModules.host
+      ];
       virtualisation.vmVariant = {
-        imports = [ nixosModules.vm ];
+        imports = [
+          nixosModules.vm
+        ];
       };
     };
   };
