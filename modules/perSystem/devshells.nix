@@ -66,12 +66,12 @@ let
     }
 
     def "main eval" [hostname: string=tjmaxxer] {(
-      time nix eval ".#nixosConfigurations.($hostname).config.system.build.toplevel"
+      time nix eval $".#nixosConfigurations.($hostname).config.system.build.toplevel"
       --substituters " " --no-eval-cache --read-only
     )}
 
     def "main eval profiler" [hostname: string=tjmaxxer] {
-       (nix eval ".#nixosConfigurations.($hostname).config.system.build.toplevel"
+       (nix eval $".#nixosConfigurations.($hostname).config.system.build.toplevel"
         --substituters " " --no-eval-cache --read-only
         --impure --eval-profiler flamegraph --eval-profiler-frequency 9999)
        (inferno-flamegraph
