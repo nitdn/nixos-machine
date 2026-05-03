@@ -384,6 +384,7 @@
         "nixpkgs": "nixpkgs_2",
         "sops-nix": "sops-nix",
         "steam-presence": "steam-presence",
+        "topiary-nushell": "topiary-nushell",
         "treefmt-nix": "treefmt-nix",
         "wrappers": "wrappers",
         "zen-browser": "zen-browser"
@@ -475,6 +476,26 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
+        "type": "github"
+      }
+    },
+    "topiary-nushell": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1772590084,
+        "narHash": "sha256-fTfxSnVI7TY6vQhD+GimPBRJ4K0SyyVtoLcLGH3xIPc=",
+        "owner": "blindFS",
+        "repo": "topiary-nushell",
+        "rev": "6e2f9b339a664a46e4015fa5d79e537807fefa39",
+        "type": "github"
+      },
+      "original": {
+        "owner": "blindFS",
+        "repo": "topiary-nushell",
         "type": "github"
       }
     },

@@ -6,6 +6,15 @@
 auto-format = true
 name = "nix"
 
+[[language]]
+name = "nu"
+auto-format = true
+formatter = { command = "topiary-nushell", args = [
+  "format",
+  "--language",
+  "nu",
+] }
+
 [language-server.nixd.config.nixd.options]
 nixos.expr = "(builtins.getFlake \"/home/ssmvabaa/nixos-machine\").nixosConfigurations.tjmaxxer.options"
 flake-parts.expr = "(builtins.getFlake \"/home/ssmvabaa/nixos-machine\").debug.options"

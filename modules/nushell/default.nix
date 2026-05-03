@@ -37,23 +37,14 @@ in
               nativeBuildInputs = [ pkgs.zoxide ];
             }
             ''
-              zoxide init nushell > $out
+              zoxide init nushell --no-cmd > $out
               echo ${lib.strings.escapeShellArg zoxide_completer} >> $out
-            '';
-        carapace-nushell =
-          pkgs.runCommand "carapace-nushell-integration"
-            {
-              nativeBuildInputs = [ pkgs.carapace ];
-            }
-            ''
-              carapace _carapace nushell > $out
             '';
       in
       {
         imports = [ wlib.wrapperModules.nushell ];
         "config.nu".content = ''
           source ${zoxide-nushell}
-          source ${carapace-nushell}
         '';
       };
     wrappers.kitty-pc.settings.shell = "nu";
@@ -66,10 +57,6 @@ in
         environment.shells = [ nushell-pc ];
         environment.systemPackages = [
           nushell-pc
-          # For completions
-          pkgs.carapace
-          pkgs.fish
-          pkgs.zsh
         ];
       };
   };
