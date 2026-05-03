@@ -83,37 +83,16 @@ in
       {
         fonts.packages = [ pkgs.nerd-fonts.symbols-only ];
         services.displayManager.gdm.enable = true;
+        # TODO kill this line after GNOME 50
+        services.userdbd.silenceHighSystemUsers = true;
         programs.niri.enable = true;
         programs.niri.package = niriPkg;
-        # don't kick me out of the session on rebuild
-        systemd.user.services.niri = {
-          # add to the existing service, as drop-in so it doesn't generate the other sections
-          overrideStrategy = "asDropin";
-          # Display managers dont need to be sandboxed
-          enableDefaultPath = false;
-          stopIfChanged = false;
-          restartIfChanged = false;
-        };
         environment.systemPackages = lib.mkIf config.programs.niri.enable [
           pkgs.xwayland-satellite
           pkgs.adwaita-icon-theme
           pkgs.wayscriber
           pkgs.kdePackages.qt6ct
         ];
-        systemd.user.services.polkit-gnome-authentication-agent-1 = {
-          description = "polkit-gnome-authentication-agent-1";
-          wantedBy = [ "graphical-session.target" ];
-          wants = [ "graphical-session.target" ];
-          after = [ "graphical-session.target" ];
-          serviceConfig = {
-            Type = "simple";
-            ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-            Restart = "on-failure";
-            RestartSec = 1;
-            TimeoutStopSec = 10;
-          };
-        };
       };
-
   };
 }

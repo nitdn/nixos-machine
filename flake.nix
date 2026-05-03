@@ -5,8 +5,6 @@
 {
   description = "A variety of machines powered by NixOS™";
   inputs = {
-
-    # Specify the source of Home Manager and Nixpkgs.
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     zen-browser = {
       url = "github:youwen5/zen-browser-flake";
@@ -59,6 +57,10 @@
     topiary-nushell = {
       url = "github:blindFS/topiary-nushell";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    noctalia-plugins = {
+      url = "github:noctalia-dev/noctalia-plugins";
+      flake = false;
     };
   };
 

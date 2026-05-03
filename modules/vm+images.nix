@@ -44,6 +44,8 @@ in
     };
     iso = {
       imports = [ nixosModules.binary-caches ];
+      # TODO kill this line after NixOS 26.11
+      boot.zfs.forceImportRoot = false;
       image.modules.iso-installer.isoImage.squashfsCompression = "zstd -Xcompression-level 6";
       nix.settings.experimental-features = [
         "nix-command"
