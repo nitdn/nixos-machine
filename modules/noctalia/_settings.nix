@@ -187,12 +187,6 @@
             useCustomFont = false;
           }
           {
-            defaultSettings = {
-              mainDeviceId = "";
-            };
-            id = "plugin:valent-connect";
-          }
-          {
             colorizeDistroLogo = false;
             colorizeSystemIcon = "none";
             colorizeSystemText = "none";
@@ -2102,7 +2096,7 @@
         refresh_rate = 165001;
         scale = 1;
         transform = "Normal";
-        vrr_enabled = true;
+        vrr_enabled = false;
         vrr_supported = true;
         width = 1920;
         x = 0;
