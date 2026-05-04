@@ -25,22 +25,11 @@ in
             sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
             src = "${inputs.noctalia-plugins}/polkit-agent";
           };
-        };
-        plugins = {
-          sources = [
-            {
-              enabled = true;
-              name = "Noctalia Plugins";
-              url = "https://github.com/noctalia-dev/noctalia-plugins";
-            }
-          ];
-          states = {
-            valent-connect = {
-              enabled = true;
-              sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
-            };
+          valent-connect = {
+            enabled = true;
+            sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
+            src = "${inputs.noctalia-plugins}/valent-connect";
           };
-          version = 2;
         };
         outOfStoreConfig = lib.mkDefault "/tmp/noctalia-pc/";
       };

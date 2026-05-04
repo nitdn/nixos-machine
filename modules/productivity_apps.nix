@@ -36,7 +36,7 @@ in
         };
       in
       lib.mkIf cfg.enable {
-        nixpkgs.overlays = [ inputs.affinity-nix.overlays.default ];
+        # nixpkgs.overlays = [ inputs.affinity-nix.overlays.default ];
         programs.kdeconnect = {
           enable = true;
           package = pkgs.valent;
