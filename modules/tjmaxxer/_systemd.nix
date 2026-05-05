@@ -65,35 +65,5 @@
       Format = "btrfs";
       Label = "systemd-home";
     };
-
-    fileSystems."/" = {
-      device = "/dev/disk/by-partlabel/nixos-root-b";
-      fsType = "btrfs";
-      options = [
-        "subvol=@"
-        "compress=zstd"
-      ];
-    };
-
-    fileSystems."/nix" = {
-      device = "/dev/disk/by-partlabel/nixos-root-b";
-      fsType = "btrfs";
-      neededForBoot = true;
-      options = [
-        "subvol=@nix"
-        "noatime"
-        "compress=zstd"
-      ];
-    };
-
-    fileSystems."/boot" = {
-      device = "/dev/disk/by-partlabel/wd-efi";
-      fsType = "vfat";
-      options = [
-        "fmask=0022"
-        "dmask=0022"
-      ];
-    };
-
   };
 }

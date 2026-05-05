@@ -47,10 +47,51 @@ in
       networking.hostName = "tjmaxxer"; # Define your hostname.
       # I did not read the comment
       system.stateVersion = "24.11";
+      services.homed.enable = true;
+
       users.users.${username} = {
         enable = false;
         isNormalUser = true;
       };
+      fileSystems."/" = {
+        device = "/dev/disk/by-partlabel/nixos-root-b";
+        fsType = "btrfs";
+        options = [
+          "subvol=@"
+          "compress=zstd"
+        ];
+      };
+
+      fileSystems."/nix" = {
+        device = "/dev/disk/by-partlabel/nixos-root-b";
+        fsType = "btrfs";
+        neededForBoot = true;
+        options = [
+          "subvol=@nix"
+          "noatime"
+          "compress=zstd"
+        ];
+      };
+
+      fileSystems."/home" = {
+        device = "/dev/disk/by-partlabel/nixos-root-b";
+        fsType = "btrfs";
+        neededForBoot = true;
+        options = [
+          "subvol=@home"
+          "compress=zstd"
+        ];
+      };
+
+      fileSystems."/boot" = {
+        device = "/dev/disk/by-partlabel/wd-efi";
+        fsType = "vfat";
+        options = [
+          "fmask=0022"
+          "dmask=0022"
+        ];
+      };
+
     };
   flake.nixosConfigurations.tjmaxxer = inputs.nixpkgs.lib.nixosSystem {
     modules = lib.attrValues {
