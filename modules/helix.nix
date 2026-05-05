@@ -62,6 +62,16 @@ let
           name = "nix";
           auto-format = true;
         }
+        {
+          name = "yaml";
+          formatter = {
+            command = lib.getExe pkgs.prettier;
+            args = [
+              "--parser"
+              "yaml"
+            ];
+          };
+        }
       ];
       extraPackages = [
         pkgs.nixd

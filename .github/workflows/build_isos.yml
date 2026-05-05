@@ -3,7 +3,8 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 name: "Build installer ISO images"
 on:
-  push:
+  release:
+    types: [created]
 jobs:
   images:
     name: "Build a minimal image"
@@ -14,11 +15,10 @@ jobs:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
         with:
           persist-credentials: false
-      - uses: cachix/install-nix-action@ab739621df7a23f52766f9ccc97f38da6b7af14f #v31
+      - uses: cachix/install-nix-action@ab739621df7a23f52766f9ccc97f38da6b7af14f # v31.10.5
       - run: |
           nix build .#isoBootstrap
-      - name: Release
-        if: github.ref_type == 'tag'
+      - name: Upload the ISO
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
