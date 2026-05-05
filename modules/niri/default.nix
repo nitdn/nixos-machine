@@ -82,9 +82,6 @@ in
       in
       {
         fonts.packages = [ pkgs.nerd-fonts.symbols-only ];
-        services.displayManager.gdm.enable = true;
-        # TODO kill this line after GNOME 50
-        services.userdbd.silenceHighSystemUsers = true;
         programs.niri.enable = true;
         programs.niri.package = niriPkg;
         environment.systemPackages = lib.mkIf config.programs.niri.enable [
