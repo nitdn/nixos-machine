@@ -170,6 +170,7 @@ in
         enable = true;
         clean.enable = true;
         clean.extraArgs = "--keep 5 --keep-since 3d";
+        flake = "/home/${username}/nixos-machine";
       };
 
       programs.nix-index-database.comma.enable = true;
