@@ -99,11 +99,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1778240325,
-        "narHash": "sha256-d2HIS7LpfI0lgxiXCXLjxrHl3eIdNvAVexOu0xiM488=",
+        "lastModified": 1778393439,
+        "narHash": "sha256-mOtQxUjtKaPHLeoLOY/YEDctmud1X9KwJr4kE1MJ3Wc=",
         "owner": "nix-community",
         "repo": "nix-index-database",
-        "rev": "dd2d0e3f6ba00af01b9498f5697173bdc2524bee",
+        "rev": "01466c414c7357ae2ce32be4a272a7c69e94ab5f",
         "type": "github"
       },
       "original": {
@@ -146,11 +146,11 @@
     "noctalia-plugins": {
       "flake": false,
       "locked": {
-        "lastModified": 1778334279,
-        "narHash": "sha256-0c5BkiUVSrcCPIlgPASZPxWg+Pw5xx4i/Kf1ARl3aN4=",
+        "lastModified": 1778440459,
+        "narHash": "sha256-iNpJzE3Y1+h+FlmRITH1A+uz2S/dnoQJ/DbNaX5lWCw=",
         "owner": "noctalia-dev",
         "repo": "noctalia-plugins",
-        "rev": "7a1eebe7db38a70c4311f607376c30d40e5143f5",
+        "rev": "6d13f04381495902e865aea281f175706e55b7c4",
         "type": "github"
       },
       "original": {
@@ -295,11 +295,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1778370802,
-        "narHash": "sha256-SrzT5P5IAPivMz/QVypjrC6Oq2saXNnJ9iHnlHZ4u5c=",
+        "lastModified": 1778402342,
+        "narHash": "sha256-u3JRsWy5vZrMriLpzITjFDTHrVQC5aBG/EK7oMzLTxM=",
         "owner": "BirdeeHub",
         "repo": "nix-wrapper-modules",
-        "rev": "a7b45d4fe22f83a0d4aa8bbd85f8eafdf3b265cf",
+        "rev": "f6e73a9de81cd432a45d7cbecb66bd14a3b072a1",
         "type": "github"
       },
       "original": {
