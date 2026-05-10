@@ -96,6 +96,11 @@
             showLabelsOnlyWhenOccupied = true;
             unfocusedIconsOpacity = 1;
           }
+          { id = "plugin:mimeapp-gui"; }
+          {
+            defaultSettings = { };
+            id = "plugin:kde-connect";
+          }
         ];
         left = [
           {
@@ -600,10 +605,6 @@
         }
         {
           enabled = true;
-          id = "qt";
-        }
-        {
-          enabled = true;
           id = "steam";
         }
         {
@@ -629,6 +630,10 @@
         {
           enabled = true;
           id = "kitty";
+        }
+        {
+          enabled = true;
+          id = "qt";
         }
       ];
       enableUserTheming = false;
@@ -2107,7 +2112,7 @@
     lockScreenActive = false;
     noctaliaPerformanceMode = false;
     notificationsState = {
-      lastSeenTs = 1764425305000;
+      lastSeenTs = 1778412103000;
     };
     openedPanel = "";
     ui = {

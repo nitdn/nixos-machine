@@ -10,6 +10,12 @@
 }:
 let
   inherit (config.flake) wrappers;
+  nativeStorePlugins =
+    plugins:
+    lib.genAttrs plugins (plugin: {
+      sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
+      src = "${inputs.noctalia-plugins}/${plugin}";
+    });
 in
 {
   flake.wrappers = {
@@ -20,17 +26,11 @@ in
           wlib.wrapperModules.noctalia-shell
         ];
         inherit ((import ./_settings.nix)) settings;
-        preInstalledPlugins = {
-          polkit-agent = {
-            sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
-            src = "${inputs.noctalia-plugins}/polkit-agent";
-          };
-          valent-connect = {
-            enabled = true;
-            sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
-            src = "${inputs.noctalia-plugins}/valent-connect";
-          };
-        };
+        preInstalledPlugins = nativeStorePlugins [
+          "polkit-agent"
+          "mimeapp-gui"
+          "kde-connect"
+        ];
         outOfStoreConfig = lib.mkDefault "/tmp/noctalia-pc/";
       };
     noctalia-light = {
@@ -122,14 +122,6 @@ in
       extraSettings.include = [ "~/.config/kitty/themes/noctalia.conf" ];
     };
   };
-  flake.modules.nixos.pc =
-    { pkgs, ... }:
-    {
-      environment.systemPackages = [
-        pkgs.nwg-look
-        pkgs.adw-gtk3
-      ];
-    };
   flake.modules.nixos.darkMode =
     { pkgs, ... }:
     {

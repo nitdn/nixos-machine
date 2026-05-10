@@ -79,11 +79,11 @@
         "spectrum": "spectrum"
       },
       "locked": {
-        "lastModified": 1778200184,
-        "narHash": "sha256-WL0cPwbYms7fUVTWnnayo4DhXeNPOfL1a8RDPBuAzBc=",
+        "lastModified": 1778369133,
+        "narHash": "sha256-zfYJAAVau1dDlVo8PfA0oQFVwvRjpp8Zz+T61+ywogI=",
         "owner": "microvm-nix",
         "repo": "microvm.nix",
-        "rev": "b00d7c12745b15442c618c7e23f2d7442d7a51da",
+        "rev": "9ddb425679d44e6e1e5cd5df9db0c42ed99df4a4",
         "type": "github"
       },
       "original": {
@@ -146,11 +146,11 @@
     "noctalia-plugins": {
       "flake": false,
       "locked": {
-        "lastModified": 1778280736,
-        "narHash": "sha256-0Sakb0ojxSIC6OWmdoDSGSw8vlIP6GN+/NL7nA+pfcY=",
+        "lastModified": 1778334279,
+        "narHash": "sha256-0c5BkiUVSrcCPIlgPASZPxWg+Pw5xx4i/Kf1ARl3aN4=",
         "owner": "noctalia-dev",
         "repo": "noctalia-plugins",
-        "rev": "8ef090d8e07e0c902fbb0e255af729eb6ab1a26a",
+        "rev": "7a1eebe7db38a70c4311f607376c30d40e5143f5",
         "type": "github"
       },
       "original": {
@@ -295,11 +295,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1778291793,
-        "narHash": "sha256-NLvwFbhcly+XOR1uk+7hsdzQtyRLhDBb3D7EoE7Pn2g=",
+        "lastModified": 1778370802,
+        "narHash": "sha256-SrzT5P5IAPivMz/QVypjrC6Oq2saXNnJ9iHnlHZ4u5c=",
         "owner": "BirdeeHub",
         "repo": "nix-wrapper-modules",
-        "rev": "9212b9cf92eae881c35220f9f0041460c0d7437c",
+        "rev": "a7b45d4fe22f83a0d4aa8bbd85f8eafdf3b265cf",
         "type": "github"
       },
       "original": {

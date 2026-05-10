@@ -39,7 +39,6 @@ in
         # nixpkgs.overlays = [ inputs.affinity-nix.overlays.default ];
         programs.kdeconnect = {
           enable = true;
-          package = pkgs.valent;
         };
         environment.systemPackages = [
           (lib.mkForce killIbusAutostart)

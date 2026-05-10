@@ -86,9 +86,7 @@ in
         programs.niri.package = niriPkg;
         environment.systemPackages = lib.mkIf config.programs.niri.enable [
           pkgs.xwayland-satellite
-          pkgs.adwaita-icon-theme
           pkgs.wayscriber
-          pkgs.kdePackages.qt6ct
         ];
       };
   };
