@@ -78,7 +78,7 @@ let
 
     def "main eval" [hostname: string@hostnames = tjmaxxer] {
       (
-        time nix eval $".#nixosConfigurations.($hostname).config.system.build.toplevel"
+        NIX_SHOW_STATS=1 nix eval $".#nixosConfigurations.($hostname).config.system.build.toplevel"
         --substituters " " --no-eval-cache --read-only
       )
     }

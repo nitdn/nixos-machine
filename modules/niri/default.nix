@@ -56,11 +56,17 @@ in
             {
               geometry-corner-radius = 20;
               clip-to-geometry = true;
-              opacity = 0.8;
               draw-border-with-background = false;
               background-effect = {
                 blur = true;
               };
+            }
+            {
+
+              excludes = [
+                # { app-id = "vesktop"; }
+              ];
+              opacity = 0.8;
             }
           ];
           outputs = {
