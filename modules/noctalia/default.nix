@@ -122,6 +122,13 @@ in
       extraSettings.include = [ "~/.config/kitty/themes/noctalia.conf" ];
     };
   };
+  flake.modules.nixos.pc =
+    { pkgs, ... }:
+    {
+      environment.systemPackages = [
+        pkgs.wtype
+      ];
+    };
   flake.modules.nixos.darkMode =
     { pkgs, ... }:
     {
