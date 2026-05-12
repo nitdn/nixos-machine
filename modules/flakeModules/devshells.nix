@@ -4,7 +4,7 @@
 { lib, ... }:
 let
   command_string = /* nu */ ''
-    def hostnames [] { ["tjmaxxer" "msi-colgate" "disko-elysium"] }
+        def hostnames [] { ["tjmaxxer" "msi-colgate" "disko-elysium"] }
 
     def "main ci" [] {
       jj squash
@@ -80,7 +80,7 @@ let
       (
         NIX_SHOW_STATS=1 nix eval $".#nixosConfigurations.($hostname).config.system.build.toplevel"
         --substituters " " --no-eval-cache --read-only
-      )
+      ) e>| lines | skip until { $in == "{" } | str join | from json
     }
 
     def "main eval profiler" [hostname: string@hostnames = tjmaxxer] {

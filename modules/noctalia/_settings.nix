@@ -96,11 +96,17 @@
             showLabelsOnlyWhenOccupied = true;
             unfocusedIconsOpacity = 1;
           }
-          { id = "plugin:mimeapp-gui"; }
+          {
+            defaultSettings = {
+              iconColor = "none";
+            };
+            id = "plugin:mimeapp-gui";
+          }
           {
             defaultSettings = { };
             id = "plugin:kde-connect";
           }
+          { id = "plugin:port-monitor"; }
         ];
         left = [
           {
@@ -2102,7 +2108,7 @@
         scale = 1;
         transform = "Normal";
         vrr_enabled = false;
-        vrr_supported = true;
+        vrr_supported = false;
         width = 1920;
         x = 0;
         y = 0;

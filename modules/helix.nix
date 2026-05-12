@@ -76,6 +76,7 @@ let
       extraPackages = [
         pkgs.nixd
         pkgs.nil
+        pkgs.nixfmt
         pkgs.prettier
       ];
     };
