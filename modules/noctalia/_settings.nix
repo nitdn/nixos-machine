@@ -106,7 +106,14 @@
             defaultSettings = { };
             id = "plugin:kde-connect";
           }
-          { id = "plugin:port-monitor"; }
+          {
+            defaultSettings = {
+              hideSystemPorts = false;
+              hideWhenEmpty = false;
+              refreshInterval = 5;
+            };
+            id = "plugin:port-monitor";
+          }
         ];
         left = [
           {
@@ -207,6 +214,19 @@
             id = "ControlCenter";
             useDistroLogo = true;
           }
+          {
+            defaultSettings = {
+              activeColor = "primary";
+              camFilterRegex = "";
+              enableToast = true;
+              hideInactive = false;
+              iconSpacing = 4;
+              inactiveColor = "none";
+              micFilterRegex = "";
+              removeMargins = false;
+            };
+            id = "plugin:privacy-indicator";
+          }
         ];
       };
     };
@@ -237,11 +257,11 @@
       generationMethod = "tonal-spot";
       manualSunrise = "06:30";
       manualSunset = "18:30";
-      monitorForColors = "";
+      monitorForColors = "DP-2";
       predefinedScheme = "Rose Pine";
       schedulingMode = "off";
       syncGsettings = true;
-      useWallpaperColors = false;
+      useWallpaperColors = true;
     };
     controlCenter = {
       cards = [
@@ -2118,7 +2138,7 @@
     lockScreenActive = false;
     noctaliaPerformanceMode = false;
     notificationsState = {
-      lastSeenTs = 1778412103000;
+      lastSeenTs = 1778566831000;
     };
     openedPanel = "";
     ui = {
