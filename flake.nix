@@ -50,6 +50,11 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # has ifds
+    # eh = {
+    #   url = "github:NotAShelf/eh";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
     microvm = {
       url = "github:microvm-nix/microvm.nix";
       inputs.nixpkgs.follows = "nixpkgs";

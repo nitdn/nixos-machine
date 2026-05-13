@@ -46,6 +46,7 @@
             _ => $carapace_completer
           } | do $in $spans
         }
+        $env.CARAPACE_BRIDGES = 'fish,bash'
         $env.config = {
           # ...
           completions: {
@@ -60,4 +61,9 @@
         inherit (pkgs) carapace fish;
       };
     };
+  flake.modules.nixos.pc = {
+    programs.fish.enable = true;
+
+    documentation.man.cache.enable = false;
+  };
 }

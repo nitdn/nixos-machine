@@ -176,7 +176,6 @@ in
       programs.nix-index-database.comma.enable = true;
 
       documentation.dev.enable = true;
-      documentation.man.cache.enable = true;
       programs.appimage.enable = true;
       programs.appimage.package = pkgs.appimage-run.override {
         extraPkgs = pkgs: [

@@ -2,7 +2,10 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-{ config, ... }:
+{
+  config,
+  ...
+}:
 let
   inherit (config.meta) username;
 in
@@ -30,6 +33,7 @@ in
         pkgs.pwgen
         pkgs.ripgrep
         pkgs.trash-cli
+
         (pkgs.writeShellApplication {
           name = "ns";
           runtimeInputs = with pkgs; [
