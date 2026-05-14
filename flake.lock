@@ -143,22 +143,6 @@
         "type": "github"
       }
     },
-    "noctalia-plugins": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1778705746,
-        "narHash": "sha256-Oj1dftxGuHPJg/zO/iwkeMO66F+ymZ12AwTGBnwANX8=",
-        "owner": "noctalia-dev",
-        "repo": "noctalia-plugins",
-        "rev": "07cbb9c1bb5a61258694523cffc03eda3537f631",
-        "type": "github"
-      },
-      "original": {
-        "owner": "noctalia-dev",
-        "repo": "noctalia-plugins",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "disko": "disko",
@@ -167,7 +151,6 @@
         "microvm": "microvm",
         "nix-index-database": "nix-index-database",
         "nixpkgs": "nixpkgs",
-        "noctalia-plugins": "noctalia-plugins",
         "sops-nix": "sops-nix",
         "steam-presence": "steam-presence",
         "topiary-nushell": "topiary-nushell",

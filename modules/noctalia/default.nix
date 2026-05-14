@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 {
-  inputs,
+  # inputs,
   config,
   lib,
   ...
@@ -14,34 +14,26 @@ in
 {
   flake.wrappers = {
     noctalia-pc =
-      { wlib, config, ... }:
-      let
-        cfg = config;
-        inherit (lib.types) listOf str;
-        mkNativeStorePlugins =
-          plugins:
-          lib.genAttrs plugins (plugin: {
-            sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
-            src = "${inputs.noctalia-plugins}/${plugin}";
-          });
-      in
+      { wlib, ... }:
       {
-        options.nativeStorePlugins = lib.mkOption {
-          type = listOf str;
-          description = "List of plugins that could be found in the noctalia plugin repo";
-          default = [
-            "polkit-agent"
-            "mimeapp-gui"
-            "kde-connect"
-            "port-monitor"
-          ];
-        };
+        # options.nativeStorePlugins = lib.mkOption {
+        #   type = listOf str;
+        #   description = "List of plugins that could be found in the noctalia plugin repo";
+        #   default = [
+        #     "polkit-agent"
+        #     "mimeapp-gui"
+        #     "kde-connect"
+        #     "port-monitor"
+        #   ];
+        # };
         imports = [
           wlib.wrapperModules.noctalia-shell
         ];
         config = {
           inherit ((import ./_settings.nix)) settings;
-          preInstalledPlugins = mkNativeStorePlugins cfg.nativeStorePlugins;
+          plugins = import ./_plugins.nix;
+
+          # preInstalledPlugins = mkNativeStorePlugins cfg.nativeStorePlugins;
           outOfStoreConfig = lib.mkDefault "/tmp/noctalia-pc/";
         };
       };

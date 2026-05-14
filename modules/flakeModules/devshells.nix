@@ -80,7 +80,7 @@ let
       (
         NIX_SHOW_STATS=1 nix eval $".#nixosConfigurations.($hostname).config.system.build.toplevel"
         --substituters " " --no-eval-cache --read-only
-      )
+      ) e>| lines | skip until { $in == "{" } | str join | from json | to nuon | print -e $in
     }
 
     def "main eval profiler" [hostname: string@hostnames = tjmaxxer] {
