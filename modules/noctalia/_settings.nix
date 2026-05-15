@@ -676,6 +676,10 @@
           enabled = true;
           id = "qt";
         }
+        {
+          enabled = true;
+          id = "kcolorscheme";
+        }
       ];
       enableUserTheming = false;
     };
@@ -2153,7 +2157,7 @@
     lockScreenActive = false;
     noctaliaPerformanceMode = false;
     notificationsState = {
-      lastSeenTs = 1778728022000;
+      lastSeenTs = 1778856130000;
     };
     openedPanel = "";
     ui = {
