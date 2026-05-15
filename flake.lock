@@ -20,6 +20,26 @@
         "type": "github"
       }
     },
+    "eh": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1778749419,
+        "narHash": "sha256-SayfylyfDvjOwMj4hfkvM8lY6CAdWju741FAhq/nYus=",
+        "owner": "NotAShelf",
+        "repo": "eh",
+        "rev": "3475917b4276cbc8b668f2ddf3b4f4214d91ca8f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NotAShelf",
+        "repo": "eh",
+        "type": "github"
+      }
+    },
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": "nixpkgs-lib"
@@ -146,6 +166,7 @@
     "root": {
       "inputs": {
         "disko": "disko",
+        "eh": "eh",
         "flake-parts": "flake-parts",
         "import-tree": "import-tree",
         "microvm": "microvm",
