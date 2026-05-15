@@ -98,21 +98,16 @@
           }
           {
             defaultSettings = {
-              iconColor = "none";
+              activeColor = "primary";
+              camFilterRegex = "";
+              enableToast = true;
+              hideInactive = false;
+              iconSpacing = 4;
+              inactiveColor = "none";
+              micFilterRegex = "";
+              removeMargins = false;
             };
-            id = "plugin:mimeapp-gui";
-          }
-          {
-            defaultSettings = { };
-            id = "plugin:kde-connect";
-          }
-          {
-            defaultSettings = {
-              hideSystemPorts = false;
-              hideWhenEmpty = false;
-              refreshInterval = 5;
-            };
-            id = "plugin:port-monitor";
+            id = "plugin:privacy-indicator";
           }
         ];
         left = [
@@ -152,6 +147,39 @@
             textColor = "none";
             useFixedWidth = false;
             visualizerType = "linear";
+          }
+          {
+            defaultSettings = {
+              iconColor = "none";
+            };
+            id = "plugin:mimeapp-gui";
+          }
+          {
+            defaultSettings = {
+              authMethod = "none";
+              authPassword = "";
+              authToken = "";
+              authUsername = "";
+              enableToasts = true;
+              maxMessages = 100;
+              pollInterval = 30;
+              readMessageIds = [ ];
+              serverUrl = "https://ntfy.sh";
+              topics = "";
+            };
+            id = "plugin:ntfy-notifications";
+          }
+          {
+            defaultSettings = { };
+            id = "plugin:kde-connect";
+          }
+          {
+            defaultSettings = {
+              hideSystemPorts = false;
+              hideWhenEmpty = false;
+              refreshInterval = 5;
+            };
+            id = "plugin:port-monitor";
           }
         ];
         right = [
@@ -213,19 +241,6 @@
             icon = "noctalia";
             id = "ControlCenter";
             useDistroLogo = true;
-          }
-          {
-            defaultSettings = {
-              activeColor = "primary";
-              camFilterRegex = "";
-              enableToast = true;
-              hideInactive = false;
-              iconSpacing = 4;
-              inactiveColor = "none";
-              micFilterRegex = "";
-              removeMargins = false;
-            };
-            id = "plugin:privacy-indicator";
           }
         ];
       };
@@ -2138,7 +2153,7 @@
     lockScreenActive = false;
     noctaliaPerformanceMode = false;
     notificationsState = {
-      lastSeenTs = 1778566831000;
+      lastSeenTs = 1778728022000;
     };
     openedPanel = "";
     ui = {

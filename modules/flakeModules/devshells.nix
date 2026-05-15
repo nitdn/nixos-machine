@@ -6,20 +6,21 @@ let
   command_string = /* nu */ ''
     def hostnames [] { ["tjmaxxer" "msi-colgate" "disko-elysium"] }
 
-    def "main ci" [] {
-      jj squash
-      jj git push -c @- --remote flake-mirror
+    def "main ci" [revset = @] {
+      jj squash -f $"($revset)::"
+      jj git push -c ($revset) --remote flake-mirror
     }
 
-    def "main change-id" [revset = @-] {
+    def "main change-id" [revset = @] {
       jj log -r ($revset) -T "change_id.short()" --no-graph
     }
 
-    def "main pr" [revset = @-] {
+    def "main pr" [revset = @] {
+      main ci
       gh pr create --head push-(main change-id $revset) --fill
     }
 
-    def "main trunk" [revset = @-] {
+    def "main trunk" [revset = @] {
       jj bookmark set -r ($revset) main
       jj git push -r ($revset) --remote flake-mirror --bookmark main
       jj git push -r ($revset) --remote origin
@@ -27,8 +28,8 @@ let
 
     def "main new" [] {
       jj commit
-      jj git push -c @- --remote flake-mirror
-      main pr
+      watch $"($nu.home-dir)/nixos-machine" --glob=**/*.nix {|| nix flake check; jj new }
+      direnv reload
     }
 
     def "main nufmt" [] {

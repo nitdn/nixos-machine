@@ -19,7 +19,7 @@
         }
 
         let carapace_completer = {|spans: list<string>|
-          CARAPACE_LENIENT=1 carapace $spans.0 nushell ...$spans | from json
+          CARAPACE_BRIDGES='fish,bash' CARAPACE_LENIENT=1 CARAPACE_NOSPACE='"' carapace $spans.0 nushell ...$spans | from json
         }
 
         # This completer will use carapace by default
@@ -36,7 +36,7 @@
             $spans
           }
 
-         match $spans.0 {
+          match $spans.0 {
             # carapace completions are incorrect for nu
             nu => $fish_completer
             # fish completes commits and branch names in a nicer way
@@ -46,7 +46,6 @@
             _ => $carapace_completer
           } | do $in $spans
         }
-        $env.CARAPACE_BRIDGES = 'fish,bash'
         $env.config = {
           # ...
           completions: {
