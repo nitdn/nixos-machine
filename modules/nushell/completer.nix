@@ -57,7 +57,7 @@
           # ...
         }'';
       extraPackages = lib.attrValues {
-        inherit (pkgs) carapace fish;
+        inherit (pkgs) carapace;
       };
     };
   flake.modules.nixos.pc = {

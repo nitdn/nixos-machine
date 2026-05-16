@@ -14,5 +14,10 @@
       desc = "Toggle Calendar";
       cmd = "noctalia-shell ipc call calendar toggle";
     }
+    {
+      key = "v";
+      desc = "Toggle Clipboard";
+      cmd = "noctalia-shell ipc call launcher clipboard";
+    }
   ];
 }
