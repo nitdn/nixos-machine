@@ -10,7 +10,7 @@
       cmd = "noctalia-shell ipc call notifications toggleHistory";
     }
     {
-      key = "s";
+      key = "c";
       desc = "Toggle Calendar";
       cmd = "noctalia-shell ipc call calendar toggle";
     }
