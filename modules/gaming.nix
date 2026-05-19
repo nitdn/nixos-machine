@@ -71,6 +71,7 @@ in
           pkgs.gamemode
           # pkgs.lutris
           pkgs.vesktop
+          pkgs.arrpc
         ];
       };
     disko-elysium =
