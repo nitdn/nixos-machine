@@ -2,7 +2,7 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-{ config, inputs, ... }:
+{ config, ... }:
 let
   inherit (config.flake) packages;
   nixosModules = config.flake.modules.nixos;
@@ -43,7 +43,6 @@ in
         environment.systemPackages = [
           (lib.mkForce killIbusAutostart)
           packages.${system}.naps2-wrapped
-          inputs.zen-browser.packages.${system}.default
           pkgs.hunspell
           pkgs.hunspellDicts.en-gb-large
           pkgs.libreoffice-qt6-fresh

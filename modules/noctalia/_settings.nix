@@ -2157,7 +2157,7 @@
     lockScreenActive = false;
     noctaliaPerformanceMode = false;
     notificationsState = {
-      lastSeenTs = 1778856130000;
+      lastSeenTs = 1779275841000;
     };
     openedPanel = "";
     ui = {

@@ -21,7 +21,32 @@ in
       in
       {
         boot.kernelModules = [ "ntsync" ];
-        programs.gamescope.enable = true;
+        programs.gamescope = {
+          enable = true;
+          package = pkgs.gamescope.override { enableWsi = true; };
+          args = [
+            "--rt"
+            "-w"
+            "1920"
+            "-h"
+            "1080"
+            "-r"
+            "165"
+            "-o"
+            "60"
+            # "-S"
+            # "integer"
+            # "-F"
+            # "linear"
+            # "--max-scale"
+            # "2"
+            "--borderless"
+            "--fullscreen"
+            "--grab"
+            "--adaptive-sync"
+          ];
+
+        };
         programs.steam = {
           enable = true;
           remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
