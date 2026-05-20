@@ -56,7 +56,7 @@
           }
           # ...
         }'';
-      extraPackages = lib.attrValues {
+      runtimePkgs = lib.attrValues {
         inherit (pkgs) carapace;
       };
     };

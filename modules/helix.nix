@@ -73,7 +73,7 @@ let
           };
         }
       ];
-      extraPackages = [
+      runtimePkgs = [
         pkgs.nixd
         pkgs.nil
         pkgs.nixfmt
