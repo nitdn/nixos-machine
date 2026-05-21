@@ -3,7 +3,6 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 {
-  inputs,
   config,
   lib,
   ...
@@ -15,7 +14,6 @@ in
   config.flake.wrappers.niri-pc =
     {
       wlib,
-      pkgs,
       ...
     }:
     {
@@ -29,7 +27,6 @@ in
         ];
         settings = {
           spawn-at-startup = [
-            (lib.getExe inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default)
           ];
           environment = {
             QT_QPA_PLATFORMTHEME = "qt6ct";
