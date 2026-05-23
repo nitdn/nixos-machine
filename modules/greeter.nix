@@ -4,12 +4,21 @@
 
 {
   flake.modules.nixos = {
-    pc = {
-      services.displayManager.gdm = {
-        enable = true;
-      };
+    pc =
+      { pkgs, ... }:
+      {
+        services.greetd = {
+          enable = true;
+          useTextGreeter = true;
+          settings = {
+            default_session = {
+              command = "${pkgs.tuigreet}/bin/tuigreet --time --remember";
+              user = "greeter";
+            };
+          };
+        };
 
-      services.userdbd.silenceHighSystemUsers = true;
-    };
+        services.userdbd.silenceHighSystemUsers = true;
+      };
   };
 }
