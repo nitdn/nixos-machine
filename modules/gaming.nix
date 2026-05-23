@@ -23,17 +23,21 @@ in
         boot.kernelModules = [ "ntsync" ];
         programs.gamescope = {
           enable = true;
-          package = pkgs.gamescope.override { enableWsi = true; };
+          package = pkgs.gamescope.overrideAttrs (_: {
+            NIX_CFLAGS_COMPILE = [ "-fno-fast-math" ];
+          });
           args = [
             "--rt"
-            "-w"
+            "-W"
             "1920"
-            "-h"
+            "-H"
             "1080"
             "-r"
             "165"
             "-o"
             "60"
+            "-s"
+            "0.5"
             # "-S"
             # "integer"
             # "-F"
@@ -41,7 +45,7 @@ in
             # "--max-scale"
             # "2"
             "--borderless"
-            "--fullscreen"
+            # "--fullscreen"
             "--grab"
             "--adaptive-sync"
           ];
@@ -78,6 +82,12 @@ in
           }
         );
         programs.gamemode.enable = true;
+        services.sunshine = {
+          enable = true;
+          autoStart = true;
+          openFirewall = true;
+        };
+        hardware.uinput.enable = true;
         programs.obs-studio = {
           enable = true;
           enableVirtualCamera = true;
