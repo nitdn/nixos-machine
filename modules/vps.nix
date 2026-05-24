@@ -2,6 +2,7 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
+{ inputs, ... }:
 {
   flake.modules.nixos.vps =
     {
@@ -15,6 +16,12 @@
       inherit (config.services.bind) domain_name;
     in
     {
+      imports = [
+        inputs.sops-nix.nixosModules.sops
+        (modulesPath + "/installer/scan/not-detected.nix")
+        (modulesPath + "/profiles/qemu-guest.nix")
+      ];
+
       nix.settings.experimental-features = [
         "nix-command"
         "flakes"
@@ -27,11 +34,6 @@
       nix.settings.trusted-public-keys = [
         "machines.cachix.org-1:imnXlKFUc4Iaedv6469v6TO37ruiNh6OfJN4le5bqdE="
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-      ];
-
-      imports = [
-        (modulesPath + "/installer/scan/not-detected.nix")
-        (modulesPath + "/profiles/qemu-guest.nix")
       ];
       services.cloud-init = {
         enable = true;

@@ -6,6 +6,7 @@
   config,
   inputs,
   lib,
+  withSystem,
   ...
 }:
 let
@@ -19,6 +20,17 @@ in
       ...
     }:
     {
+      imports = [
+        inputs.sops-nix.nixosModules.sops
+        inputs.nix-index-database.nixosModules.default
+      ];
+
+      # Use the configured pkgs from perSystem.
+      nixpkgs.pkgs = withSystem config.nixpkgs.hostPlatform.system (
+        { pkgs, ... }: # perSystem module arguments
+        pkgs
+      );
+
       # Edit this configuration file to define what should be installed on
       # your system.  Help is available in the configuration.nix(5) man page
       # and in the NixOS manual (accessible by running ‘nixos-help’).
@@ -174,6 +186,17 @@ in
       };
 
       programs.nix-index-database.comma.enable = true;
+
+      # This will add secrets.yml to the nix store. You can avoid this by
+      # using a string with the full path instead.
+      sops.defaultSopsFile = ../secrets/core.yaml;
+      sops.age.keyFile = "/var/lib/sops-nix/key.txt";
+      sops.age.generateKey = true;
+
+      users.users.${username} = {
+        # For some reason it actually still works.
+        packages = lib.attrValues { inherit (pkgs) vlc github-cli; };
+      };
 
       documentation.dev.enable = true;
       programs.appimage.enable = true;
