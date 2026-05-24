@@ -11,6 +11,21 @@
 
 let
   nixosModules = config.flake.modules.nixos;
+  vm = _: {
+    virtualisation.qemu.options = [
+      "-display gtk,gl=es"
+      "-device virtio-vga-gl"
+    ];
+    services.btrfs.autoScrub.enable = false;
+    hardware.facter.reportPath = lib.mkForce null;
+    boot.initrd.systemd.repart.device = lib.mkForce null;
+    nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+    users.users.vmtest = {
+      isNormalUser = true;
+      extraGroups = [ "wheel" ];
+      initialPassword = "vmtest";
+    };
+  };
 in
 {
   perSystem =
@@ -27,21 +42,6 @@ in
       packages.isoBootstrap = isoBootstrap.config.system.build.images.iso-installer;
     };
   flake.modules.nixos = {
-    vm = {
-      virtualisation.qemu.options = [
-        "-display gtk,gl=es"
-        "-device virtio-vga-gl"
-      ];
-      services.btrfs.autoScrub.enable = false;
-      hardware.facter.reportPath = lib.mkForce null;
-      boot.initrd.systemd.repart.device = lib.mkForce null;
-      nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-      users.users.vmtest = {
-        isNormalUser = true;
-        extraGroups = [ "wheel" ];
-        initialPassword = "vmtest";
-      };
-    };
     iso = {
       # TODO kill this line after NixOS 26.11
       boot.zfs.forceImportRoot = false;
@@ -55,11 +55,7 @@ in
       imports = [
         inputs.microvm.nixosModules.host
       ];
-      virtualisation.vmVariant = {
-        imports = [
-          nixosModules.vm
-        ];
-      };
+      virtualisation.vmVariant = vm;
     };
   };
 }

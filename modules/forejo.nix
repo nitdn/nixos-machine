@@ -4,11 +4,8 @@
 
 { lib, config, ... }:
 let
-  nixosModules = config.flake.modules.nixos;
   inherit (config.meta) username;
-in
-{
-  flake.modules.nixos.podman = {
+  podman = _: {
     virtualisation = {
       containers.enable = true;
       podman = {
@@ -18,10 +15,12 @@ in
       };
     };
   };
+in
+{
   flake.modules.nixos.vps =
     { pkgs, config, ... }:
     {
-      imports = [ nixosModules.podman ];
+      imports = [ podman ];
       services.gitea-actions-runner = {
         package = pkgs.forgejo-runner;
         instances.codeberg-vps01 = {
@@ -44,13 +43,12 @@ in
   flake.modules.nixos.pc =
     { pkgs, config, ... }:
     {
-      imports = [ nixosModules.podman ];
+      imports = [ podman ];
       users.users.${username} = {
         extraGroups = [
           "podman"
         ];
       };
-
       environment.systemPackages = lib.mkIf config.hardware.graphics.enable [ pkgs.distrobox ];
     };
   # perSystem =

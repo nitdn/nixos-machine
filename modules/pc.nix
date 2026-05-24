@@ -21,7 +21,6 @@ in
     }:
     {
       imports = [
-        inputs.sops-nix.nixosModules.sops
         inputs.nix-index-database.nixosModules.default
       ];
 
@@ -35,18 +34,11 @@ in
       # your system.  Help is available in the configuration.nix(5) man page
       # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-      # cleanup configs
-      nix.optimise.automatic = true;
-
       nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
       nix.settings = {
         trusted-users = [
           username
           "@wheel"
-        ];
-        experimental-features = [
-          "nix-command"
-          "flakes"
         ];
       };
 
@@ -110,8 +102,6 @@ in
           '';
         }
       ];
-      time.timeZone = "Asia/Kolkata";
-
       # Select internationalisation properties.
       i18n.extraLocaleSettings = {
         LANGUAGE = "en_IN:en:C:bn_IN:hi_IN";
@@ -186,12 +176,6 @@ in
       };
 
       programs.nix-index-database.comma.enable = true;
-
-      # This will add secrets.yml to the nix store. You can avoid this by
-      # using a string with the full path instead.
-      sops.defaultSopsFile = ../secrets/core.yaml;
-      sops.age.keyFile = "/var/lib/sops-nix/key.txt";
-      sops.age.generateKey = true;
 
       users.users.${username} = {
         # For some reason it actually still works.

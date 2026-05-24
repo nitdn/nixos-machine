@@ -2,12 +2,9 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-{ lib, config, ... }:
+{ lib, ... }:
 let
-  nixosModules = config.flake.modules.nixos;
-in
-{
-  flake.modules.nixos.thunar =
+  thunar =
     { pkgs, config, ... }:
     {
       programs = lib.mkIf config.hardware.graphics.enable {
@@ -28,5 +25,7 @@ in
         package = pkgs.gnome.gvfs;
       };
     };
-  flake.modules.nixos.pc.imports = [ nixosModules.thunar ];
+in
+{
+  flake.modules.nixos.pc = thunar;
 }

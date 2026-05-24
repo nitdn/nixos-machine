@@ -11,35 +11,34 @@ let
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBDcnwk3vUJDAzD4m28LZHUBju3Fb7J613R7FW4RtR4t ssmvabaa@msi-colgate"
   ];
   inherit (config.meta) username;
-  nixosModules = config.flake.modules.nixos;
+  secureSSH = _: {
+    services.openssh = {
+      enable = true;
+      settings = {
+        PasswordAuthentication = false;
+        KbdInteractiveAuthentication = false;
+        PermitRootLogin = "no";
+        AllowUsers = [
+          username
+          "sandbox"
+        ];
+      };
+    };
+    services.fail2ban.enable = true;
+  };
+
 in
 {
   flake.modules.nixos = {
-    secureSSH = {
-      services.openssh = {
-        enable = true;
-        settings = {
-          PasswordAuthentication = false;
-          KbdInteractiveAuthentication = false;
-          PermitRootLogin = "no";
-          AllowUsers = [
-            username
-            "sandbox"
-          ];
-        };
-      };
-      services.fail2ban.enable = true;
-    };
-
     pc =
       { pkgs, ... }:
       {
-        imports = [ nixosModules.secureSSH ];
+        imports = [ secureSSH ];
         users.users.${username}.openssh.authorizedKeys.keys = trusted_ssh_keys;
         services.avahi.extraServiceFiles.ssh = "${pkgs.avahi}/etc/avahi/services/ssh.service";
       };
     vps = {
-      imports = [ nixosModules.secureSSH ];
+      imports = [ secureSSH ];
     };
     iso =
       { pkgs, ... }:

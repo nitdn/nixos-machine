@@ -2,7 +2,6 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-{ inputs, ... }:
 {
   flake.modules.nixos.vps =
     {
@@ -17,14 +16,8 @@
     in
     {
       imports = [
-        inputs.sops-nix.nixosModules.sops
         (modulesPath + "/installer/scan/not-detected.nix")
         (modulesPath + "/profiles/qemu-guest.nix")
-      ];
-
-      nix.settings.experimental-features = [
-        "nix-command"
-        "flakes"
       ];
 
       nix.settings.substituters = [
@@ -85,7 +78,6 @@
         };
       };
 
-      nix.optimise.automatic = true;
       nix.gc = {
         automatic = true;
         dates = "weekly";
@@ -104,19 +96,6 @@
         efiSupport = true;
         efiInstallAsRemovable = true;
       };
-      time.timeZone = "Asia/Kolkata";
-
-      # This will add secrets.yml to the nix store
-      # You can avoid this by adding a string to the full path instead, i.e.
-      # sops.defaultSopsFile = "/root/.sops/secrets/example.yaml";
-      sops.defaultSopsFile = ../secrets/core.yaml;
-      # This will automatically import SSH keys as age keys
-      sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
-      # This is using an age key that is expected to already be in the filesystem
-      sops.age.keyFile = "/var/lib/sops-nix/key.txt";
-      # This will generate a new key if the key specified above does not exist
-      sops.age.generateKey = true;
-
       system.stateVersion = "24.11";
     };
 }
