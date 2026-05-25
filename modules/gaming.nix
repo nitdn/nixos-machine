@@ -23,9 +23,6 @@ in
         boot.kernelModules = [ "ntsync" ];
         programs.gamescope = {
           enable = true;
-          package = pkgs.gamescope.overrideAttrs (_: {
-            NIX_CFLAGS_COMPILE = [ "-fno-fast-math" ];
-          });
           args = [
             "--rt"
             "-W"
@@ -103,10 +100,12 @@ in
             env.MANGOHUD_CONFIG = "no_display,fps_limit=165";
           })
           pkgs.easyeffects
-          pkgs.gamemode
           # pkgs.lutris
           pkgs.vesktop
           pkgs.arrpc
+          (pkgs.gamescope-wsi.overrideAttrs (_: {
+            NIX_CFLAGS_COMPILE = [ "-fno-fast-math" ];
+          }))
         ];
       };
     disko-elysium =
@@ -118,6 +117,7 @@ in
         users.users.gaming = {
           isNormalUser = true;
           password = "gaming";
+          extraGroups = [ "gamemode" ];
         };
         programs.steam.package = pkgs.steam.override {
           extraEnv = {

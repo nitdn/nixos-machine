@@ -1,7 +1,7 @@
 {
   settings = {
     appLauncher = {
-      autoPasteClipboard = false;
+      autoPasteClipboard = true;
       clipboardWatchImageCommand = "wl-paste --type image --watch cliphist store";
       clipboardWatchTextCommand = "wl-paste --type text --watch cliphist store";
       clipboardWrapText = true;
