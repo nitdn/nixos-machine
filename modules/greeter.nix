@@ -7,6 +7,16 @@
     pc =
       { pkgs, ... }:
       {
+        services.kmscon = {
+          enable = true;
+          fonts = [
+            {
+              name = "JetbBrains Mono";
+              package = pkgs.jetbrains-mono;
+            }
+          ];
+          hwRender = true;
+        };
         services.greetd = {
           enable = true;
           useTextGreeter = true;
@@ -17,7 +27,6 @@
             };
           };
         };
-
         services.userdbd.silenceHighSystemUsers = true;
       };
   };
