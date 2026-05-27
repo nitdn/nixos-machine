@@ -46,6 +46,9 @@ in
             "--grab"
             "--adaptive-sync"
           ];
+          env = {
+            LD_PRELOAD = ''""'';
+          };
 
         };
         programs.steam = {
