@@ -57,22 +57,33 @@ let
           };
         };
       };
-      languages.language = [
-        {
-          name = "nix";
-          auto-format = true;
-        }
-        {
-          name = "yaml";
-          formatter = {
-            command = lib.getExe pkgs.prettier;
-            args = [
-              "--parser"
-              "yaml"
-            ];
-          };
-        }
-      ];
+      languages = {
+        language-server = {
+          uwu_colors.command = "${pkgs.uwu-colors}/bin/uwu_colors";
+        };
+        language = [
+          {
+            name = "__common__";
+            scope = "source.__common__";
+            file-types = [ ];
+            language-servers = [ "uwu_colors" ];
+          }
+          {
+            name = "nix";
+            auto-format = true;
+          }
+          {
+            name = "yaml";
+            formatter = {
+              command = lib.getExe pkgs.prettier;
+              args = [
+                "--parser"
+                "yaml"
+              ];
+            };
+          }
+        ];
+      };
       runtimePkgs = [
         pkgs.nixd
         pkgs.nil

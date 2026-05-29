@@ -57,12 +57,23 @@
           # ...
         }'';
       runtimePkgs = lib.attrValues {
-        inherit (pkgs) carapace;
+        carapace = pkgs.carapace.overrideAttrs (
+          finalAttrs: _: {
+            version = "1.6.6";
+            src = pkgs.fetchFromGitHub {
+              owner = "carapace-sh";
+              repo = "carapace-bin";
+              tag = "v${finalAttrs.version}";
+              hash = "sha256-FaC+gvjOFhoxjeLYwrDemhgGnKIVfwHU20jhjdZYjMo=";
+            };
+
+            vendorHash = "sha256-HStd9HfEHBYfHANZ0uiAAa5UwkGBasOEwCE0iNS8YkU=";
+          }
+        );
       };
     };
   flake.modules.nixos.pc = {
     programs.fish.enable = true;
-
-    documentation.man.cache.enable = false;
+    documentation.man.cache.generateAtRuntime = true;
   };
 }

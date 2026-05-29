@@ -225,12 +225,12 @@
           }
           {
             clockColor = "none";
-            customFont = "";
+            customFont = "Atkinson Hyperlegible Next";
             formatHorizontal = "HH:mm ddd, MMM dd";
             formatVertical = "HH mm - dd MM";
             id = "Clock";
             tooltipFormat = "HH:mm ddd, MMM dd";
-            useCustomFont = false;
+            useCustomFont = true;
           }
           {
             colorizeDistroLogo = false;
@@ -269,7 +269,7 @@
     };
     colorSchemes = {
       darkMode = true;
-      generationMethod = "tonal-spot";
+      generationMethod = "vibrant";
       manualSunrise = "06:30";
       manualSunset = "18:30";
       monitorForColors = "DP-2";
@@ -691,7 +691,7 @@
       fontFixedScale = 1;
       panelBackgroundOpacity = 0.7;
       panelsAttachedToBar = true;
-      scrollbarAlwaysVisible = true;
+      scrollbarAlwaysVisible = false;
       settingsPanelMode = "attached";
       settingsPanelSideBarCardStyle = false;
       tooltipsEnabled = true;

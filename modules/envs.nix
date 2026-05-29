@@ -3,8 +3,6 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 {
-  inputs,
-  lib,
   config,
   ...
 }:
@@ -35,7 +33,6 @@ in
         pkgs.pwgen
         pkgs.ripgrep
         pkgs.trash-cli
-        (lib.lowPrio inputs.eh.packages.${pkgs.stdenv.hostPlatform.system}.default)
         (pkgs.writeShellApplication {
           name = "ns";
           runtimeInputs = with pkgs; [

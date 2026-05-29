@@ -139,6 +139,7 @@ in
           inherit (pkgs)
             bashInteractive
             dix
+            flake-edit
             github-cli
             hydra-check
             jq
