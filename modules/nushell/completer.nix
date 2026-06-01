@@ -59,15 +59,15 @@
       runtimePkgs = lib.attrValues {
         carapace = pkgs.carapace.overrideAttrs (
           finalAttrs: _: {
-            version = "1.6.6";
+            version = "1.7.0";
             src = pkgs.fetchFromGitHub {
               owner = "carapace-sh";
               repo = "carapace-bin";
               tag = "v${finalAttrs.version}";
-              hash = "sha256-FaC+gvjOFhoxjeLYwrDemhgGnKIVfwHU20jhjdZYjMo=";
+              hash = "sha256-gEIz6E6p3Z01O3T1uiEQH6hL1XJuEAWocTk21uTqkzM=";
             };
 
-            vendorHash = "sha256-HStd9HfEHBYfHANZ0uiAAa5UwkGBasOEwCE0iNS8YkU=";
+            vendorHash = "sha256-wggsRvNbqt6DtdYyQ+JQ6k7PGaj9uL7FK+lCF0e6LDw=";
           }
         );
       };

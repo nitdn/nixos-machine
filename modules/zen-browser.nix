@@ -27,7 +27,7 @@ let
     # To add additional extensions, find it on addons.mozilla.org, find
     # the short ID in the url (like https://addons.mozilla.org/en-US/firefox/addon/!SHORT_ID!/)
     # Then go to https://addons.mozilla.org/api/v5/addons/addon/!SHORT_ID!/ to get the guid
-    (extension "adnauseam" "adnauseam@rednoise.org")
+    (extension "ublock-origin" "uBlock0@raymondhill.net")
     # ...
   ];
   extraPolicies = {
