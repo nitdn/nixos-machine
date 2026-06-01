@@ -59,6 +59,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.treefmt-nix.follows = "treefmt-nix";
     };
+    kakehashi = {
+      url = "github:atusy/kakehashi";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # noctalia-plugins = {
     #   url = "github:noctalia-dev/noctalia-plugins";
     #   flake = false;

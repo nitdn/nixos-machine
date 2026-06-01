@@ -16,7 +16,6 @@ let
 
     def "main pr" [revset: string = @-] {
       main ci
-
       gh pr create --head push-(main change-id $revset) --fill
     }
 

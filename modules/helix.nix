@@ -2,6 +2,7 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 {
+  inputs,
   lib,
   config,
   ...
@@ -10,6 +11,10 @@ let
   inherit (config.flake) wrappers;
   helix-pc =
     { wlib, pkgs, ... }:
+    let
+      inherit (pkgs.stdenv.hostPlatform) system;
+      kakehashi = inputs.kakehashi.packages.${system}.default;
+    in
     {
       imports = [ wlib.wrapperModules.helix ];
       settings = {
@@ -59,6 +64,9 @@ let
       };
       languages = {
         language-server = {
+          kakehashi = {
+            command = lib.getExe' kakehashi "kakehashi";
+          };
           uwu_colors.command = "${pkgs.uwu-colors}/bin/uwu_colors";
         };
         language = [
@@ -71,6 +79,11 @@ let
           {
             name = "nix";
             auto-format = true;
+            language-servers = [
+              "nil"
+              "nixd"
+              "kakehashi"
+            ];
           }
           {
             name = "yaml";
@@ -85,10 +98,14 @@ let
         ];
       };
       runtimePkgs = [
+        kakehashi
+        pkgs.git
         pkgs.nixd
         pkgs.nil
         pkgs.nixfmt
+        pkgs.nushell
         pkgs.prettier
+        pkgs.stdenv.cc
       ];
     };
   helix-light = {
@@ -103,9 +120,14 @@ in
       pkgs,
       ...
     }:
+    let
+      inherit (pkgs.stdenv.hostPlatform) system;
+      kakehashi = inputs.kakehashi.packages.${system}.default;
+    in
     {
       config.environment.systemPackages = [
         (wrappers.helix-pc.wrap { inherit pkgs; })
+        kakehashi
       ];
     };
   flake.modules.nixos.lightMode =
