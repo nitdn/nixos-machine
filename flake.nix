@@ -54,9 +54,10 @@
       url = "github:microvm-nix/microvm.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    topiary-nushell = {
-      url = "github:blindFS/topiary-nushell";
+    nufmt = {
+      url = "github:nushell/nufmt";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.treefmt-nix.follows = "treefmt-nix";
     };
     # noctalia-plugins = {
     #   url = "github:noctalia-dev/noctalia-plugins";
