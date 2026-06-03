@@ -30,17 +30,17 @@ in
       hardware.uinput.enable = true;
       boot.kernelModules = [ "uinput" ];
       hardware.graphics = {
-        enable32Bit = true;
+        # enable32Bit = true;
         extraPackages = [
           # Required for modern Intel GPUs (Xe iGPU and ARC)
           pkgs.intel-media-driver # VA-API (iHD) userspace
           pkgs.intel-compute-runtime # For Intel 12th Gen and newer
           pkgs.vpl-gpu-rt # oneVPL (QSV) runtime
         ];
-        extraPackages32 = [
-          # Required for modern Intel GPUs (Xe iGPU and ARC)
-          pkgs.pkgsi686Linux.intel-media-driver # VA-API (iHD) userspace
-        ];
+        # extraPackages32 = [
+        #   # Required for modern Intel GPUs (Xe iGPU and ARC)
+        #   pkgs.pkgsi686Linux.intel-media-driver # VA-API (iHD) userspace
+        # ];
       };
       environment.sessionVariables = {
         LIBVA_DRIVER_NAME = "iHD"; # Prefer the modern iHD backend
