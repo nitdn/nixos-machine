@@ -8,7 +8,7 @@
     {
       "config.nu".content = /* nu */ ''
         let carapace_completer = {|spans: list<string>|
-          carapace $spans.0 nushell ...$spans | from json
+          CARAPACE_BRIDGES='bash,fish' CARAPACE_LENIENT=1 CARAPACE_NOSPACE='*' carapace $spans.0 nushell ...$spans | from json
         }
 
         $env.config = {
