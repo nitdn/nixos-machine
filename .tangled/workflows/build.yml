@@ -17,11 +17,9 @@ clone:
   submodules: false
 
 dependencies:
-  # nixpkgs-unstable
-  nixpkgs/nixos-unstable:
+  nixpkgs:
     - cachix
     - nix-fast-build
-    - curl
     - shadow
     - which
 
