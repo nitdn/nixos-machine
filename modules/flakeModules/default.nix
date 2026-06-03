@@ -36,10 +36,6 @@ in
       ...
     }:
     let
-      buildInputs = [
-        pkgs.makeWrapper
-        pkgs.libtiff.out
-      ];
 
       inherit (pkgs.callPackage sources.raw { }) bizhub-225i epson-202101w;
     in
@@ -53,16 +49,6 @@ in
       packages = {
         bizhub-225i = pkgs.callPackage ../../pkgs/bizhub-225i.nix bizhub-225i;
         epson-l3212 = pkgs.callPackage ../../pkgs/epson-l3212.nix epson-202101w;
-        naps2-wrapped = pkgs.naps2.overrideAttrs (
-          _finalAttrs: previousAttrs: {
-            buildInputs = previousAttrs.buildInputs or [ ] ++ buildInputs;
-            postFixup = previousAttrs.postFixup or "" + ''
-              chmod +x $out/lib/naps2/_linux/tesseract 
-              wrapProgram $out/bin/naps2 --prefix LD_LIBRARY_PATH : \
-              ${toString (lib.makeLibraryPath buildInputs)}
-            '';
-          }
-        );
       };
       treefmt.programs =
         lib.genAttrs

@@ -5,8 +5,8 @@
 when:
   - event: ["push", "manual"]
     branch: ["main", "push-*"]
-  - event: ["pull_request"]
-    branch: ["main"]
+  # - event: ["pull_request"]
+  #   branch: ["main"]
 
 engine: "nixery"
 
@@ -18,15 +18,37 @@ clone:
 
 dependencies:
   # nixpkgs-unstable
-  nixpkgs/nixpkgs-unstable:
+  nixpkgs/nixos-unstable:
     - cachix
-    - pkgsCross.x86_64-pc-linux-gnu.nix-fast-build
+    - nix-fast-build
+    - curl
+    - shadow
+    - which
+
+environment:
+  USER: "root"
 
 steps:
-  - name: "Set extra substituters"
-    command: "cachix use nix-community"
-    environment:
-      USER: "root"
+  - name: "Bruteforce nix sandbox"
+    command: |
+      groupadd -r nixbld
+      for n in $(seq 1 1); do useradd -c "Nix build user $n" \
+          -d /var/empty -g nixbld -G nixbld -M -N -r -s "$(which nologin)" \
+          nixbld$n; done
+
+      rm /etc/nix/nix.conf
+      echo 'extra-experimental-features = nix-command flakes' >> /etc/nix/nix.conf
+      printf '#!/bin/sh\nrm -rf /homeless-shelter\n' > /etc/nix/post-build-hook.sh
+      chmod +x /etc/nix/post-build-hook.sh
+      echo 'post-build-hook = /etc/nix/post-build-hook.sh' >> /etc/nix/nix.conf
+
+  - name: "Set extra substituters and prefetch inputs"
+    command: |
+      cachix use nix-community
+      cachix use machines
+      nix flake prefetch-inputs .
+
   - name: "Check flake"
     command: |
-      nix-fast-build --no-nom --skip-cached --cachix-cache machines --flake ".#checks.x86_64-linux"
+      nix-fast-build --no-nom --skip-cached --cachix-cache machines \
+      --flake ".#checks.x86_64-linux"

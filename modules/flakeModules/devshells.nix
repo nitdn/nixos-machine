@@ -8,6 +8,7 @@ let
 
     def "main ci" [revset: string = @-] {
       jj git push -c ($revset) --remote flake-mirror
+      jj git push -c ($revset) --remote tngl-mirror
     }
 
     def "main change-id" [revset: string = @-] {
@@ -23,6 +24,7 @@ let
       jj bookmark set -r ($revset) main
 
       jj git push -r ($revset) --remote flake-mirror --bookmark main
+      jj git push -r ($revset) --remote tngl-mirror --bookmark main
 
       jj git push -r ($revset) --remote origin
     }

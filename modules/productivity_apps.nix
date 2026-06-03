@@ -2,9 +2,8 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-{ config, ... }:
+_:
 let
-  inherit (config.flake) packages;
   productivity =
     {
       pkgs,
@@ -13,7 +12,6 @@ let
       ...
     }:
     let
-      inherit (pkgs.stdenv.hostPlatform) system;
       cfg = config.hardware.graphics;
 
       # Nixpkgs makes some truly degenerate ibus desktop entries
@@ -30,7 +28,7 @@ let
       };
       environment.systemPackages = [
         (lib.mkForce killIbusAutostart)
-        packages.${system}.naps2-wrapped
+        pkgs.naps2
         pkgs.hunspell
         pkgs.hunspellDicts.en-gb-large
         pkgs.libreoffice-qt6-fresh
