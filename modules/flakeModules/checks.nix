@@ -13,28 +13,24 @@ let
 in
 {
   perSystem =
-    { pkgs, config, ... }:
+    { pkgs, ... }:
     {
-      checks = {
-        reuse =
-          pkgs.runCommand "reuse"
-            {
-              src = inputs.self.outPath;
-              nativeBuildInputs = [ pkgs.reuse ];
-            }
-            ''
-              cd $src
-              reuse lint
-              mkdir $out
-            '';
-        machines = pkgs.runCommand "check-machines" {
-          nativeBuildInputs = lib.map (name: nixosConfigurations.${name}.config.system.build.toplevel) (
-            lib.attrNames (lib.removeAttrs nixosConfigurations [ "vps01" ])
-          );
-        } "mkdir $out";
-        packages = pkgs.runCommand "check-packages" {
-          nativeBuildInputs = lib.attrVals [ ] config.packages;
-        } "mkdir $out";
-      };
+      checks =
+        lib.genAttrs (lib.attrNames (lib.removeAttrs nixosConfigurations [ "vps01" ])) (
+          name: nixosConfigurations.${name}.config.system.build.toplevel
+        )
+        // {
+          reuse =
+            pkgs.runCommand "reuse"
+              {
+                src = inputs.self.outPath;
+                nativeBuildInputs = [ pkgs.reuse ];
+              }
+              ''
+                cd $src
+                reuse lint
+                mkdir $out
+              '';
+        };
     };
 }

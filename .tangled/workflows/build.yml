@@ -1,0 +1,32 @@
+# SPDX-FileCopyrightText: 2026 Nitesh Kumar Debnath <nitkdnath@gmail.com>
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+when:
+  - event: ["push", "manual"]
+    branch: ["main", "push-*"]
+  - event: ["pull_request"]
+    branch: ["main"]
+
+engine: "nixery"
+
+# using the default values
+clone:
+  skip: false
+  depth: 1
+  submodules: false
+
+dependencies:
+  # nixpkgs-unstable
+  nixpkgs/nixpkgs-unstable:
+    - cachix
+    - pkgsCross.x86_64-pc-linux-gnu.nix-fast-build
+
+steps:
+  - name: "Set extra substituters"
+    command: "cachix use nix-community"
+    environment:
+      USER: "root"
+  - name: "Check flake"
+    command: |
+      nix-fast-build --no-nom --skip-cached --cachix-cache machines --flake ".#checks.x86_64-linux"
