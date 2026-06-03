@@ -9,13 +9,8 @@
       {
         services.kmscon = {
           enable = true;
-          fonts = [
-            {
-              name = "JetbBrains Mono";
-              package = pkgs.jetbrains-mono;
-            }
-          ];
-          hwRender = true;
+          config.font-name = "JetBrains Mono";
+          config.hwaccel = true;
         };
         services.greetd = {
           enable = true;
