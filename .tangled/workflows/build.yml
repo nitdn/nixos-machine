@@ -20,33 +20,24 @@ dependencies:
   nixpkgs:
     - cachix
     - nix-fast-build
-    - shadow
-    - which
-
-environment:
-  USER: "root"
+    - gnused
 
 steps:
   - name: "Bruteforce nix sandbox"
     command: |
-      groupadd -r nixbld
-      for n in $(seq 1 1); do useradd -c "Nix build user $n" \
-          -d /var/empty -g nixbld -G nixbld -M -N -r -s "$(which nologin)" \
-          nixbld$n; done
-
-      rm /etc/nix/nix.conf
-      echo 'extra-experimental-features = nix-command flakes' >> /etc/nix/nix.conf
-      printf '#!/bin/sh\nrm -rf /homeless-shelter\n' > /etc/nix/post-build-hook.sh
-      chmod +x /etc/nix/post-build-hook.sh
-      echo 'post-build-hook = /etc/nix/post-build-hook.sh' >> /etc/nix/nix.conf
+      sed -i 's/false/true/' /etc/nix/nix.conf
 
   - name: "Set extra substituters and prefetch inputs"
+    environment:
+      USER: "root"
     command: |
       cachix use nix-community
       cachix use machines
       nix flake prefetch-inputs .
+      rm -rf /homeless-shelter
 
   - name: "Check flake"
     command: |
-      nix-fast-build --no-nom --skip-cached --cachix-cache machines \
+      nix-fast-build --no-nom --skip-cached \
       --flake ".#checks.x86_64-linux"
+      # --cachix-cache machines \
