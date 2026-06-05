@@ -39,5 +39,5 @@ steps:
   - name: "Check flake"
     command: |
       nix-fast-build --no-nom --skip-cached \
+      --cachix-cache machines \
       --flake ".#checks.x86_64-linux"
-      # --cachix-cache machines \
