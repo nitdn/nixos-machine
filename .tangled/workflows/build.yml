@@ -21,15 +21,24 @@ dependencies:
     - cachix
     - nix-fast-build
     - gnused
+    - shadow
+    - which
 
 steps:
   - name: "Bruteforce nix sandbox"
     command: |
-      sed -i 's/false/true/' /etc/nix/nix.conf
+      sed -i '/false/d; /build-users-group/d' /etc/nix/nix.conf
+      cat /etc/nix/nix.conf
+
+      groupadd -r nixbld
+      for n in $(seq 1 10); do useradd -c "Nix build user $n" \
+      -d /var/empty -g nixbld -G nixbld -M -N -r -s "$(which nologin)" \
+      nixbld$n; done
+      chown nixbld1:nixbld /nix/{,store}
 
   - name: "Set extra substituters and prefetch inputs"
     environment:
-      USER: "root"
+      USER: "nixbld1"
     command: |
       cachix use nix-community
       cachix use machines
