@@ -23,6 +23,10 @@ dependencies:
     - gnused
     - shadow
     - which
+    - jq
+
+environment:
+  USER: "root"
 
 steps:
   - name: "Bruteforce nix sandbox"
@@ -31,22 +35,22 @@ steps:
       cat /etc/nix/nix.conf
 
       groupadd -r nixbld
-      for n in $(seq 1 10); do useradd -c "Nix build user $n" \
+      for n in $(seq 1 6); do useradd -c "Nix build user $n" \
       -d /var/empty -g nixbld -G nixbld -M -N -r -s "$(which nologin)" \
       nixbld$n; done
       chown nixbld1:nixbld /nix/{,store}
 
   - name: "Set extra substituters and prefetch inputs"
-    environment:
-      USER: "nixbld1"
     command: |
       cachix use nix-community
       cachix use machines
       nix flake prefetch-inputs .
       rm -rf /homeless-shelter
+      nix flake archive --json \
+      | jq -r '.path,(.inputs|to_entries[].value.path)' \
+      | cachix push machines
 
   - name: "Check flake"
     command: |
-      nix-fast-build --no-nom --skip-cached \
-      --cachix-cache machines \
-      --flake ".#checks.x86_64-linux"
+      cachix watch-exec machines -- \
+      nix-fast-build --no-nom --skip-cached

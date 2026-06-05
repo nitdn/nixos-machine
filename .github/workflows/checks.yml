@@ -32,14 +32,19 @@ jobs:
           extra_nix_config: |
             trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= machines.cachix.org-1:imnXlKFUc4Iaedv6469v6TO37ruiNh6OfJN4le5bqdE= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=
             substituters = https://machines.cachix.org https://nix-community.cachix.org https://cache.nixos.org/
+      - uses: cachix/cachix-action@5f2d7c5294214f71b873db4b969586b980625e71 # v17
+        with:
+          name: machines
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
       - name: Prefetch flake inputs
         run: |
           nix flake prefetch-inputs .
+          nix flake archive --json \
+          | jq -r '.path,(.inputs|to_entries[].value.path)' \
+          | cachix push machines
       - name: Check flakes
         shell: "nix shell nixpkgs#nix-fast-build -c bash -e {0}"
         env:
           CACHIX_AUTH_TOKEN: ${{ secrets.CACHIX_AUTH_TOKEN }}
         run: |
-          nix-fast-build --no-nom --skip-cached \
-          --option accept-flake-config true --cachix-cache machines \
-          --flake ".#checks.x86_64-linux"
+          nix-fast-build --no-nom --skip-cached
