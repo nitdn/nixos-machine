@@ -21,7 +21,7 @@ let
         theme = lib.mkDefault "rose_pine";
         editor = {
           line-number = "relative";
-          end-of-line-diagnostics = "hint";
+          # end-of-line-diagnostics = "hint";
           inline-diagnostics.cursor-line = "warning";
           # lsp.display-inlay-hints = true;
         };
