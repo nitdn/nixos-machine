@@ -25,22 +25,20 @@ dependencies:
     - which
     - jq
 
-environment:
-  USER: "root"
-
 steps:
   - name: "Bruteforce nix sandbox"
     command: |
       sed -i '/false/d; /build-users-group/d' /etc/nix/nix.conf
       cat /etc/nix/nix.conf
-
       groupadd -r nixbld
-      for n in $(seq 1 6); do useradd -c "Nix build user $n" \
+      for n in $(seq 1 4); do useradd -c "Nix build user $n" \
       -d /var/empty -g nixbld -G nixbld -M -N -r -s "$(which nologin)" \
       nixbld$n; done
-      chown nixbld1:nixbld /nix/{,store}
+      chown :nixbld /nix/{,store}
 
   - name: "Set extra substituters and prefetch inputs"
+    environment:
+      USER: "root"
     command: |
       cachix use nix-community
       cachix use machines
@@ -51,6 +49,9 @@ steps:
       | cachix push machines
 
   - name: "Check flake"
+    environment:
+      USER: "root"
     command: |
       cachix watch-exec machines -- \
-      nix-fast-build --no-nom --skip-cached
+      nix-fast-build --no-nom --skip-cached \
+      --flake .#checks.x86_64-linux
