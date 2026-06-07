@@ -24,6 +24,7 @@ dependencies:
     - shadow
     - which
     - jq
+    - mount
 
 steps:
   - name: "Bruteforce nix sandbox"
@@ -31,10 +32,9 @@ steps:
       sed -i '/false/d; /build-users-group/d' /etc/nix/nix.conf
       cat /etc/nix/nix.conf
       groupadd -r nixbld
-      for n in $(seq 1 4); do useradd -c "Nix build user $n" \
+      for n in $(seq 1 32); do useradd -c "Nix build user $n" \
       -d /var/empty -g nixbld -G nixbld -M -N -r -s "$(which nologin)" \
       nixbld$n; done
-      chown :nixbld /nix/{,store}
 
   - name: "Set extra substituters and prefetch inputs"
     environment:
