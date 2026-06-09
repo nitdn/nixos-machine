@@ -28,6 +28,10 @@ dependencies:
 steps:
   - name: "Bruteforce nix sandbox"
     command: |
+      echo 'download-buffer-size = 500000000' >> /etc/nix/nix.conf
+      echo 'substituters = https://cache.nixos.org/' >> /etc/nix/nix.conf
+      echo 'trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=' >> /etc/nix/nix.conf
+
       sed -i '/false/d; /build-users-group/d' /etc/nix/nix.conf
       cat /etc/nix/nix.conf
       groupadd -r nixbld

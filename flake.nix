@@ -19,7 +19,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     flake-parts.url = "github:hercules-ci/flake-parts";
-    import-tree.url = "github:denful/import-tree";
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -71,10 +70,15 @@
 
   outputs =
     { flake-parts, ... }@inputs:
-    let
-      inherit (inputs) import-tree;
-    in
-    flake-parts.lib.mkFlake { inherit inputs; } (import-tree ./modules);
+    flake-parts.lib.mkFlake { inherit inputs; } (
+      { lib, ... }:
+      let
+        import-tree = import ./import-tree.nix { inherit lib; };
+      in
+      {
+        imports = import-tree [ ./modules ];
+      }
+    );
 
   nixConfig = {
     extra-substituters = [
