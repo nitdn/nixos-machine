@@ -19,11 +19,13 @@ clone:
 dependencies:
   nixpkgs:
     - cachix
-    - nix-fast-build
+    - gnugrep
+    - lixpackagesets.stable.nix-fast-build
     - gnused
     - shadow
     - which
     - jq
+    - curl
 
 steps:
   - name: "Bruteforce nix sandbox"
@@ -32,14 +34,13 @@ steps:
       echo 'substituters = https://cache.nixos.org/' >> /etc/nix/nix.conf
       echo 'trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=' >> /etc/nix/nix.conf
 
-      sed -i '/false/d; /build-users-group/d' /etc/nix/nix.conf
+      sed -i '/false/d; /build-users-group/d; /post-build-hook/d' /etc/nix/nix.conf
       cat /etc/nix/nix.conf
       groupadd -r nixbld
       for n in $(seq 1 4); do useradd -c "Nix build user $n" \
       -d /var/empty -g nixbld -G nixbld -M -N -r -s "$(which nologin)" \
       nixbld$n; done
       chown :nixbld /nix/{,store}
-
   - name: "Set extra substituters and prefetch inputs"
     environment:
       USER: "root"
