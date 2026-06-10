@@ -5,12 +5,8 @@
 {
   lib,
   inputs,
-  config,
   ...
 }:
-let
-  inherit (config.meta) username; # dummy value as the fetcher doesnt really care
-in
 {
   flake.modules.nixos = {
     pc =
@@ -129,7 +125,7 @@ in
         };
       };
     tjmaxxer =
-      { pkgs, config, ... }:
+      { pkgs, ... }:
       {
         imports = [ inputs.steam-presence.nixosModules.steam-presence ];
         programs.steam = {
@@ -159,12 +155,10 @@ in
             # Other optional settings
           };
         };
-        sops.secrets.steam-web-apiKey = {
-          owner = username;
-        };
+        sops.secrets.steam-web-apiKey = { };
         systemd.user.services.steam-presence = {
           serviceConfig = {
-            LoadCredential = "steam-api-key:${config.sops.secrets.steam-web-apiKey.path}";
+            ImportCredential = "steam-api-key";
             WorkingDirectory = lib.mkForce "-%h/.local/state/steam-presence";
           };
         };
