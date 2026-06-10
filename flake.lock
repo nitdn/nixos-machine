@@ -101,11 +101,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1781071785,
-        "narHash": "sha256-H+czJklfqMPYdSSHRlPIlnbAO5R1yGvuQb4qHxOoVpY=",
+        "lastModified": 1781081284,
+        "narHash": "sha256-pfJktjqG9p4C7cF+M6Ny8xxEwK3l6iyOzlWH7AnEq2Y=",
         "owner": "atusy",
         "repo": "kakehashi",
-        "rev": "b9cc5cbf7de4e7dcce6136c3661b54d8c0c14206",
+        "rev": "ccd1dd0deafc467733804d771022c80d3aa5b7e1",
         "type": "github"
       },
       "original": {
