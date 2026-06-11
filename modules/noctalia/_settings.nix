@@ -96,19 +96,7 @@
             showLabelsOnlyWhenOccupied = true;
             unfocusedIconsOpacity = 1;
           }
-          {
-            defaultSettings = {
-              activeColor = "primary";
-              camFilterRegex = "";
-              enableToast = true;
-              hideInactive = false;
-              iconSpacing = 4;
-              inactiveColor = "none";
-              micFilterRegex = "";
-              removeMargins = false;
-            };
-            id = "plugin:privacy-indicator";
-          }
+          { id = "plugin:sticky-notes"; }
         ];
         left = [
           {
@@ -150,12 +138,6 @@
           }
           {
             defaultSettings = {
-              iconColor = "none";
-            };
-            id = "plugin:mimeapp-gui";
-          }
-          {
-            defaultSettings = {
               authMethod = "none";
               authPassword = "";
               authToken = "";
@@ -170,16 +152,22 @@
             id = "plugin:ntfy-notifications";
           }
           {
-            defaultSettings = { };
-            id = "plugin:kde-connect";
-          }
-          {
             defaultSettings = {
               hideSystemPorts = false;
               hideWhenEmpty = false;
               refreshInterval = 5;
             };
             id = "plugin:port-monitor";
+          }
+          {
+            defaultSettings = { };
+            id = "plugin:kde-connect";
+          }
+          {
+            defaultSettings = {
+              iconColor = "none";
+            };
+            id = "plugin:mimeapp-gui";
           }
         ];
         right = [
@@ -192,6 +180,7 @@
             id = "Tray";
             pinned = [ ];
           }
+          { id = "plugin:screen-toolkit"; }
           {
             hideWhenZero = true;
             hideWhenZeroUnread = false;
@@ -208,6 +197,19 @@
             id = "Battery";
             showNoctaliaPerformance = false;
             showPowerProfiles = false;
+          }
+          {
+            defaultSettings = {
+              activeColor = "primary";
+              camFilterRegex = "";
+              enableToast = true;
+              hideInactive = false;
+              iconSpacing = 4;
+              inactiveColor = "none";
+              micFilterRegex = "";
+              removeMargins = false;
+            };
+            id = "plugin:privacy-indicator";
           }
           {
             displayMode = "onhover";
@@ -748,7 +750,7 @@
   state = {
     barVisible = true;
     changelogState = {
-      lastSeenVersion = "v4.7.6";
+      lastSeenVersion = "v4.7.7";
     };
     colorSchemesList = {
       schemes = [
@@ -2157,7 +2159,7 @@
     lockScreenActive = false;
     noctaliaPerformanceMode = false;
     notificationsState = {
-      lastSeenTs = 1779275841000;
+      lastSeenTs = 1781262559000;
     };
     openedPanel = "";
     ui = {
