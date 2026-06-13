@@ -22,6 +22,7 @@ in
     {
       imports = [
         inputs.nix-index-database.nixosModules.default
+        inputs.run0-sudo-shim.nixosModules.default
       ];
 
       # Use the configured pkgs from perSystem.
@@ -148,6 +149,7 @@ in
       # Enable sound with pipewire.
       services.pulseaudio.enable = false;
       security.rtkit.enable = true;
+      security.run0-sudo-shim.enable = true;
       services.pipewire = lib.mkIf config.hardware.graphics.enable {
         enable = true;
         alsa.enable = true;
@@ -164,8 +166,9 @@ in
         pkgs.sane-airscan
         pkgs.via
       ];
-      environment.systemPackages = lib.mkIf config.hardware.graphics.enable [
+      environment.systemPackages = [
         pkgs.via
+
       ];
 
       programs.nh = {

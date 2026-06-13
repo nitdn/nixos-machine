@@ -2,24 +2,16 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-{
-  config,
-  ...
-}:
-let
-  inherit (config.meta) username;
-in
-
-{
+_: {
   flake.modules.nixos.pc =
     { pkgs, ... }:
     {
-      security.sudo.extraRules = [
-        {
-          users = [ username ];
-          commands = [ "ALL" ];
-        }
-      ];
+      # security.sudo.extraRules = [
+      #   {
+      #     users = [ username ];
+      #     commands = [ "ALL" ];
+      #   }
+      # ];
       # List packages installed in system profile. To search, run:
       # $ nix search wget
       environment.systemPackages = [
