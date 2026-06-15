@@ -96,7 +96,15 @@
             showLabelsOnlyWhenOccupied = true;
             unfocusedIconsOpacity = 1;
           }
-          { id = "plugin:sticky-notes"; }
+          {
+            defaultSettings = {
+              githubGistId = "";
+              githubToken = "";
+              notes = "[]";
+              syncEnabled = false;
+            };
+            id = "plugin:sticky-notes";
+          }
         ];
         left = [
           {
@@ -180,7 +188,23 @@
             id = "Tray";
             pinned = [ ];
           }
-          { id = "plugin:screen-toolkit"; }
+          {
+            defaultSettings = {
+              colorHistory = [ ];
+              detectedRecorder = "";
+              filenameFormat = "";
+              gifMaxSeconds = 30;
+              installedLangs = [ "eng" ];
+              paletteColors = [ ];
+              recordCopyToClipboard = false;
+              recordSkipConfirmation = false;
+              screenshotPath = "";
+              selectedOcrLang = "eng";
+              transAvailable = false;
+              videoPath = "";
+            };
+            id = "plugin:screen-toolkit";
+          }
           {
             hideWhenZero = true;
             hideWhenZeroUnread = false;
@@ -271,7 +295,7 @@
     };
     colorSchemes = {
       darkMode = true;
-      generationMethod = "vibrant";
+      generationMethod = "tonal-spot";
       manualSunrise = "06:30";
       manualSunset = "18:30";
       monitorForColors = "DP-2";
@@ -640,10 +664,6 @@
         }
         {
           enabled = true;
-          id = "discord";
-        }
-        {
-          enabled = true;
           id = "btop";
         }
         {
@@ -681,6 +701,10 @@
         {
           enabled = true;
           id = "kcolorscheme";
+        }
+        {
+          enabled = true;
+          id = "discord";
         }
       ];
       enableUserTheming = false;
