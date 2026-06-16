@@ -36,6 +36,7 @@ let
         pkgs.onlyoffice-desktopeditors
         pkgs.mesa.opencl
         pkgs.wineWow64Packages.stagingFull
+        pkgs.krita
         # pkgs.affinity-v3
         # (pkgs.writeShellApplication {
         #   name = "affinity-fix";
