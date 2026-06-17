@@ -37,7 +37,7 @@ in
 
       nix.nixPath = [
         "nixpkgs=${inputs.nixpkgs}"
-        "/home/${username}/nixos-machine"
+        "nixos-config=/home/${username}/nixos-machine"
       ];
       nix.settings = {
         trusted-users = [

@@ -2,7 +2,7 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-_:
+{ inputs, ... }:
 let
   productivity =
     {
@@ -22,7 +22,7 @@ let
       };
     in
     lib.mkIf cfg.enable {
-      # nixpkgs.overlays = [ inputs.affinity-nix.overlays.default ];
+      nixpkgs.overlays = [ inputs.affinity-nix.overlays.default ];
       programs.kdeconnect = {
         enable = true;
       };
@@ -37,26 +37,7 @@ let
         pkgs.mesa.opencl
         pkgs.wineWow64Packages.stagingFull
         pkgs.krita
-        # pkgs.affinity-v3
-        # (pkgs.writeShellApplication {
-        #   name = "affinity-fix";
-        #   runtimeInputs = [ pkgs.affinity-v3 ];
-        #   text = ''
-        #     # We are so unbelievably cooked
-        #     affinity-v3 wine "$HOME/.local/share/affinity-v3/drive_c/Program Files/Affinity/Affinity/Affinity.exe"
-        #   '';
-        # })
-        (
-          let
-            item = {
-              name = "affinity-fix";
-              desktopName = "Affinity (workaround for plugin-loader crash)";
-              icon = "affinity-v3";
-              exec = item.name;
-            };
-          in
-          pkgs.makeDesktopItem item
-        )
+        pkgs.affinity-v3
       ];
       i18n.inputMethod = {
         enable = true;

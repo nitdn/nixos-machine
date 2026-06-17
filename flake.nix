@@ -34,13 +34,14 @@
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # affinity-nix = {
-    #   url = "github:mrshmllow/affinity-nix";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    #   inputs.flake-parts.follows = "flake-parts";
-    #   inputs.treefmt-nix.follows = "treefmt-nix";
-    #   inputs.flake-compat.follows = "";
-    # };
+    affinity-nix = {
+      url = "github:mrshmllow/affinity-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-parts.follows = "flake-parts";
+      inputs.treefmt-nix.follows = "treefmt-nix";
+      inputs.flake-compat.follows = "";
+      inputs.git-hooks.inputs.nixpkgs.follows = "nixpkgs";
+    };
     steam-presence = {
       url = "github:JustTemmie/steam-presence";
       inputs.nixpkgs.follows = "nixpkgs";
