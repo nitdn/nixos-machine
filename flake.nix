@@ -74,16 +74,29 @@
   };
 
   outputs =
-    { flake-parts, ... }@inputs:
-    flake-parts.lib.mkFlake { inherit inputs; } (
-      { lib, ... }:
-      let
-        import-tree = import ./recursiveImportModules.nix lib;
-      in
+    { self, ... }@args:
+    let
+      inputs = (import ./.tack) { overrides = args.tackOverrides or { }; };
+      inputs' = inputs // {
+        self = self // {
+          inputs = inputs';
+        };
+      };
+
+    in
+    inputs.flake-parts.lib.mkFlake
       {
-        imports = import-tree ./modules;
+        inputs = inputs';
       }
-    );
+      (
+        { lib, ... }:
+        let
+          import-tree = import ./recursiveImportModules.nix lib;
+        in
+        {
+          imports = import-tree ./modules;
+        }
+      );
 
   nixConfig = {
     extra-substituters = [

@@ -144,7 +144,8 @@ in
         inputsFrom = [ config.devShells.commands ];
         packages = lib.attrValues {
           inherit (config.packages) jujutsu-pc kakoune-pc;
-          inherit (inputs'.nufmt.packages) default;
+          inherit (inputs'.nufmt.packages) nufmt;
+          inherit (inputs'.tack.packages) tack;
           inherit (pkgs)
             dix
             flake-edit

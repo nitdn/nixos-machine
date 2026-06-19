@@ -10,7 +10,6 @@
 }:
 let
   inherit (inputs) treefmt-nix flake-parts;
-  inherit (config.flake) sources;
 in
 {
   imports = [

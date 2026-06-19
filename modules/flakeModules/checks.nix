@@ -4,7 +4,6 @@
 
 {
   lib,
-  inputs,
   self,
   ...
 }:
@@ -23,7 +22,7 @@ in
           reuse =
             pkgs.runCommand "reuse"
               {
-                src = inputs.self.outPath;
+                src = self.outPath;
                 nativeBuildInputs = [ pkgs.reuse ];
               }
               ''
