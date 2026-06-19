@@ -71,12 +71,6 @@ let
         };
         language = [
           {
-            name = "__common__";
-            scope = "source.__common__";
-            file-types = [ ];
-            language-servers = [ "uwu_colors" ];
-          }
-          {
             name = "nix";
             auto-format = true;
             language-servers = [
