@@ -14,7 +14,7 @@ in
 {
   flake.wrappers = {
     noctalia-pc =
-      { wlib, ... }:
+      { wlib, pkgs, ... }:
       {
         # options.nativeStorePlugins = lib.mkOption {
         #   type = listOf str;
@@ -35,6 +35,7 @@ in
 
           # preInstalledPlugins = mkNativeStorePlugins cfg.nativeStorePlugins;
           outOfStoreConfig = lib.mkDefault "/tmp/noctalia-pc/";
+          runtimePkgs = [ pkgs.wtype ];
         };
       };
     noctalia-light = {
@@ -45,83 +46,92 @@ in
       settings.colorSchemes.darkMode = lib.mkForce false;
     };
     niri-pc =
+      { pkgs, config, ... }:
       let
-        noctaliaExe = "noctalia-shell";
+        noctaliaExe = lib.getExe' config.noctaliaPackage "noctalia-shell";
       in
       {
-        extraSettings = [
-          {
-            include = [
-              { optional = true; }
-              "~/.config/niri/noctalia.kdl"
-            ];
-          }
-        ];
-        settings = {
-          spawn-at-startup = [
-            noctaliaExe
-            # [
-            #   "valent"
-            #   "--gapplication-service"
-            # ]
-          ];
-          binds."Mod+Space" = _: {
-            props = {
-              hotkey-overlay-title = "Toggle launcher";
-            };
-            content.spawn = [
-              noctaliaExe
-              "ipc"
-              "call"
-              "launcher"
-              "toggle"
-            ];
-          };
-          binds."Mod+E" = _: {
-            props = {
-              hotkey-overlay-title = "Toggle Calendar/Clock";
-            };
-            content.spawn = [
-              noctaliaExe
-              "ipc"
-              "call"
-              "calendar"
-              "toggle"
-            ];
-          };
-          binds."Mod+Delete" = _: {
-            props = {
-              hotkey-overlay-title = "Toggle logout menu";
-            };
-            content.spawn = [
-              noctaliaExe
-              "ipc"
-              "call"
-              "sessionMenu"
-              "toggle"
-            ];
-          };
-
-          layer-rules = [
+        options.noctaliaPackage = lib.mkPackageOption pkgs "noctalia-shell" { };
+        config = {
+          noctaliaPackage = lib.mkDefault (wrappers.noctalia-pc.wrap { inherit pkgs; });
+          extraSettings = [
             {
-              matches = [ { namespace = "^noctalia-wallpaper*"; } ];
-              place-within-backdrop = true;
+              include = [
+                { optional = true; }
+                "~/.config/niri/noctalia.kdl"
+              ];
             }
           ];
+          settings = {
+            spawn-at-startup = [
+              noctaliaExe
+              # [
+              #   "valent"
+              #   "--gapplication-service"
+              # ]
+            ];
+            binds."Mod+Space" = _: {
+              props = {
+                hotkey-overlay-title = "Toggle launcher";
+              };
+              content.spawn = [
+                noctaliaExe
+                "ipc"
+                "call"
+                "launcher"
+                "toggle"
+              ];
+            };
+            binds."Mod+E" = _: {
+              props = {
+                hotkey-overlay-title = "Toggle Calendar/Clock";
+              };
+              content.spawn = [
+                noctaliaExe
+                "ipc"
+                "call"
+                "calendar"
+                "toggle"
+              ];
+            };
+            binds."Mod+Delete" = _: {
+              props = {
+                hotkey-overlay-title = "Toggle logout menu";
+              };
+              content.spawn = [
+                noctaliaExe
+                "ipc"
+                "call"
+                "sessionMenu"
+                "toggle"
+              ];
+            };
 
-          debug = {
-            honor-xdg-activation-with-invalid-serial = _: { };
-          };
+            layer-rules = [
+              {
+                matches = [ { namespace = "^noctalia-wallpaper*"; } ];
+                place-within-backdrop = true;
+              }
+            ];
 
-          layout = {
-            background-color = "transparent";
-          };
+            debug = {
+              honor-xdg-activation-with-invalid-serial = _: { };
+            };
 
-          overview = {
-            workspace-shadow.off = _: { };
+            layout = {
+              background-color = "transparent";
+            };
+
+            overview = {
+              workspace-shadow.off = _: { };
+            };
           };
         };
       };
+    niri-light = { pkgs, ... }: {
+      imports = [ config.flake.wrapperModules.niri-pc ];
+      noctaliaPackage = wrappers.noctalia-light.wrap { inherit pkgs; };
+    };
     kitty-pc = {
       extraSettings.include = [ "~/.config/kitty/themes/noctalia.conf" ];
     };

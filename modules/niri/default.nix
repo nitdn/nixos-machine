@@ -92,5 +92,8 @@ in
           pkgs.wayscriber
         ];
       };
+    lightMode = { pkgs, ... }: {
+      programs.niri.package = lib.mkForce (wrappers.niri-light.wrap { inherit pkgs; });
+    };
   };
 }
