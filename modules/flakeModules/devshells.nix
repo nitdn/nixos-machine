@@ -21,7 +21,7 @@ let
     }
 
     def "main trunk" [revset: string = @-] {
-      jj bookmark set -r ($revset) main
+      jj bookmark advance -t ($revset)
 
       jj git push -r ($revset) --remote flake-mirror --bookmark main
       jj git push -r ($revset) --remote tngl-mirror --bookmark main
