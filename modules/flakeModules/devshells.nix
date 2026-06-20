@@ -151,7 +151,6 @@ in
             jq
             kdlfmt
             meld
-            nh
             nil
             nixd
             nixfmt
