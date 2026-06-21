@@ -74,7 +74,6 @@ let
             name = "nix";
             auto-format = true;
             language-servers = [
-              "nil"
               "nixd"
               "kakehashi"
             ];
@@ -95,7 +94,6 @@ let
         kakehashi
         pkgs.git
         pkgs.nixd
-        pkgs.nil
         pkgs.nixfmt
         pkgs.nushell
         pkgs.prettier

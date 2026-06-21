@@ -140,7 +140,7 @@ in
       devShells.default = pkgs.mkShell {
         inputsFrom = [ config.devShells.commands ];
         packages = lib.attrValues {
-          inherit (config.packages) jujutsu-pc;
+          inherit (config.packages) jujutsu-pc kakoune-pc;
           inherit (inputs'.nufmt.packages) default;
           inherit (pkgs)
             bashInteractive
@@ -151,7 +151,6 @@ in
             jq
             kdlfmt
             meld
-            nil
             nixd
             nixfmt
             nvfetcher

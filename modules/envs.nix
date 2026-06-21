@@ -34,9 +34,5 @@ _: {
           text = ''exec "${pkgs.nix-search-tv.src}/nixpkgs.sh" "$@"'';
         })
       ];
-      environment.variables = {
-        EDITOR = "hx";
-        VISUAL = "hx";
-      };
     };
 }
