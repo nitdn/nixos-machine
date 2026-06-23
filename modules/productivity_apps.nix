@@ -2,7 +2,7 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-{ inputs, ... }:
+_:
 let
   productivity =
     {
@@ -22,7 +22,7 @@ let
       };
     in
     lib.mkIf cfg.enable {
-      nixpkgs.overlays = [ inputs.affinity-nix.overlays.default ];
+      # nixpkgs.overlays = [ inputs.affinity-nix.overlays.default ];
       programs.kdeconnect = {
         enable = true;
       };

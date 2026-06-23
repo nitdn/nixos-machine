@@ -100,7 +100,11 @@ in
     };
   flake.nixosConfigurations.tjmaxxer = inputs.nixpkgs.lib.nixosSystem {
     modules = lib.attrValues {
-      inherit (nixosModules) pc tjmaxxer;
+      inherit (nixosModules)
+        pc
+        tjmaxxer
+        ;
     };
+
   };
 }

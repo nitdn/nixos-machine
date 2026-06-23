@@ -11,8 +11,19 @@
 }:
 let
   inherit (config.meta) username;
+  nixosModules = config.flake.modules.nixos;
 in
 {
+  flake.modules.nixos.readOnlyPkgs = { ... }: {
+    # this needs to be a hardcoded system configuration
+    # do not import it in every machine
+    nixpkgs.pkgs = withSystem "x86_64-linux" ({ pkgs, ... }: pkgs); # perSystem module arguments
+    imports = [ inputs.nixpkgs.nixosModules.readOnlyPkgs ];
+  };
+  flake.modules.nixos.tjmaxxer.imports = [ nixosModules.readOnlyPkgs ];
+  flake.modules.nixos.msi-colgate.imports = [ nixosModules.readOnlyPkgs ];
+  flake.modules.nixos.disko-elysium.imports = [ nixosModules.readOnlyPkgs ];
+
   flake.modules.nixos.pc =
     {
       pkgs,
@@ -24,13 +35,6 @@ in
         inputs.nix-index-database.nixosModules.default
         inputs.run0-sudo-shim.nixosModules.default
       ];
-
-      # Use the configured pkgs from perSystem.
-      nixpkgs.pkgs = withSystem config.nixpkgs.hostPlatform.system (
-        { pkgs, ... }: # perSystem module arguments
-        pkgs
-      );
-
       # Edit this configuration file to define what should be installed on
       # your system.  Help is available in the configuration.nix(5) man page
       # and in the NixOS manual (accessible by running ‘nixos-help’).
