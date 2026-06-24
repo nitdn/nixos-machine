@@ -29,7 +29,12 @@ let
           Extra settings for kitty that may not be
           encoded by the wrapper correctly'';
       };
-      config.extraConfig = importsGenerate config.extraSettings;
+      config = {
+        extraConfig = importsGenerate config.extraSettings;
+        # workaround for `kitty @` not working
+        flags = lib.mkForce { };
+        env.KITTY_CONFIG_DIRECTORY = placeholder "out";
+      };
     };
 in
 {
@@ -48,6 +53,7 @@ in
           enable_audio_bell = false;
           update_check_interval = 0;
           enabled_layouts = "horizontal";
+          allow_remote_control = true;
           # background_opacity = 0.8;
         };
       };
