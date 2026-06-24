@@ -64,6 +64,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.treefmt-nix.follows = "treefmt-nix";
     };
+    nix-devshells = {
+      url = "git+https://codeberg.org/nitdn/nix-devshells.git";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.wrappers.follows = "wrappers";
+    };
     # noctalia-plugins = {
     #   url = "github:noctalia-dev/noctalia-plugins";
     #   flake = false;

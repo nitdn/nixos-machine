@@ -242,6 +242,29 @@
         "type": "github"
       }
     },
+    "nix-devshells": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "wrappers": [
+          "wrappers"
+        ]
+      },
+      "locked": {
+        "lastModified": 1782325289,
+        "narHash": "sha256-8Oc3R6wsZz4jqzq68V2l63vPZ3DstMnLsI0hpDaZxt0=",
+        "ref": "refs/heads/main",
+        "rev": "f797b97c12c6720faa296b9533300c6edb63c283",
+        "revCount": 55,
+        "type": "git",
+        "url": "https://codeberg.org/nitdn/nix-devshells.git"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://codeberg.org/nitdn/nix-devshells.git"
+      }
+    },
     "nix-github-actions": {
       "inputs": {
         "nixpkgs": [
@@ -394,6 +417,7 @@
         "disko": "disko",
         "flake-parts": "flake-parts",
         "microvm": "microvm",
+        "nix-devshells": "nix-devshells",
         "nix-index-database": "nix-index-database",
         "nixpkgs": "nixpkgs",
         "nufmt": "nufmt",
