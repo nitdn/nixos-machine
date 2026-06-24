@@ -5,6 +5,9 @@
 # Baseline for a kakoune wrapper
 { inputs, ... }:
 {
+  flake.wrappers.kakaaa = {
+    imports = [ inputs.nix-devshells.wrapperModules.kakoune ];
+  };
   flake.wrappers.kakoune-pc =
     {
       pkgs,

@@ -75,10 +75,10 @@
     flake-parts.lib.mkFlake { inherit inputs; } (
       { lib, ... }:
       let
-        import-tree = import ./import-tree.nix { inherit lib; };
+        import-tree = import ./recursiveImportModules.nix lib;
       in
       {
-        imports = import-tree [ ./modules ];
+        imports = import-tree ./modules;
       }
     );
 
