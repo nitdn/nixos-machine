@@ -59,10 +59,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.treefmt-nix.follows = "treefmt-nix";
     };
-    kakehashi = {
-      url = "github:atusy/kakehashi";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     run0-sudo-shim = {
       url = "github:lordgrimmauld/run0-sudo-shim";
       inputs.nixpkgs.follows = "nixpkgs";
