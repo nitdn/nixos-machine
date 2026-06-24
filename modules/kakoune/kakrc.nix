@@ -1,7 +1,10 @@
 # SPDX-FileCopyrightText: 2026 Nitesh Kumar Debnath <nitkdnath@gmail.com>
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
-
+{ config, ... }:
+let
+  inherit (config.meta) username;
+in
 {
   flake.wrappers.kakoune-pc =
     { pkgs, ... }:
@@ -20,12 +23,11 @@
                   [nixd.settings.nixd]
                   "nixpkgs.expr" = "import <nixpkgs> { }"
                   [nixd.settings.nixd.options]
-                  nixos.expr = "(builtins.getFlake \"/home/ssmvabaa/nixos-machine\").nixosConfigurations.tjmaxxer.options"
-                  flake-parts.expr = "(builtins.getFlake \"/home/ssmvabaa/nixos-machine\").debug.options"
-                  flake-parts-perSystem.expr = "(builtins.getFlake \"/home/ssmvabaa/nixos-machine\").currentSystem.options"
+                  nixos.expr = "(builtins.getFlake \"/home/${username}/nixos-machine\").nixosConfigurations.tjmaxxer.options"
+                  flake-parts.expr = "(builtins.getFlake \"/home/${username}/nixos-machine\").debug.options"
+                  flake-parts-perSystem.expr = "(builtins.getFlake \"/home/${username}/nixos-machine\").currentSystem.options"
                   }
               }
-          }
 
 
           lsp-enable

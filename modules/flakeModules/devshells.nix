@@ -1,8 +1,9 @@
 # SPDX-FileCopyrightText: 2026 Nitesh Kumar Debnath <nitkdnath@gmail.com>
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
-{ lib, ... }:
+{ config, lib, ... }:
 let
+  inherit (config.meta) username;
   command_string = /* nu */ ''
     def hostnames [] { ["tjmaxxer" "msi-colgate" "disko-elysium"] }
 
@@ -73,7 +74,7 @@ let
 
       (
             nh os $command .
-            --hostname $hostname --target-host $"ssmvabaa@($hostname).local"
+            --hostname $hostname --target-host $"${username}@($hostname).local"
           )
     }
 

@@ -38,17 +38,17 @@ in
             "guest ok" = "yes";
             "create mask" = "0644";
             "directory mask" = "0755";
-            "force user" = "ssmvabaa";
+            "force user" = "${username}";
             "force group" = "scanner";
           };
           "scanner" = {
-            "path" = "/home/ssmvabaa/Pictures/Scanner";
+            "path" = "/home/${username}/Pictures/Scanner";
             "browseable" = "yes";
             "read only" = "no";
             "guest ok" = "no";
             "create mask" = "0644";
             "directory mask" = "0755";
-            "force user" = "ssmvabaa";
+            "force user" = "${username}";
             "force group" = "scanner";
           };
         };
