@@ -44,7 +44,7 @@
         };
       };
       kakoune-lsp = pkgs.kakoune-lsp.overrideAttrs (
-        finalAttrs: prevAttrs:
+        finalAttrs: _:
         let
           inherit (pkgs) fetchFromGitHub;
         in
@@ -62,12 +62,12 @@
             inherit (finalAttrs) pname src version;
             hash = finalAttrs.cargoHash;
           };
-          postFixup = prevAttrs.postFixup or "" + ''
-            mkdir -p $out/share/kak
-            ln -s $out/bin $out/share/kak
-          '';
         }
       );
+      kak-plugin-lsp = pkgs.runCommand "kak-plugin-lsp" { } ''
+        mkdir -p $out/share/kak/bin
+        ln -s ${kakoune-lsp}/bin/kak-lsp $out/share/kak/bin
+      '';
     in
     {
       imports = [ wlib.modules.default ];
@@ -79,7 +79,7 @@
             plugins = prev.plugins or [ ] ++ [
               catppuccin
               parinfer-rust
-              kakoune-lsp
+              kak-plugin-lsp
             ];
           };
         }

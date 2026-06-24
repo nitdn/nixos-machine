@@ -123,6 +123,7 @@ let
     } command_string;
 in
 {
+
   perSystem =
     {
       inputs',
@@ -130,6 +131,7 @@ in
       config,
       ...
     }:
+
     {
       packages.runCommand = command_package pkgs config;
       devShells.commands = pkgs.mkShell {

@@ -23,6 +23,7 @@
                   nixos.expr = "(builtins.getFlake \"/home/ssmvabaa/nixos-machine\").nixosConfigurations.tjmaxxer.options"
                   flake-parts.expr = "(builtins.getFlake \"/home/ssmvabaa/nixos-machine\").debug.options"
                   flake-parts-perSystem.expr = "(builtins.getFlake \"/home/ssmvabaa/nixos-machine\").currentSystem.options"
+                  }
               }
           }
 
@@ -31,6 +32,9 @@
           addhl global/ number-lines -relative
 
           set-option global modelinefmt "%opt{lsp_modeline} %opt{modelinefmt}"
+
+          map global user c ':comment-line<ret>' -docstring 'Comment out block'
+          map global user = ':lsp-range-formatting<ret>' -docstring 'LSP range formatting'
 
           map global user l ':enter-user-mode lsp<ret>' -docstring 'LSP mode'
 
@@ -46,7 +50,6 @@
           map global object t '<a-semicolon>lsp-object Class Interface Module Namespace Struct<ret>' -docstring 'LSP class or module'
           map global object d '<a-semicolon>lsp-diagnostic-object error warning<ret>' -docstring 'LSP errors and warnings'
           map global object D '<a-semicolon>lsp-diagnostic-object error<ret>' -docstring 'LSP errors'
-
         '';
       };
     in
