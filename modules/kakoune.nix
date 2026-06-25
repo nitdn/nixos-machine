@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2026 Nitesh Kumar Debnath <nitkdnath@gmail.com>
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 # Baseline for a kakoune wrapper
 { inputs, config, ... }:
 
