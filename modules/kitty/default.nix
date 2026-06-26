@@ -41,12 +41,12 @@ in
   meta.term = "kitty";
   flake = {
     wrappers = {
-      kitty-pc = {
+      kitty-pc = _: {
         imports = [ kittyWrapper ];
         font.name = "monospace";
         font.size = 14;
         keybindings = {
-          f2 = "launch --cwd=current --type os-window";
+          "ctrl+f2" = "launch --cwd=current --type os-window";
         };
         settings = {
           scrollback_lines = 10000;
@@ -60,6 +60,13 @@ in
       niri-pc.settings = {
         spawn-at-startup = [ [ term ] ];
         binds."Mod+T".spawn = [ term ];
+      };
+      jujutsu-pc.settings = {
+        merge-tools."kitten".diff-args = [
+          "diff"
+          "$left"
+          "$right"
+        ];
       };
       nushell-pc."config.nu".content = ''
         use std/config *
@@ -76,7 +83,7 @@ in
           direnv export json | from json | default {} | load-env
           # If direnv changes the PATH, it will become a string and we need to re-convert it to a list
           $env.PATH = do (env-conversions).path.from_string $env.PATH
-        }]          
+        }]
         alias y = yazi
       '';
     };
