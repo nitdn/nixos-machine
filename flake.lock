@@ -252,11 +252,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1782542345,
-        "narHash": "sha256-vGw5PpQgdwSEW4XNIef8NQ8fmYdIFwS6DYtY3G3jeBg=",
+        "lastModified": 1782548960,
+        "narHash": "sha256-E7a/I64BWgRAvPf+HQ0BmqXGbC5qTCgw5SgU3CJrkv8=",
         "ref": "refs/heads/main",
-        "rev": "d59c4db0eeb21f8151a127fceab6689b5cb4cc91",
-        "revCount": 58,
+        "rev": "3bb7be6e6972966ae26def8f32c81351d9685064",
+        "revCount": 59,
         "type": "git",
         "url": "https://codeberg.org/nitdn/nix-devshells.git"
       },

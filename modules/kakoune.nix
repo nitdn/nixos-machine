@@ -12,7 +12,9 @@ in
   flake = {
     modules.nixos.pc = { pkgs, ... }: {
       environment.systemPackages = [
-        (wrappers.kakoune-pc.wrap { inherit pkgs; })
+        (wrappers.kakoune-pc.wrap {
+          inherit pkgs;
+        })
         pkgs.kdePackages.kate # Needed for text editor support
       ];
       environment.variables = {
@@ -21,8 +23,13 @@ in
         PAGER = "kak";
       };
     };
-    wrappers.kakoune-pc = {
+    wrappers.kakoune-pc = { pkgs, ... }: {
       imports = [ inputs.nix-devshells.wrapperModules.kakoune ];
+      plugins = [
+        # needed for manpagers
+        pkgs.kakounePlugins.kak-ansi
+      ];
+
     };
   };
 }
