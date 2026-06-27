@@ -59,11 +59,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.treefmt-nix.follows = "treefmt-nix";
     };
-    run0-sudo-shim = {
-      url = "github:lordgrimmauld/run0-sudo-shim";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.treefmt-nix.follows = "treefmt-nix";
-    };
     nix-devshells = {
       url = "git+https://codeberg.org/nitdn/nix-devshells.git";
       inputs.nixpkgs.follows = "nixpkgs";

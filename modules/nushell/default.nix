@@ -50,7 +50,10 @@ in
         nushell-pc = wrappers.nushell-pc.wrap { inherit pkgs; };
       in
       {
-        environment.shells = [ nushell-pc ];
+        environment.shells = [
+          nushell-pc
+          pkgs.stdenv.builder
+        ];
         environment.systemPackages = [
           nushell-pc
         ];

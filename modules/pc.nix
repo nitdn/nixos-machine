@@ -33,7 +33,6 @@ in
     {
       imports = [
         inputs.nix-index-database.nixosModules.default
-        inputs.run0-sudo-shim.nixosModules.default
       ];
       # Edit this configuration file to define what should be installed on
       # your system.  Help is available in the configuration.nix(5) man page
@@ -152,11 +151,18 @@ in
         layout = "us";
         variant = "";
       };
+      # run0 settings
+      security.sudo.enable = false;
+      security.run0 = {
+        enable = true;
+        sudo-shim.enable = true;
+        persistentAuth.enable = true;
+      };
+      system.tools.nixos-rebuild.enableRun0Elevation = true;
 
       # Enable sound with pipewire.
       services.pulseaudio.enable = false;
       security.rtkit.enable = true;
-      security.run0-sudo-shim.enable = true;
       services.pipewire = lib.mkIf config.hardware.graphics.enable {
         enable = true;
         alsa.enable = true;

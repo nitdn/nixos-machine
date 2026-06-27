@@ -6,12 +6,6 @@ _: {
   flake.modules.nixos.pc =
     { pkgs, ... }:
     {
-      # security.sudo.extraRules = [
-      #   {
-      #     users = [ username ];
-      #     commands = [ "ALL" ];
-      #   }
-      # ];
       # List packages installed in system profile. To search, run:
       # $ nix search wget
       environment.systemPackages = [

@@ -146,7 +146,6 @@ in
           inherit (config.packages) jujutsu-pc kakoune-pc;
           inherit (inputs'.nufmt.packages) default;
           inherit (pkgs)
-            bashInteractive
             dix
             flake-edit
             github-cli
