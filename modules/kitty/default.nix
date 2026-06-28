@@ -34,6 +34,10 @@ let
         # workaround for `kitty @` not working
         flags = lib.mkForce { };
         env.KITTY_CONFIG_DIRECTORY = placeholder "out";
+        wrapperVariants.kit1 = {
+          addFlag = [ "-1" ];
+          exePath = "bin/kitty";
+        };
       };
     };
 in
@@ -58,8 +62,8 @@ in
         };
       };
       niri-pc.settings = {
-        spawn-at-startup = [ [ term ] ];
-        binds."Mod+T".spawn = [ term ];
+        spawn-at-startup = [ [ "kit1" ] ];
+        binds."Mod+T".spawn = [ "kit1" ];
       };
       jujutsu-pc.settings = {
         merge-tools."kitten".diff-args = [

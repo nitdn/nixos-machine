@@ -71,7 +71,13 @@ in
               mode = "1920x1080";
               transform = "normal";
               # Its bugging again
-              # variable-refresh-rate = _: { };
+              variable-refresh-rate = _: { };
+            };
+            "Microstep MSI G244F 0000000000001" = {
+              mode = "1920x1080";
+              transform = "normal";
+              # Its bugging again
+              variable-refresh-rate = _: { };
             };
           };
         };

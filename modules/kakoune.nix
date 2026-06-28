@@ -20,7 +20,7 @@ in
       environment.variables = {
         EDITOR = "kak";
         VISUAL = "kak";
-        PAGER = "kak";
+        PAGER = "kak -ro -e 'rmhl global/number-lines_-relative'";
       };
     };
     wrappers.kakoune-pc = { pkgs, ... }: {
