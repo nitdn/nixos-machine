@@ -64,6 +64,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.wrappers.follows = "wrappers";
     };
+    inshellah = {
+      url = "github:manic-systems/inshellah";
+    };
     # noctalia-plugins = {
     #   url = "github:noctalia-dev/noctalia-plugins";
     #   flake = false;

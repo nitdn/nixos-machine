@@ -221,6 +221,21 @@
         "type": "github"
       }
     },
+    "inshellah": {
+      "locked": {
+        "lastModified": 1782548861,
+        "narHash": "sha256-Hl0PLWo6xyhSJaQtOkrNGQFxqBx5AdP1R1veMD22cMc=",
+        "owner": "manic-systems",
+        "repo": "inshellah",
+        "rev": "4e0da58e610f4cc3d1d3ab11b27f61afa8be99c1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "manic-systems",
+        "repo": "inshellah",
+        "type": "github"
+      }
+    },
     "microvm": {
       "inputs": {
         "nixpkgs": [
@@ -252,11 +267,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1782548960,
-        "narHash": "sha256-E7a/I64BWgRAvPf+HQ0BmqXGbC5qTCgw5SgU3CJrkv8=",
+        "lastModified": 1782624742,
+        "narHash": "sha256-GteofJZN84DDzEj5p9WUzaqifF/Xl3srQbPcOgG7N+0=",
         "ref": "refs/heads/main",
-        "rev": "3bb7be6e6972966ae26def8f32c81351d9685064",
-        "revCount": 59,
+        "rev": "4ba4e78ee39951d06a2476d1d56e1c669f66e252",
+        "revCount": 60,
         "type": "git",
         "url": "https://codeberg.org/nitdn/nix-devshells.git"
       },
@@ -395,6 +410,7 @@
         "affinity-nix": "affinity-nix",
         "disko": "disko",
         "flake-parts": "flake-parts",
+        "inshellah": "inshellah",
         "microvm": "microvm",
         "nix-devshells": "nix-devshells",
         "nix-index-database": "nix-index-database",
