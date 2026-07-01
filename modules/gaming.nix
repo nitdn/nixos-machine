@@ -97,7 +97,7 @@
           })
           pkgs.easyeffects
           # pkgs.lutris
-          pkgs.vesktop
+          (pkgs.vesktop.override { pnpm_10_29_2 = pkgs.pnpm_10; })
           pkgs.arrpc
           (pkgs.gamescope-wsi.overrideAttrs (_: {
             NIX_CFLAGS_COMPILE = [ "-fno-fast-math" ];

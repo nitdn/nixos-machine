@@ -11,8 +11,9 @@ gh = "github:{path}"
 # all_follow maps input names to the top-level pin they follow
 # opt out per-input with exclude_follow
 [all_follow]
-nixpkgs = "nixpkgs"
-# nixpkgs = ["nixpkgs-stable", "nixpkgs-unstable"]
+# nixpkgs = "nixpkgs"
+nixpkgs = ["nixpkgs", "nixpkgs-lib"]
+rust-analyzer-src = "rust-analyzer"
 
 # inputs.<name> fields
 #   url             required, shorturl ok, ?rev=<sha> pins an exact commit
@@ -29,16 +30,10 @@ nixpkgs = "nixpkgs"
 url = "github:mrshmllow/affinity-nix"
 
 [inputs.affinity-nix.follows]
-flake-compat = ""
 flake-parts = "flake-parts"
-nixpkgs = "nixpkgs"
-treefmt-nix = "treefmt-nix"
 
 [inputs.disko]
 url = "github:nix-community/disko"
-
-[inputs.disko.follows]
-nixpkgs = "nixpkgs"
 
 [inputs.flake-parts]
 url = "github:hercules-ci/flake-parts"
@@ -49,61 +44,38 @@ url = "github:manic-systems/inshellah"
 [inputs.microvm]
 url = "github:microvm-nix/microvm.nix"
 
-[inputs.microvm.follows]
-nixpkgs = "nixpkgs"
-
 [inputs.nix-devshells]
 url = "git+https://codeberg.org/nitdn/nix-devshells.git"
 
 [inputs.nix-devshells.follows]
-nixpkgs = "nixpkgs"
 wrappers = "wrappers"
 
 [inputs.nix-index-database]
 url = "github:nix-community/nix-index-database"
 
-[inputs.nix-index-database.follows]
-nixpkgs = "nixpkgs"
-
 [inputs.nixpkgs]
-url = "github:nixos/nixpkgs/nixos-unstable"
+url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz"
 
 [inputs.nufmt]
 url = "github:nushell/nufmt"
 
 [inputs.nufmt.follows]
-nixpkgs = "nixpkgs"
 treefmt-nix = "treefmt-nix"
 
 [inputs.sops-nix]
 url = "github:Mic92/sops-nix"
 
-[inputs.sops-nix.follows]
-nixpkgs = "nixpkgs"
-
 [inputs.steam-presence]
 url = "github:JustTemmie/steam-presence"
-
-[inputs.steam-presence.follows]
-nixpkgs = "nixpkgs"
 
 [inputs.treefmt-nix]
 url = "github:numtide/treefmt-nix"
 
-[inputs.treefmt-nix.follows]
-nixpkgs = "nixpkgs"
-
 [inputs.wrappers]
 url = "github:BirdeeHub/nix-wrapper-modules"
 
-[inputs.wrappers.follows]
-nixpkgs = "nixpkgs"
-
 [inputs.zen-browser]
 url = "github:youwen5/zen-browser-flake"
-
-[inputs.zen-browser.follows]
-nixpkgs = "nixpkgs"
 
 [inputs.tack]
 url = "gh:manic-systems/tack"
