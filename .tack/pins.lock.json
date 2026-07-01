@@ -7,6 +7,12 @@
     "narHash": "sha256-6UC44kl++QdCEJBG09dEITrrshEgiPQZ7t9zDnaxs5Q=",
     "lastModified": 1782537890
   },
+  "bizhub-225i.zip": {
+    "type": "fixed",
+    "url": "https://dl.konicaminolta.eu/en/?tx_kmdownloadproxy_downloadproxy[fileId]=4562fe1cc1a8e069fd2f57714fd11d89&tx_kmdownloadproxy_downloadproxy[documentId]=138755&tx_kmdownloadproxy_downloadproxy[system]=KonicaMinolta&tx_kmdownloadproxy_downloadproxy[language]=EN&type=1558521685",
+    "sha256": "sha256-iF3FVSqDsjs6i4xeDMsUSb+0woCJ5/1lq7R0fe+x/HU=",
+    "unpack": "file"
+  },
   "disko": {
     "type": "github",
     "owner": "nix-community",
@@ -14,6 +20,12 @@
     "rev": "ff8702b4de27f72b4c78573dfb89ec74e36abdf1",
     "narHash": "sha256-RxWs5ND31KzTG7wvMM+PMfUjyNpmIEr999lqNARaM5o=",
     "lastModified": 1781152676
+  },
+  "epson-202101w": {
+    "type": "fixed",
+    "url": "http://web.archive.org/web/20260701062829/https://download-center.epson.com/f/module/54142a20-70bd-4f75-b146-a3a3a0bc9eee/epson-inkjet-printer-202101w-1.0.3-1.src.rpm",
+    "sha256": "sha256-80wYZKZctjj75ZG4a6uwVkD10L97GOZ0MyE104aTTeE=",
+    "unpack": "file"
   },
   "flake-parts": {
     "type": "github",

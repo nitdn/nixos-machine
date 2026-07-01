@@ -79,9 +79,8 @@ let
     }
 
     def "main lock" [] {
-      nix flake update --commit-lock-file
-
-      nvfetcher --commit-changes
+      let updateMsg = tack update
+      jj commit -m $updateMsg
     }
 
     def "main eval" [hostname: string@hostnames = tjmaxxer] {
@@ -116,7 +115,6 @@ let
         ":"
         "${lib.makeBinPath [
           pkgs.inferno
-          pkgs.nvfetcher
           pkgs.nix-fast-build
           config.packages.jujutsu-pc
         ]}"
@@ -156,7 +154,6 @@ in
             meld
             nixd
             nixfmt
-            nvfetcher
             onefetch
             pandoc
             reuse

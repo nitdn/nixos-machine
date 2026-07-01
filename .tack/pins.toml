@@ -108,5 +108,13 @@ nixpkgs = "nixpkgs"
 [inputs.tack]
 url = "gh:manic-systems/tack"
 
+[inputs."bizhub-225i.zip"]
+url = "https://dl.konicaminolta.eu/en/?tx_kmdownloadproxy_downloadproxy[fileId]=4562fe1cc1a8e069fd2f57714fd11d89&tx_kmdownloadproxy_downloadproxy[documentId]=138755&tx_kmdownloadproxy_downloadproxy[system]=KonicaMinolta&tx_kmdownloadproxy_downloadproxy[language]=EN&type=1558521685"
+type = "fixed"
+
+[inputs.epson-202101w]
+url = "http://web.archive.org/web/20260701062829/https://download-center.epson.com/f/module/54142a20-70bd-4f75-b146-a3a3a0bc9eee/epson-inkjet-printer-202101w-1.0.3-1.src.rpm"
+type = "fixed"
+
 [tack]
 recomposable = true

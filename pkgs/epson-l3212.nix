@@ -5,7 +5,7 @@
 {
   lib,
   stdenv,
-  pname,
+  pname ? "epson-inkjet-printer-202101w",
   version,
   src,
   rpmextract,
@@ -16,7 +16,7 @@
 }:
 
 let
-  filterVersion = version;
+  filterVersion = "1.0.0";
 in
 stdenv.mkDerivation {
   inherit pname version src;

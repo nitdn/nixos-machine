@@ -35,8 +35,8 @@ in
       ...
     }:
     let
-
-      inherit (pkgs.callPackage sources.raw { }) bizhub-225i epson-202101w;
+      epson-202101w = inputs."epson-202101w";
+      bizhub-225i = inputs."bizhub-225i.zip";
     in
     {
       _module.args.pkgs = import inputs.nixpkgs {
@@ -47,8 +47,11 @@ in
         };
       };
       packages = {
-        bizhub-225i = pkgs.callPackage ../../pkgs/bizhub-225i.nix bizhub-225i;
-        epson-l3212 = pkgs.callPackage ../../pkgs/epson-l3212.nix epson-202101w;
+        bizhub-225i = pkgs.callPackage ../../pkgs/bizhub-225i.nix { src = bizhub-225i; };
+        epson-l3212 = pkgs.callPackage ../../pkgs/epson-l3212.nix {
+          src = epson-202101w;
+          version = "1.0.3";
+        };
       };
       treefmt.programs =
         lib.genAttrs
