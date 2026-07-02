@@ -34,8 +34,6 @@ let
 
       # Watch is uncapturable for some reason
       watch $"($nu.home-dir)/nixos-machine" --glob=**/*.nix {|| nix flake check; jj new }
-
-      direnv reload
     }
 
     def "main squash" [base: string] {
@@ -79,7 +77,7 @@ let
     }
 
     def "main lock" [] {
-      let updateMsg = tack update
+      let updateMsg = (TACK_NIX_CONF_TOKENS=1 tack update)
       jj commit -m $updateMsg
     }
 

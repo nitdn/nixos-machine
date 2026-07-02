@@ -73,21 +73,6 @@ in
         ];
       };
       nushell-pc."config.nu".content = ''
-        use std/config *
-
-        # Initialize the PWD hook as an empty list if it doesn't exist
-        $env.config.hooks.pre_prompt = $env.config.hooks.pre_prompt? | default []
-
-        $env.config.hooks.pre_prompt ++= [{||
-          if (which direnv | is-empty) {
-            # If direnv isn't installed, do nothing
-            return
-          }
-
-          direnv export json | from json | default {} | load-env
-          # If direnv changes the PATH, it will become a string and we need to re-convert it to a list
-          $env.PATH = do (env-conversions).path.from_string $env.PATH
-        }]
         alias y = yazi
       '';
     };
@@ -120,7 +105,6 @@ in
         '';
         # Required for bashInteractive; its gonna be bash anyway
         programs.bash.enable = true;
-        programs.direnv.enable = true;
         programs.zoxide = {
           enable = true;
         };

@@ -2,6 +2,7 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 {
+  inputs,
   config,
   lib,
   ...
@@ -27,8 +28,9 @@ in
     wrappers.nushell-pc =
       { wlib, pkgs, ... }:
       let
+        inherit (pkgs.stdenv.hostPlatform) system;
         zoxide-nushell =
-          pkgs.runCommand "zoxide-nushell-integration"
+          pkgs.runCommand "zoxide.nu"
             {
               nativeBuildInputs = [ pkgs.zoxide ];
             }
@@ -36,11 +38,20 @@ in
               zoxide init nushell --no-cmd > $out
               echo ${lib.strings.escapeShellArg zoxide_completer} >> $out
             '';
+        cade-nushell =
+          pkgs.runCommand "cade.nu"
+            {
+              nativeBuildInputs = [ inputs.cade.packages.${system}.default ];
+            }
+            ''
+              cade  hook nushell >> "$out"
+            '';
       in
       {
         imports = [ wlib.wrapperModules.nushell ];
         "config.nu".content = ''
           source ${zoxide-nushell}
+          source ${cade-nushell}
         '';
       };
     wrappers.kitty-pc.settings.shell = "nu";
@@ -50,6 +61,8 @@ in
         nushell-pc = wrappers.nushell-pc.wrap { inherit pkgs; };
       in
       {
+        imports = [ inputs.cade.nixosModules.default ];
+        programs.cade.enable = true;
         environment.shells = [
           nushell-pc
           pkgs.stdenv.builder

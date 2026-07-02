@@ -9,6 +9,7 @@
   ...
 }:
 let
+  inherit (config.meta) username;
   inherit (config.flake) wrappers;
 in
 {
@@ -34,7 +35,7 @@ in
           plugins = import ./_plugins.nix;
 
           # preInstalledPlugins = mkNativeStorePlugins cfg.nativeStorePlugins;
-          outOfStoreConfig = lib.mkDefault "/tmp/noctalia-pc/";
+          outOfStoreConfig = lib.mkDefault "/home/${username}/.local/state/noctalia-pc/";
           runtimePkgs = [ pkgs.wtype ];
         };
       };

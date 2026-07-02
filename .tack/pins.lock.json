@@ -13,6 +13,14 @@
     "sha256": "sha256-iF3FVSqDsjs6i4xeDMsUSb+0woCJ5/1lq7R0fe+x/HU=",
     "unpack": "file"
   },
+  "cade": {
+    "type": "github",
+    "owner": "manic-systems",
+    "repo": "cade",
+    "rev": "316562cb400117dd7ec998acf67182566e475318",
+    "narHash": "sha256-MFx0t5f8nQBhWl6WjopW+e19JUKhaDWZ39T7tBmJRHc=",
+    "lastModified": 1781176544
+  },
   "disko": {
     "type": "github",
     "owner": "nix-community",
@@ -31,9 +39,9 @@
     "type": "github",
     "owner": "hercules-ci",
     "repo": "flake-parts",
-    "rev": "f7c1a2d347e4c52d5fb8d10cb4d94b5884e546fb",
-    "narHash": "sha256-m1Yf0wZ8j1OHjTc2UwHwyQRSnNeSgLJOd7q5Y45hzi4=",
-    "lastModified": 1778716662
+    "rev": "17c9d6cdfc60c64f4ee8d306f9bc0b4ccb51481e",
+    "narHash": "sha256-vp6Y/Grm98ESt6ceOkWiHWyZRDV3J1RID4w+6NWK9yA=",
+    "lastModified": 1782949081
   },
   "inshellah": {
     "type": "github",
