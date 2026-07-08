@@ -138,8 +138,11 @@ in
       };
       devShells.default = pkgs.mkShell {
         inputsFrom = [ config.devShells.commands ];
-        packages = lib.attrValues {
-          inherit (config.packages) jujutsu-pc kakoune-pc;
+        packages = [
+          (config.packages.kakoune-pc.wrap { flags."-C" = "nix"; })
+        ]
+        ++ lib.attrValues {
+          inherit (config.packages) jujutsu-pc;
           inherit (inputs'.nufmt.packages) nufmt;
           inherit (inputs'.tack.packages) tack;
           inherit (pkgs)

@@ -13,7 +13,6 @@
       { pkgs, config, ... }:
       let
         cfg = config.programs.steam;
-        partialWrapper = definition: inputs.wrappers.lib.wrapPackage (definition // { inherit pkgs; });
       in
       {
         boot.kernelModules = [ "ntsync" ];
@@ -90,11 +89,7 @@
           ];
         };
         environment.systemPackages = lib.mkIf cfg.enable [
-          (partialWrapper {
-            exePath = "${pkgs.mangohud}/bin/mangohud";
-            package = pkgs.mangohud;
-            env.MANGOHUD_CONFIG = "no_display,fps_limit=165";
-          })
+          pkgs.mangohud
           pkgs.easyeffects
           # pkgs.lutris
           pkgs.vesktop
@@ -131,6 +126,7 @@
         programs.steam = {
           package = pkgs.steam.override {
             extraEnv = {
+              MANGOHUD = true;
               OBS_VKCAPTURE = true;
             };
             extraArgs = "-system-composer";
