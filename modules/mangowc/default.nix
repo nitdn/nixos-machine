@@ -3,8 +3,8 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 _: {
-  flake.wrappers.mango-pc = { wlib, ... }: {
+  flake.wrappers.mango-pc = { wlib, pkgs, ... }: {
     imports = [ wlib.wrapperModules.mangowc ];
-
+    package = pkgs.mango;
   };
 }

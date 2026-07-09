@@ -15,14 +15,6 @@
     meta.term = lib.mkOption {
       type = lib.types.str;
     };
-    flake.sources = {
-      modules = lib.mkOption {
-        type = lib.types.anything;
-      };
-      raw = lib.mkOption {
-        type = lib.types.anything;
-      };
-    };
   };
   imports = [
     inputs.flake-parts.flakeModules.modules
@@ -30,5 +22,4 @@
   ];
 
   config.meta.username = "ssmvabaa";
-  config.flake.sources.raw = ../_sources/generated.nix;
 }

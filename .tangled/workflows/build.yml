@@ -8,7 +8,8 @@ when:
   # - event: ["pull_request"]
   #   branch: ["main"]
 
-engine: "microvm"
+engine: microvm
+image: nixos
 
 # using the default values
 clone:
@@ -23,8 +24,13 @@ dependencies:
   - cachix
   - nix-fast-build
 
+caches:
+  # "https://cache.nixos.org/": "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+  # "https://nix-community.cachix.org/": "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+  # "https://machines.cachix.org/": "machines.cachix.org-1:imnXlKFUc4Iaedv6469v6TO37ruiNh6OfJN4le5bqdE="
+
 steps:
   - name: "Check flake"
     command: |
-      nix-fast-build --no-nom --skip-cached --cachix-cache machines \
+      nix-fast-build --skip-cached --no-nom --cachix-cache machines \
       --flake .#checks.x86_64-linux

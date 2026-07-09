@@ -14,9 +14,13 @@ let
 in
 {
   flake.modules.nixos.tjmaxxer =
-    { pkgs, ... }:
+    { pkgs, config, ... }:
+    let
+      inherit (config.boot.kernelPackages) zenergy;
+    in
     {
       hardware.facter.reportPath = ./facter.json;
+      boot.extraModulePackages = [ zenergy ];
       hardware.ckb-next.enable = true;
       services.hardware.openrgb = {
         enable = true;

@@ -19,17 +19,16 @@ in
           name: nixosConfigurations.${name}.config.system.build.toplevel
         )
         // {
-          reuse =
-            pkgs.runCommand "reuse"
-              {
-                src = self.outPath;
-                nativeBuildInputs = [ pkgs.reuse ];
-              }
-              ''
-                cd $src
-                reuse lint
-                mkdir $out
-              '';
+          reuse = pkgs.testers.runCommand {
+            name = "reuse-lint";
+            src = self;
+            nativeBuildInputs = [ pkgs.reuse ];
+            script = ''
+              cd $src
+              reuse lint
+              touch $out
+            '';
+          };
         };
     };
 }

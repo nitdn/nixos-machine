@@ -63,9 +63,9 @@
     "type": "git",
     "url": "https://codeberg.org/nitdn/nix-devshells.git",
     "ref": "HEAD",
-    "rev": "32345588c39d2c3842653999a9c7fc1d250e1d38",
-    "narHash": "sha256-J0bQfB27l9dh79j4997VzQKkUSyLSyDPxxmu2uhYtf8=",
-    "lastModified": 1782883441
+    "rev": "91c8a0cd5ef3a148d0d118d486122064c9c45550",
+    "narHash": "sha256-+7J7p04rGWR3w25tQIrsyWUdm1cHY+dMyrUOPVNov/U=",
+    "lastModified": 1783531566
   },
   "nix-index-database": {
     "type": "github",
@@ -85,9 +85,9 @@
     "type": "github",
     "owner": "nushell",
     "repo": "nufmt",
-    "rev": "de410853fc4d0f04e101a2573ebba8c15978ea33",
-    "narHash": "sha256-tNdoHiSZRi0PMUtlHqD5vjjPNDzNyZ73QnCOw8rmEPs=",
-    "lastModified": 1783251676
+    "rev": "1a43bfdf209288c0683e3c1e5a047511e1d7f8b3",
+    "narHash": "sha256-7S6IKeaSfxRxD5LyuyIbh7OQ83zeaY6OYWO7JlXpmAc=",
+    "lastModified": 1783547087
   },
   "rust-analyzer": {
     "type": "github",
