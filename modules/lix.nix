@@ -6,7 +6,6 @@
   flake.modules.nixos.pc =
     { pkgs, ... }:
     {
-      nix.package = pkgs.lix;
-      programs.direnv.nix-direnv.package = pkgs.lixPackageSets.latest.nix-direnv;
+      nix.package = pkgs.lixPackageSets.stable.lix;
     };
 }

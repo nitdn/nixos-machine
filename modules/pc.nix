@@ -54,8 +54,10 @@ in
       };
 
       # Bootloader.
-      boot.loader.limine.enable = true;
-      boot.loader.limine.efiInstallAsRemovable = true;
+      boot.loader.systemd-boot = {
+        edk2-uefi-shell.enable = true;
+        enable = true;
+      };
       boot.loader.efi.canTouchEfiVariables = lib.mkDefault true;
       boot.initrd.systemd.enable = true;
       boot.kernelParams = [
@@ -64,7 +66,6 @@ in
         "zswap.shrinker_enabled=1" # whether to shrink the pool proactively on high memory pressure
       ];
       boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
-      hardware.enableRedistributableFirmware = lib.mkDefault true;
       boot.supportedFilesystems = {
         exfat = true;
       };

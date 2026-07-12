@@ -13,8 +13,9 @@ let
 in
 {
 
-  flake.modules.nixos.msi-colgate = {
+  flake.modules.nixos.msi-colgate = _: {
     hardware.facter.reportPath = ./facter.json;
+    hardware.enableRedistributableFirmware = true;
     hardware.amdgpu.opencl.enable = true;
     system.stateVersion = "25.05"; # Did you read the comment?
     networking = {

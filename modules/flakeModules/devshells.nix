@@ -105,16 +105,19 @@ let
 
     def main [] { help main }'';
   command_package =
-    pkgs: config:
-    pkgs.writers.writeNuBin "run" {
+    {
+      inferno,
+      jujutsu-pc,
+      writers,
+    }:
+    writers.writeNuBin "jst" {
       makeWrapperArgs = [
         "--prefix"
         "PATH"
         ":"
         "${lib.makeBinPath [
-          pkgs.inferno
-          pkgs.nix-fast-build
-          config.packages.jujutsu-pc
+          inferno
+          jujutsu-pc
         ]}"
       ];
     } command_string;
@@ -130,7 +133,10 @@ in
     }:
 
     {
-      packages.runCommand = command_package pkgs config;
+      packages.runCommand = command_package {
+        inherit (pkgs) inferno writers;
+        inherit (config.packages) jujutsu-pc;
+      };
       devShells.commands = pkgs.mkShell {
         packages = [
           config.packages.runCommand
@@ -145,6 +151,7 @@ in
           inherit (config.packages) jujutsu-pc;
           inherit (inputs'.nufmt.packages) nufmt;
           inherit (inputs'.tack.packages) tack;
+          inherit (pkgs.lixPackageSets.stable) nix-fast-build;
           inherit (pkgs)
             dix
             flake-edit
