@@ -11,23 +11,18 @@ when:
 engine: microvm
 image: nixos
 
-# using the default values
-clone:
-  skip: false
-  depth: 1
-  submodules: false
-
 registry:
   nixpkgs: github:nixos/nixpkgs/nixos-unstable
 
 dependencies:
+  - nix
   - cachix
   - nix-fast-build
 
 caches:
-  # "https://cache.nixos.org/": "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-  # "https://nix-community.cachix.org/": "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-  # "https://machines.cachix.org/": "machines.cachix.org-1:imnXlKFUc4Iaedv6469v6TO37ruiNh6OfJN4le5bqdE="
+  https://cache.nixos.org: "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+  # https://nix-community.cachix.org: "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+  https://machines.cachix.org: "machines.cachix.org-1:imnXlKFUc4Iaedv6469v6TO37ruiNh6OfJN4le5bqdE="
 
 steps:
   - name: "Check flake"

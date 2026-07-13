@@ -55,9 +55,9 @@
     "type": "github",
     "owner": "microvm-nix",
     "repo": "microvm.nix",
-    "rev": "c5a04bcc9d1f5a6ccafdcdf607bf49f70d5f7f20",
-    "narHash": "sha256-6+I67Kj47Ljwj8JGi8P3fSTxCBR+L0AauZTTmrrwLTs=",
-    "lastModified": 1783451207
+    "rev": "74d8374877d0d4e0fa81480793d4ab09b2b32ba5",
+    "narHash": "sha256-B2Xu+NYTQxgsOANKOmkUM4QXQDWMVOHL7AHu0gmWN9E=",
+    "lastModified": 1783944818
   },
   "nix-devshells": {
     "type": "git",
@@ -71,9 +71,9 @@
     "type": "github",
     "owner": "nix-community",
     "repo": "nix-index-database",
-    "rev": "9b7545740d701a28a6d46de0665a685191205ba1",
-    "narHash": "sha256-yL4Ptl/aH7kJK/4HtLEzpSE40zdMNdXolfgwwGY3bmk=",
-    "lastModified": 1783835045
+    "rev": "1111b9bc836afb7e31a7014e8d1272de9b1c917d",
+    "narHash": "sha256-BQxN5UMg9FOevAsgBRwPxfxlh51Puj+dNn/8Dsi3sPM=",
+    "lastModified": 1783864904
   },
   "nixpkgs": {
     "type": "tarball",
