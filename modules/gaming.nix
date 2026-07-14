@@ -92,6 +92,7 @@
           pkgs.mangohud
           pkgs.easyeffects
           # pkgs.lutris
+          pkgs.umu-launcher
           pkgs.vesktop
           pkgs.arrpc
           (pkgs.gamescope-wsi.overrideAttrs (_: {

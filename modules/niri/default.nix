@@ -27,6 +27,13 @@ in
         ];
         settings = {
           spawn-at-startup = [
+            [
+              "wl-clip-persist"
+              "--clipboard"
+              "regular"
+              "--all-mime-type-regex"
+              "'^(?!x-kde-passwordManagerHint).+'"
+            ]
           ];
           environment = {
             QT_QPA_PLATFORMTHEME = "qt6ct";
@@ -94,8 +101,10 @@ in
         programs.niri.enable = true;
         programs.niri.package = niriPkg;
         environment.systemPackages = lib.mkIf config.programs.niri.enable [
+          pkgs.wl-clip-persist
           pkgs.xwayland-satellite
           pkgs.wayscriber
+          pkgs.cliphist
         ];
       };
     lightMode = { pkgs, ... }: {
