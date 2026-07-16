@@ -4,6 +4,9 @@
 
 _:
 let
+  affinity = { pkgs, ... }: {
+    environment.systemPackages = [ pkgs.affinity-v3 ];
+  };
   productivity =
     {
       pkgs,
@@ -37,7 +40,7 @@ let
         pkgs.mesa.opencl
         pkgs.wineWow64Packages.stagingFull
         pkgs.krita
-        pkgs.affinity-v3
+        # pkgs.affinity-v3
       ];
       i18n.inputMethod = {
         enable = true;
@@ -64,7 +67,10 @@ in
     ]
   ];
   flake.modules.nixos = {
-    work = productivity;
+    work.imports = [
+      productivity
+      affinity
+    ];
     tjmaxxer = productivity;
   };
 }

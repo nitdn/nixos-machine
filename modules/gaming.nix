@@ -93,7 +93,7 @@
           pkgs.easyeffects
           # pkgs.lutris
           pkgs.umu-launcher
-          pkgs.vesktop
+          pkgs.concord-tui
           pkgs.arrpc
           (pkgs.gamescope-wsi.overrideAttrs (_: {
             NIX_CFLAGS_COMPILE = [ "-fno-fast-math" ];

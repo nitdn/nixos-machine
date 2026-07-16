@@ -12,6 +12,9 @@
 let
   inherit (config.meta) username;
   nixosModules = config.flake.modules.nixos;
+  flakeInputs = lib.pipe inputs [
+    (lib.filterAttrs (name: value: lib.typeOf value == "set" && name != "self"))
+  ];
 in
 {
   flake.modules.nixos.readOnlyPkgs = { ... }: {
@@ -49,9 +52,12 @@ in
         ];
       };
 
-      nix.registry = {
-        nixpkgs.flake = inputs.nixpkgs;
+      nix.registry = (lib.mapAttrs (_name: value: { flake = value; }) flakeInputs) // {
+        nixos-machine.flake = inputs.self;
       };
+      # {
+      #   nixpkgs.flake = inputs.nixpkgs;
+      # };
 
       # Bootloader.
       boot.loader.systemd-boot = {
@@ -182,9 +188,7 @@ in
       ];
       environment.systemPackages = [
         pkgs.via
-
       ];
-
       programs.nh = {
         enable = true;
         clean.enable = true;

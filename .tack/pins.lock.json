@@ -55,9 +55,9 @@
     "type": "github",
     "owner": "microvm-nix",
     "repo": "microvm.nix",
-    "rev": "da9643e8937dedefdd3499379174d013900e2e1a",
-    "narHash": "sha256-L1EoUkfu8Gq20c0upqU0ZJqEDmcsQkFQSKBEuj2bevc=",
-    "lastModified": 1784056390
+    "rev": "a8ddffe21a84b533b38c16cf63e9c5fda4a19743",
+    "narHash": "sha256-K7vhRb7e4Np6sti8EfcIr/YgpBEPc7owxBeETE4T3PE=",
+    "lastModified": 1784114346
   },
   "nix-devshells": {
     "type": "git",
@@ -77,17 +77,17 @@
   },
   "nixpkgs": {
     "type": "tarball",
-    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1034379.18b9261cb329/nixexprs.tar.xz",
-    "rev": "18b9261cb3294b6d2a06d03f96872827b8fe2698",
-    "narHash": "sha256-G9I5EeMhwLckqD5QLgowA6hNBaOjG9CeYIzfSz4gZ6k="
+    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1035164.753cc8a3a874/nixexprs.tar.xz",
+    "rev": "753cc8a3a87467296ddd1fa93f0cc3e81120ee46",
+    "narHash": "sha256-Pjytpyqs/h6Kfs46Pcj+upOCqq0/Wwq81YSSeko7ChM="
   },
   "nufmt": {
     "type": "github",
     "owner": "nushell",
     "repo": "nufmt",
-    "rev": "1a43bfdf209288c0683e3c1e5a047511e1d7f8b3",
-    "narHash": "sha256-7S6IKeaSfxRxD5LyuyIbh7OQ83zeaY6OYWO7JlXpmAc=",
-    "lastModified": 1783547087
+    "rev": "22630c2decaca7f81bdc4a5a6ed354b84c074f29",
+    "narHash": "sha256-zrapGv5ZILjbT+qc+Aolfhk0TP/OFyjvSZQLtQhcUkk=",
+    "lastModified": 1784204227
   },
   "rust-analyzer": {
     "type": "github",
@@ -141,8 +141,8 @@
     "type": "github",
     "owner": "youwen5",
     "repo": "zen-browser-flake",
-    "rev": "e8041a3571e8cadb57dc18a3d6362d753510b94a",
-    "narHash": "sha256-EDJjJYGT5pQKTBqmz+OA2sqE20kjj6mP699JFGDzse4=",
-    "lastModified": 1783668749
+    "rev": "8eacc2dd2a94e4d44af26c31cc8d5728ccd6592f",
+    "narHash": "sha256-6wTeaUyWC/e4V5Kjd7aMy/07jTTBW7r8uZvYQCmR4eA=",
+    "lastModified": 1784182496
   }
 }
