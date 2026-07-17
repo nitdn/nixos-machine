@@ -12,9 +12,7 @@
 let
   inherit (config.meta) username;
   nixosModules = config.flake.modules.nixos;
-  flakeInputs = lib.pipe inputs [
-    (lib.filterAttrs (name: value: lib.typeOf value == "set" && name != "self"))
-  ];
+  flakeInputs = inputs |> lib.filterAttrs (name: value: lib.typeOf value == "set" && name != "self");
 in
 {
   flake.modules.nixos.readOnlyPkgs = { ... }: {

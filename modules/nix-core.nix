@@ -3,11 +3,12 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 let
-  nixCore = {
+  nixCore = _: {
     nix.optimise.automatic = true;
     nix.settings.experimental-features = [
       "nix-command"
       "flakes"
+      "pipe-operator"
     ];
   };
 in
