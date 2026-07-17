@@ -3,9 +3,9 @@
     "type": "github",
     "owner": "mrshmllow",
     "repo": "affinity-nix",
-    "rev": "fe12b087f518cd5c2cd03fcc63f30cd78108bc35",
-    "narHash": "sha256-KvQSG1KJMIoKDx1UY1Ps98MA+oKcVmeE1WPWXG3B4w8=",
-    "lastModified": 1783987500
+    "rev": "ee1c2724e8bc4832c8bd66b59bdd8631470c148c",
+    "narHash": "sha256-8hGG4Z91zX3J3pzeSXT4PxRA3hceVFPQ0iGYVk11UQE=",
+    "lastModified": 1784249769
   },
   "bizhub-225i.zip": {
     "type": "fixed",
@@ -55,9 +55,9 @@
     "type": "github",
     "owner": "microvm-nix",
     "repo": "microvm.nix",
-    "rev": "a8ddffe21a84b533b38c16cf63e9c5fda4a19743",
-    "narHash": "sha256-K7vhRb7e4Np6sti8EfcIr/YgpBEPc7owxBeETE4T3PE=",
-    "lastModified": 1784114346
+    "rev": "3ecfea2514bc849ce559cc4ce44f19d0a8006aa4",
+    "narHash": "sha256-pVwSDLP5OqghbeMWuVH8SKvx/7RCOOfW3frjQ78vv3c=",
+    "lastModified": 1784212197
   },
   "nix-devshells": {
     "type": "git",
@@ -85,9 +85,9 @@
     "type": "github",
     "owner": "nushell",
     "repo": "nufmt",
-    "rev": "22630c2decaca7f81bdc4a5a6ed354b84c074f29",
-    "narHash": "sha256-zrapGv5ZILjbT+qc+Aolfhk0TP/OFyjvSZQLtQhcUkk=",
-    "lastModified": 1784204227
+    "rev": "cae92f70d4f04aca062a9d1ce935dedaa71052f3",
+    "narHash": "sha256-MQ3M/8UmCPt93OLu5ZWkSqbQLZeHpR5QKnzPzu37slw=",
+    "lastModified": 1784229184
   },
   "rust-analyzer": {
     "type": "github",
