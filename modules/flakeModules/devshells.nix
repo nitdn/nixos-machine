@@ -9,6 +9,7 @@ let
 
     def "main ci" [revset: string = @-] {
       jj git push -c ($revset) --remote flake-mirror
+
       jj git push -c ($revset) --remote tngl-mirror
     }
 
@@ -18,6 +19,7 @@ let
 
     def "main pr" [revset: string = @-] {
       main ci
+
       gh pr create --head push-(main change-id $revset) --fill
     }
 
@@ -25,6 +27,7 @@ let
       jj bookmark set main --to ($revset)
 
       jj git push -r ($revset) --remote flake-mirror --bookmark main
+
       jj git push -r ($revset) --remote tngl-mirror --bookmark main
 
       jj git push -r ($revset) --remote origin
@@ -46,23 +49,24 @@ let
 
     def "main throttle" --wrapped [...cmd: string] {
       (
-            systemd-inhibit --what=sleep:shutdown
-            systemd-run --user --scope
-            --property=MemoryMax=8G --property=CPUWeight=500
-            ...$cmd
-          )
+                    systemd-inhibit --what=sleep:shutdown
+                    systemd-run --user --scope
+                    --property=MemoryMax=8G --property=CPUWeight=500
+                    ...$cmd
+                  )
     }
 
     def "main reuse" --wrapped [...args: path] {
       (
-            reuse annotate
-            --copyright="Nitesh Kumar Debnath <nitkdnath@gmail.com>"
-            --license="GPL-3.0-or-later" ...$args
-          )
+                    reuse annotate
+                    --copyright="Nitesh Kumar Debnath <nitkdnath@gmail.com>"
+                    --license="GPL-3.0-or-later" ...$args
+                  )
     }
 
     def "main fast" [machine: string@hostnames] {
       nix-fast-build --flake=$".#nixosConfigurations.($machine).config.system.build.toplevel"
+
       nh os switch .
     }
 
@@ -70,34 +74,39 @@ let
       let command = if $switch { "switch" } else { "test" }
 
       (
-            nh os $command .
-            --hostname $hostname --target-host $"${username}@($hostname).local"
-          )
+                    nh os $command .
+                    --hostname $hostname --target-host $"${username}@($hostname).local"
+                  )
     }
 
     def "main lock" [] {
-      let updateMsg = (TACK_NIX_CONF_TOKENS=1 tack update)
-      jj commit -m $updateMsg
+      $env.TACK_NIX_CONF_TOKENS = 1
+
+      let changelog = tack look --verbose | lines | where { $in !~ "unchanged|fixed" }
+
+      jj desc -m "tack: update" -m $"($changelog | str join "\n")"
+
+      $changelog | where {$in =~ "^\\w"} | parse "{input}: {changes}" | get input | tack update ...$in
     }
 
     def --wrapped "main eval" [hostname: string@hostnames = tjmaxxer, ...rest] {
       (
-            NIX_SHOW_STATS=1 nix eval $".#nixosConfigurations.($hostname).config.system.build.toplevel"
-            --substituters " " --no-eval-cache --read-only ...$rest
-          )
+                    NIX_SHOW_STATS=1 nix eval $".#nixosConfigurations.($hostname).config.system.build.toplevel"
+                    --substituters " " --no-eval-cache --read-only ...$rest
+                  )
     }
 
     def "main eval profiler" [hostname: string@hostnames = tjmaxxer] {
       (
-            nix eval $".#nixosConfigurations.($hostname).config.system.build.toplevel"
-            --substituters " " --no-eval-cache --read-only
-            --impure --eval-profiler flamegraph --eval-profiler-frequency 9999
-          )
+                    nix eval $".#nixosConfigurations.($hostname).config.system.build.toplevel"
+                    --substituters " " --no-eval-cache --read-only
+                    --impure --eval-profiler flamegraph --eval-profiler-frequency 9999
+                  )
 
       (
-            inferno-flamegraph
-            --width 10000 nix.profile o> $"result-($hostname).svg"
-          )
+                    inferno-flamegraph
+                    --width 10000 nix.profile o> $"result-($hostname).svg"
+                  )
 
       zen result-($hostname).svg
     }
