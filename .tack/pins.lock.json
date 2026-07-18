@@ -55,17 +55,17 @@
     "type": "github",
     "owner": "microvm-nix",
     "repo": "microvm.nix",
-    "rev": "24ae5c9f140e4c4b06d132ea3fc7795b550dfe9e",
-    "narHash": "sha256-9yPGZVcPV0W9Iq1qL4rfkNigKIIUk4jRk3YbJNr3pLA=",
-    "lastModified": 1784320259
+    "rev": "0784796ba5c4ba17c58fce3c2c0cbccc60d22e84",
+    "narHash": "sha256-2aNPMX+33DdK/tVXMabpVNRzFJ5m2IgYaaw8LL0Tb9Q=",
+    "lastModified": 1784395873
   },
   "nix-devshells": {
     "type": "git",
     "url": "https://codeberg.org/nitdn/nix-devshells.git",
     "ref": "HEAD",
-    "rev": "91c8a0cd5ef3a148d0d118d486122064c9c45550",
-    "narHash": "sha256-+7J7p04rGWR3w25tQIrsyWUdm1cHY+dMyrUOPVNov/U=",
-    "lastModified": 1783531566
+    "rev": "35dedddb825b7cce1f8eec3a6ffbd37e75a5e7de",
+    "narHash": "sha256-dg8LZSWL6wLTQVQqz0/V7XtKCPk3LhNtxPXkY9DFGDs=",
+    "lastModified": 1784391643
   },
   "nix-index-database": {
     "type": "github",
@@ -77,9 +77,9 @@
   },
   "nixpkgs": {
     "type": "tarball",
-    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1035164.753cc8a3a874/nixexprs.tar.xz",
-    "rev": "753cc8a3a87467296ddd1fa93f0cc3e81120ee46",
-    "narHash": "sha256-Pjytpyqs/h6Kfs46Pcj+upOCqq0/Wwq81YSSeko7ChM="
+    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1036777.61b7c44c4073/nixexprs.tar.xz",
+    "rev": "61b7c44c4073f0b827768aff0049561b5110ea5a",
+    "narHash": "sha256-zupdTm41be2fY8cexroEOGjopl3F2Gqs3gk7ieqaM3s="
   },
   "nufmt": {
     "type": "github",
@@ -125,9 +125,9 @@
     "type": "github",
     "owner": "numtide",
     "repo": "treefmt-nix",
-    "rev": "db947814a175b7ca6ded66e21383d938df01c227",
-    "narHash": "sha256-eynAfOmbmxJnkp7YewvCEbShNnnYJ9gLLqkzsYtBPeM=",
-    "lastModified": 1780220602
+    "rev": "df3c0640565d04a0261253cdd89fce78ec50168a",
+    "narHash": "sha256-47cxbcZODibHv3rELFQ9vZly0vUNkND/atn/U7HLeb0=",
+    "lastModified": 1784369104
   },
   "wrappers": {
     "type": "github",
@@ -141,8 +141,8 @@
     "type": "github",
     "owner": "youwen5",
     "repo": "zen-browser-flake",
-    "rev": "8eacc2dd2a94e4d44af26c31cc8d5728ccd6592f",
-    "narHash": "sha256-6wTeaUyWC/e4V5Kjd7aMy/07jTTBW7r8uZvYQCmR4eA=",
-    "lastModified": 1784182496
+    "rev": "239dc504b56eabcfc1dce945e7e22ca99694be89",
+    "narHash": "sha256-z2XthIV/68GNghbqmaPVrShPIfMPwpZKTA47REKC5bA=",
+    "lastModified": 1784354557
   }
 }
