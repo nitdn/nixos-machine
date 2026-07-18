@@ -63,7 +63,6 @@ let
 
     def "main fast" [machine: string@hostnames] {
       nix-fast-build --flake=$".#nixosConfigurations.($machine).config.system.build.toplevel"
-
       nh os switch .
     }
 
@@ -81,11 +80,11 @@ let
       jj commit -m $updateMsg
     }
 
-    def "main eval" [hostname: string@hostnames = tjmaxxer] {
+    def --wrapped "main eval" [hostname: string@hostnames = tjmaxxer, ...rest] {
       (
             NIX_SHOW_STATS=1 nix eval $".#nixosConfigurations.($hostname).config.system.build.toplevel"
-            --substituters " " --no-eval-cache --read-only
-          ) e>| lines | skip until { $in == "{" } | str join | from json | to nuon | print -e $in
+            --substituters " " --no-eval-cache --read-only ...$rest
+          )
     }
 
     def "main eval profiler" [hostname: string@hostnames = tjmaxxer] {
@@ -145,7 +144,10 @@ in
       devShells.default = pkgs.mkShell {
         inputsFrom = [ config.devShells.commands ];
         packages = [
-          (config.packages.kakoune-pc.wrap { flags."-C" = "nix"; })
+          (config.packages.kakoune-pc.wrap {
+            wrapperVariants.kakn.flags."-C" = "nix";
+            wrapperVariants.kakn.exePath = "bin/kak";
+          })
         ]
         ++ lib.attrValues {
           inherit (config.packages) jujutsu-pc;
