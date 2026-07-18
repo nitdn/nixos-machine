@@ -160,7 +160,6 @@ in
         ]
         ++ lib.attrValues {
           inherit (config.packages) jujutsu-pc;
-          inherit (inputs'.nufmt.packages) nufmt;
           inherit (inputs'.tack.packages) tack;
           inherit (pkgs.lixPackageSets.stable) nix-fast-build;
           inherit (pkgs)
@@ -173,6 +172,7 @@ in
             meld
             nixd
             nixfmt
+            nufmt
             onefetch
             pandoc
             reuse

@@ -63,12 +63,6 @@ url = "github:nix-community/nix-index-database"
 [inputs.nixpkgs]
 url = "nixpkgs:nixos-unstable"
 
-[inputs.nufmt]
-url = "github:nushell/nufmt"
-
-[inputs.nufmt.follows]
-treefmt-nix = ""
-
 [inputs.sops-nix]
 url = "github:Mic92/sops-nix"
 
