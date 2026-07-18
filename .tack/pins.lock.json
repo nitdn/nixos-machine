@@ -3,9 +3,9 @@
     "type": "github",
     "owner": "mrshmllow",
     "repo": "affinity-nix",
-    "rev": "ee1c2724e8bc4832c8bd66b59bdd8631470c148c",
-    "narHash": "sha256-8hGG4Z91zX3J3pzeSXT4PxRA3hceVFPQ0iGYVk11UQE=",
-    "lastModified": 1784249769
+    "rev": "db927832b986f5d9d6432e96f23fd19a88481ef9",
+    "narHash": "sha256-86nkp6r49nQABjJq4Le4xof1zEvSOz5z6H0fNSbQTHk=",
+    "lastModified": 1784349630
   },
   "bizhub-225i.zip": {
     "type": "fixed",
@@ -55,9 +55,9 @@
     "type": "github",
     "owner": "microvm-nix",
     "repo": "microvm.nix",
-    "rev": "3ecfea2514bc849ce559cc4ce44f19d0a8006aa4",
-    "narHash": "sha256-pVwSDLP5OqghbeMWuVH8SKvx/7RCOOfW3frjQ78vv3c=",
-    "lastModified": 1784212197
+    "rev": "24ae5c9f140e4c4b06d132ea3fc7795b550dfe9e",
+    "narHash": "sha256-9yPGZVcPV0W9Iq1qL4rfkNigKIIUk4jRk3YbJNr3pLA=",
+    "lastModified": 1784320259
   },
   "nix-devshells": {
     "type": "git",
