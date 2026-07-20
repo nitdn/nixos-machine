@@ -7,7 +7,8 @@
 # scheme rest expands rest into {path}
 [shorturls]
 gh = "github:{path}"
-nixpkgs = "https://channels.nixos.org/{path}/nixexprs.tar.xz"
+nixpkgs = "https://channels.nixos.org/{path}/nixexprs.tar.zst"
+codeberg = "git+https://codeberg.org/{path}.git"
 
 # all_follow maps input names to the top-level pin they follow
 # opt out per-input with exclude_follow
@@ -52,7 +53,7 @@ url = "github:manic-systems/inshellah"
 url = "github:microvm-nix/microvm.nix"
 
 [inputs.nix-devshells]
-url = "git+https://codeberg.org/nitdn/nix-devshells.git"
+url = "codeberg:nitdn/nix-devshells"
 
 [inputs.nix-devshells.follows]
 wrappers = "wrappers"
