@@ -49,3 +49,6 @@ jobs:
           nix-fast-build --no-nom --skip-cached --cachix-cache machines \
           --option extra-experimental-features "pipe-operators" \
           --flake .#checks.x86_64-linux
+          # build devshells and stuff
+          nix flake check \
+          --option extra-experimental-features "pipe-operators"
