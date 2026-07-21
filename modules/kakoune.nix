@@ -25,11 +25,27 @@ in
     };
     wrappers.kakoune-pc = { pkgs, ... }: {
       imports = [ inputs.nix-devshells.wrapperModules.kakoune ];
+      wrapperVariants.kakn.flags."-C" = "nix";
+      wrapperVariants.kakn.exePath = "bin/kak";
       plugins = [
         # needed for manpagers
         pkgs.kakounePlugins.kak-ansi
+        # if its not in plugins it will hit priority issues
+        (pkgs.writeTextDir "/share/kak/autoload/plugins/lsp/nushell.kak" ''
+          hook -group lsp-filetype-nu global BufCreate .*[.]nu %{
+            set-option buffer filetype nu
+          }
+          hook -group lsp-filetype-nu global BufSetOption filetype=nu %{
+            set-option buffer formatcmd "nufmt --stdin"
+            set-option buffer lsp_servers %{
+              [nu-lsp]
+              command = "nu"
+              args = ["--lsp"]
+              root_globs = [".nu", ".git", ".hg"]
+            }
+          }
+        '')
       ];
-
     };
   };
 }
