@@ -27,6 +27,7 @@ in
         ];
         settings = {
           spawn-at-startup = [
+            [ "ckb-next" ]
             [
               "wl-clip-persist"
               "--clipboard"
@@ -44,7 +45,7 @@ in
             };
             mouse = {
               accel-profile = "flat";
-              accel-speed = -0.8;
+              accel-speed = -0.6;
             };
           };
           layout = {
