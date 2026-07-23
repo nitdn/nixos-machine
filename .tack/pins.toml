@@ -9,6 +9,7 @@
 gh = "github:{path}"
 nixpkgs = "https://channels.nixos.org/{path}/nixexprs.tar.zst"
 codeberg = "git+https://codeberg.org/{path}.git"
+codeberg-tarball = "https://codeberg.org/{path}/archive/main.tar.gz"
 
 # all_follow maps input names to the top-level pin they follow
 # opt out per-input with exclude_follow
