@@ -77,9 +77,9 @@
   },
   "nixpkgs": {
     "type": "tarball",
-    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1037713.241313f4e8e5/nixexprs.tar.zst",
-    "rev": "241313f4e8e508cb9b13278c2b0fa25b9ca27163",
-    "narHash": "sha256-WhdsTtaih3DgTPP/PX023b36UNQyMzEoi6GkPyGx0y4="
+    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1040357.e2587caef70c/nixexprs.tar.zst",
+    "rev": "e2587caef70cea85dd97d7daab492899902dbf5d",
+    "narHash": "sha256-vwxWgF+Gj276WznzGb1LxGsK/39HaQwgQXiU3EkC844="
   },
   "rust-analyzer": {
     "type": "github",

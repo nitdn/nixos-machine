@@ -48,7 +48,7 @@ let
         ibus.waylandFrontend = true;
         ibus.engines = [
           pkgs.ibus-engines.typing-booster
-          pkgs.openbangla-keyboard
+          # pkgs.openbangla-keyboard
         ];
       };
       fonts.packages = [
