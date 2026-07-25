@@ -49,7 +49,7 @@ in
         TACK_NIX_CONF_TOKENS = "1";
         inputsFrom = [ config.devShells.commands ];
         packages = [
-          config.packages.kakoune-pc
+          # config.packages.kakoune-pc # insanely borked
           nufmt
         ]
         ++ lib.attrValues {
