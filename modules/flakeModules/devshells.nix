@@ -58,7 +58,6 @@ in
           inherit (pkgs.lixPackageSets.stable) nix-fast-build;
           inherit (pkgs)
             dix
-            flake-edit
             github-cli
             hydra-check
             jq
