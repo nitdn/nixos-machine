@@ -3,9 +3,9 @@
     "type": "github",
     "owner": "mrshmllow",
     "repo": "affinity-nix",
-    "rev": "db927832b986f5d9d6432e96f23fd19a88481ef9",
-    "narHash": "sha256-86nkp6r49nQABjJq4Le4xof1zEvSOz5z6H0fNSbQTHk=",
-    "lastModified": 1784349630
+    "rev": "624755c0b14a13f77073ba668cc8f73cbe9be8e0",
+    "narHash": "sha256-M6L1gNO7vlYstw/Slb4KhU63RC31O/nx75Fh+sLXjk4=",
+    "lastModified": 1785037156
   },
   "bizhub-225i.zip": {
     "type": "fixed",
@@ -55,9 +55,9 @@
     "type": "github",
     "owner": "microvm-nix",
     "repo": "microvm.nix",
-    "rev": "fa5340ac684cdce8a22b6d4a0bcebb0cc999275e",
-    "narHash": "sha256-xgfS6slV7J3baMooNN1UuBi51RIgg9y0DbCxfSA0668=",
-    "lastModified": 1784666190
+    "rev": "39a499ab85311b56dddb09ec43351cc3658f22c1",
+    "narHash": "sha256-7CjGBACbXXIJvGrPed75QI8ytqc48M78GP9aB/h2VSc=",
+    "lastModified": 1785246989
   },
   "nix-devshells": {
     "type": "git",
@@ -71,9 +71,9 @@
     "type": "github",
     "owner": "nix-community",
     "repo": "nix-index-database",
-    "rev": "4f8d52a3598b0dc7db7a5e7b419e3edd9d1ecfdb",
-    "narHash": "sha256-Q5kNLlWngt7TaIIZoxDKWMHjiSaNRVqr70FqWCRRfr4=",
-    "lastModified": 1784440659
+    "rev": "11665045df8b9938ef811a3bfdc65cffb02b4b70",
+    "narHash": "sha256-UiK+mmZJuLWQVhJ5b2wDzogIYWAesyRm6LA3h3Ulh3Y=",
+    "lastModified": 1785046085
   },
   "nixpkgs": {
     "type": "tarball",
@@ -85,9 +85,9 @@
     "type": "github",
     "owner": "rust-lang",
     "repo": "rust-analyzer",
-    "rev": "0d381ca097a8e0375a19387874d952c0a230ac4f",
-    "narHash": "sha256-NVYhLbaefeIUftPlo3kS6qr0xd8eFJRodEiaHrvFKR4=",
-    "lastModified": 1782864348
+    "rev": "1174734d9c6453d13d2b5e3d578512c579ca37f1",
+    "narHash": "sha256-853teJQOgTTKRfNxcIJ53ziJOGNeg3c74PvQl5l61Jc=",
+    "lastModified": 1784667699
   },
   "sops-nix": {
     "type": "github",
@@ -133,8 +133,8 @@
     "type": "github",
     "owner": "youwen5",
     "repo": "zen-browser-flake",
-    "rev": "239dc504b56eabcfc1dce945e7e22ca99694be89",
-    "narHash": "sha256-z2XthIV/68GNghbqmaPVrShPIfMPwpZKTA47REKC5bA=",
-    "lastModified": 1784354557
+    "rev": "0d2fc291f34fce699b2a559f74189ecfe61e30e3",
+    "narHash": "sha256-W32Jxn9mnGEjDc5c7sC5YfNLzrh3n9Srkg5JbC1YYdY=",
+    "lastModified": 1785047627
   }
 }
