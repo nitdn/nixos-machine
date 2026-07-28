@@ -30,3 +30,4 @@ steps:
       nix-fast-build --skip-cached --no-nom --cachix-cache machines \
       --option extra-experimental-features "pipe-operators" \
       --flake .#checks.x86_64-linux
+      nix flake check
