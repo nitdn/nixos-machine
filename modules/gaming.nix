@@ -18,6 +18,9 @@
         boot.kernelModules = [ "ntsync" ];
         programs.gamescope = {
           enable = true;
+          package = pkgs.gamescope.overrideAttrs (_: {
+            NIX_CFLAGS_COMPILE = [ "-fno-fast-math" ];
+          });
           args = [
             "--rt"
             "-W"
@@ -51,28 +54,30 @@
         programs.steam.extraCompatPackages = [
           pkgs.proton-ge-bin
         ];
-        programs.steam.package = lib.mkDefault (
-          pkgs.steam.override {
-            extraPkgs =
-              pkgs': with pkgs'; [
-                libXcursor
-                libXi
-                libXinerama
-                libXScrnSaver
-                libpng
-                libpulseaudio
-                libvorbis
-                stdenv.cc.cc.lib # Provides libstdc++.so.6
-                libkrb5
-                keyutils
-                # Add other libraries as needed
-              ];
-            extraEnv = {
-              OBS_VKCAPTURE = true;
-              RADV_TEX_ANISO = 16;
-            };
-          }
-        );
+        programs.steam.package = pkgs.steam.override {
+          extraEnv = {
+            MANGOHUD = true;
+            OBS_VKCAPTURE = true;
+            RADV_TEX_ANISO = 16;
+          };
+          # extraArgs = "-system-composer";
+        };
+        programs.steam.extraPackages = with pkgs; [
+          # (gamescope.overrideAttrs (_: {
+          #   NIX_CFLAGS_COMPILE = [ "-fno-fast-math" ];
+          # }))
+          libXcursor
+          libXi
+          libXinerama
+          libXScrnSaver
+          libpng
+          libpulseaudio
+          libvorbis
+          stdenv.cc.cc.lib # Provides libstdc++.so.6
+          libkrb5
+          keyutils
+          # Add other libraries as needed
+        ];
         programs.gamemode.enable = true;
         services.sunshine = {
           enable = true;
@@ -95,43 +100,21 @@
           pkgs.umu-launcher
           pkgs.concord-tui
           pkgs.arrpc
-          (pkgs.gamescope-wsi.overrideAttrs (_: {
-            NIX_CFLAGS_COMPILE = [ "-fno-fast-math" ];
-          }))
+
         ];
       };
-    disko-elysium =
-      {
-        pkgs,
-        ...
-      }:
-      {
-        users.users.gaming = {
-          isNormalUser = true;
-          password = "gaming";
-          extraGroups = [ "gamemode" ];
-        };
-        programs.steam.package = pkgs.steam.override {
-          extraEnv = {
-            MANGOHUD = true;
-            OBS_VKCAPTURE = true;
-            RADV_TEX_ANISO = 16;
-          };
-          extraArgs = "-system-composer";
-        };
+    disko-elysium = _: {
+      users.users.gaming = {
+        isNormalUser = true;
+        password = "gaming";
+        extraGroups = [ "gamemode" ];
       };
+    };
     tjmaxxer =
       { pkgs, ... }:
       {
         imports = [ inputs.steam-presence.nixosModules.steam-presence ];
         programs.steam = {
-          package = pkgs.steam.override {
-            extraEnv = {
-              MANGOHUD = true;
-              OBS_VKCAPTURE = true;
-            };
-            extraArgs = "-system-composer";
-          };
           presence = {
             enable = true;
             # Either set the key directly (not recommended) or via file/secret
