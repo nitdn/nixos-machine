@@ -87,6 +87,8 @@ def "main lock" [] {
     return
   }
 
+  jj new
+
   jj desc -m "tack: update" -m $"($changelog | str join "\n")"
 
   $changelog | where {$in =~ "^\\w"} | parse "{input}: {changes}" | get input | tack update ...$in
