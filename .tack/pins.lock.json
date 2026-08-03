@@ -77,9 +77,9 @@
   },
   "nixpkgs": {
     "type": "tarball",
-    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1045728.148bab9c1c3c/nixexprs.tar.zst",
-    "rev": "148bab9c1c3c53136ecb44a6ea356a0ed5b39b06",
-    "narHash": "sha256-xwSqxTsama0YTtS78+4YyCm6jJg09v78QWfP1cAyoVA="
+    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1046609.643809054d65/nixexprs.tar.zst",
+    "rev": "643809054d65fdd466a63e3155b8c498cb483c04",
+    "narHash": "sha256-1+YGJM7PLfvTsbUxDHKj0NcuEXYFHfZBDuajujCcVmY="
   },
   "rust-analyzer": {
     "type": "github",
@@ -109,9 +109,9 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "tack",
-    "rev": "779c0d56500d702f23d5b0e015b3d6f3a06d4614",
-    "narHash": "sha256-2wwH6pzL2vzffXKuMQwVMbUhfRubDwjPbrqdcbcJZqA=",
-    "lastModified": 1785732763
+    "rev": "4790c31fe45a4b46625e7bc8f48e27521400c013",
+    "narHash": "sha256-1rg3fP4N6C0CeqJV/HPRcRNSiZZNITzOylbWJHTMkro=",
+    "lastModified": 1785748851
   },
   "treefmt-nix": {
     "type": "github",
