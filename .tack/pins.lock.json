@@ -109,9 +109,9 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "tack",
-    "rev": "4790c31fe45a4b46625e7bc8f48e27521400c013",
-    "narHash": "sha256-1rg3fP4N6C0CeqJV/HPRcRNSiZZNITzOylbWJHTMkro=",
-    "lastModified": 1785748851
+    "rev": "eeeeb38f444c047642eaa7f81946df6e17b77ce5",
+    "narHash": "sha256-mrzOe9u1EdkVRc31rVhiNeSHXSfnjsYzWMCNFGOS51E=",
+    "lastModified": 1785804627
   },
   "treefmt-nix": {
     "type": "github",
