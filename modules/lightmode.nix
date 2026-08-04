@@ -10,6 +10,8 @@ let
 in
 {
   flake.modules.nixos = {
+    lightMode = { };
+    darkMode = { };
     tjmaxxer.imports = [ darkMode ];
     disko-elysium.imports = [ darkMode ];
     msi-colgate.imports = [ lightMode ];

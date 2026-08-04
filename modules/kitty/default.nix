@@ -58,7 +58,7 @@ in
           update_check_interval = 0;
           enabled_layouts = "horizontal";
           allow_remote_control = true;
-          # background_opacity = 0.8;
+          background_opacity = 0.8;
         };
       };
       niri-pc.settings = {

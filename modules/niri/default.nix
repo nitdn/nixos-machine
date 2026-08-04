@@ -71,7 +71,7 @@ in
               excludes = [
                 # { app-id = "vesktop"; }
               ];
-              opacity = 0.8;
+              # opacity = 0.8;
             }
           ];
           outputs = {
@@ -102,14 +102,9 @@ in
         programs.niri.enable = true;
         programs.niri.package = niriPkg;
         environment.systemPackages = lib.mkIf config.programs.niri.enable [
-          pkgs.wl-clip-persist
           pkgs.xwayland-satellite
           pkgs.wayscriber
-          pkgs.cliphist
         ];
       };
-    lightMode = { pkgs, ... }: {
-      programs.niri.package = lib.mkForce (wrappers.niri-light.wrap { inherit pkgs; });
-    };
   };
 }

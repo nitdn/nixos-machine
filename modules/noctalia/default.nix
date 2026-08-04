@@ -9,52 +9,28 @@
   ...
 }:
 let
-  inherit (config.meta) username;
   inherit (config.flake) wrappers;
 in
 {
   flake.wrappers = {
-    noctalia-pc =
-      { wlib, pkgs, ... }:
-      {
-        # options.nativeStorePlugins = lib.mkOption {
-        #   type = listOf str;
-        #   description = "List of plugins that could be found in the noctalia plugin repo";
-        #   default = [
-        #     "polkit-agent"
-        #     "mimeapp-gui"
-        #     "kde-connect"
-        #     "port-monitor"
-        #   ];
-        # };
-        imports = [
-          wlib.wrapperModules.noctalia-shell
-        ];
-        config = {
-          inherit ((import ./_settings.nix)) settings;
-          plugins = import ./_plugins.nix;
-
-          # preInstalledPlugins = mkNativeStorePlugins cfg.nativeStorePlugins;
-          outOfStoreConfig = lib.mkDefault "/home/${username}/.local/state/noctalia-pc/";
-          runtimePkgs = [ pkgs.wtype ];
-        };
+    noctalia-v5 = { wlib, pkgs, ... }: {
+      imports = [ wlib.modules.default ];
+      env.NOCTALIA_CONFIG_HOME = "${placeholder "out"}/config";
+      package = pkgs.noctalia;
+      constructFiles.generatedConfig = {
+        content = lib.readFile ./noctalia-config.toml;
+        relPath = "config/config.toml";
       };
-    noctalia-light = {
-      imports = [
-        config.flake.wrapperModules.noctalia-pc
-      ];
-      outOfStoreConfig = "/tmp/noctalia-light/";
-      settings.colorSchemes.darkMode = lib.mkForce false;
     };
     niri-pc =
       { pkgs, config, ... }:
       let
-        noctaliaExe = lib.getExe' config.noctaliaPackage "noctalia-shell";
+        noctaliaExe = lib.getExe' config.noctaliaPackage "noctalia";
       in
       {
-        options.noctaliaPackage = lib.mkPackageOption pkgs "noctalia-shell" { };
+        options.noctaliaPackage = lib.mkPackageOption pkgs "noctalia" { };
         config = {
-          noctaliaPackage = lib.mkDefault (wrappers.noctalia-pc.wrap { inherit pkgs; });
+          noctaliaPackage = lib.mkDefault (wrappers.noctalia-v5.wrap { inherit pkgs; });
           extraSettings = [
             {
               include = [
@@ -77,10 +53,9 @@ in
               };
               content.spawn = [
                 noctaliaExe
-                "ipc"
-                "call"
+                "msg"
+                "panel-toggle"
                 "launcher"
-                "toggle"
               ];
             };
             binds."Mod+E" = _: {
@@ -89,10 +64,10 @@ in
               };
               content.spawn = [
                 noctaliaExe
-                "ipc"
-                "call"
+                "msg"
+                "panel-toggle"
+                "control-center"
                 "calendar"
-                "toggle"
               ];
             };
             binds."Mod+Delete" = _: {
@@ -101,10 +76,9 @@ in
               };
               content.spawn = [
                 noctaliaExe
-                "ipc"
-                "call"
-                "sessionMenu"
-                "toggle"
+                "msg"
+                "panel-toggle"
+                "session"
               ];
             };
 
@@ -129,10 +103,6 @@ in
           };
         };
       };
-    niri-light = { pkgs, ... }: {
-      imports = [ config.flake.wrapperModules.niri-pc ];
-      noctaliaPackage = wrappers.noctalia-light.wrap { inherit pkgs; };
-    };
     kitty-pc = {
       extraSettings.include = [ "~/.config/kitty/themes/noctalia.conf" ];
     };
@@ -142,21 +112,7 @@ in
     {
       environment.systemPackages = [
         pkgs.wtype
-      ];
-    };
-  flake.modules.nixos.darkMode =
-    { pkgs, ... }:
-    {
-      environment.systemPackages = [
-        (wrappers.noctalia-pc.wrap { inherit pkgs; })
-      ];
-    };
-  flake.modules.nixos.lightMode =
-    { pkgs, ... }:
-    {
-      # We need this to do the ipc lol
-      environment.systemPackages = [
-        (wrappers.noctalia-light.wrap { inherit pkgs; })
+        pkgs.noctalia
       ];
     };
 }
