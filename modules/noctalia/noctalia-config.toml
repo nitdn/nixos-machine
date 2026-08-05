@@ -3,11 +3,12 @@ ui_scale = 1.1500000096857548
 
 [bar.default]
 background_opacity = 0.7499999832361937
-padding = 20
 position = "right"
-scale = 1.250000011175871
+scale = 1.400000013411045
 smart_auto_hide = true
-thickness = 45
+
+[brightness]
+enable_ddcutil = true
 
 [lockscreen_widgets]
 enabled = false
@@ -56,6 +57,7 @@ source = "wallpaper"
 [theme.templates]
 builtin_ids = [
   "alacritty",
+  "btop",
   "gtk3",
   "gtk4",
   "ghostty",
@@ -65,6 +67,7 @@ builtin_ids = [
   "niri",
   "qt",
 ]
+community_ids = ["zen-browser", "steam"]
 
 [wallpaper]
 directory = "/home/ssmvabaa/wallpapers"
