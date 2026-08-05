@@ -51,7 +51,8 @@ in
       };
 
       nix.registry = (lib.mapAttrs (_name: value: { flake = value; }) flakeInputs) // {
-        nixos-machine.flake = inputs.self;
+        # invalidates binary caches for all toplevel builds
+        # nixos-machine.flake = inputs.self;
       };
       # {
       #   nixpkgs.flake = inputs.nixpkgs;
