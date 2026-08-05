@@ -7,17 +7,17 @@
     {
       key = "n";
       desc = "Toggle Notifications";
-      cmd = "noctalia-shell ipc call notifications toggleHistory";
+      cmd = "noctalia msg panel-toggle control-center notifications";
     }
     {
       key = "c";
       desc = "Toggle Calendar";
-      cmd = "noctalia-shell ipc call calendar toggle";
+      cmd = "noctalia msg panel-toggle  control-center calendar";
     }
     {
       key = "v";
       desc = "Toggle Clipboard";
-      cmd = "noctalia-shell ipc call launcher clipboard";
+      cmd = "noctalia msg panel-toggle clipboard";
     }
   ];
 }

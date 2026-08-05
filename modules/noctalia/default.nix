@@ -17,6 +17,9 @@ in
       imports = [ wlib.modules.default ];
       env.NOCTALIA_CONFIG_HOME = "${placeholder "out"}/config";
       package = pkgs.noctalia;
+      runtimePkgs = [
+        pkgs.ddcutil
+      ];
       constructFiles.generatedConfig = {
         content = lib.readFile ./noctalia-config.toml;
         relPath = "config/config.toml";
@@ -30,6 +33,7 @@ in
       {
         options.noctaliaPackage = lib.mkPackageOption pkgs "noctalia" { };
         config = {
+
           noctaliaPackage = lib.mkDefault (wrappers.noctalia-v5.wrap { inherit pkgs; });
           extraSettings = [
             {
@@ -112,7 +116,7 @@ in
     {
       environment.systemPackages = [
         pkgs.wtype
-        pkgs.noctalia
+        (wrappers.noctalia-v5.wrap { inherit pkgs; })
       ];
     };
 }
