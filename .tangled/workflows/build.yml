@@ -30,7 +30,7 @@ steps:
     command: |
       nix-fast-build --skip-cached --no-nom --cachix-cache machines \
       --option extra-experimental-features "pipe-operators" \
-      --eval-max-memory-size 1024 \
+      --eval-max-memory-size 512 \
       --flake .#checks.x86_64-linux
-      nix flake check \
-      --option extra-experimental-features "pipe-operators"
+      # nix flake check \
+      # --option extra-experimental-features "pipe-operators"

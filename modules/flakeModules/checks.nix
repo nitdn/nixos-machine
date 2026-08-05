@@ -12,23 +12,30 @@ let
 in
 {
   perSystem =
-    { pkgs, ... }:
+    { pkgs, config, ... }:
+    let
+      inherit (config) devShells;
+
+      nixosMachines = lib.genAttrs (lib.removeAttrs nixosConfigurations [ "vps01" ] |> lib.attrNames) (
+        name: nixosConfigurations.${name}.config.system.build.toplevel
+      );
+      reuse = pkgs.testers.runCommand {
+        name = "reuse-lint";
+        src = self;
+        nativeBuildInputs = [ pkgs.reuse ];
+        script = ''
+          cd $src
+          reuse lint
+          touch $out
+        '';
+      };
+    in
     {
       checks =
-        lib.genAttrs (lib.attrNames (lib.removeAttrs nixosConfigurations [ "vps01" ])) (
-          name: nixosConfigurations.${name}.config.system.build.toplevel
-        )
+        nixosMachines
+        // devShells
         // {
-          reuse = pkgs.testers.runCommand {
-            name = "reuse-lint";
-            src = self;
-            nativeBuildInputs = [ pkgs.reuse ];
-            script = ''
-              cd $src
-              reuse lint
-              touch $out
-            '';
-          };
+          inherit reuse;
         };
     };
 }

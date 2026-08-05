@@ -51,5 +51,3 @@ jobs:
         run: |
           nix-fast-build --no-nom --skip-cached --cachix-cache machines \
           --flake .#checks.x86_64-linux
-          # build devshells and stuff
-          nix flake check

@@ -36,13 +36,13 @@ in
     in
 
     {
-      packages.runCommand = command_package {
+      packages.jstCommand = command_package {
         inherit (pkgs) inferno writers;
         inherit (config.packages) jujutsu-pc;
       };
       devShells.commands = pkgs.mkShell {
         packages = [
-          config.packages.runCommand
+          config.packages.jstCommand
         ];
       };
       devShells.default = pkgs.mkShell {
