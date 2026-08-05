@@ -32,4 +32,5 @@ steps:
       --option extra-experimental-features "pipe-operators" \
       --eval-max-memory-size 1024 \
       --flake .#checks.x86_64-linux
-      nix flake check
+      nix flake check \
+      --option extra-experimental-features "pipe-operators"

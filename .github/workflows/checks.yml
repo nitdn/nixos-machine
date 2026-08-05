@@ -30,6 +30,7 @@ jobs:
         with:
           nix_path: nixpkgs=channel:nixos-unstable
           extra_nix_config: |
+            extra-experimental-features = nix-command flakes pipe-operators
             download-buffer-size = 500000000
             trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= machines.cachix.org-1:imnXlKFUc4Iaedv6469v6TO37ruiNh6OfJN4le5bqdE= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=
             extra-trusted-public-keys = cache.forall.systems:5PmD7QO4MSF8YgyRZtkSGXRDo96H3bybIf2SsQh8ScI=
@@ -49,8 +50,6 @@ jobs:
         shell: "nix shell nixpkgs#nix-fast-build -c bash -e {0}"
         run: |
           nix-fast-build --no-nom --skip-cached --cachix-cache machines \
-          --option extra-experimental-features "pipe-operators" \
           --flake .#checks.x86_64-linux
           # build devshells and stuff
-          nix flake check \
-          --option extra-experimental-features "pipe-operators"
+          nix flake check
