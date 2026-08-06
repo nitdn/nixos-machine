@@ -65,6 +65,7 @@ in
               background-effect = {
                 blur = true;
               };
+              popups.background-effect.blur = true;
             }
             {
 
