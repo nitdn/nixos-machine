@@ -17,9 +17,9 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "cade",
-    "rev": "8cf18ad67bd678aa0fc2b71d7839f3f31edf8963",
-    "narHash": "sha256-zkOMfC/oO1MnTp2Kn5eZ5n/9Lsu2cpvBo+Gjoxe2ZS8=",
-    "lastModified": 1785270046
+    "rev": "b9e7a9b699e0308f43daa77abc53d455ce10b425",
+    "narHash": "sha256-GtOCNhZ2OHxkmzEGMVJgcJaExnT3m6URswPZHjsPPpc=",
+    "lastModified": 1786185442
   },
   "disko": {
     "type": "github",
@@ -77,9 +77,9 @@
   },
   "nixpkgs": {
     "type": "tarball",
-    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1047536.e72e4f299401/nixexprs.tar.zst",
-    "rev": "e72e4f299401a3689d4b3d5fc6496b11db7064eb",
-    "narHash": "sha256-VFlH/0nM6kkWQox9IaTqx2eCT3pmkr8bB7iVZ1bkaLs="
+    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1048607.b7c2ada94fe9/nixexprs.tar.zst",
+    "rev": "b7c2ada94fe99c15b0dbcf4d11fd7850b957a436",
+    "narHash": "sha256-929m7iW8q2uv3mZHNwY8Um6XKj99rbIcZsWS9cT1vaI="
   },
   "rust-analyzer": {
     "type": "github",
@@ -101,9 +101,9 @@
     "type": "github",
     "owner": "JustTemmie",
     "repo": "steam-presence",
-    "rev": "bd7c54d3f65948bef8b689dfcc14150e1905a18b",
-    "narHash": "sha256-PUlNAktrpPygeJBYF0IQfqfz7g/sMayZA9/pUybh7Ig=",
-    "lastModified": 1775402888
+    "rev": "079b70d01a0b3feab882fc5165269ae10beb23ac",
+    "narHash": "sha256-zerOvGSbC3E9yNRXq8qtYksIZFMDRNf6uvBWkDdaO+4=",
+    "lastModified": 1786128276
   },
   "tack": {
     "type": "github",
@@ -117,9 +117,9 @@
     "type": "github",
     "owner": "numtide",
     "repo": "treefmt-nix",
-    "rev": "d1187f8bc71fb8aab02395869ec3f5c1920f75c0",
-    "narHash": "sha256-XE1lKgQ3eIO3E7zWryqcRsax+mYXod/5RHBn4YaR9YE=",
-    "lastModified": 1785360170
+    "rev": "ae7910970dddc408fe6ab1c8e4b277bb21d72dc0",
+    "narHash": "sha256-NLSyTCW4K4ofhNBllt3omPasm6QpralXH1DBZOc91Dw=",
+    "lastModified": 1785945821
   },
   "wrappers": {
     "type": "github",
@@ -133,8 +133,8 @@
     "type": "github",
     "owner": "youwen5",
     "repo": "zen-browser-flake",
-    "rev": "b7d4cc2778143a228675cd8bb7efdfa111638ac8",
-    "narHash": "sha256-wWRW/Teo+58EMeTpVVEAqYid1qLzpB/PViQJCv7Xxvc=",
-    "lastModified": 1785480078
+    "rev": "f9af5f7017cea1c159e17922288fb38ff94d28cd",
+    "narHash": "sha256-tvBlGAYyzHYdLwn035bRCrB1mcMjvNNavcNZ293AIIA=",
+    "lastModified": 1786164819
   }
 }

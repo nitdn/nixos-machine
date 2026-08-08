@@ -20,6 +20,7 @@ let
     # Check these out at about:config
     "extensions.autoDisableScopes" = 0;
     "extensions.pocket.enabled" = false;
+    "zen.widget.linux.transparency" = true;
     # ...
   };
 
@@ -68,24 +69,29 @@ let
       ];
     };
   };
+  firefox-wrapper =
+    pkgs:
+    pkgs.wrapFirefox
+      inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.zen-browser-unwrapped
+      {
+        extraPrefs = lib.concatLines (
+          lib.mapAttrsToList (
+            name: value: "lockPref(${lib.strings.toJSON name}, ${lib.strings.toJSON value});"
+          ) prefs
+        );
+        inherit extraPolicies;
+      };
 
 in
 {
+  perSystem = { pkgs, ... }: {
+    packages.zen-wrapped = firefox-wrapper pkgs;
+  };
   flake.modules.nixos.pc =
     { pkgs, ... }:
     {
       environment.systemPackages = [
-        (pkgs.wrapFirefox
-          inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.zen-browser-unwrapped
-          {
-            extraPrefs = lib.concatLines (
-              lib.mapAttrsToList (
-                name: value: "lockPref(${lib.strings.toJSON name}, ${lib.strings.toJSON value});"
-              ) prefs
-            );
-            inherit extraPolicies;
-          }
-        )
+        (firefox-wrapper pkgs)
       ];
     };
 }
