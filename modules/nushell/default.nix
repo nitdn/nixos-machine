@@ -44,7 +44,7 @@ in
               nativeBuildInputs = [ inputs.cade.packages.${system}.default ];
             }
             ''
-              cade  hook nushell >> "$out"
+              cade hook nushell >> "$out"
             '';
       in
       {
