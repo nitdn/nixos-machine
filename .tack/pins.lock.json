@@ -3,9 +3,9 @@
     "type": "github",
     "owner": "mrshmllow",
     "repo": "affinity-nix",
-    "rev": "14fd628af2ce1fd56391cbf75ef48494f051e506",
-    "narHash": "sha256-nw9ho7BM/qct4YG0lSpaeIyCXQKOqOr6A2ezfwocb3U=",
-    "lastModified": 1785468701
+    "rev": "65610fe65b0ea94eb7913b9f37a532c83d46790f",
+    "narHash": "sha256-4aAr5NeOn8fp8QBrKnfYB7N5mBZO1HjPFYpvqlCirOo=",
+    "lastModified": 1786240917
   },
   "bizhub-225i.zip": {
     "type": "fixed",
@@ -71,15 +71,15 @@
     "type": "github",
     "owner": "nix-community",
     "repo": "nix-index-database",
-    "rev": "dbc756c9d7287de19b3e0e38c928c47510d42c3e",
-    "narHash": "sha256-q4kR7g+pCcz6NASvoVPYu+CWWUurX03wogtBqGmR4h0=",
-    "lastModified": 1785650611
+    "rev": "14d55b8069119e3b88da7aa2f6c97f86a2cd3cd6",
+    "narHash": "sha256-Y2mSr+HLKYoOsjiackgilxkHXe8gkJ3z4hFFekjQX3I=",
+    "lastModified": 1786249295
   },
   "nixpkgs": {
     "type": "tarball",
-    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1048607.b7c2ada94fe9/nixexprs.tar.zst",
-    "rev": "b7c2ada94fe99c15b0dbcf4d11fd7850b957a436",
-    "narHash": "sha256-929m7iW8q2uv3mZHNwY8Um6XKj99rbIcZsWS9cT1vaI="
+    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1049422.f13ff45afd1b/nixexprs.tar.zst",
+    "rev": "f13ff45afd1bb73e640eaa08a7066dbed07e3238",
+    "narHash": "sha256-CgKDSHL6rqAAQkkvg1xaZDQXb77+4XW73iGcUMJ+2w0="
   },
   "rust-analyzer": {
     "type": "github",
