@@ -35,6 +35,7 @@ in
         package = pkgs.noctalia;
         runtimePkgs = [
           pkgs.ddcutil
+          pkgs.glib
         ];
         constructFiles.generatedConfig = {
           content = lib.readFile ./noctalia-config.toml;
