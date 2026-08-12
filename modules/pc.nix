@@ -12,7 +12,9 @@
 let
   inherit (config.meta) username;
   nixosModules = config.flake.modules.nixos;
-  flakeInputs = inputs |> lib.filterAttrs (name: value: lib.typeOf value == "set" && name != "self");
+  flakeInputs =
+    inputs
+    |> lib.filterAttrs (name: value: lib.typeOf value == "set" && name != "self" && name != "nixpkgs");
 in
 {
   flake.modules.nixos.readOnlyPkgs = { ... }: {
@@ -39,10 +41,6 @@ in
       # your system.  Help is available in the configuration.nix(5) man page
       # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-      nix.nixPath = [
-        "nixpkgs=${inputs.nixpkgs}"
-        "nixos-config=/home/${username}/nixos-machine"
-      ];
       nix.settings = {
         trusted-users = [
           username
