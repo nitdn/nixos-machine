@@ -17,9 +17,9 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "cade",
-    "rev": "b9e7a9b699e0308f43daa77abc53d455ce10b425",
-    "narHash": "sha256-GtOCNhZ2OHxkmzEGMVJgcJaExnT3m6URswPZHjsPPpc=",
-    "lastModified": 1786185442
+    "rev": "d119b4f3d1199209f571b7bfdeebc0cf20c04ae6",
+    "narHash": "sha256-7PKZV/3rH0SYioQUBWBVE2f4pJoqe4hbyrSLFRaH/e8=",
+    "lastModified": 1786834477
   },
   "disko": {
     "type": "github",
@@ -71,9 +71,9 @@
     "type": "github",
     "owner": "nix-community",
     "repo": "nix-index-database",
-    "rev": "14d55b8069119e3b88da7aa2f6c97f86a2cd3cd6",
-    "narHash": "sha256-Y2mSr+HLKYoOsjiackgilxkHXe8gkJ3z4hFFekjQX3I=",
-    "lastModified": 1786249295
+    "rev": "c7962dc97b45129df8d751bedaf37beb5a17706e",
+    "narHash": "sha256-IM5CYtf86W4w8eUPpKcY/LpdHElmVBtJhaKnoTKxZEA=",
+    "lastModified": 1786852476
   },
   "nixpkgs": {
     "type": "tarball",
@@ -125,9 +125,9 @@
     "type": "github",
     "owner": "BirdeeHub",
     "repo": "nix-wrapper-modules",
-    "rev": "6e7f66fa2cdf4d63162580b438f7fcf87c28a46f",
-    "narHash": "sha256-vAmbArdCyjqpVW+37aCy/PMBOLIqukUXLQuEKLwUhA4=",
-    "lastModified": 1782135443
+    "rev": "747261641d825be8d97abf755399b24057140ab6",
+    "narHash": "sha256-oXGC2aM3Bh0MidmPwp/3XtNk69Bgni+WzN9iRhhg+HA=",
+    "lastModified": 1786836119
   },
   "zen-browser": {
     "type": "github",
