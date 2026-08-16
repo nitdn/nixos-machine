@@ -133,7 +133,7 @@ in
         pkgs.noto-fonts-color-emoji
         pkgs.atkinson-hyperlegible-next
         pkgs.iosevka
-        pkgs.nerd-fonts.iosevka-term-slab
+        pkgs.nerd-fonts.iosevka
       ];
 
       fonts.fontconfig.defaultFonts = lib.mkIf config.hardware.graphics.enable {
@@ -146,7 +146,7 @@ in
           "Noto Serif Bengali"
         ];
         monospace = [
-          "IosevkaTermSlab Nerd Font"
+          "Iosevka Nerd Font"
         ];
       };
       fonts.fontDir.enable = true;
