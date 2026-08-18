@@ -40,17 +40,12 @@ in
         inherit (pkgs) inferno writers;
         inherit (config.packages) jujutsu-pc;
       };
-      devShells.commands = pkgs.mkShell {
-        packages = [
-          config.packages.jstCommand
-        ];
-      };
       devShells.default = pkgs.mkShell {
         TACK_NIX_CONF_TOKENS = "1";
-        inputsFrom = [ config.devShells.commands ];
         packages = [
           # config.packages.kakoune-pc # insanely borked
           nufmt
+          config.packages.jstCommand
         ]
         ++ lib.attrValues {
           inherit (config.packages) jujutsu-pc;
@@ -64,20 +59,17 @@ in
             kdlfmt
             meld
             nixd
-            nixfmt
             onefetch
             pandoc
             reuse
             sops
-            taplo
             tinymist
             tokei
-            typstyle
             vscode-langservers-extracted
             yaml-language-server
-            zizmor
             ;
-        };
+        }
+        ++ lib.attrValues config.treefmt.build.programs;
       };
     };
 }

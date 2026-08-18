@@ -48,13 +48,7 @@ in
         ];
       };
 
-      nix.registry = (lib.mapAttrs (_name: value: { flake = value; }) flakeInputs) // {
-        # invalidates binary caches for all toplevel builds
-        # nixos-machine.flake = inputs.self;
-      };
-      # {
-      #   nixpkgs.flake = inputs.nixpkgs;
-      # };
+      nix.registry = lib.mapAttrs (_name: value: { flake = value; }) flakeInputs;
 
       # Bootloader.
       boot.loader.systemd-boot = {
