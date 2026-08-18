@@ -40,5 +40,6 @@
         "dmask=0022"
       ];
     };
+    swapDevices = [ { device = "/dev/disk/by-partlabel/disk-main-swap"; } ];
   };
 }

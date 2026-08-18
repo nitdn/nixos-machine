@@ -76,6 +76,10 @@ nh os $command .
 )
 }
 
+def "main switch" [] {
+	nixos-rebuild switch --flake . --elevate run0
+}
+
 def "main lock" [] {
   $env.TACK_NIX_CONF_TOKENS = 1
 

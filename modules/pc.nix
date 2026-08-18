@@ -57,11 +57,7 @@ in
       };
       boot.loader.efi.canTouchEfiVariables = lib.mkDefault true;
       boot.initrd.systemd.enable = true;
-      boot.kernelParams = [
-        "zswap.enabled=1" # enables zswap
-        "zswap.max_pool_percent=20" # maximum percentage of RAM that zswap is allowed to use
-        "zswap.shrinker_enabled=1" # whether to shrink the pool proactively on high memory pressure
-      ];
+      boot.zswap.enable = true;
       boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
       boot.supportedFilesystems = {
         exfat = true;
