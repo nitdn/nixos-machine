@@ -31,7 +31,6 @@ let
       };
     in
     lib.mkIf cfg.enable {
-      # nixpkgs.overlays = [ inputs.affinity-nix.overlays.default ];
       programs.kdeconnect = {
         enable = true;
       };
@@ -46,6 +45,7 @@ let
         pkgs.mesa.opencl
         pkgs.wineWow64Packages.stagingFull
         pkgs.krita
+        pkgs.faugus-launcher
         # pkgs.affinity-v3
       ];
       i18n.inputMethod = {

@@ -63,6 +63,7 @@ show_weather = true
 enabled = ["icefish/phone-connect"]
 
 [shell]
+password_style = "random"
 polkit_agent = true
 
 [shell.panel]
