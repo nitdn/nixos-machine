@@ -5,7 +5,7 @@
 _: {
   flake.modules.nixos = {
     pc = _: {
-      services.displayManager.noctalia-greeter.enable = true;
+      services.displayManager.plasma-login-manager.enable = true;
       services.userdbd.silenceHighSystemUsers = true;
     };
 
