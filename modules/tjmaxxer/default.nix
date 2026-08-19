@@ -103,6 +103,7 @@ in
         ];
       };
 
+      swapDevices = [ { device = "/dev/disk/by-partlabel/wd-swap"; } ];
     };
   flake.nixosConfigurations.tjmaxxer = inputs.nixpkgs.lib.nixosSystem {
     modules = lib.attrValues {
