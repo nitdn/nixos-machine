@@ -36,6 +36,7 @@ in
         runtimePkgs = [
           pkgs.ddcutil
           pkgs.glib
+          pkgs.kdePackages.kdialog
         ];
         constructFiles.generatedConfig = {
           content = lib.readFile ./noctalia-config.toml;

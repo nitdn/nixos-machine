@@ -96,8 +96,14 @@ path = "/home/ssmvabaa/wallpapers/wall.png"
 [wallpaper.last]
 path = "/home/ssmvabaa/wallpapers/wall.png"
 
+[wallpaper.monitors.DP-2]
+path = "/home/ssmvabaa/wallpapers/wall.png"
+
 [widget.bar]
 type = "icefish/phone-connect:bar"
+
+[widget.control-center]
+custom_image = "/home/ssmvabaa/wallpapers/nixos-logomark-white-flat-none.svg"
 
 [widget.spacer_2]
 type = "spacer"
