@@ -118,9 +118,7 @@ in
       services.dbus.implementation = "broker";
 
       fonts.packages = lib.mkIf config.hardware.graphics.enable [
-        pkgs.noto-fonts
-        pkgs.noto-fonts-cjk-sans
-        pkgs.noto-fonts-color-emoji
+        pkgs.noto-fonts.megamerge
         pkgs.atkinson-hyperlegible-next
         pkgs.iosevka
         pkgs.nerd-fonts.iosevka

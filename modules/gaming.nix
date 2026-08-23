@@ -63,6 +63,7 @@
           # (gamescope.overrideAttrs (_: {
           #   NIX_CFLAGS_COMPILE = [ "-fno-fast-math" ];
           # }))
+          steamtinkerlaunch
           libXcursor
           libXi
           libXinerama
