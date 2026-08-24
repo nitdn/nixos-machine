@@ -39,7 +39,7 @@ let
         pkgs.naps2
         pkgs.hunspell
         pkgs.hunspellDicts.en-gb-large
-        pkgs.libreoffice-qt6-fresh
+        pkgs.libreoffice-qt-stable
         pkgs.zathura
         pkgs.onlyoffice-desktopeditors
         pkgs.mesa.opencl
