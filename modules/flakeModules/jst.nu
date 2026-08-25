@@ -17,7 +17,7 @@ def "main change-id" [revset: string = @-] {
 def "main pr" [revset: string = @-] {
   main ci
 
-  gh pr create --head push-(main change-id $revset) --fill
+  gh pr create --head push-(main change-id $revset) --fill-first
 }
 
 def "main trunk" [revset: string = @-] {
