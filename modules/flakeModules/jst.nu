@@ -17,7 +17,7 @@ def "main change-id" [revset: string = @-] {
 def "main pr" [revset: string = @-] {
   main ci
 
-  gh pr create --head push-(main change-id $revset) --fill
+  gh pr create --head push-(main change-id $revset) --fill-first
 }
 
 def "main trunk" [revset: string = @-] {
@@ -77,7 +77,7 @@ nh os $command .
 }
 
 def "main switch" [] {
-	nixos-rebuild switch --flake . --elevate run0
+  nixos-rebuild switch --flake . --elevate run0
 }
 
 def "main lock" [] {
