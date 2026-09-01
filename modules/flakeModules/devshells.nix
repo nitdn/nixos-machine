@@ -4,26 +4,20 @@
 { lib, ... }:
 let
   command_string = lib.readFile ./jst.nu;
-  command_package =
-    {
-      inferno,
-      jujutsu-pc,
-      writers,
-    }:
-    writers.writeNuBin "jst" {
-      makeWrapperArgs = [
-        "--prefix"
-        "PATH"
-        ":"
-        "${lib.makeBinPath [
-          inferno
-          jujutsu-pc
-        ]}"
-      ];
-    } command_string;
 in
 {
-
+  flake.wrappers.nushell-pc = { pkgs, config, ... }: {
+    runtimePkgs = [ pkgs.inferno ];
+    constructFiles = {
+      jst-nu = {
+        content = command_string;
+        relPath = "devlib/jst.nu";
+      };
+    };
+    "config.nu".content = ''
+      overlay use --prefix ${config.constructFiles.jst-nu.path}
+    '';
+  };
   perSystem =
     {
       inputs',
@@ -36,16 +30,11 @@ in
     in
 
     {
-      packages.jstCommand = command_package {
-        inherit (pkgs) inferno writers;
-        inherit (config.packages) jujutsu-pc;
-      };
       devShells.default = pkgs.mkShell {
         TACK_NIX_CONF_TOKENS = "1";
         packages = [
           # config.packages.kakoune-pc # insanely borked
           nufmt
-          config.packages.jstCommand
         ]
         ++ lib.attrValues {
           inherit (config.packages) jujutsu-pc;
