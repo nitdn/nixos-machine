@@ -2,25 +2,37 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
+# These are the hosts I have
 def hostnames [] { ["tjmaxxer" "msi-colgate" "disko-elysium"] }
 
-def "main ci" [revset: string = @-] {
+# Push to the CI mirror
+@category  'Remote operations'
+def "main ci" [revset: string = @- # The jj revset
+] {
   jj git push -c ($revset) --remote flake-mirror
 
   jj git push -c ($revset) --remote tngl-mirror
 }
 
-def "main change-id" [revset: string = @-] {
+@category  'Remote operations'
+def "main change-id" [revset: string = @- # The jj revset
+] {
   jj log -r ($revset) -T "change_id.short()" --no-graph
 }
 
-def "main pr" [revset: string = @-] {
+# Create a Pull Request
+@category  'Remote operations'
+def "main pr" [revset: string = @- # The jj revset
+] {
   main ci
 
   gh pr create --head push-(main change-id $revset) --fill-first
 }
 
-def "main trunk" [revset: string = @-] {
+# Merge into trunk and commit to remotes
+@category  'Remote operations'
+def "main trunk" [revset: string = @- # The jj revset
+] {
   jj bookmark set main --to ($revset)
 
   jj git push -r ($revset) --remote flake-mirror --bookmark main
@@ -30,12 +42,16 @@ def "main trunk" [revset: string = @-] {
   jj git push -r ($revset) --remote origin
 }
 
+# Create a snapshotted watcher
+@category  'Remote operations'
 def "main new" [] {
 
   # Watch is uncapturable for some reason
   watch $"($nu.home-dir)/nixos-machine" --glob=**/*.nix {|| nix flake check; jj new }
 }
 
+# Large squashes that flatten multiple revisions
+@category  'Remote operations'
 def "main squash" [base: string] {
   jj squash -t $base -f $"($base)::@-"
 }
@@ -53,6 +69,7 @@ systemd-run --user --scope
 )
 }
 
+# Attaches SPDX Identifiers to new files
 def "main reuse" --wrapped [...args: path] {
   (
 reuse annotate
@@ -61,13 +78,17 @@ reuse annotate
 )
 }
 
+@deprecated  "I don't really care about nfb anymore"
 def "main fast" [machine: string@hostnames] {
   nix-fast-build --flake=$".#nixosConfigurations.($machine).config.system.build.toplevel"
 
   nh os switch .
 }
 
-def "main deploy" [hostname: string@hostnames, --switch(-s)] {
+# Remote deploys
+def "main deploy" [hostname: string@hostnames # The hostname argument
+ --switch(-s) # Whether to use switch or test
+] {
   let command = if $switch { "switch" } else { "test" }
 
   (
@@ -76,10 +97,11 @@ nh os $command .
 )
 }
 
-def "main switch" [] {
+def "main switch" [hostname: string@hostnames] {
   nixos-rebuild switch --flake . --elevate run0
 }
 
+# Generates a tack lock update
 def "main lock" [] {
   $env.TACK_NIX_CONF_TOKENS = 1
 
@@ -91,21 +113,28 @@ def "main lock" [] {
     return
   }
 
-  jj new
+  jj new -B @
 
   jj desc -m "tack: update" -m $"($changelog | str join "\n")"
 
   $changelog | where {$in =~ "^\\w"} | parse "{input}: {changes}" | get input | tack update ...$in
+
+  jj next --edit
 }
 
-def --wrapped "main eval" [hostname: string@hostnames = tjmaxxer, ...rest] {
+# Get an evaluation perf time report
+def --wrapped "main eval" [hostname: string@hostnames = tjmaxxer # Host config to evaluate
+ ...rest # Extra arguments
+] {
   (
 NIX_SHOW_STATS=1 nix eval $".#nixosConfigurations.($hostname).config.system.build.toplevel"
 --substituters " " --no-eval-cache --read-only ...$rest
 )
 }
 
-def "main eval profiler" [hostname: string@hostnames = tjmaxxer] {
+# Get a profiler flamegraph
+def "main eval profiler" [hostname: string@hostnames = tjmaxxer # Host config to profile
+] {
   (
 nix eval $".#nixosConfigurations.($hostname).config.system.build.toplevel"
 --substituters " " --no-eval-cache --read-only
