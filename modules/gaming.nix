@@ -98,6 +98,7 @@
           pkgs.umu-launcher
           pkgs.concord-tui
           pkgs.arrpc
+          pkgs.itch
 
         ];
       };
