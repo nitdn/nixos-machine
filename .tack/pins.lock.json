@@ -39,9 +39,9 @@
     "type": "github",
     "owner": "hercules-ci",
     "repo": "flake-parts",
-    "rev": "9d0d87172c374f89da73c1cfe6d81ae62feac1f1",
-    "narHash": "sha256-onL0VLf9vPllmT0H/OlURIU5r5t5WIEl7t4tVNKT0Nw=",
-    "lastModified": 1787559586
+    "rev": "f16b25b8c3d2809b87925d0b76652d7821a75c68",
+    "narHash": "sha256-lbrI1UYVpFgKSsyrU9oeF7FHfnu8nLD9ja0ou9f2rxk=",
+    "lastModified": 1788306937
   },
   "inshellah": {
     "type": "github",
@@ -55,9 +55,9 @@
     "type": "github",
     "owner": "microvm-nix",
     "repo": "microvm.nix",
-    "rev": "174e28de151e069a95d03c86dd174c3b71bdfba7",
-    "narHash": "sha256-yBTPSlzoS29StLUpEyQpivSkhwRVki/wzB335/62CO8=",
-    "lastModified": 1788055725
+    "rev": "974d315e504e666eac4920d712e3ff6804dc1502",
+    "narHash": "sha256-gyVqW5U9wy6A8voJNu6SiSYTKDplo/MDl31x7FszWlk=",
+    "lastModified": 1788263502
   },
   "nix-devshells": {
     "type": "git",
@@ -93,9 +93,9 @@
     "type": "github",
     "owner": "Mic92",
     "repo": "sops-nix",
-    "rev": "a8627b21b9107c5711c96b84f32a9a4b3d45295f",
-    "narHash": "sha256-gkig4nPi1CWc4Z50GBsjE4ygSE7hMpl/TwID2an2Cck=",
-    "lastModified": 1786629091
+    "rev": "fbf759290e0cb0a98dfc813a4eb7d53ad1dacb57",
+    "narHash": "sha256-gkSH8VUtCo6hnysNmb9DbTuDepH2t5pv+QWjP75xKAk=",
+    "lastModified": 1788337237
   },
   "steam-presence": {
     "type": "github",
@@ -109,9 +109,9 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "tack",
-    "rev": "62a67545adaf01b48d01ee73c0d16353ca68432e",
-    "narHash": "sha256-rTiX4SZ9Sjei3WzsW25nDTZweMRzA7ZunspkhDXkZfY=",
-    "lastModified": 1785878583
+    "rev": "cf3e7db8f404a9883c3271891aa64c6b17fc91d7",
+    "narHash": "sha256-Na9BZk4hCvzFT41tB7/VZlwpMzI2fg/ebHVkjRD+4UM=",
+    "lastModified": 1788244134
   },
   "treefmt-nix": {
     "type": "github",
