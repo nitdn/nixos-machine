@@ -18,6 +18,8 @@ let
       };
       environment.systemPackages = [
         pkgs.kdePackages.ark
+        pkgs.rar
+        pkgs.unrar
       ];
       services.tumbler.enable = true;
       services.gvfs = {
