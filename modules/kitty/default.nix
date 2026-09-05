@@ -9,7 +9,6 @@
 }:
 let
   inherit (config.meta) term;
-  inherit (config.flake) wrappers;
   kittyWrapper =
     { wlib, config, ... }:
     let
@@ -78,12 +77,9 @@ in
     };
     modules.nixos.pc =
       { pkgs, ... }:
-      let
-        kittyWrapped = wrappers.kitty-pc.wrap { inherit pkgs; };
-      in
       {
+        wrappers.kitty-pc.enable = true;
         environment.systemPackages = [
-          kittyWrapped
           (pkgs.writeShellScriptBin "xterm" ''
             ${term} "$@"
           '')

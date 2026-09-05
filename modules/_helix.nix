@@ -7,7 +7,6 @@
   ...
 }:
 let
-  inherit (config.flake) wrappers;
   helix-pc =
     { wlib, pkgs, ... }:
     {
@@ -98,25 +97,4 @@ let
 in
 {
   flake.wrappers = { inherit helix-pc helix-light; };
-  flake.modules.nixos.darkMode =
-    {
-      pkgs,
-      ...
-    }:
-    {
-      config.environment.systemPackages = [
-        (wrappers.helix-pc.wrap { inherit pkgs; })
-
-      ];
-    };
-  flake.modules.nixos.lightMode =
-    {
-      pkgs,
-      ...
-    }:
-    {
-      config.environment.systemPackages = [
-        (wrappers.helix-light.wrap { inherit pkgs; })
-      ];
-    };
 }

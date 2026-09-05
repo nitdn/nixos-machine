@@ -11,16 +11,13 @@
 }:
 
 let
-  inherit (config.flake) wrappers;
   inherit (config.meta) username;
 in
 {
   flake = {
     modules.nixos.pc = { pkgs, ... }: {
+      wrappers.kakoune-pc.enable = true;
       environment.systemPackages = [
-        (wrappers.kakoune-pc.wrap {
-          inherit pkgs;
-        })
         pkgs.kdePackages.kate # Needed for text editor support
       ];
       environment.variables = {

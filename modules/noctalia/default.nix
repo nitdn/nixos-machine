@@ -25,7 +25,7 @@ in
         env.NOCTALIA_CONFIG_HOME = "${placeholder "out"}/config";
         passthru.tests.config-is-correct = pkgs.testers.runCommand {
           name = "noctalia-config";
-          nativeBuildInputs = [ (config.wrap { }) ];
+          nativeBuildInputs = [ config.wrapper ];
           script = ''
             noctalia config validate
             noctalia config export
@@ -132,9 +132,10 @@ in
   flake.modules.nixos.pc =
     { pkgs, ... }:
     {
+      wrappers.noctalia-v5.enable = true;
       environment.systemPackages = [
         pkgs.wtype
-        (wrappers.noctalia-v5.wrap { inherit pkgs; })
+
       ];
     };
 }

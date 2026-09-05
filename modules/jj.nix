@@ -1,11 +1,7 @@
 # SPDX-FileCopyrightText: 2025 Nitesh Kumar Debnath <nitkdnath@gmail.com>
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
-{ config, ... }:
-let
-  inherit (config.flake) wrappers;
-in
-{
+_: {
   flake.wrappers.jujutsu-pc =
     { wlib, ... }:
     {
@@ -28,12 +24,7 @@ in
       };
     };
 
-  flake.modules.nixos.pc =
-    {
-      pkgs,
-      ...
-    }:
-    {
-      environment.systemPackages = [ (wrappers.jujutsu-pc.wrap { inherit pkgs; }) ];
-    };
+  flake.modules.nixos.pc = _: {
+    wrappers.jujutsu-pc.enable = true;
+  };
 }

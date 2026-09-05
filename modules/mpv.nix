@@ -2,27 +2,25 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-{ inputs, ... }:
-{
+{ inputs, ... }: {
+  flake.wrappers = { inherit (inputs.wrappers.lib.wrapperModules) mpv; };
   flake.modules.nixos.pc =
     { pkgs, ... }:
     {
-      environment.systemPackages = [
-        (inputs.wrappers.wrappers.mpv.wrap {
-          inherit pkgs;
-          script = {
-            uosc.path = pkgs.mpvScripts.uosc;
-            sponsorblock.path = pkgs.mpvScripts.sponsorblock;
-          };
-          "mpv.conf".content = ''
-            vo=gpu
-            hwdec=auto
-          '';
-          "mpv.input".content = ''
-            WHEEL_UP seek 10
-            WHEEL_DOWN seek -10
-          '';
-        })
-      ];
+      wrappers.mpv = {
+        enable = true;
+        script = {
+          uosc.path = pkgs.mpvScripts.uosc;
+          sponsorblock.path = pkgs.mpvScripts.sponsorblock;
+        };
+        "mpv.conf".content = ''
+          vo=gpu
+          hwdec=auto
+        '';
+        "mpv.input".content = ''
+          WHEEL_UP seek 10
+          WHEEL_DOWN seek -10
+        '';
+      };
     };
 }

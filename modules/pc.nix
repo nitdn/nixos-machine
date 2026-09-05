@@ -11,6 +11,7 @@
 }:
 let
   inherit (config.meta) username;
+  inherit (config.flake) wrappers;
   nixosModules = config.flake.modules.nixos;
   flakeInputs =
     inputs
@@ -36,7 +37,8 @@ in
     {
       imports = [
         inputs.nix-index-database.nixosModules.default
-      ];
+      ]
+      ++ lib.mapAttrsToList (_: v: v.install) wrappers;
       # Edit this configuration file to define what should be installed on
       # your system.  Help is available in the configuration.nix(5) man page
       # and in the NixOS manual (accessible by running ‘nixos-help’).

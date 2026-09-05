@@ -3,12 +3,10 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 {
   inputs,
-  config,
   lib,
   ...
 }:
 let
-  inherit (config.flake) wrappers;
   zoxide_completer = /* nu */ ''
     def "nu-complete zoxide path" [context: string] {
       let parts = $context | split row " " | skip 1
@@ -56,19 +54,14 @@ in
       };
     wrappers.kitty-pc.settings.shell = "nu";
     modules.nixos.pc =
-      { pkgs, ... }:
-      let
-        nushell-pc = wrappers.nushell-pc.wrap { inherit pkgs; };
-      in
+      { pkgs, config, ... }:
       {
+        wrappers.nushell-pc.enable = true;
         imports = [ inputs.cade.nixosModules.default ];
         programs.cade.enable = true;
         environment.shells = [
-          nushell-pc
           pkgs.stdenv.builder
-        ];
-        environment.systemPackages = [
-          nushell-pc
+          config.wrappers.nushell-pc.wrapper
         ];
       };
   };

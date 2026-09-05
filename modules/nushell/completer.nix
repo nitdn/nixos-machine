@@ -2,10 +2,10 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-{ inputs, config, ... }: {
-  flake.modules.nixos.pc = { pkgs, ... }: {
+{ inputs, ... }: {
+  flake.modules.nixos.pc = { config, ... }: {
     imports = [ inputs.inshellah.nixosModules.default ];
     programs.inshellah.enable = true;
-    programs.inshellah.nushellPackage = config.flake.wrappers.nushell-pc.wrap { inherit pkgs; };
+    programs.inshellah.nushellPackage = config.wrappers.nushell-pc.wrapper;
   };
 }

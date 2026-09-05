@@ -3,13 +3,9 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 {
-  config,
   lib,
   ...
 }:
-let
-  inherit (config.flake) wrappers;
-in
 {
   config.flake.wrappers.niri-pc =
     {
@@ -96,7 +92,7 @@ in
     pc =
       { pkgs, config, ... }:
       let
-        niriPkg = wrappers.niri-pc.wrap { inherit pkgs; };
+        niriPkg = config.wrappers.niri-pc.wrapper;
       in
       {
         fonts.packages = [ pkgs.nerd-fonts.symbols-only ];
