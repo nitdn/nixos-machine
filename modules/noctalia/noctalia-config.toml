@@ -61,8 +61,16 @@ show_session_buttons = true
 show_unlock_hint = true
 show_weather = true
 
+[plugin_settings."alexander/screen-toolkit"]
+panel_position = "auto"
+record-codec = "av1"
+
 [plugins]
-enabled = ["icefish/phone-connect", "setyvii/niri-rules-studio"]
+enabled = [
+  "icefish/phone-connect",
+  "setyvii/niri-rules-studio",
+  "alexander/screen-toolkit",
+]
 
 [shell]
 password_style = "random"
