@@ -52,7 +52,6 @@ in
           source ${cade-nushell}
         '';
       };
-    wrappers.kitty-pc.settings.shell = "nu";
     modules.nixos.pc =
       { pkgs, config, ... }:
       {

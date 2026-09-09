@@ -95,7 +95,6 @@
         niriPkg = config.wrappers.niri-pc.wrapper;
       in
       {
-        fonts.packages = [ pkgs.nerd-fonts.symbols-only ];
         programs.niri.enable = true;
         programs.niri.package = niriPkg;
         environment.systemPackages = lib.mkIf config.programs.niri.enable [

@@ -120,10 +120,11 @@ in
       services.dbus.implementation = "broker";
 
       fonts.packages = lib.mkIf config.hardware.graphics.enable [
-        pkgs.noto-fonts.megamerge
         pkgs.atkinson-hyperlegible-next
         pkgs.iosevka
         pkgs.nerd-fonts.iosevka
+        pkgs.nerd-fonts.symbols-only
+        pkgs.noto-fonts.megamerge
       ];
 
       fonts.fontconfig.defaultFonts = lib.mkIf config.hardware.graphics.enable {

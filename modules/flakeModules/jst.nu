@@ -72,7 +72,7 @@ systemd-run --user --scope
 # Attaches SPDX Identifiers to new files
 export def reuse --wrapped [...args: path] {
   (
-reuse annotate
+^reuse annotate
 --copyright="Nitesh Kumar Debnath <nitkdnath@gmail.com>"
 --license="GPL-3.0-or-later" ...$args
 )

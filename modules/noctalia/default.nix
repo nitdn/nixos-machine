@@ -125,9 +125,6 @@ in
           };
         };
       };
-    kitty-pc = {
-      extraSettings.include = [ "~/.config/kitty/themes/noctalia.conf" ];
-    };
   };
   flake.modules.nixos.pc =
     { pkgs, ... }:

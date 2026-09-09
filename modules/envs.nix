@@ -28,5 +28,23 @@ _: {
           text = ''exec "${pkgs.nix-search-tv.src}/nixpkgs.sh" "$@"'';
         })
       ];
+      # Required for bashInteractive; its gonna be bash anyway
+      programs.bash.enable = true;
+      programs.zoxide = {
+        enable = true;
+      };
+      programs.yazi = {
+        enable = true;
+
+        settings.yazi = {
+          manager = {
+            show_hidden = true;
+          };
+          preview = {
+            max_width = 1000;
+            max_height = 1000;
+          };
+        };
+      };
     };
 }
