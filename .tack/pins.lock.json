@@ -3,9 +3,9 @@
     "type": "github",
     "owner": "mrshmllow",
     "repo": "affinity-nix",
-    "rev": "762d625545f67dfa49141936b733f9a18448478d",
-    "narHash": "sha256-3QwUQIuF517e1TlkEu2Uned4B2ZUr/Eaj4qDVdRzjeI=",
-    "lastModified": 1788753201
+    "rev": "d1b1fb2c5089c2828fd4521d60de2960744bf9a1",
+    "narHash": "sha256-RbsEiAOXBeB7Xd5gMMN7Y+WyWq1LLpzTUzmfta5RnCA=",
+    "lastModified": 1788905996
   },
   "bizhub-225i.zip": {
     "type": "fixed",
@@ -17,9 +17,9 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "cade",
-    "rev": "d119b4f3d1199209f571b7bfdeebc0cf20c04ae6",
-    "narHash": "sha256-7PKZV/3rH0SYioQUBWBVE2f4pJoqe4hbyrSLFRaH/e8=",
-    "lastModified": 1786834477
+    "rev": "3211f782a53f94842bbb8782de03a2c5d85c793d",
+    "narHash": "sha256-Xrwc9hgghoOp2ySoBY1Mbyyi8mkR/HBHdFQ+5ATfikU=",
+    "lastModified": 1788925586
   },
   "disko": {
     "type": "github",
@@ -77,9 +77,9 @@
   },
   "nixpkgs": {
     "type": "tarball",
-    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1068949.dc5d91f84032/nixexprs.tar.zst",
-    "rev": "dc5d91f840324650bac8c379428c7037a416959a",
-    "narHash": "sha256-jaBxqP3GfXq5Ilyfz5wulKO7xyBUmToFxqTU+caFyus="
+    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1069856.d6524aaca2ff/nixexprs.tar.zst",
+    "rev": "d6524aaca2ff07876657ae2b323f24be4874944b",
+    "narHash": "sha256-151taSq/21cxagiIu7hyMVl68+FbHfwBP4lh6TB6KOM="
   },
   "rust-analyzer": {
     "type": "github",
@@ -93,9 +93,9 @@
     "type": "github",
     "owner": "Mic92",
     "repo": "sops-nix",
-    "rev": "fbf759290e0cb0a98dfc813a4eb7d53ad1dacb57",
-    "narHash": "sha256-gkSH8VUtCo6hnysNmb9DbTuDepH2t5pv+QWjP75xKAk=",
-    "lastModified": 1788337237
+    "rev": "13616fff713a9f94055c66f15687ebdc17a335df",
+    "narHash": "sha256-4GuMPW90JSxXWDPUB9M+1m7fYbe3H0apOd86/zBQ2Kw=",
+    "lastModified": 1788914643
   },
   "steam-presence": {
     "type": "github",
@@ -125,9 +125,9 @@
     "type": "github",
     "owner": "nix-community",
     "repo": "nix-wrapper-modules",
-    "rev": "e88c449105c6aafa460196d3cbd16718655aee0f",
-    "narHash": "sha256-oNMrijfyaoRjjWhxHNFSBYyEB4u/zb/AxoKewC56LvE=",
-    "lastModified": 1788744583
+    "rev": "f57daa2c7c7e7af7382fbaab9a330bc39c6fd30c",
+    "narHash": "sha256-3mM/4Nv4rKU17EiYOhRt0AWp0IbV5gFLlogh7yNZUwU=",
+    "lastModified": 1788891837
   },
   "zen-browser": {
     "type": "github",
