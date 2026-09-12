@@ -21,6 +21,7 @@ window-rule {
 }
 window-rule {
 	match app-id="kitty"
+	match app-id="ghostty"
 	open-on-workspace "terminal"
 }
 // Open the Firefox picture-in-picture window as floating.
