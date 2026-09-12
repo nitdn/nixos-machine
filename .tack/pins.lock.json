@@ -63,9 +63,9 @@
     "type": "git",
     "url": "https://codeberg.org/nitdn/nix-devshells.git",
     "ref": "HEAD",
-    "rev": "12858514086aa38d4b961ef5b5ea5b31a5368102",
-    "narHash": "sha256-khcKYU5RHf15KJ2+yfqQA8zZFPHXEXWytKIYswMS4TM=",
-    "lastModified": 1786547226
+    "rev": "a8af3fbc70728477811a1187c9e697d97ef102a9",
+    "narHash": "sha256-f1IMJ7NRzLsY9xAYUmPAnsMrlxMsx8l45QhCIVJ1ouE=",
+    "lastModified": 1789214508
   },
   "nix-index-database": {
     "type": "github",
