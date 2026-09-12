@@ -5,28 +5,19 @@
 {
   lib,
   inputs,
-  config,
   ...
 }:
 let
-  inherit (inputs) treefmt-nix flake-parts;
+  inherit (inputs) treefmt-nix;
 in
 {
   imports = [
     # Optional: use external flake logic, e.g.
     treefmt-nix.flakeModule
-    flake-parts.flakeModules.touchup
   ];
 
   # NOTE debug is always true for lsp support
   debug = true;
-
-  # Do not use this if debug is true
-  touchup.attr = lib.mkIf (!config.debug) (
-    lib.genAttrs [ "allSystems" "debug" "modules" "sources" "wrapperModules" "wrappers" ] (_: {
-      enable = false;
-    })
-  );
 
   perSystem =
     {

@@ -16,6 +16,7 @@ codeberg-tarball = "https://codeberg.org/{path}/archive/main.tar.gz"
 [all_follow]
 # nixpkgs = "nixpkgs"
 nixpkgs = ["nixpkgs", "nixpkgs-lib"]
+wrappers = "wrappers"
 rust-analyzer-src = "rust-analyzer"
 treefmt-nix = "treefmt-nix"
 fenix = "fenix"
