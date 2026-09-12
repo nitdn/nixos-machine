@@ -18,6 +18,7 @@ codeberg-tarball = "https://codeberg.org/{path}/archive/main.tar.gz"
 nixpkgs = ["nixpkgs", "nixpkgs-lib"]
 rust-analyzer-src = "rust-analyzer"
 treefmt-nix = "treefmt-nix"
+fenix = "fenix"
 
 # inputs.<name> fields
 #   url             required, shorturl ok, ?rev=<sha> pins an exact commit
