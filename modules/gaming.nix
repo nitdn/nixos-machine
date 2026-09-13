@@ -96,6 +96,7 @@
           pkgs.easyeffects
           # pkgs.lutris
           pkgs.umu-launcher
+          pkgs.r2modman
           pkgs.concord-tui
           pkgs.arrpc
           pkgs.itch
