@@ -26,6 +26,7 @@ in
       {
         imports = [ firewallRules ];
         boot.kernelModules = [ "ntsync" ];
+        programs.gpu-screen-recorder.enable = true;
         programs.gamescope = {
           enable = true;
           args = [
@@ -40,14 +41,7 @@ in
             "60"
             "-s"
             "0.5"
-            # "-S"
-            # "integer"
-            # "-F"
-            # "linear"
-            # "--max-scale"
-            # "2"
             "--borderless"
-            # "--fullscreen"
             "--grab"
             "--adaptive-sync"
           ];
@@ -67,12 +61,9 @@ in
             OBS_VKCAPTURE = true;
             RADV_TEX_ANISO = 16;
           };
-          # extraArgs = "-system-composer";
         };
         programs.steam.extraPackages = with pkgs; [
-          # (gamescope.overrideAttrs (_: {
-          #   NIX_CFLAGS_COMPILE = [ "-fno-fast-math" ];
-          # }))
+          config.programs.gamescope.package
           steamtinkerlaunch
           libXcursor
           libXi
