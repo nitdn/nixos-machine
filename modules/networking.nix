@@ -12,6 +12,7 @@
     {
       networking.domain = "home.arpa";
       networking.dhcpcd.wait = "background";
+      services.zerotierone.enable = true;
       services.stubby = {
         enable = true;
         settings = {

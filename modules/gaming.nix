@@ -7,6 +7,15 @@
   inputs,
   ...
 }:
+let
+  firewallRules = _: {
+    networking.firewall.allowedTCPPorts = [ ];
+    networking.firewall.allowedUDPPorts = [
+      47621 # Voices of the Void multiplayer
+    ];
+  };
+in
+
 {
   flake.modules.nixos = {
     pc =
@@ -15,6 +24,7 @@
         cfg = config.programs.steam;
       in
       {
+        imports = [ firewallRules ];
         boot.kernelModules = [ "ntsync" ];
         programs.gamescope = {
           enable = true;
