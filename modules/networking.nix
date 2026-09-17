@@ -4,6 +4,7 @@
 
 {
   flake.modules.nixos.pc =
+    { config, ... }:
     let
       tls_auth_name = "jmfa1wa82x.cloudflare-gateway.com";
       v4_address = "172.64.36.1";
@@ -13,6 +14,14 @@
       networking.domain = "home.arpa";
       networking.dhcpcd.wait = "background";
       services.zerotierone.enable = true;
+      services.tailscale.enable = true;
+      networking.firewall = {
+        # Always allow traffic from your Tailscale network
+        trustedInterfaces = [ config.services.tailscale.interfaceName ];
+        # Allow the Tailscale UDP port through the firewall
+        allowedUDPPorts = [ config.services.tailscale.port ];
+      };
+
       services.stubby = {
         enable = true;
         settings = {
