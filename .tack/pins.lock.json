@@ -77,9 +77,9 @@
   },
   "nixpkgs": {
     "type": "tarball",
-    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1073009.ef34387ddd75/nixexprs.tar.zst",
-    "rev": "ef34387ddd751e1ab8857adf4676492d32eb24ec",
-    "narHash": "sha256-3i80JnZ9pZ7tWReb/Sqpc32cfzffCu8TWLnbnH0hN9c="
+    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1075591.e554fab72f81/nixexprs.tar.zst",
+    "rev": "e554fab72f81915600f3f449b786fd9af40439a5",
+    "narHash": "sha256-TAKa57gfBM/9a4IZrFaIQZhnHs9mXIFPlZbYrvhnaMY="
   },
   "rust-analyzer": {
     "type": "github",
@@ -93,9 +93,9 @@
     "type": "github",
     "owner": "Mic92",
     "repo": "sops-nix",
-    "rev": "13616fff713a9f94055c66f15687ebdc17a335df",
-    "narHash": "sha256-4GuMPW90JSxXWDPUB9M+1m7fYbe3H0apOd86/zBQ2Kw=",
-    "lastModified": 1788914643
+    "rev": "1e73e8f7176d65e1b55e324de099bbfff4b2c574",
+    "narHash": "sha256-k+I+R6uwHX3VcJ7326qLV6vCahZUgsVl+i8sSU/Stxk=",
+    "lastModified": 1789691124
   },
   "steam-presence": {
     "type": "github",
@@ -133,8 +133,8 @@
     "type": "github",
     "owner": "youwen5",
     "repo": "zen-browser-flake",
-    "rev": "4036109214cf20632000558935bd823b901fa886",
-    "narHash": "sha256-7HHAIxdoDAJv09/I6DrMsAJFgol2cqJumaPCCZ+XdAU=",
-    "lastModified": 1789289402
+    "rev": "9c1767f705262bf08498877fd1053b6a6db12a9f",
+    "narHash": "sha256-sexm8hHHB2jOB/G70czjQxdxeX68zID6G1BomFIGI+w=",
+    "lastModified": 1789636270
   }
 }

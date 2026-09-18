@@ -7,7 +7,7 @@
 # scheme rest expands rest into {path}
 [shorturls]
 gh = "github:{path}"
-nixpkgs = "https://channels.nixos.org/{path}/nixexprs.tar.zst"
+np = "https://channels.nixos.org/{path}/nixexprs.tar.zst"
 codeberg = "git+https://codeberg.org/{path}.git"
 codeberg-tarball = "https://codeberg.org/{path}/archive/main.tar.gz"
 
@@ -30,7 +30,6 @@ fenix = "fenix"
 #   dir             subdir holding flake.nix
 #   submodules      fetch git submodules
 #   unpack          fixed-only tarball or file
-[inputs]
 
 [inputs.affinity-nix]
 url = "github:mrshmllow/affinity-nix"
@@ -41,7 +40,6 @@ flake-compat = ""
 # These will get used regardless
 # git-hooks = ""
 # treefmt-nix = ""
-
 
 [inputs.disko]
 url = "github:nix-community/disko"
@@ -65,7 +63,7 @@ wrappers = "wrappers"
 url = "github:nix-community/nix-index-database"
 
 [inputs.nixpkgs]
-url = "nixpkgs:nixos-unstable"
+url = "np:nixos-unstable"
 
 [inputs.sops-nix]
 url = "github:Mic92/sops-nix"
