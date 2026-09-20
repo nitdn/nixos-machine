@@ -18,11 +18,6 @@ let
       imports = [ wlib.wrapperModules.wlr-which-key ];
       settings.menu = [
         {
-          key = "s";
-          desc = "Annotate screen";
-          cmd = "pkill -SIGUSR1 wayscriber";
-        }
-        {
           key = "l";
           desc = "Open logseq";
           cmd = "logseq";
@@ -52,12 +47,6 @@ in
       { pkgs, ... }:
       {
         settings = {
-          spawn-at-startup = [
-            [
-              "wayscriber"
-              "--daemon"
-            ]
-          ];
           binds."Mod+S" = _: {
             props.hotkey-overlay-title = "Launch wlr-which-key";
             content.spawn = lib.getExe (wrappers.wlr-which-key-wrapped.wrap { inherit pkgs; });

@@ -99,7 +99,6 @@
         programs.niri.package = niriPkg;
         environment.systemPackages = lib.mkIf config.programs.niri.enable [
           pkgs.xwayland-satellite
-          pkgs.wayscriber
         ];
       };
   };
