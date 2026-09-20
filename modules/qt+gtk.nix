@@ -23,6 +23,8 @@
         pkgs.kdePackages.breeze
         pkgs.kdePackages.plasma-integration
 
+        pkgs.kdePackages.flatpak-kcm
+        pkgs.kdePackages.plasma-settings
       ];
     };
 }

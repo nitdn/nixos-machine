@@ -37,6 +37,13 @@ in
           pkgs.ddcutil
           pkgs.glib
           pkgs.kdePackages.kdialog
+          pkgs.satty
+          pkgs.wl-screenrec
+          pkgs.slurp
+          pkgs.grim
+          pkgs.hyprpicker
+          pkgs.zbar
+          pkgs.tesseract
         ];
         constructFiles.generatedConfig = {
           content = lib.readFile ./noctalia-config.toml;
@@ -132,7 +139,8 @@ in
       wrappers.noctalia-v5.enable = true;
       environment.systemPackages = [
         pkgs.wtype
-
+        pkgs.ffmpeg
+        pkgs.imagemagick
       ];
     };
 }
