@@ -71,9 +71,9 @@
     "type": "github",
     "owner": "nix-community",
     "repo": "nix-index-database",
-    "rev": "a74e173407559083a412ea89a1cc58ea389c3b65",
-    "narHash": "sha256-xVstyCdg0DpzjyrEacm72VJAIP9DMhfWJdPDzhWxHuo=",
-    "lastModified": 1789286446
+    "rev": "9ad722673ab3b3f91f02135e53775825b240b869",
+    "narHash": "sha256-Dkg4VKPmDPqTwaiw2WH5br73tXoL1qrOO0xJnR4TlcA=",
+    "lastModified": 1789892076
   },
   "nixpkgs": {
     "type": "tarball",
@@ -93,9 +93,9 @@
     "type": "github",
     "owner": "Mic92",
     "repo": "sops-nix",
-    "rev": "166fc0d3f4fcd0dfc9af102ba8e85fa5dd04e5f7",
-    "narHash": "sha256-/Ql9UE21iDwOU/JdPV20yZtaMpGf+iD2EhIA1aAi540=",
-    "lastModified": 1789815532
+    "rev": "7214124c20c1542c90deb54af50e2f53ae02711f",
+    "narHash": "sha256-GKwH3zpy7tartuJMG0Rv/xUsdetG1QLmTVv8UKgJLmA=",
+    "lastModified": 1789890976
   },
   "steam-presence": {
     "type": "github",
