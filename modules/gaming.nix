@@ -26,7 +26,6 @@ in
       {
         imports = [ firewallRules ];
         boot.kernelModules = [ "ntsync" ];
-        programs.gpu-screen-recorder.enable = true;
         programs.gamescope = {
           enable = true;
           args = [
