@@ -113,6 +113,8 @@ export def lock [] {
     return
   }
 
+	print $changelog
+
   jj new -B @
 
   jj desc -m "tack: update" -m $"($changelog | str join "\n")"

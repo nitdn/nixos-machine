@@ -55,9 +55,9 @@
     "type": "github",
     "owner": "microvm-nix",
     "repo": "microvm.nix",
-    "rev": "187b0a390ee054028106a674e7b01b1cb940cbba",
-    "narHash": "sha256-4L8SOCF84de1irB72Ka9VHcu9wrAJ9Amuey4lU9oh4Y=",
-    "lastModified": 1789506833
+    "rev": "b2fd8eb40192c4fefd16c26b979954f7d354d1aa",
+    "narHash": "sha256-aPNg2CKSPat+SjD20AXYyRAXsPH7fe5+N0ZYOhpjym0=",
+    "lastModified": 1790120829
   },
   "nix-devshells": {
     "type": "git",
@@ -77,9 +77,9 @@
   },
   "nixpkgs": {
     "type": "tarball",
-    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1076192.20b1ddd1aa5a/nixexprs.tar.zst",
-    "rev": "20b1ddd1aa5ace70c9468305030aa4f9ef79671b",
-    "narHash": "sha256-BMbikTjbh5H7ac/OjwGoJrlooh4dgNqhs51ABM83M7g="
+    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1077996.6774f7bc2537/nixexprs.tar.zst",
+    "rev": "6774f7bc253789b113a4f39285dc0fa100abeacc",
+    "narHash": "sha256-OJe62m8gZx4xEAQnMcqH1u31/uu4Xf0q2ykAEHZfgrg="
   },
   "rust-analyzer": {
     "type": "github",
@@ -109,9 +109,9 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "tack",
-    "rev": "d9c0516ff654c8a48dd4294dd183db51154ffad2",
-    "narHash": "sha256-GxJX6df+SqpZv3fkH+5oLQOVT/wI5CovnMaGGhtpvT0=",
-    "lastModified": 1789107241
+    "rev": "7f6842d24461f79810376af78f6620120a9a3353",
+    "narHash": "sha256-SdT3eU7qEdB7UipGzJe4oz+Ph47/TANZ/piX/hXE08g=",
+    "lastModified": 1790136074
   },
   "treefmt-nix": {
     "type": "github",
