@@ -107,12 +107,9 @@ in
       ];
       # Select internationalisation properties.
 
-      i18n.defaultLocale = "en_IN";
-      i18n.extraLocales = [
-        "en_US.UTF-8/UTF-8"
-        "bn_IN/UTF-8"
-        "hi_IN/UTF-8"
-      ];
+      i18n.defaultLocale = "en_IN.UTF-8";
+      # bypasses locale builder requirement to be valid
+      i18n.extraLocales = "all";
 
       services.dbus.implementation = "broker";
 
