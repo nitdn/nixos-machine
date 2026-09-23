@@ -19,5 +19,10 @@
       desc = "Toggle Clipboard";
       cmd = "noctalia msg panel-toggle clipboard";
     }
+    {
+      key = "a";
+      desc = "Toggle Annotations";
+      cmd = "noctalia msg annotate";
+    }
   ];
 }

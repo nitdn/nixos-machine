@@ -3,7 +3,7 @@ ui_scale = 1.1500000096857548
 
 [bar.default]
 background_opacity = 0.7499999832361937
-center = ["clock", "control-center", "bar", "widget"]
+center = ["clock", "control-center", "bar", "widget_2"]
 end = [
   "media",
   "tray",
@@ -151,3 +151,9 @@ drawer = true
 
 [widget.widget]
 type = "alexander/screen-toolkit:widget"
+
+[widget.widget_2]
+type = "alexander/screen-toolkit:widget"
+
+[widget.widget_2.actions]
+right = "annotate"

@@ -89,14 +89,13 @@ in
             };
             binds."Mod+E" = _: {
               props = {
-                hotkey-overlay-title = "Toggle Calendar/Clock";
+                hotkey-overlay-title = "Toggle control center";
               };
               content.spawn = [
                 noctaliaExe
                 "msg"
                 "panel-toggle"
                 "control-center"
-                "calendar"
               ];
             };
             binds."Mod+Delete" = _: {
