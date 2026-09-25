@@ -120,7 +120,7 @@ in
             enable = true;
             # Either set the key directly (not recommended) or via file/secret
             # steamApiKey = "YOUR_STEAM_WEB_API_KEY";
-            steamApiKeyFile = "/%d/steam-api-key"; # e.g. from agenix/sops
+            steamApiKeyFile = "/%S/steam-presence/steam-web-apiKey"; # e.g. from agenix/sops
             userIds = [ "76561198809805717" ];
             localGames = {
               enable = true;
@@ -136,12 +136,7 @@ in
             # Other optional settings
           };
         };
-        sops.secrets.steam-web-apiKey = { };
-        systemd.user.services.steam-presence = {
-          serviceConfig = {
-            ImportCredential = "steam-api-key";
-            WorkingDirectory = lib.mkForce "-%h/.local/state/steam-presence";
-          };
+        sops.secrets.steam-web-apiKey = {
         };
       };
   };
