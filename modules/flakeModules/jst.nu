@@ -113,7 +113,7 @@ export def lock [] {
     return
   }
 
-	print $changelog
+  $changelog | to text | print
 
   jj new -B @
 
