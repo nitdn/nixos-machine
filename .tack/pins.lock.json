@@ -55,9 +55,9 @@
     "type": "github",
     "owner": "microvm-nix",
     "repo": "microvm.nix",
-    "rev": "68f2670367e03da7d0cceef0594a7b2c173849de",
-    "narHash": "sha256-Gj7g9GkMZNj0u0VKvyN4uf2XUxdHd4JwKOsaSicGtAo=",
-    "lastModified": 1790337272
+    "rev": "81f70a2002254f75b572fc34c55e7df16e9bb176",
+    "narHash": "sha256-33a6iTG1uFv12/zV8yo5VvdpftMNQms6TIHhMCVN6zE=",
+    "lastModified": 1790526615
   },
   "nix-devshells": {
     "type": "git",
@@ -71,9 +71,9 @@
     "type": "github",
     "owner": "nix-community",
     "repo": "nix-index-database",
-    "rev": "9ad722673ab3b3f91f02135e53775825b240b869",
-    "narHash": "sha256-Dkg4VKPmDPqTwaiw2WH5br73tXoL1qrOO0xJnR4TlcA=",
-    "lastModified": 1789892076
+    "rev": "161d7c91accd93034bb3c295224d9d895a778573",
+    "narHash": "sha256-Gbf/U9ptJhQh0qnDnJ/+a8MAcq1HXunbArUTHR2wNYk=",
+    "lastModified": 1790499302
   },
   "nixpkgs": {
     "type": "tarball",
@@ -93,9 +93,9 @@
     "type": "github",
     "owner": "Mic92",
     "repo": "sops-nix",
-    "rev": "2bd00bd9bb35fe6d114888c8f1c2e946c541dd8f",
-    "narHash": "sha256-TNfgoHsqsYYvaJImlWctfRkh4PseTagzegU1Dgdbehw=",
-    "lastModified": 1790247521
+    "rev": "5efb5a6f4f5ab192817d28557dd4d650fa14d866",
+    "narHash": "sha256-rs9meAYxW3zzrh43yaW7htrqCD+X9+pupDPHN86fumI=",
+    "lastModified": 1790498116
   },
   "steam-presence": {
     "type": "github",
