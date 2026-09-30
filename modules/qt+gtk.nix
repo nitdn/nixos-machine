@@ -8,6 +8,11 @@
   flake.modules.nixos.pc =
     { pkgs, ... }:
     {
+      qt = {
+        enable = true;
+        platformTheme = "qt5ct";
+        style = "breeze";
+      };
       environment.systemPackages = [
         # fallback
         pkgs.hicolor-icon-theme
@@ -18,9 +23,6 @@
         pkgs.adwaita-icon-theme
 
         # qt6
-        pkgs.kdePackages.qt6ct
-        pkgs.kdePackages.breeze-icons
-        pkgs.kdePackages.breeze
         pkgs.kdePackages.plasma-integration
 
         pkgs.kdePackages.flatpak-kcm
