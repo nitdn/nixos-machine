@@ -17,9 +17,9 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "cade",
-    "rev": "3211f782a53f94842bbb8782de03a2c5d85c793d",
-    "narHash": "sha256-Xrwc9hgghoOp2ySoBY1Mbyyi8mkR/HBHdFQ+5ATfikU=",
-    "lastModified": 1788925586
+    "rev": "8ca823d3878853d3d6c14559eb22a875cc8cb12d",
+    "narHash": "sha256-IAIcjLg4qM8UlfLR4eI4/faVmLSgF/U/R0jrxnmkZy0=",
+    "lastModified": 1790765716
   },
   "disko": {
     "type": "github",
@@ -34,6 +34,14 @@
     "url": "http://web.archive.org/web/20260701062829/https://download-center.epson.com/f/module/54142a20-70bd-4f75-b146-a3a3a0bc9eee/epson-inkjet-printer-202101w-1.0.3-1.src.rpm",
     "sha256": "sha256-80wYZKZctjj75ZG4a6uwVkD10L97GOZ0MyE104aTTeE=",
     "unpack": "file"
+  },
+  "fenix": {
+    "type": "github",
+    "owner": "nix-community",
+    "repo": "fenix",
+    "rev": "26ddad7ab014ac49bf02fc52e76f801963d684ae",
+    "narHash": "sha256-7JhNLs5O+FgXmU8FFP9DMug5xv3y4no+n4Kn94pkFGU=",
+    "lastModified": 1780485330
   },
   "flake-parts": {
     "type": "github",
@@ -77,9 +85,9 @@
   },
   "nixpkgs": {
     "type": "tarball",
-    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1080855.7a0f122f5090/nixexprs.tar.zst",
-    "rev": "7a0f122f5090cf4c2ade2a13a0e229d4e19ba71f",
-    "narHash": "sha256-EvoKOTtoIJ7Xflls2Nfo5WDcqjFJB0kuzwOz0nLWs0w="
+    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1082427.b4fd65b198c5/nixexprs.tar.zst",
+    "rev": "b4fd65b198c599cbe814fcb9f42d25d021595ec9",
+    "narHash": "sha256-VyUI5WA3WdOB9kjb04A0pxE6XTWC6cG95ZkoPSv58F0="
   },
   "rust-analyzer": {
     "type": "github",
@@ -109,9 +117,9 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "tack",
-    "rev": "c6f1dbac5f62403a380345302103e28e01cc2ba0",
-    "narHash": "sha256-lHviLYfvJOElxGBkMoHsXf5W4m/cNFCeCpHl6xfpvpY=",
-    "lastModified": 1790188880
+    "rev": "4e5d9310d43c21534427d82382931f332f815538",
+    "narHash": "sha256-8tozxr1SSn7GHCXHJuHqbjDrVUz4C2MRXgbB6cU+b8A=",
+    "lastModified": 1790750982
   },
   "treefmt-nix": {
     "type": "github",
