@@ -17,9 +17,9 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "cade",
-    "rev": "8ca823d3878853d3d6c14559eb22a875cc8cb12d",
-    "narHash": "sha256-IAIcjLg4qM8UlfLR4eI4/faVmLSgF/U/R0jrxnmkZy0=",
-    "lastModified": 1790765716
+    "rev": "762038d0768ed06fdbf3757db7f512f357421259",
+    "narHash": "sha256-xpNpV/wYSiPE/3ppXUk/sby6TTtTLnwKi6G0HzOeADY=",
+    "lastModified": 1790829109
   },
   "disko": {
     "type": "github",
@@ -55,9 +55,9 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "inshellah",
-    "rev": "4e0da58e610f4cc3d1d3ab11b27f61afa8be99c1",
-    "narHash": "sha256-Hl0PLWo6xyhSJaQtOkrNGQFxqBx5AdP1R1veMD22cMc=",
-    "lastModified": 1782548861
+    "rev": "02e88836b0ae57966f3f8554d6eccea95584fa2c",
+    "narHash": "sha256-AqqI4wRnAm0zCiUa0/JEl6gb0wxBipWK4HmvqKPITgU=",
+    "lastModified": 1790836701
   },
   "microvm": {
     "type": "github",
@@ -117,9 +117,9 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "tack",
-    "rev": "4e5d9310d43c21534427d82382931f332f815538",
-    "narHash": "sha256-8tozxr1SSn7GHCXHJuHqbjDrVUz4C2MRXgbB6cU+b8A=",
-    "lastModified": 1790750982
+    "rev": "8cb31acc0eabac9401de11376dfbdd1ac2bbbdab",
+    "narHash": "sha256-G48/bw8XXAMgfsM8rZEmdsMxHGszIH6bYLMMiVocrTE=",
+    "lastModified": 1790831056
   },
   "treefmt-nix": {
     "type": "github",
@@ -141,8 +141,8 @@
     "type": "github",
     "owner": "youwen5",
     "repo": "zen-browser-flake",
-    "rev": "6979f283e596eead5459a6f181dbb735a10c8588",
-    "narHash": "sha256-uMC3vdi/AdbRLsKCJle4VAIV9e3HEJhe4CZzvA0FXNw=",
-    "lastModified": 1790240349
+    "rev": "710bb85c6cb4f186de8a710615be5b93b5f98885",
+    "narHash": "sha256-vO6WFunNqHCjEaQc3ytshsGhHMqAIeW+5/rEJRLQLxQ=",
+    "lastModified": 1790843023
   }
 }
