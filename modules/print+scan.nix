@@ -17,7 +17,6 @@ in
       inherit (pkgs.stdenv.hostPlatform) system;
       inherit (packages.${system})
         bizhub-225i
-        epson-l3212
         ;
       printerConfig.bizhub = {
         location = "shop";
@@ -38,7 +37,7 @@ in
         # services.printing.logLevel = "debug";
         printing.drivers = [
           bizhub-225i
-          epson-l3212
+          pkgs.epson-202101w
         ];
         ipp-usb.enable = true;
       };
