@@ -28,7 +28,7 @@ in
     };
     modules.nixos.lightMode = { pkgs, ... }: {
       wrappers.kakoune-pc.plugins = [
-        (pkgs.writeTextDir "/share/kak/autoload/plugins/lightMode.kak" ''
+        (pkgs.writeTextDir "/share/kak/autoload/light.kak" ''
           colorscheme catppuccin_latte
         '')
       ];
