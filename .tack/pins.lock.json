@@ -1,4 +1,23 @@
 {
+  "$declared": {
+    "affinity-nix": "github:mrshmllow/affinity-nix",
+    "bizhub-225i.zip": "https://dl.konicaminolta.eu/en/?tx_kmdownloadproxy_downloadproxy[fileId]=4562fe1cc1a8e069fd2f57714fd11d89&tx_kmdownloadproxy_downloadproxy[documentId]=138755&tx_kmdownloadproxy_downloadproxy[system]=KonicaMinolta&tx_kmdownloadproxy_downloadproxy[language]=EN&type=1558521685",
+    "cade": "github:manic-systems/cade",
+    "disko": "github:nix-community/disko",
+    "epson-202101w": "http://web.archive.org/web/20260701062829/https://download-center.epson.com/f/module/54142a20-70bd-4f75-b146-a3a3a0bc9eee/epson-inkjet-printer-202101w-1.0.3-1.src.rpm",
+    "flake-parts": "github:hercules-ci/flake-parts",
+    "inshellah": "github:manic-systems/inshellah",
+    "microvm": "github:microvm-nix/microvm.nix",
+    "nix-devshells": "git+https://codeberg.org/nitdn/nix-devshells.git",
+    "nix-index-database": "github:nix-community/nix-index-database",
+    "nixpkgs": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst",
+    "sops-nix": "github:Mic92/sops-nix",
+    "steam-presence": "github:JustTemmie/steam-presence",
+    "tack": "github:manic-systems/tack",
+    "treefmt-nix": "github:numtide/treefmt-nix",
+    "wrappers": "github:nix-community/nix-wrapper-modules",
+    "zen-browser": "github:youwen5/zen-browser-flake"
+  },
   "affinity-nix": {
     "type": "github",
     "owner": "mrshmllow",
@@ -85,7 +104,7 @@
   },
   "nixpkgs": {
     "type": "tarball",
-    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1083223.c59305bab206/nixexprs.tar.zst",
+    "url": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst",
     "rev": "c59305bab2065cfecc4944690d9eedbb56f3a9fa",
     "narHash": "sha256-VBA0QerzzmL+4wxgtwiCdiLwLpJg2/9xOxhgO3BRJQA="
   },
@@ -117,9 +136,9 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "tack",
-    "rev": "59ca13acca2fdc344c5e7d6015e5d04b9fbff66d",
-    "narHash": "sha256-iHFOw3/k8yZ4rKTUCoxV6LrGKrs3RVu7zALSqlzg1yM=",
-    "lastModified": 1790902588
+    "rev": "b1fc7d5d34a43931ef1206aa635c20d4c3e3e386",
+    "narHash": "sha256-5q5nsALiZTavGBtJP/YWe1RMPCDf5PL4JO0NY85sUNw=",
+    "lastModified": 1790979535
   },
   "treefmt-nix": {
     "type": "github",

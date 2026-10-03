@@ -75,6 +75,7 @@ in
         ".sops.yaml"
         "**/facter.json"
         "_**"
+        ".tack/*"
       ];
     };
 
