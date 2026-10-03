@@ -1,14 +1,14 @@
 {
   "$declared": {
     "affinity-nix": "github:mrshmllow/affinity-nix",
-    "bizhub-225i.zip": "https://dl.konicaminolta.eu/en/?tx_kmdownloadproxy_downloadproxy[fileId]=4562fe1cc1a8e069fd2f57714fd11d89&tx_kmdownloadproxy_downloadproxy[documentId]=138755&tx_kmdownloadproxy_downloadproxy[system]=KonicaMinolta&tx_kmdownloadproxy_downloadproxy[language]=EN&type=1558521685",
+    "bizhub-225i": "https://dl.konicaminolta.eu/en/?tx_kmdownloadproxy_downloadproxy[fileId]=4562fe1cc1a8e069fd2f57714fd11d89&tx_kmdownloadproxy_downloadproxy[documentId]=138755&tx_kmdownloadproxy_downloadproxy[system]=KonicaMinolta&tx_kmdownloadproxy_downloadproxy[language]=EN&type=1558521685",
     "cade": "github:manic-systems/cade",
     "disko": "github:nix-community/disko",
     "epson-202101w": "http://web.archive.org/web/20260701062829/https://download-center.epson.com/f/module/54142a20-70bd-4f75-b146-a3a3a0bc9eee/epson-inkjet-printer-202101w-1.0.3-1.src.rpm",
     "flake-parts": "github:hercules-ci/flake-parts",
     "inshellah": "github:manic-systems/inshellah",
     "microvm": "github:microvm-nix/microvm.nix",
-    "nix-devshells": "git+https://codeberg.org/nitdn/nix-devshells.git",
+    "nix-devshells": "https://codeberg.org/nitdn/nix-devshells/archive/main.tar.gz",
     "nix-index-database": "github:nix-community/nix-index-database",
     "nixpkgs": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst",
     "sops-nix": "github:Mic92/sops-nix",
@@ -26,7 +26,7 @@
     "narHash": "sha256-cMHFuXSwmUzC4nZr4jGFnuaq/4sPJHN4kjb00vQvByQ=",
     "lastModified": 1790657352
   },
-  "bizhub-225i.zip": {
+  "bizhub-225i": {
     "type": "fixed",
     "url": "https://dl.konicaminolta.eu/en/?tx_kmdownloadproxy_downloadproxy[fileId]=4562fe1cc1a8e069fd2f57714fd11d89&tx_kmdownloadproxy_downloadproxy[documentId]=138755&tx_kmdownloadproxy_downloadproxy[system]=KonicaMinolta&tx_kmdownloadproxy_downloadproxy[language]=EN&type=1558521685",
     "sha256": "sha256-iF3FVSqDsjs6i4xeDMsUSb+0woCJ5/1lq7R0fe+x/HU=",
@@ -87,12 +87,10 @@
     "lastModified": 1790890970
   },
   "nix-devshells": {
-    "type": "git",
-    "url": "https://codeberg.org/nitdn/nix-devshells.git",
-    "ref": "HEAD",
-    "rev": "a8af3fbc70728477811a1187c9e697d97ef102a9",
+    "type": "tarball",
+    "url": "https://codeberg.org/api/v1/repos/nitdn/nix-devshells/archive/a8af3fbc70728477811a1187c9e697d97ef102a9.tar.gz?rev=a8af3fbc70728477811a1187c9e697d97ef102a9",
     "narHash": "sha256-f1IMJ7NRzLsY9xAYUmPAnsMrlxMsx8l45QhCIVJ1ouE=",
-    "lastModified": 1789214508
+    "lastModified": 1791001953
   },
   "nix-index-database": {
     "type": "github",

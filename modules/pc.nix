@@ -13,7 +13,7 @@ let
   inherit (config.meta) username;
   inherit (config.flake) wrappers;
   nixosModules = config.flake.modules.nixos;
-  flakeInputs = inputs._meta;
+  flakeInputs = inputs._meta |> lib.filterAttrs (_name: value: value.type != "fixed");
 in
 {
   flake.modules.nixos.readOnlyPkgs = { ... }: {
@@ -48,7 +48,7 @@ in
         ];
       };
 
-      nix.registry = lib.mapAttrs (_name: value: { from = value; }) flakeInputs;
+      nix.registry = lib.mapAttrs (_name: value: { to = value; }) flakeInputs;
 
       # Bootloader.
       boot.loader.systemd-boot = {

@@ -29,6 +29,8 @@ stdenv.mkDerivation {
     cups
   ];
 
+  unpackCmd = "unzip $curSrc";
+
   buildPhase = ''
     rpmextract For_${cpu}/konica-minolta-245igdi-cups-2.01-0.${cpu}.rpm
      for ppd in usr/share/cups/model/KonicaMinolta/*; do

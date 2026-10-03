@@ -27,7 +27,7 @@ in
     }:
     let
       epson-202101w = inputs."epson-202101w";
-      bizhub-225i = inputs."bizhub-225i.zip";
+      bizhub-225i = inputs."bizhub-225i";
     in
     {
       _module.args.pkgs = import inputs.nixpkgs {
