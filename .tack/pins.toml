@@ -21,6 +21,9 @@ rust-analyzer-src = "rust-analyzer"
 treefmt-nix = "treefmt-nix"
 fenix = "fenix"
 
+[omit_inputs]
+names = ["flake-compat", "cachix"]
+
 # inputs.<name> fields
 #   url             required, shorturl ok, ?rev=<sha> pins an exact commit
 #   type            flake (default), fetch, or fixed
@@ -36,10 +39,6 @@ url = "github:mrshmllow/affinity-nix"
 
 [inputs.affinity-nix.follows]
 flake-parts = "flake-parts"
-flake-compat = ""
-# These will get used regardless
-# git-hooks = ""
-# treefmt-nix = ""
 
 [inputs.disko]
 url = "github:nix-community/disko"
