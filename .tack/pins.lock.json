@@ -8,7 +8,7 @@
     "flake-parts": "github:hercules-ci/flake-parts",
     "inshellah": "github:manic-systems/inshellah",
     "microvm": "github:microvm-nix/microvm.nix",
-    "nix-devshells": "https://codeberg.org/nitdn/nix-devshells/archive/main.tar.gz",
+    "nix-devshells": "git+https://codeberg.org/nitdn/nix-devshells.git",
     "nix-index-database": "github:nix-community/nix-index-database",
     "nixpkgs": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst",
     "sops-nix": "github:Mic92/sops-nix",
@@ -87,10 +87,12 @@
     "lastModified": 1790890970
   },
   "nix-devshells": {
-    "type": "tarball",
-    "url": "https://codeberg.org/api/v1/repos/nitdn/nix-devshells/archive/a8af3fbc70728477811a1187c9e697d97ef102a9.tar.gz?rev=a8af3fbc70728477811a1187c9e697d97ef102a9",
+    "type": "git",
+    "url": "https://codeberg.org/nitdn/nix-devshells.git",
+    "ref": "HEAD",
+    "rev": "a8af3fbc70728477811a1187c9e697d97ef102a9",
     "narHash": "sha256-f1IMJ7NRzLsY9xAYUmPAnsMrlxMsx8l45QhCIVJ1ouE=",
-    "lastModified": 1791001953
+    "lastModified": 1789214508
   },
   "nix-index-database": {
     "type": "github",

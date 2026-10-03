@@ -26,6 +26,13 @@ in
         PAGER = "kak -ro -e 'rmhl global/number-lines_-relative'";
       };
     };
+    modules.nixos.lightMode = { pkgs, ... }: {
+      wrappers.kakoune-pc.plugins = [
+        (pkgs.writeTextDir "/share/kak/autoload/plugins/lightMode.kak" ''
+          colorscheme catppuccin_latte
+        '')
+      ];
+    };
     wrappers.kakoune-pc = { pkgs, ... }: {
       imports = [ inputs.nix-devshells.wrapperModules.kakoune ];
       wrapperVariants.kakn.flags."-C" = "nix";

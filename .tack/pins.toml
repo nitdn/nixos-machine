@@ -53,8 +53,7 @@ url = "github:manic-systems/inshellah"
 url = "github:microvm-nix/microvm.nix"
 
 [inputs.nix-devshells]
-url = "codeberg-tarball:nitdn/nix-devshells"
-frozen = true
+url = "codeberg:nitdn/nix-devshells"
 
 [inputs.nix-devshells.follows]
 wrappers = "wrappers"
