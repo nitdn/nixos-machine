@@ -39,9 +39,8 @@ let
         pkgs.naps2
         pkgs.hunspell
         pkgs.hunspellDicts.en-gb-large
-        pkgs.libreoffice-qt-stable
+        pkgs.libreoffice-qt
         pkgs.zathura
-        pkgs.onlyoffice-desktopeditors
         pkgs.mesa.opencl
         pkgs.wineWow64Packages.stagingFull
         pkgs.krita
