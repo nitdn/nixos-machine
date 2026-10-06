@@ -138,6 +138,9 @@ settings_window_translucent = true
 [shell.panel]
 transparency_mode = "soft"
 
+[shell.session]
+grid = true
+
 [theme]
 builtin = "Gruvbox"
 community_palette = "Oxocarbon"
