@@ -23,8 +23,10 @@
         pkgs.adwaita-icon-theme
 
         # qt6
-        pkgs.kdePackages.plasma-integration
+        pkgs.kdePackages.breeze-icons
 
+        pkgs.kdePackages.plasma-integration
+        pkgs.kdePackages.plasma-integration.qt5
         pkgs.kdePackages.flatpak-kcm
         pkgs.kdePackages.plasma-settings
       ];
