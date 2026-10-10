@@ -67,9 +67,9 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "inshellah",
-    "rev": "02e88836b0ae57966f3f8554d6eccea95584fa2c",
-    "narHash": "sha256-AqqI4wRnAm0zCiUa0/JEl6gb0wxBipWK4HmvqKPITgU=",
-    "lastModified": 1790836701
+    "rev": "b0180b4372cbc9936dfbdac676e93a23a05a43e2",
+    "narHash": "sha256-v13/FX3/r6pMpeWdyqB/jes1wQ6rvb5udgSZAdnU2VM=",
+    "lastModified": 1791613166
   },
   "microvm": {
     "type": "github",
@@ -83,9 +83,9 @@
     "type": "git",
     "url": "https://codeberg.org/nitdn/nix-devshells.git",
     "ref": "HEAD",
-    "rev": "18827e9ce055af0546ef823a69ba5d3e192fc563",
-    "narHash": "sha256-FEYPOILfPbUIA1oR/0M1wp2z0Y62MiFrpvh7iMYBhFg=",
-    "lastModified": 1791014403
+    "rev": "fb9fb8e934ee1bba4dba9fe6d0bbb0574748bb02",
+    "narHash": "sha256-znSBtlUTWJzORowKNG87HFGm4bH7RzOxcGZ320/j0ck=",
+    "lastModified": 1791616437
   },
   "nix-index-database": {
     "type": "github",
@@ -129,9 +129,9 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "tack",
-    "rev": "8e5cd8697a97148805212369213e709edfa695b0",
-    "narHash": "sha256-nboUXMtXi2Gen4Hk/QvcBadejGqPq3v/53qaNcOVlr0=",
-    "lastModified": 1791609304
+    "rev": "5957ec0bd3df490a06dab467337152ae75977585",
+    "narHash": "sha256-dkuO01AoiMwzwY5DtEPDRyQYKjD3RRPZ8evLLYfEeY4=",
+    "lastModified": 1791612427
   },
   "treefmt-nix": {
     "type": "github",

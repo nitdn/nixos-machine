@@ -50,7 +50,7 @@ There are also a few packages, I will put them here:
         lot of fields changed
 
 There's also a slightly bizarre devShell that consists solely of stuff I need to
-set up helix, and some scripts.
+set up the `$EDITOR`, and some scripts.
 
 One thing you will notice that every machine seems to be on its own set of
 tools. This is deliberate, as I don't really know how each of them fare.

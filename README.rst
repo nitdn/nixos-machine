@@ -71,11 +71,8 @@ There are also a few packages, I will put them here:
    - / Why didn’t you just override that package?: Seemed like too much
      work, a lot of fields changed
 
-#. / naps2-wrapped: I NEED TIFF, I do not care how old or insecure
-   libtiff is, if scantailor needs TIFF, so do I.
-
 There’s also a slightly bizarre devShell that consists solely of stuff I
-need to set up helix, and some scripts.
+need to set up the ``$EDITOR``, and some scripts.
 
 One thing you will notice that every machine seems to be on its own set
 of tools. This is deliberate, as I don’t really know how each of them
