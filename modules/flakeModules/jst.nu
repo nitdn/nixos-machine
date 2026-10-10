@@ -105,7 +105,7 @@ export def switch [hostname: string@hostnames] {
 export def lock [] {
   $env.TACK_NIX_CONF_TOKENS = 1
 
-  let changelog = tack look --verbose | lines | where { $in !~ "unchanged|fixed" }
+  let changelog = tack look --verbose | lines | where { $in !~ "unchanged|fixed|#" }
 
   if $changelog == [] {
     print "Nothing changed"
@@ -117,9 +117,9 @@ export def lock [] {
 
   jj new -B @
 
-  jj desc -m "tack: update" -m $"($changelog | str join "\n")"
+  tack update
 
-  $changelog | where {$in =~ "^\\w"} | parse "{input}: {changes}" | get input | tack update ...$in
+  jj desc -m "tack: update" -m $"($changelog | str join "\n")"
 
   jj next --edit
 }
