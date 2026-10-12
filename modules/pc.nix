@@ -111,29 +111,6 @@ in
 
       services.dbus.implementation = "broker";
 
-      fonts.packages = lib.mkIf config.hardware.graphics.enable [
-        pkgs.atkinson-hyperlegible-next
-        pkgs.iosevka
-        pkgs.nerd-fonts.iosevka
-        pkgs.nerd-fonts.symbols-only
-        pkgs.noto-fonts.megamerge
-      ];
-
-      fonts.fontconfig.defaultFonts = lib.mkIf config.hardware.graphics.enable {
-        sansSerif = [
-          "Atkinson Hyperlegible Next"
-          "Noto Sans Bengali"
-        ];
-        serif = [
-          "Noto Serif"
-          "Noto Serif Bengali"
-        ];
-        monospace = [
-          "Iosevka Nerd Font"
-        ];
-      };
-      fonts.fontDir.enable = true;
-
       # Configure keymap in X11
       services.xserver.xkb = {
         layout = "us";

@@ -73,13 +73,17 @@ systemd-run --user --scope
 )
 }
 
-# Attaches SPDX Identifiers to new files
-export def reuse --wrapped [...args: path] {
+# Creates new files and attaches SPDX Identifiers to them
+export def file --wrapped [filename: path, ...args] {
+  touch $filename
+
   (
 ^reuse annotate
 --copyright="Nitesh Kumar Debnath <nitkdnath@gmail.com>"
---license="GPL-3.0-or-later" ...$args
+--license="GPL-3.0-or-later" $filename ...$args
 )
+
+  jj st
 }
 
 @deprecated  "I don't really care about nfb anymore"

@@ -27,11 +27,7 @@ enable_ddcutil = true
 [lockscreen_widgets]
 enabled = false
 schema_version = 2
-widget_order = [
-  "lockscreen-login-box@HDMI-A-1",
-  "lockscreen-login-box@winit",
-  "lockscreen-login-box@DP-2",
-]
+widget_order = ["lockscreen-login-box@winit", "lockscreen-login-box@DP-2"]
 
 [lockscreen_widgets.grid]
 cell_size = 16
