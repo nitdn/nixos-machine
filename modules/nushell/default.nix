@@ -50,6 +50,7 @@ in
         "config.nu".content = ''
           source ${zoxide-nushell}
           source ${cade-nushell}
+          alias y = yazi
         '';
       };
     modules.nixos.pc =

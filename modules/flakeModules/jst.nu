@@ -40,6 +40,10 @@ export def trunk [revset: string = @- # The jj revset
   jj git push -r ($revset) --remote tngl-mirror --bookmark main
 
   jj git push -r ($revset) --remote origin
+
+  jj gf
+
+  jj git push --deleted --remote tngl-mirror
 }
 
 # Create a snapshotted watcher
