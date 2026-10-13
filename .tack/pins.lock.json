@@ -67,9 +67,9 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "inshellah",
-    "rev": "b0180b4372cbc9936dfbdac676e93a23a05a43e2",
-    "narHash": "sha256-v13/FX3/r6pMpeWdyqB/jes1wQ6rvb5udgSZAdnU2VM=",
-    "lastModified": 1791613166
+    "rev": "6ef9dea15360a199b92cda02a3d059f4709055ab",
+    "narHash": "sha256-XbMtGXghkpqZSQxJ1gdAGynQq0WXMdnvJIxZfTo7nN8=",
+    "lastModified": 1791827560
   },
   "microvm": {
     "type": "github",
@@ -97,9 +97,9 @@
   },
   "nixpkgs": {
     "type": "tarball",
-    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1089111.6510408d147d/nixexprs.tar.zst?rev=6510408d147d8c5e6d76043e899e9251756f6a75&lastModified=1791594108",
-    "rev": "6510408d147d8c5e6d76043e899e9251756f6a75",
-    "narHash": "sha256-V0WmebqwEeAVZMqxfv7Dq7hpKkPPM19W50xQf3D1Kf4=",
+    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1090327.7fd4004d0511/nixexprs.tar.zst?rev=7fd4004d0511991fff3a0524856a9be09e28c5f0&lastModified=1791734076",
+    "rev": "7fd4004d0511991fff3a0524856a9be09e28c5f0",
+    "narHash": "sha256-0dNcyVeoD61zhucIpt5BAQ+ytd6JzF641Z+A9bgltLo=",
     "lastModified": 315532800
   },
   "rust-analyzer": {
@@ -130,9 +130,9 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "tack",
-    "rev": "1df34422c2699ff9d40f3be959aedaa5056ca3cb",
-    "narHash": "sha256-7wHRQAoMC0lp4VeXF+cgzJec1K/+dFBpPwpXRPdpo+o=",
-    "lastModified": 1791739078
+    "rev": "ceef477f4c9fada177872d29ac00a8651f21df8b",
+    "narHash": "sha256-IMSEULXBQoHKobbnr6mqVUujm36RXvdvE1Tt5OdRj2E=",
+    "lastModified": 1791839790
   },
   "treefmt-nix": {
     "type": "github",
@@ -146,9 +146,9 @@
     "type": "github",
     "owner": "nix-community",
     "repo": "nix-wrapper-modules",
-    "rev": "dbfb92e9e4abc3f4b1931a1e26128fd22cbf45ad",
-    "narHash": "sha256-qI4/PP0PlW5H75Umy7g6ZcSeHn/1Gf6at23GFceVSgA=",
-    "lastModified": 1791769612
+    "rev": "76feb903258b26f3e314ea3dd1923da4f70f9bdf",
+    "narHash": "sha256-NEwaLJcWX5IMsMf4JRY7t4b2TrcRU2mVLipGQwkDe5A=",
+    "lastModified": 1791851245
   },
   "zen-browser": {
     "type": "github",
