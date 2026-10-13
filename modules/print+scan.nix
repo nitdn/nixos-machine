@@ -38,6 +38,8 @@ in
         printing.drivers = [
           bizhub-225i
           pkgs.epson-202101w
+          pkgs.foo2zjs
+          pkgs.gutenprint-bin
         ];
         ipp-usb.enable = true;
       };
