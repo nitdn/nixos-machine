@@ -22,34 +22,61 @@ in
       }:
       {
         imports = [ wlib.modules.default ];
-        env.NOCTALIA_CONFIG_HOME = "${placeholder "out"}/config";
-        passthru.tests.config-is-correct = pkgs.testers.runCommand {
-          name = "noctalia-config";
-          nativeBuildInputs = [ config.wrapper ];
-          script = ''
-            noctalia config validate
-            noctalia config export
-            touch $out
+        options.settings = lib.mkOption {
+          type = wlib.types.structuredValueWith { typeName = "TOML"; };
+          default = { };
+          example = lib.literalExpression ''
+            {
+              "shell" = {
+                "panel" = {
+                  "transparency_mode" = "soft";
+                };
+                "password_style" = "random";
+                "polkit_agent" = true;
+                "session" = {
+                  "grid" = true;
+                };
+                "settings_window_translucent" = true;
+              };
+            };
+          '';
+          description = ''
+            Noctalia configuration settings as an attribute set,
           '';
         };
-        package = pkgs.noctalia;
-        runtimePkgs = [
-          pkgs.ddcutil
-          pkgs.glib
-          pkgs.kdePackages.kdialog
-          pkgs.satty
-          pkgs.wl-screenrec
-          pkgs.slurp
-          pkgs.grim
-          pkgs.hyprpicker
-          pkgs.zbar
-          pkgs.tesseract
-        ];
-        constructFiles.generatedConfig = {
-          content = lib.readFile ./noctalia-config.toml;
-          relPath = "config/noctalia/config.toml";
+        config = {
+          env.NOCTALIA_CONFIG_HOME = "${placeholder "out"}/config";
+          passthru.tests.config-is-correct = pkgs.testers.runCommand {
+            name = "noctalia-config";
+            nativeBuildInputs = [ config.wrapper ];
+            script = ''
+              noctalia config validate
+              noctalia config export
+              touch $out
+            '';
+          };
+          package = pkgs.noctalia;
+          runtimePkgs = [
+            pkgs.ddcutil
+            pkgs.glib
+            pkgs.kdePackages.kdialog
+            pkgs.satty
+            pkgs.wl-screenrec
+            pkgs.slurp
+            pkgs.grim
+            pkgs.hyprpicker
+            pkgs.zbar
+            pkgs.tesseract
+          ];
+          settings = lib.readFile ./noctalia-config.toml |> lib.fromTOML;
+          constructFiles.generatedConfig = {
+            content = lib.toJSON config.settings;
+            relPath = "config/noctalia/config.toml";
+            builder = ''${pkgs.remarshal}/bin/json2toml "$1" "$2"'';
+          };
         };
       };
+
     niri-pc =
       { pkgs, config, ... }:
       let
@@ -131,6 +158,17 @@ in
           };
         };
       };
+  };
+
+  flake.modules.nixos.msi-colgate = _: {
+    wrappers.noctalia-v5.settings = {
+      plugin_settings."alexander/screen-toolkit".record-codec = lib.mkForce "hevc";
+    };
+  };
+  flake.modules.nixos.lightMode = _: {
+    wrappers.noctalia-v5.settings = {
+      theme.mode = lib.mkForce "light";
+    };
   };
   flake.modules.nixos.pc =
     { pkgs, ... }:
