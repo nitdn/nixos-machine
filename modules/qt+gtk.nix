@@ -22,11 +22,13 @@
         pkgs.adw-gtk3
         pkgs.adwaita-icon-theme
 
+        # qt5
+        pkgs.kdePackages.plasma-integration.qt5
+
         # qt6
         pkgs.kdePackages.breeze-icons
 
         pkgs.kdePackages.plasma-integration
-        pkgs.kdePackages.plasma-integration.qt5
         pkgs.kdePackages.flatpak-kcm
         pkgs.kdePackages.plasma-settings
       ];
