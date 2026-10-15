@@ -11,11 +11,12 @@ _: {
       environment.systemPackages = [
         #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
         #  wget
-        pkgs.nvme-cli
         pkgs.dust
         pkgs.git
         pkgs.gparted
+        pkgs.imv
         pkgs.ldns # drill
+        pkgs.nvme-cli
         pkgs.openssl
         pkgs.pwgen
         pkgs.ripgrep
