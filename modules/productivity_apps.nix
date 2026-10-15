@@ -39,7 +39,6 @@ let
         pkgs.naps2
         pkgs.hunspell
         pkgs.hunspellDicts.en-gb-large
-        pkgs.libreoffice-qt
         pkgs.zathura
         pkgs.mesa.opencl
         pkgs.wineWow64Packages.stagingFull

@@ -91,5 +91,8 @@ frozen = true
 [inputs.cade]
 url = "gh:manic-systems/cade"
 
+[inputs.nix-flatpak]
+url = "github:gmodena/nix-flatpak/?ref=latest"
+
 [tack]
 recomposable = true

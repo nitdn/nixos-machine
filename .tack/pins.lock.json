@@ -8,6 +8,7 @@
     "inshellah": "github:manic-systems/inshellah",
     "microvm": "github:microvm-nix/microvm.nix",
     "nix-devshells": "git+https://codeberg.org/nitdn/nix-devshells.git",
+    "nix-flatpak": "github:gmodena/nix-flatpak/?ref=latest",
     "nix-index-database": "github:nix-community/nix-index-database",
     "nixpkgs": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst",
     "sops-nix": "github:Mic92/sops-nix",
@@ -86,6 +87,14 @@
     "rev": "fb9fb8e934ee1bba4dba9fe6d0bbb0574748bb02",
     "narHash": "sha256-znSBtlUTWJzORowKNG87HFGm4bH7RzOxcGZ320/j0ck=",
     "lastModified": 1791616437
+  },
+  "nix-flatpak": {
+    "type": "github",
+    "owner": "gmodena",
+    "repo": "nix-flatpak",
+    "rev": "f1f045fc8b35ff59f88982c1752d3f3a42ca6a61",
+    "narHash": "sha256-OsZ/I7v3ArCrk0XOUvkiU1dFtGtE1qZTHRGjvBXIKUU=",
+    "lastModified": 1790428548
   },
   "nix-index-database": {
     "type": "github",
