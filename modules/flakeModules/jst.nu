@@ -113,7 +113,7 @@ export def switch [hostname: string@hostnames] {
 export def lock [] {
   $env.TACK_NIX_CONF_TOKENS = 1
 
-  let changelog = tack look --verbose | lines | where { $in !~ "unchanged|fixed|#" }
+  let changelog = tack look --verbose | lines | where { $in starts-with "unchanged|fixed|\#" }
 
   if $changelog == [] {
     print "Nothing changed"

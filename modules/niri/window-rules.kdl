@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
+workspace "autostart" // niri's workspaces are a mess
 workspace "browser"
 workspace "terminal"
 workspace "photo-tools"
