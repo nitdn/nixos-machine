@@ -36,9 +36,9 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "cade",
-    "rev": "8f6968724afe45f33ac8ba09f9c0262e5ebb31f8",
-    "narHash": "sha256-/TOFSsj1bScy1zHEtx0l0J/dzu1pw2RDAC5Fcj4AFZY=",
-    "lastModified": 1791936552
+    "rev": "79ec54820642a067ada27a8765a6858c8c2a50e4",
+    "narHash": "sha256-fE2LYUyCtR+7a5u7RMNpHzvefjNKykkJEchmJ22aC5E=",
+    "lastModified": 1792091041
   },
   "disko": {
     "type": "github",
@@ -52,9 +52,9 @@
     "type": "github",
     "owner": "nix-community",
     "repo": "fenix",
-    "rev": "eff70f371f14fef5af78d58ace7c7f6bb60f3da8",
-    "narHash": "sha256-z5Mff3AcQ/oa2OskKN7vpU7J4h7nsn4IP2YUgEwdx0Q=",
-    "lastModified": 1791291961
+    "rev": "9aadb1d479ad081f67eac50920558e140f26d167",
+    "narHash": "sha256-NaMw9W7dWAkYlz7Ej6pEjX8kXUDDO1UBy7AwuPwEuyE=",
+    "lastModified": 1791378032
   },
   "flake-parts": {
     "type": "github",
@@ -115,17 +115,17 @@
     "type": "github",
     "owner": "rust-lang",
     "repo": "rust-analyzer",
-    "rev": "ce37b245369ade4e2a18063ae4d60a17606c6d26",
-    "narHash": "sha256-Qjdu1LEaFlYt1Ghkt8ToGJdlHu00R8fHYm7Z9lKlJVg=",
-    "lastModified": 1791221318
+    "rev": "021bfc15e24909389bd208d1622b7f4f3942b91a",
+    "narHash": "sha256-9uKpjZzi0aZBvdbaGUyLmCawYu1eAXfZQOZVOPOGS8A=",
+    "lastModified": 1791303611
   },
   "sops-nix": {
     "type": "github",
     "owner": "Mic92",
     "repo": "sops-nix",
-    "rev": "ee48786c6f9160d2c1a084aac841f68195b8420c",
-    "narHash": "sha256-mVD4XIc5JkqMW2K04IkFUzHgHmyJZlzw5ktfgMDCbKU=",
-    "lastModified": 1791710405
+    "rev": "44931708c62937c2b1bf7953902989fa5bb9ee1b",
+    "narHash": "sha256-YU1LjDe1o2Ymg5zEiCHbmMXLkDCtxHQRiVqZ3nC5GGk=",
+    "lastModified": 1792056300
   },
   "steam-presence": {
     "type": "github",
@@ -139,9 +139,9 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "tack",
-    "rev": "cb825647a30e7f54915babbec5b5786c647772d6",
-    "narHash": "sha256-F+sgyf1KB/ogY41JJ52WPYuWXosB6dXTlO3J/m+xcww=",
-    "lastModified": 1791942069
+    "rev": "d785e637b7f6d0694a53951588c484f32397335e",
+    "narHash": "sha256-q3o87E0s55Z09YVhFJtws2Dvv1IRCoGxOOtomZsJEXA=",
+    "lastModified": 1792090744
   },
   "treefmt-nix": {
     "type": "github",
@@ -155,9 +155,9 @@
     "type": "github",
     "owner": "nix-community",
     "repo": "nix-wrapper-modules",
-    "rev": "74aaee6e989833345d2c67dc3090ffe8eb2a4dfa",
-    "narHash": "sha256-xnL4ZqUe2j/SYTAHQ8999+Ke5Xg7P+NKgdvXlRNLN24=",
-    "lastModified": 1791927952
+    "rev": "6bc32f5cc67ee0f1bfb246c47b4b2c53ba1bc014",
+    "narHash": "sha256-J3sKT3dVyCXlblkgzWc41cUZ4ezZbR5XZzfvETkAH78=",
+    "lastModified": 1792152791
   },
   "zen-browser": {
     "type": "github",
