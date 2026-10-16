@@ -16,8 +16,9 @@ let
       cores = 4;
       memorySize = 4 * 1024;
       qemu.options = [
+        "-vga none"
         "-display gtk,gl=on"
-        "-device virtio-vga-gl,hostmem=4G,blob=true,venus=true"
+        "-device virtio-gpu-gl,hostmem=4G,blob=true,venus=true"
       ];
     };
 
