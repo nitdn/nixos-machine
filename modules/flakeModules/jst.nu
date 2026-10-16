@@ -26,7 +26,7 @@ export def pr [revset: string = @- # The jj revset
 ] {
   ci
 
-  gh pr create --head push-(change-id $revset) --fill-first
+  gh pr create --head push-(change-id $revset) --fill-verbose
 }
 
 # Merge into trunk and commit to remotes
@@ -110,10 +110,18 @@ export def switch [hostname: string@hostnames] {
 }
 
 # Generates a tack lock update
-export def lock [] {
+export def --wrapped lock [
+--dry-run(-n) # Will not make a commit, only looks
+...rest: string # Arguments to be passed to tack
+] {
   $env.TACK_NIX_CONF_TOKENS = 1
 
-  let changelog = tack look --verbose | lines | where { $in starts-with "unchanged|fixed|\#" }
+  tack look --verbose ...$rest
+  | lines
+  | where { $in !~ "unchanged|fixed|\#" }
+  | where { is-not-empty }
+  | inspect
+  | let $changelog
 
   if $changelog == [] {
     print "Nothing changed"
@@ -121,11 +129,13 @@ export def lock [] {
     return
   }
 
-  $changelog | to text | print
+  if $dry_run {
+    return
+  }
 
   jj new -B @
 
-  tack update
+  tack update ...$rest
 
   jj desc -m "tack: update" -m $"($changelog | str join "\n")"
 
