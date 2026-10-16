@@ -12,14 +12,20 @@
 let
   nixosModules = config.flake.modules.nixos;
   vm = _: {
-    virtualisation.qemu.options = [
-      "-display gtk,gl=es"
-      "-device virtio-vga-gl"
-    ];
+    virtualisation = {
+      cores = 4;
+      memorySize = 4 * 1024;
+      qemu.options = [
+        "-display gtk,gl=on"
+        "-device virtio-vga-gl,hostmem=4G,blob=true,venus=true"
+      ];
+    };
+
     services.btrfs.autoScrub.enable = false;
     hardware.facter.reportPath = lib.mkForce null;
     boot.initrd.systemd.repart.device = lib.mkForce null;
-    nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+    boot.zswap.enable = lib.mkForce false; # cant use that in a vm anyway
+
     users.users.vmtest = {
       isNormalUser = true;
       extraGroups = [ "wheel" ];

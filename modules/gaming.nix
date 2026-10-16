@@ -94,6 +94,7 @@ in
         };
         environment.systemPackages = lib.mkIf cfg.enable [
           pkgs.mangohud
+          pkgs.mangojuice
           pkgs.easyeffects
           # pkgs.lutris
           pkgs.umu-launcher
