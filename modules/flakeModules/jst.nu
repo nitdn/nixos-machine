@@ -133,13 +133,11 @@ export def --wrapped lock [
     return
   }
 
-  jj new -B @
+  jj new
 
   tack update ...$rest
 
   jj desc -m "tack: update" -m $"($changelog | str join "\n")"
-
-  jj next --edit
 }
 
 # Get an evaluation perf time report

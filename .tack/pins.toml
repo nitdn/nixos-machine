@@ -63,6 +63,7 @@ url = "github:nix-community/nix-index-database"
 
 [inputs.nixpkgs]
 url = "np:nixos-unstable"
+frozen = true
 
 [inputs.sops-nix]
 url = "github:Mic92/sops-nix"
@@ -78,6 +79,7 @@ url = "github:nix-community/nix-wrapper-modules"
 
 [inputs.zen-browser]
 url = "github:youwen5/zen-browser-flake"
+frozen = "458cd16116c362a5e92d5db6bdc3599e4e8b1f4a"
 
 [inputs.tack]
 url = "gh:manic-systems/tack"
