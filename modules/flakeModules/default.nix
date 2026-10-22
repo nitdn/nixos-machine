@@ -27,15 +27,31 @@ in
     }:
     let
       bizhub-225i = inputs."bizhub-225i";
+      pkgsBuilder =
+        {
+          src,
+          overlays ? [ ],
+          config ? { },
+        }:
+        import src {
+          inherit system overlays;
+          config = {
+            allowUnfree = true;
+          }
+          // config;
+        };
     in
     {
-      _module.args.pkgs = import inputs.nixpkgs {
-        inherit system;
-        overlays = [
-          inputs.affinity-nix.overlays.default
-        ];
-        config = {
-          allowUnfree = true;
+
+      _module.args = {
+        pkgs = pkgsBuilder {
+          src = inputs.nixpkgs;
+        };
+        unstablePkgs = pkgsBuilder {
+          src = inputs.nix-unstable;
+          overlays = [
+            inputs.affinity-nix.overlays.default
+          ];
         };
       };
       packages = {

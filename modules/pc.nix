@@ -35,11 +35,16 @@ in
     {
       imports = [
         inputs.nix-index-database.nixosModules.default
+        inputs.run0-sudo-shim.nixosModules.default
       ]
       ++ lib.mapAttrsToList (_: v: v.install) wrappers;
       # Edit this configuration file to define what should be installed on
       # your system.  Help is available in the configuration.nix(5) man page
       # and in the NixOS manual (accessible by running ‘nixos-help’).
+
+      _module.args.unstablePkgs = withSystem config.nixpkgs.hostPlatform.system (
+        { unstablePkgs, ... }: unstablePkgs
+      ); # unstable injection
 
       nix.settings = {
         trusted-users = [
@@ -117,13 +122,12 @@ in
         variant = "";
       };
       # run0 settings
-      security.sudo.enable = false;
-      security.run0 = {
-        enable = true;
-        sudo-shim.enable = true;
-        persistentAuth.enable = true;
-      };
-      system.tools.nixos-rebuild.enableRun0Elevation = true;
+      # TODO: Update to vendored shim in 26.11
+      # security.sudo.enable = false;
+      security.polkit.persistentAuthentication = true;
+      security.run0-sudo-shim.enable = true;
+      # persistentAuth.enable = true;
+      # system.tools.nixos-rebuild.enableRun0Elevation = true;
 
       # Enable sound with pipewire.
       services.pulseaudio.enable = false;

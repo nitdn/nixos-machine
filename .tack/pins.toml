@@ -57,13 +57,19 @@ url = "codeberg:nitdn/nix-devshells"
 
 [inputs.nix-devshells.follows]
 wrappers = "wrappers"
+nixpkgs = "nix-unstable"
 
 [inputs.nix-index-database]
 url = "github:nix-community/nix-index-database"
 
 [inputs.nixpkgs]
+url = "np:nixos-26.05"
+
+[inputs.nix-unstable]
 url = "np:nixos-unstable"
-frozen = true
+
+[inputs.run0-sudo-shim]
+url = "github:lordgrimmauld/run0-sudo-shim"
 
 [inputs.sops-nix]
 url = "github:Mic92/sops-nix"
@@ -78,8 +84,7 @@ url = "github:numtide/treefmt-nix"
 url = "github:nix-community/nix-wrapper-modules"
 
 [inputs.zen-browser]
-url = "github:youwen5/zen-browser-flake"
-frozen = "5a0d21f99706b231df9ff35ab95dbccda88414d8"
+url = "github:0xc000022070/zen-browser-flake"
 
 [inputs.tack]
 url = "gh:manic-systems/tack"

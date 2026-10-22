@@ -37,6 +37,15 @@ let
       ProviderURL = "https://jmfa1wa82x.cloudflare-gateway.com/dns-query";
     };
     DisableTelemetry = true;
+
+    Preferences =
+      prefs
+      |> lib.mapAttrs (
+        _: Value: {
+          inherit Value;
+          Status = "locked";
+        }
+      );
     ExtensionSettings = builtins.listToAttrs extensions;
 
     SearchEngines = {
@@ -72,14 +81,11 @@ let
   firefox-wrapper =
     pkgs:
     pkgs.wrapFirefox
-      inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.zen-browser-unwrapped
-      {
-        extraPrefs = lib.concatLines (
-          lib.mapAttrsToList (
-            name: value: "lockPref(${lib.strings.toJSON name}, ${lib.strings.toJSON value});"
-          ) prefs
-        );
+      (inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.beta-unwrapped.override {
         inherit extraPolicies;
+      })
+      {
+        icon = "zen-browser";
       };
 
 in
@@ -88,10 +94,10 @@ in
     packages.zen-wrapped = firefox-wrapper pkgs;
   };
   flake.modules.nixos.pc =
-    { pkgs, ... }:
+    { unstablePkgs, ... }:
     {
       environment.systemPackages = [
-        (firefox-wrapper pkgs)
+        (firefox-wrapper unstablePkgs)
       ];
     };
 }

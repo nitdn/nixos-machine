@@ -19,7 +19,12 @@ in
 {
   flake.modules.nixos = {
     pc =
-      { pkgs, config, ... }:
+      {
+        pkgs,
+        unstablePkgs,
+        config,
+        ...
+      }:
       let
         cfg = config.programs.steam;
       in
@@ -98,7 +103,7 @@ in
           pkgs.easyeffects
           # pkgs.lutris
           pkgs.umu-launcher
-          pkgs.concord-tui
+          unstablePkgs.concord-tui
           pkgs.arrpc
           pkgs.itch
 

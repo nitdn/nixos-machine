@@ -4,20 +4,21 @@
 
 _:
 let
-  affinity = { pkgs, ... }: {
+  affinity = { unstablePkgs, ... }: {
     nix.settings = {
       extra-substituters = [ "https://cache.forall.systems" ];
       extra-trusted-public-keys = [
         "cache.forall.systems:5PmD7QO4MSF8YgyRZtkSGXRDo96H3bybIf2SsQh8ScI="
       ];
     };
-    environment.systemPackages = [ pkgs.affinity-v3 ];
+    environment.systemPackages = [ unstablePkgs.affinity-v3 ];
   };
   productivity =
     {
       pkgs,
       lib,
       config,
+      unstablePkgs,
       ...
     }:
     let
@@ -43,7 +44,7 @@ let
         pkgs.mesa.opencl
         pkgs.wineWow64Packages.stagingFull
         pkgs.krita
-        pkgs.faugus-launcher
+        unstablePkgs.faugus-launcher
         # pkgs.affinity-v3
       ];
       i18n.inputMethod = {

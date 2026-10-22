@@ -10,6 +10,7 @@ in
   flake.modules.nixos.pc =
     {
       pkgs,
+      unstablePkgs,
       config,
       ...
     }:
@@ -37,7 +38,7 @@ in
         # services.printing.logLevel = "debug";
         printing.drivers = [
           bizhub-225i
-          pkgs.epson-202101w
+          unstablePkgs.epson-202101w
           pkgs.foo2zjs
           pkgs.gutenprint-bin
         ];
