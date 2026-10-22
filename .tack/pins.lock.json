@@ -106,10 +106,10 @@
   },
   "nixpkgs": {
     "type": "tarball",
-    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1090327.7fd4004d0511/nixexprs.tar.zst?rev=7fd4004d0511991fff3a0524856a9be09e28c5f0&lastModified=1791734076",
-    "rev": "7fd4004d0511991fff3a0524856a9be09e28c5f0",
-    "narHash": "sha256-0dNcyVeoD61zhucIpt5BAQ+ytd6JzF641Z+A9bgltLo=",
-    "lastModified": 315532800
+    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1097682.02c087f3fe67/nixexprs.tar.zst?rev=02c087f3fe673c9e317f206a627cb6b910336dbe&lastModified=1792502884",
+    "rev": "02c087f3fe673c9e317f206a627cb6b910336dbe",
+    "narHash": "sha256-ij8QUxzTOHovLrNOxVRx+RAhGQFOMsJbji0veiatH5k=",
+    "lastModified": 1792502884
   },
   "rust-analyzer": {
     "type": "github",
@@ -163,8 +163,8 @@
     "type": "github",
     "owner": "youwen5",
     "repo": "zen-browser-flake",
-    "rev": "458cd16116c362a5e92d5db6bdc3599e4e8b1f4a",
-    "narHash": "sha256-qpJE5ug1T+7LEdXRLI9/ZIwe/rzqjILR9BpMg/sNVtM=",
-    "lastModified": 1791627880
+    "rev": "5a0d21f99706b231df9ff35ab95dbccda88414d8",
+    "narHash": "sha256-TEDD0EgSDKOl9hGNlEaINfd2Y4PFhyh4czw4lb1AGak=",
+    "lastModified": 1792140224
   }
 }

@@ -79,7 +79,7 @@ url = "github:nix-community/nix-wrapper-modules"
 
 [inputs.zen-browser]
 url = "github:youwen5/zen-browser-flake"
-frozen = "458cd16116c362a5e92d5db6bdc3599e4e8b1f4a"
+frozen = "5a0d21f99706b231df9ff35ab95dbccda88414d8"
 
 [inputs.tack]
 url = "gh:manic-systems/tack"
