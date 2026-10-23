@@ -20,14 +20,16 @@ _: {
         };
       };
       niri-pc = _: {
-        settings = {
-          spawn-at-startup = [ [ "ghostty" ] ];
-          binds."Mod+T".spawn = [ "ghostty" ];
-        };
+        #   settings = {
+        #     spawn-at-startup = [ [ "ghostty" ] ];
+        #     binds."Mod+T".spawn = [ "ghostty" ];
+        #   };
       };
     };
     modules.nixos.pc = _: {
-      wrappers.ghostty.enable = true;
+      wrappers.ghostty = {
+        enable = true;
+      };
     };
   };
 }

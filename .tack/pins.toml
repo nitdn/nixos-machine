@@ -47,7 +47,7 @@ url = "github:nix-community/disko"
 url = "github:hercules-ci/flake-parts"
 
 [inputs.inshellah]
-url = "github:manic-systems/inshellah"
+url = "github:manic-systems/inshellah/"
 
 [inputs.microvm]
 url = "github:microvm-nix/microvm.nix"
@@ -92,7 +92,7 @@ group = "drivers"
 frozen = true
 
 [inputs.cade]
-url = "gh:manic-systems/cade"
+url = "gh:manic-systems/cade/"
 
 [inputs.nix-flatpak]
 url = "github:gmodena/nix-flatpak/?ref=latest"

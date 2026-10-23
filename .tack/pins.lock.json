@@ -2,10 +2,10 @@
   "$declared": {
     "affinity-nix": "github:mrshmllow/affinity-nix",
     "bizhub-225i": "https://dl.konicaminolta.eu/en/?tx_kmdownloadproxy_downloadproxy[fileId]=4562fe1cc1a8e069fd2f57714fd11d89&tx_kmdownloadproxy_downloadproxy[documentId]=138755&tx_kmdownloadproxy_downloadproxy[system]=KonicaMinolta&tx_kmdownloadproxy_downloadproxy[language]=EN&type=1558521685",
-    "cade": "github:manic-systems/cade",
+    "cade": "github:manic-systems/cade/",
     "disko": "github:nix-community/disko",
     "flake-parts": "github:hercules-ci/flake-parts",
-    "inshellah": "github:manic-systems/inshellah",
+    "inshellah": "github:manic-systems/inshellah/",
     "microvm": "github:microvm-nix/microvm.nix",
     "nix-devshells": "git+https://codeberg.org/nitdn/nix-devshells.git",
     "nix-flatpak": "github:gmodena/nix-flatpak/?ref=latest",
@@ -140,9 +140,9 @@
     "type": "github",
     "owner": "Mic92",
     "repo": "sops-nix",
-    "rev": "a1438ca361b05d1e70854d5495abcb34fdf6ff47",
-    "narHash": "sha256-r4G33ygU307QCwyngAS6E9BMhnCRPyZrL7UxRCMrqo0=",
-    "lastModified": 1792308394
+    "rev": "e80b8b733d8452a751a25d0063abc9683b6c8185",
+    "narHash": "sha256-4ChDjNgJM5uKwTuecLHxGlafAtoyKo5a7ip23J5IG3M=",
+    "lastModified": 1792655475
   },
   "steam-presence": {
     "type": "github",

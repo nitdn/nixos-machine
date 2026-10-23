@@ -1,9 +1,8 @@
 # SPDX-FileCopyrightText: 2026 Nitesh Kumar Debnath <nitkdnath@gmail.com>
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
-
 # These are the hosts I have
-def hostnames [] { ["tjmaxxer" "msi-colgate" "disko-elysium"] }
+def hostnames [] { ["tjmaxxer", "msi-colgate", "disko-elysium"] }
 
 # Push to the CI mirror
 @category  'Remote operations'
@@ -16,9 +15,7 @@ export def ci [revset: string = @- # The jj revset
 
 @category  'Remote operations'
 def change-id [revset: string = @- # The jj revset
-] {
-  jj log -r ($revset) -T "change_id.short()" --no-graph
-}
+] { jj log -r ($revset) -T "change_id.short()" --no-graph }
 
 # Create a Pull Request
 @category  'Remote operations'
@@ -49,39 +46,27 @@ export def trunk [revset: string = @- # The jj revset
 # Create a snapshotted watcher
 @category  'Remote operations'
 export def new [] {
-
   # Watch is uncapturable for some reason
   watch $"($nu.home-dir)/nixos-machine" --glob=**/*.nix {|| nix flake check; jj new }
 }
 
 # Large squashes that flatten multiple revisions
 @category  'Remote operations'
-export def squash [base: string] {
-  jj squash -t $base -f $"($base)::@-"
-}
+export def squash [base: string] { jj squash -t $base -f $"($base)::@-" }
 
-export def pwget [field: string, path: path = secrets/core.yaml] {
-  sops decrypt --extract $"['($field)']['password']" ($path)
-}
+export def pwget [field: string, path: path = secrets/core.yaml] { sops decrypt --extract $"['($field)']['password']" ($path) }
 
-export def throttle --wrapped [...cmd: string] {
-  (
-systemd-inhibit --what=sleep:shutdown
-systemd-run --user --scope
---property=MemoryMax=8G --property=CPUWeight=500
-...$cmd
-)
-}
+export def throttle --wrapped [...cmd: string] { (
+  systemd-inhibit --what=sleep:shutdown systemd-run --user --scope --property=MemoryMax=8G --property=CPUWeight=500 ...$cmd
+) }
 
 # Creates new files and attaches SPDX Identifiers to them
 export def file --wrapped [filename: path, ...args] {
   touch $filename
 
   (
-^reuse annotate
---copyright="Nitesh Kumar Debnath <nitkdnath@gmail.com>"
---license="GPL-3.0-or-later" $filename ...$args
-)
+    ^reuse annotate --copyright="Nitesh Kumar Debnath <nitkdnath@gmail.com>" --license="GPL-3.0-or-later" $filename ...$args
+  )
 
   jj st
 }
@@ -100,14 +85,11 @@ export def deploy [hostname: string@hostnames # The hostname argument
   let command = if $switch { "switch" } else { "test" }
 
   (
-nh os $command .
---hostname $hostname --target-host $"(whoami)@($hostname).local"
-)
+    nh os $command . --hostname $hostname --target-host $"(whoami)@($hostname).local"
+  )
 }
 
-export def switch [hostname: string@hostnames] {
-  nixos-rebuild switch --flake . --elevate run0
-}
+export def switch [hostname: string@hostnames] { nixos-rebuild switch --flake . --elevate run0 }
 
 # Generates a tack lock update
 export def --wrapped lock [
@@ -116,12 +98,7 @@ export def --wrapped lock [
 ] {
   $env.TACK_NIX_CONF_TOKENS = 1
 
-  tack look --verbose ...$rest
-  | lines
-  | where { $in !~ "unchanged|fixed|\#" }
-  | where { is-not-empty }
-  | inspect
-  | let $changelog
+  tack look --verbose ...$rest | lines | where { $in !~ "unchanged|fixed|\#" } | where { is-not-empty } | inspect | let $changelog
 
   if $changelog == [] {
     print "Nothing changed"
@@ -143,26 +120,18 @@ export def --wrapped lock [
 # Get an evaluation perf time report
 export def --wrapped eval [hostname: string@hostnames = tjmaxxer # Host config to evaluate
  ...rest # Extra arguments
-] {
-  (
-NIX_SHOW_STATS=1 nix eval $".#nixosConfigurations.($hostname).config.system.build.toplevel"
---substituters " " --no-eval-cache --read-only ...$rest
-)
-}
+] { (
+  nix eval $".#nixosConfigurations.($hostname).config.system.build.toplevel" --substituters " " --no-eval-cache --read-only ...$rest
+) }
 
 # Get a profiler flamegraph
 export def "eval profiler" [hostname: string@hostnames = tjmaxxer # Host config to profile
 ] {
   (
-nix eval $".#nixosConfigurations.($hostname).config.system.build.toplevel"
---substituters " " --no-eval-cache --read-only
---impure --eval-profiler flamegraph --eval-profiler-frequency 9999
-)
+    nix eval $".#nixosConfigurations.($hostname).config.system.build.toplevel" --substituters " " --no-eval-cache --read-only --impure --eval-profiler flamegraph --eval-profiler-frequency 9999
+  )
 
-  (
-inferno-flamegraph
---width 10000 nix.profile o> $"result-($hostname).svg"
-)
+  (inferno-flamegraph --width 10000 nix.profile o> $"result-($hostname).svg")
 
   zen result-($hostname).svg
 }

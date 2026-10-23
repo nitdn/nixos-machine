@@ -10,20 +10,19 @@ workspace "terminal"
 workspace "photo-tools"
 
 window-rule {
-	match app-id="zen"
-	open-on-workspace "browser"
+  match app-id="zen"
+  open-on-workspace "browser"
 }
 window-rule {
-	match app-id="zen" title="AI Image Editor - Pixa — Zen Browser"
-	match app-id="zen" title="WhatsApp Business — Zen Browser"
-	match app-id="affinity.exe"
-	match app-id="i_view64.exe"
-	open-on-workspace "photo-tools"
+  match app-id="zen" title="AI Image Editor - Pixa — Zen Browser"
+  match app-id="zen" title="WhatsApp Business — Zen Browser"
+  match app-id="affinity.exe"
+  match app-id="i_view64.exe"
+  open-on-workspace "photo-tools"
 }
 window-rule {
-	match app-id="kitty"
-	match app-id="ghostty"
-	open-on-workspace "terminal"
+  match app-id="kitty|ghostty|foot"
+  open-on-workspace "terminal"
 }
 // Open the Firefox picture-in-picture window as floating.
 window-rule {

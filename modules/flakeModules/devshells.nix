@@ -23,10 +23,11 @@ in
       inputs',
       pkgs,
       config,
+      unstablePkgs,
       ...
     }:
     let
-      inherit (pkgs) nufmt;
+      inherit (unstablePkgs) nufmt;
     in
 
     {

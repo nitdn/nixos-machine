@@ -24,7 +24,6 @@
       fonts.packages = lib.mkIf config.hardware.graphics.enable [
         pkgs.atkinson-hyperlegible-next
         pkgs.iosevka
-        pkgs.nerd-fonts.iosevka
         pkgs.nerd-fonts.symbols-only
         pkgs.noto-fonts
       ];
@@ -38,7 +37,7 @@
           "Noto Serif"
         ];
         monospace = [
-          "Iosevka Nerd Font"
+          "Iosevka Extended"
         ];
       };
       # Bind mounts fonts, icons and themes from

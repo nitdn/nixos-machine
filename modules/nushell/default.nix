@@ -8,8 +8,8 @@
 }:
 let
   zoxide_completer = /* nu */ ''
-    def "nu-complete zoxide path" [context: string] {
-      let parts = $context | split row " " | skip 1
+    def "nu-complete zoxide path" [place: record] {
+      let parts = $place.command | skip 1
 
       {
         options: {sort: false, completion_algorithm: substring, case_sensitive: false}
@@ -17,9 +17,7 @@ let
       }
     }
 
-    def --env --wrapped z [...rest: string@"nu-complete zoxide path"] {
-      __zoxide_z ...$rest
-    }'';
+    def --env --wrapped z [...rest: string@"nu-complete zoxide path"] { __zoxide_z ...$rest }'';
 in
 {
   flake = {
