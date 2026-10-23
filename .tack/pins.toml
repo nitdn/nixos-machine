@@ -15,7 +15,7 @@ codeberg-tarball = "https://codeberg.org/{path}/archive/main.tar.gz"
 # opt out per-input with exclude_follow
 [all_follow]
 # nixpkgs = "nixpkgs"
-nixpkgs = ["nixpkgs", "nixpkgs-lib"]
+nix-unstable = ["nixpkgs", "nixpkgs-lib"]
 wrappers = "wrappers"
 rust-analyzer-src = "rust-analyzer"
 treefmt-nix = "treefmt-nix"
@@ -54,10 +54,6 @@ url = "github:microvm-nix/microvm.nix"
 
 [inputs.nix-devshells]
 url = "codeberg:nitdn/nix-devshells"
-
-[inputs.nix-devshells.follows]
-wrappers = "wrappers"
-nixpkgs = "nix-unstable"
 
 [inputs.nix-index-database]
 url = "github:nix-community/nix-index-database"

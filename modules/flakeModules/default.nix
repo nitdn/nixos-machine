@@ -23,6 +23,7 @@ in
     {
       pkgs,
       system,
+      unstablePkgs,
       ...
     }:
     let
@@ -88,6 +89,7 @@ in
         "_**"
         ".tack/*"
       ];
+      wrappers.pkgs = unstablePkgs;
     };
 
   systems = [

@@ -15,8 +15,11 @@ let
 in
 {
   flake = {
-    modules.nixos.pc = { pkgs, ... }: {
-      wrappers.kakoune-pc.enable = true;
+    modules.nixos.pc = { pkgs, unstablePkgs, ... }: {
+      wrappers.kakoune-pc = {
+        enable = true;
+        pkgs = lib.mkForce unstablePkgs;
+      };
       environment.systemPackages = [
         pkgs.kdePackages.kate # Needed for text editor support
       ];

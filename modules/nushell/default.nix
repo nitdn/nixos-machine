@@ -54,9 +54,17 @@ in
         '';
       };
     modules.nixos.pc =
-      { pkgs, config, ... }:
       {
-        wrappers.nushell-pc.enable = true;
+        pkgs,
+        config,
+        unstablePkgs,
+        ...
+      }:
+      {
+        wrappers.nushell-pc = {
+          enable = true;
+          pkgs = lib.mkForce unstablePkgs;
+        };
         imports = [ inputs.cade.nixosModules.default ];
         programs.cade.enable = true;
         environment.shells = [
