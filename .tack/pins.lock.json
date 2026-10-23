@@ -24,9 +24,9 @@
     "type": "github",
     "owner": "mrshmllow",
     "repo": "affinity-nix",
-    "rev": "c1e1f894f90c0610021a06836dcd6b033bff034c",
-    "narHash": "sha256-EN24p9cKN0qdzVbWsHy+2MJUdg8buvjqCN4t6QpFp6k=",
-    "lastModified": 1792622315
+    "rev": "69c5cb42a7dd596027183776d82bf206d732fc91",
+    "narHash": "sha256-Uyd6UpHOZ6ly18cIlWz6HBIw5TfV4lCqVpcr01Lzer0=",
+    "lastModified": 1792710311
   },
   "bizhub-225i": {
     "type": "fixed",
