@@ -25,13 +25,29 @@ jobs:
         with:
           persist-credentials: false
           ref: ${{ inputs.ref }}
-      - uses: wimpysworld/nothing-but-nix@687c797a730352432950c707ab493fcc951818d7 # v10
       - uses: cachix/install-nix-action@448cde739abec1eaf0646249e3d25bb8d9bc7702 # v31.11.2
         with:
           nix_path: nixpkgs=channel:nixos-unstable
-          extra_nix_config: |
+          extra_nix_config: >
             keep-env-derivations = true
+
             keep-outputs = true
+
+            substituters =
+            https://machines.cachix.org
+            https://nix-community.cachix.org
+            https://cache.manic.systems
+            https://cache.forall.systems
+            https://cache.nixos.org/
+
+            system-features = nixos-test benchmark big-parallel kvm
+
+            trusted-public-keys =
+            cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=
+            machines.cachix.org-1:imnXlKFUc4Iaedv6469v6TO37ruiNh6OfJN4le5bqdE=
+            nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=
+            cache.manic.systems-1:s6OZanN8Us8vRi0jVivP3qlMn0cYHBjBALKrNe5nH8s=
+            cache.forall.systems:5PmD7QO4MSF8YgyRZtkSGXRDo96H3bybIf2SsQh8ScI=
 
             experimental-features = pipe-operators nix-command flakes
       - uses: cachix/cachix-action@38b082610b782e7e93e209c35fd730d399dee866 # v17
@@ -40,5 +56,52 @@ jobs:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
       - name: Check flakes
         run: |
-          nix flake check --keep-going  --accept-flake-config \
+          nix flake check --keep-going  \
           --no-allow-import-from-derivation
+  build_hosts:
+    name: "Build packages for hosts"
+    runs-on: ubuntu-latest
+    environment: cachix
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          ref: ${{ inputs.ref }}
+      - uses: wimpysworld/nothing-but-nix@687c797a730352432950c707ab493fcc951818d7 # v10
+      - uses: cachix/install-nix-action@448cde739abec1eaf0646249e3d25bb8d9bc7702 # v31.11.2
+        with:
+          nix_path: nixpkgs=channel:nixos-unstable
+          extra_nix_config: >
+            keep-env-derivations = true
+
+            keep-outputs = true
+
+            substituters =
+            https://machines.cachix.org
+            https://nix-community.cachix.org
+            https://cache.manic.systems
+            https://cache.forall.systems
+            https://cache.nixos.org/
+
+            system-features = nixos-test benchmark big-parallel kvm
+
+            trusted-public-keys =
+            cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=
+            machines.cachix.org-1:imnXlKFUc4Iaedv6469v6TO37ruiNh6OfJN4le5bqdE=
+            nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=
+            cache.manic.systems-1:s6OZanN8Us8vRi0jVivP3qlMn0cYHBjBALKrNe5nH8s=
+            cache.forall.systems:5PmD7QO4MSF8YgyRZtkSGXRDo96H3bybIf2SsQh8ScI=
+
+            experimental-features = pipe-operators nix-command flakes
+      - uses: cachix/cachix-action@38b082610b782e7e93e209c35fd730d399dee866 # v17
+        with:
+          name: machines
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+      - name: Build machines
+        run: |
+          echo .#nixosConfigurations.{tjmaxxer,msi-colgate}.\
+          config.system.build.toplevel \
+          | nix build --stdin

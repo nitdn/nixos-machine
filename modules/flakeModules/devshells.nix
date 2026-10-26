@@ -18,10 +18,6 @@
     {
       devShells.default = pkgs.mkShell {
         TACK_NIX_CONF_TOKENS = "1";
-        shellHook = ''
-          nu -e "overlay use ${../../scripts}"
-          exit
-        '';
         packages = [
           # config.packages.kakoune-pc # insanely borked
           nufmt

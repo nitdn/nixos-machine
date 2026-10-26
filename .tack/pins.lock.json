@@ -70,9 +70,9 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "inshellah",
-    "rev": "3e43fbed6da1caf3d43ec05758a3ccd06a406711",
-    "narHash": "sha256-Ea9vydQGFcjHY1xJOMiom7+PoLuNPrTX03ZaslZ0Ho0=",
-    "lastModified": 1792987494
+    "rev": "9dfede87d142e9c7362256d3575c7fdc3d75f5b3",
+    "narHash": "sha256-zCcxIa3JGDKFwaDhTnc1YO1+/Rpl1rZ3YJLqIhmg9YM=",
+    "lastModified": 1792996869
   },
   "microvm": {
     "type": "github",

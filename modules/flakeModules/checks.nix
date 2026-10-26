@@ -2,23 +2,12 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-{
-  lib,
-  config,
-  ...
-}:
-let
-  inherit (config.flake) nixosConfigurations;
-in
-{
+_: {
   perSystem =
     { pkgs, config, ... }:
     let
       inherit (config) devShells;
 
-      nixosMachines = lib.genAttrs (lib.removeAttrs nixosConfigurations [ "vps01" ] |> lib.attrNames) (
-        name: nixosConfigurations.${name}.config.system.build.toplevel
-      );
       reuse = pkgs.testers.runCommand {
         name = "reuse-lint";
         src = ../../.;
@@ -31,11 +20,8 @@ in
       };
     in
     {
-      checks =
-        nixosMachines
-        // devShells
-        // {
-          inherit reuse;
-        };
+      checks = devShells // {
+        inherit reuse;
+      };
     };
 }
