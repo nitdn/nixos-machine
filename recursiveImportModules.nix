@@ -5,26 +5,26 @@
 lib: modulesPath:
 let
   inherit (lib)
-    cleanSourceWith
     hasPrefix
     ;
   inherit (lib.fileset)
     fileFilter
-    fromSource
     intersection
     toList
     ;
+  inherit (lib.path)
+    removePrefix
+    subpath
+    ;
+  nixModules = fileFilter (file: file.hasExt "nix") modulesPath;
+  filterIgnored =
+    pathRef:
+    pathRef
+    |> removePrefix modulesPath
+    |> subpath.components
+    |> lib.all (item: !hasPrefix "_" item);
 in
 modulesPath
-|> (
-  # TODO: Update it to fileset based filtering when it starts
-  # allowing nested basename checks
-  src:
-  cleanSourceWith {
-    filter = path: _: !hasPrefix "_" (baseNameOf path);
-    inherit src;
-  }
-)
-|> fromSource
-|> (intersection <| fileFilter (file: file.hasExt "nix") modulesPath)
+|> intersection nixModules
 |> toList
+|> lib.filter filterIgnored

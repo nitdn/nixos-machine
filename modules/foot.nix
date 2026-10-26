@@ -13,7 +13,7 @@ _: {
             font = "monospace:size=14";
             shell = "nu";
           };
-          key-bindings.spawn-terminal = "ctrl+F2";
+          key-bindings.spawn-terminal = "Control+F2";
         };
       };
       niri-pc = _: {

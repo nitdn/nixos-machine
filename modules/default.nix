@@ -9,11 +9,10 @@
 }:
 {
   options = {
-    meta.username = lib.mkOption {
-      type = lib.types.str;
-    };
-    meta.term = lib.mkOption {
-      type = lib.types.str;
+    meta = lib.mkOption {
+      type = lib.types.submodule {
+        freeformType = lib.types.attrsOf lib.types.str;
+      };
     };
   };
   imports = [

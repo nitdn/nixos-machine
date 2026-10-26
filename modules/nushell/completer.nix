@@ -3,9 +3,18 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 { inputs, ... }: {
-  flake.modules.nixos.pc = { config, ... }: {
-    imports = [ inputs.inshellah.nixosModules.default ];
-    programs.inshellah.enable = true;
-    programs.inshellah.nushellPackage = config.wrappers.nushell-pc.wrapper;
-  };
+  flake.modules.nixos.pc =
+    { config, ... }:
+    let
+      inshellahPackage = inputs.inshellah.packages.${config.nixpkgs.hostPlatform.system}.default;
+    in
+    {
+      imports = [ inputs.inshellah.nixosModules.default ];
+
+      programs.inshellah = {
+        enable = true;
+        package = inshellahPackage;
+        nushellPackage = config.wrappers.nushell-pc.wrapper;
+      };
+    };
 }

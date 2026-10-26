@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: 2026 Nitesh Kumar Debnath <nitkdnath@gmail.com>
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
+
 # These are the hosts I have
 def hostnames [] { ["tjmaxxer", "msi-colgate", "disko-elysium"] }
 
@@ -129,6 +130,8 @@ export def --wrapped lock [
 export def --wrapped eval [hostname: string@hostnames = tjmaxxer # Host config to evaluate
  ...rest # Extra arguments
 ] {
+  $env.NIX_SHOW_STATS = 1
+
   (
   nix eval $".#nixosConfigurations.($hostname).config.system.build.toplevel" --substituters " " --no-eval-cache --read-only ...$rest
 )
@@ -137,6 +140,8 @@ export def --wrapped eval [hostname: string@hostnames = tjmaxxer # Host config t
 # Get a profiler flamegraph
 export def "eval profiler" [hostname: string@hostnames = tjmaxxer # Host config to profile
 ] {
+  $env.NIX_SHOW_STATS = 1
+
   (
     nix eval $".#nixosConfigurations.($hostname).config.system.build.toplevel" --substituters " " --no-eval-cache --read-only --impure --eval-profiler flamegraph --eval-profiler-frequency 9999
   )

@@ -2,22 +2,7 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 { lib, ... }:
-let
-  command_string = lib.readFile ./jst.nu;
-in
 {
-  flake.wrappers.nushell-pc = { pkgs, config, ... }: {
-    runtimePkgs = [ pkgs.inferno ];
-    constructFiles = {
-      jst-nu = {
-        content = command_string;
-        relPath = "devlib/jst.nu";
-      };
-    };
-    "config.nu".content = ''
-      overlay use --prefix ${config.constructFiles.jst-nu.path}
-    '';
-  };
   perSystem =
     {
       inputs',
@@ -33,6 +18,10 @@ in
     {
       devShells.default = pkgs.mkShell {
         TACK_NIX_CONF_TOKENS = "1";
+        shellHook = ''
+          nu -e "overlay use ${../../scripts}"
+          exit
+        '';
         packages = [
           # config.packages.kakoune-pc # insanely borked
           nufmt

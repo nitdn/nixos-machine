@@ -4,6 +4,7 @@
 {
   inputs,
   lib,
+  config,
   ...
 }:
 let
@@ -24,7 +25,6 @@ in
     wrappers.nushell-pc =
       { wlib, pkgs, ... }:
       let
-        inherit (pkgs.stdenv.hostPlatform) system;
         zoxide-nushell =
           pkgs.runCommand "zoxide.nu"
             {
@@ -34,20 +34,11 @@ in
               zoxide init nushell --no-cmd > $out
               echo ${lib.strings.escapeShellArg zoxide_completer} >> $out
             '';
-        cade-nushell =
-          pkgs.runCommand "cade.nu"
-            {
-              nativeBuildInputs = [ inputs.cade.packages.${system}.default ];
-            }
-            ''
-              cade hook nushell >> "$out"
-            '';
       in
       {
         imports = [ wlib.wrapperModules.nushell ];
         "config.nu".content = ''
           source ${zoxide-nushell}
-          source ${cade-nushell}
           alias y = yazi
         '';
       };
@@ -58,13 +49,20 @@ in
         unstablePkgs,
         ...
       }:
+      let
+        cadePackage = inputs.cade.packages.${config.nixpkgs.hostPlatform.system}.default;
+      in
       {
         wrappers.nushell-pc = {
           enable = true;
           pkgs = lib.mkForce unstablePkgs;
+          "config.nu".content = config.programs.cade.shellSnippets.nushell;
         };
         imports = [ inputs.cade.nixosModules.default ];
-        programs.cade.enable = true;
+        programs.cade = {
+          enable = true;
+          package = cadePackage;
+        };
         environment.shells = [
           pkgs.stdenv.builder
           config.wrappers.nushell-pc.wrapper

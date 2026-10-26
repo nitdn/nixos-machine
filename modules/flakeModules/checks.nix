@@ -4,11 +4,11 @@
 
 {
   lib,
-  self,
+  config,
   ...
 }:
 let
-  inherit (self) nixosConfigurations;
+  inherit (config.flake) nixosConfigurations;
 in
 {
   perSystem =
@@ -21,7 +21,7 @@ in
       );
       reuse = pkgs.testers.runCommand {
         name = "reuse-lint";
-        src = self;
+        src = ../../.;
         nativeBuildInputs = [ pkgs.reuse ];
         script = ''
           cd $src
