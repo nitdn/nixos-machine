@@ -56,9 +56,11 @@ export def squash [base: string] { jj squash -t $base -f $"($base)::@-" }
 
 export def pwget [field: string, path: path = secrets/core.yaml] { sops decrypt --extract $"['($field)']['password']" ($path) }
 
-export def throttle --wrapped [...cmd: string] { (
+export def throttle --wrapped [...cmd: string] {
+  (
   systemd-inhibit --what=sleep:shutdown systemd-run --user --scope --property=MemoryMax=8G --property=CPUWeight=500 ...$cmd
-) }
+)
+}
 
 # Creates new files and attaches SPDX Identifiers to them
 export def file --wrapped [filename: path, ...args] {
@@ -98,7 +100,7 @@ export def --wrapped lock [
 ] {
   $env.TACK_NIX_CONF_TOKENS = 1
 
-  tack look --verbose ...$rest | lines | where { $in !~ "unchanged|fixed|\#" } | where { is-not-empty } | inspect | let $changelog
+  tack look --verbose ...$rest | lines | where { $in !~ "unchanged|fixed|\#" } | where { is-not-empty } | tee { each {print} } | let $changelog
 
   if $changelog == [] {
     print "Nothing changed"
@@ -114,15 +116,23 @@ export def --wrapped lock [
 
   tack update ...$rest
 
+  if (jj diff) == "" {
+    jj abandon
+
+    return
+  }
+
   jj desc -m "tack: update" -m $"($changelog | str join "\n")"
 }
 
 # Get an evaluation perf time report
 export def --wrapped eval [hostname: string@hostnames = tjmaxxer # Host config to evaluate
  ...rest # Extra arguments
-] { (
+] {
+  (
   nix eval $".#nixosConfigurations.($hostname).config.system.build.toplevel" --substituters " " --no-eval-cache --read-only ...$rest
-) }
+)
+}
 
 # Get a profiler flamegraph
 export def "eval profiler" [hostname: string@hostnames = tjmaxxer # Host config to profile
