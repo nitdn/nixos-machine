@@ -140,9 +140,9 @@
     "type": "github",
     "owner": "Mic92",
     "repo": "sops-nix",
-    "rev": "442449fa7b1fe6c692d0103ac9fc8f9e82931cf3",
-    "narHash": "sha256-KV+CaZX7QS0hcdKxwGKehDb1jmUgx6lbkTPpaoIW5Nw=",
-    "lastModified": 1792809984
+    "rev": "60182817ee048ac94b4c68ea76d5ef2e8aac730d",
+    "narHash": "sha256-Y/JIHTnMlOabDfyaSBubWGLDIVGihLEUuoMhFvQKaDo=",
+    "lastModified": 1793052255
   },
   "steam-presence": {
     "type": "github",
@@ -172,16 +172,16 @@
     "type": "github",
     "owner": "nix-community",
     "repo": "nix-wrapper-modules",
-    "rev": "c47afa63f372912adf4e33e1aad551e761484250",
-    "narHash": "sha256-rJDstXPviP6rXKj6/54/nzn/O87PhDB76saJ6BrHwOY=",
-    "lastModified": 1792946983
+    "rev": "afb6c5e9c38d4cd244748d9a9f0a6c4d1d7cb0e2",
+    "narHash": "sha256-jy4OtEVuECXahyruvHqQegXnxmBZEzWQ2JMd9DKVNqw=",
+    "lastModified": 1793039441
   },
   "zen-browser": {
     "type": "github",
     "owner": "0xc000022070",
     "repo": "zen-browser-flake",
-    "rev": "ed68d814d6cf2e221ba43d84f1e32429f5e2786f",
-    "narHash": "sha256-ThRNX0+T2Gb3ZD0Xf+/R3wJdL93/mW80ubMnLjZelTY=",
-    "lastModified": 1792963762
+    "rev": "cfb35e5835c4ca6faa811ba38a94f755ecfcb393",
+    "narHash": "sha256-avFKNlbqAAdwJtmB5gbB5W/1fQz0ftIH4ET6FQcpXu0=",
+    "lastModified": 1793063583
   }
 }
