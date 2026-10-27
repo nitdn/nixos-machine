@@ -27,7 +27,11 @@ enable_ddcutil = true
 [lockscreen_widgets]
 enabled = false
 schema_version = 2
-widget_order = ["lockscreen-login-box@winit", "lockscreen-login-box@DP-2"]
+widget_order = [
+  "lockscreen-login-box@HDMI-A-1",
+  "lockscreen-login-box@winit",
+  "lockscreen-login-box@DP-2",
+]
 
 [lockscreen_widgets.grid]
 cell_size = 16
@@ -117,7 +121,6 @@ show_weather = true
 
 [plugin_settings."alexander/screen-toolkit"]
 panel_position = "auto"
-record-codec = "av1"
 
 [plugins]
 enabled = [
@@ -146,6 +149,7 @@ source = "wallpaper"
 builtin_ids = [
   "alacritty",
   "btop",
+  "foot",
   "gtk3",
   "gtk4",
   "ghostty",
