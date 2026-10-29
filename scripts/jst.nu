@@ -136,6 +136,8 @@ export def --wrapped lock [
   }
 
   jj desc -m "tack: update" -m $"($changelog | str join "\n")"
+
+  jj rebase -r @ -B @-
 }
 
 # Get an evaluation perf time report
