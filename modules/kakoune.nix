@@ -41,6 +41,7 @@ in
       wrapperVariants.kakn.flags."-C" = "nix";
       wrapperVariants.kakn.exePath = "bin/kak";
 
+      runtimePkgs = [ pkgs.wl-clipboard-rs ];
       runShell = [
         ''
           export NIX_CONFIG="$(${lib.getExe pkgs.gnused} -E 's/ pipe-operator( |$)/ pipe-operators\1/' /etc/nix/nix.conf)

@@ -13,6 +13,19 @@
     }:
     let
       inherit (unstablePkgs) nufmt;
+      nuBootStrap =
+        let
+          runner_cmd = "jst";
+        in
+        pkgs.writers.writeNuBin runner_cmd ''
+          def main --wrapped [ ...args] {
+            nu -e $"
+              $env.config.show_banner = false
+              overlay use scripts
+              ${runner_cmd} ($args | str join \s)
+            "
+          }
+        '';
     in
 
     {
@@ -21,6 +34,7 @@
         packages = [
           # config.packages.kakoune-pc # insanely borked
           nufmt
+          nuBootStrap
         ]
         ++ lib.attrValues {
           inherit (config.packages) jujutsu-pc;
