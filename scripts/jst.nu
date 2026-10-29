@@ -5,6 +5,18 @@
 # These are the hosts I have
 def hostnames [] { ["tjmaxxer", "msi-colgate", "disko-elysium"] }
 
+#Catchall to overload base jst
+@category  'Debug'
+export def main []: nothing -> nothing { health }
+
+# Print if the import is working
+@category 'Debug'
+export def health [] {
+  $"Import is working!
+  $SHLVL at ($env.SHLVL)"
+  | print $in
+}
+
 # Push to the CI mirror
 @category  'Remote operations'
 export def ci [revset: string = @- # The jj revset
