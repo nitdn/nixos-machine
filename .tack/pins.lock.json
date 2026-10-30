@@ -78,9 +78,9 @@
     "type": "github",
     "owner": "microvm-nix",
     "repo": "microvm.nix",
-    "rev": "c37d37a876a3c4bd7ff78fcc716b2e4fac770360",
-    "narHash": "sha256-G/iL0mroLP5etLwYs55uyOyffMS4t+gpyXF06haba4w=",
-    "lastModified": 1793225170
+    "rev": "b7bd556974fa8a171b5b639200e81d52244dfde4",
+    "narHash": "sha256-ErGIqtoWEX9KKC8NFtJDx2pGGG02Cr6LGxrvzLd2sqA=",
+    "lastModified": 1793281488
   },
   "nix-devshells": {
     "type": "git",
@@ -180,8 +180,8 @@
     "type": "github",
     "owner": "0xc000022070",
     "repo": "zen-browser-flake",
-    "rev": "0c1a3502f225d8e2888dfb130818f4cdae6d39e8",
-    "narHash": "sha256-gFi/vqarQV/KEqJVsGQGVxZkWIbGJ23vUdJwfJKMDJ4=",
-    "lastModified": 1793266122
+    "rev": "2656d974602749ca5594b133e3022a241ab5d4e0",
+    "narHash": "sha256-d1Tvbgn//HQ3f1PDh/iIMEpvuUu9Lc4lJqiwGl18cY8=",
+    "lastModified": 1793309674
   }
 }
