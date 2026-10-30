@@ -121,23 +121,13 @@ export def --wrapped lock [
     return
   }
 
-  if $dry_run {
-    return
-  }
+  if $dry_run { return }
 
-  jj new
+  jj new -B @ -m "tack: update" -m $"($changelog | to text)"
 
   tack update ...$rest
 
-  if (jj diff) == "" {
-    jj abandon
-
-    return
-  }
-
-  jj desc -m "tack: update" -m $"($changelog | str join "\n")"
-
-  jj rebase -r @ -B @-
+  if (jj diff) == "" { jj undo } else { jj next --edit }
 }
 
 # Get an evaluation perf time report
