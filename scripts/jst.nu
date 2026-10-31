@@ -127,7 +127,13 @@ export def --wrapped lock [
 
   tack update ...$rest
 
-  if (jj diff) == "" { jj undo } else { jj next --edit }
+  if (jj diff) == "" {
+    jj undo
+
+    return
+  }
+
+  if !(jj next --edit) { jj new }
 }
 
 # Get an evaluation perf time report
