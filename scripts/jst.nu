@@ -133,7 +133,7 @@ export def --wrapped lock [
     return
   }
 
-  if !(jj next --edit) { jj new }
+  try { jj next --edit } catch { jj new }
 }
 
 # Get an evaluation perf time report

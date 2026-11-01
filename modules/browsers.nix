@@ -94,10 +94,11 @@ in
     packages.zen-wrapped = firefox-wrapper pkgs;
   };
   flake.modules.nixos.pc =
-    { unstablePkgs, ... }:
+    { unstablePkgs, config, ... }:
     {
       environment.systemPackages = [
         (firefox-wrapper unstablePkgs)
+        inputs.helium-browser.packages.${config.nixpkgs.hostPlatform.system}.default
       ];
     };
 }

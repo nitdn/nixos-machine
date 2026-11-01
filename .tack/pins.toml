@@ -97,5 +97,8 @@ url = "gh:manic-systems/cade/"
 [inputs.nix-flatpak]
 url = "github:gmodena/nix-flatpak/?ref=latest"
 
+[inputs.helium-browser]
+url = "github:schembriaiden/helium-browser-nix-flake"
+
 [tack]
 recomposable = true

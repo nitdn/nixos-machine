@@ -5,6 +5,7 @@
     "cade": "github:manic-systems/cade/",
     "disko": "github:nix-community/disko",
     "flake-parts": "github:hercules-ci/flake-parts",
+    "helium-browser": "github:schembriaiden/helium-browser-nix-flake",
     "inshellah": "github:manic-systems/inshellah/",
     "microvm": "github:microvm-nix/microvm.nix",
     "nix-devshells": "git+https://codeberg.org/nitdn/nix-devshells.git",
@@ -65,6 +66,14 @@
     "rev": "024633cd702b10285db5cb19b40ad48d2399ba60",
     "narHash": "sha256-zTwuwezD0w3hpga6a6P8emidzAZFyWqlNeRBlpWOOl8=",
     "lastModified": 1790898470
+  },
+  "helium-browser": {
+    "type": "github",
+    "owner": "schembriaiden",
+    "repo": "helium-browser-nix-flake",
+    "rev": "7945a36a1ef9a47cc3c3c094a16692b4beb8d59a",
+    "narHash": "sha256-CbPo0m3g+mrsx0XMgtqmlRTaxVSASjOhvjgttBnrirI=",
+    "lastModified": 1793422734
   },
   "inshellah": {
     "type": "github",
