@@ -63,9 +63,9 @@
     "type": "github",
     "owner": "hercules-ci",
     "repo": "flake-parts",
-    "rev": "024633cd702b10285db5cb19b40ad48d2399ba60",
-    "narHash": "sha256-zTwuwezD0w3hpga6a6P8emidzAZFyWqlNeRBlpWOOl8=",
-    "lastModified": 1790898470
+    "rev": "ea2630b7470978622c7689a1ff75d2b389175399",
+    "narHash": "sha256-V1h85lUaJBQoHFrB2vpXZOE0Ju1MYSnIpsehoVZYlDo=",
+    "lastModified": 1793576659
   },
   "helium-browser": {
     "type": "github",
@@ -111,9 +111,9 @@
     "type": "github",
     "owner": "nix-community",
     "repo": "nix-index-database",
-    "rev": "93696586f3463024cceb089353539be95a38ae2b",
-    "narHash": "sha256-v75hPw5NJ+mRRcwUzKi2OQtVSVv1hgq6ceAlPQB2kEE=",
-    "lastModified": 1792915725
+    "rev": "cee0f879d338cf08f814210fa6c2b280594ade0a",
+    "narHash": "sha256-PHtGxKYM99f8WhGR5YD7iiCiwemKa2wUD4yVI2oALFg=",
+    "lastModified": 1793543282
   },
   "nix-unstable": {
     "type": "tarball",
