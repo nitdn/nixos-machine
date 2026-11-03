@@ -53,7 +53,7 @@ url = "github:manic-systems/inshellah/"
 url = "github:microvm-nix/microvm.nix"
 
 [inputs.nix-devshells]
-url = "codeberg:nitdn/nix-devshells"
+url = "codeberg-tarball:nitdn/nix-devshells"
 
 [inputs.nix-index-database]
 url = "github:nix-community/nix-index-database"
