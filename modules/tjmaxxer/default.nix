@@ -26,6 +26,7 @@ in
         enable = true;
         package = pkgs.openrgb-with-all-plugins;
       };
+      services.lact.enable = true;
 
       # Enable OpenTabletDriver
       hardware.opentabletdriver.enable = true;

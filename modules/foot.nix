@@ -16,12 +16,12 @@ _: {
           key-bindings.spawn-terminal = "Control+F2";
         };
       };
-      niri-pc = _: {
-        settings = {
-          spawn-at-startup = [ [ "foot" ] ];
-          binds."Mod+T".spawn = [ "foot" ];
-        };
-      };
+      # niri-pc = _: {
+      #   settings = {
+      #     spawn-at-startup = [ [ "foot" ] ];
+      #     binds."Mod+T".spawn = [ "foot" ];
+      #   };
+      # };
     };
     modules.nixos.pc = _: {
       wrappers.foot = {

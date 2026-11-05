@@ -27,11 +27,7 @@ enable_ddcutil = true
 [lockscreen_widgets]
 enabled = false
 schema_version = 2
-widget_order = [
-  "lockscreen-login-box@HDMI-A-1",
-  "lockscreen-login-box@winit",
-  "lockscreen-login-box@DP-2",
-]
+widget_order = ["lockscreen-login-box@winit", "lockscreen-login-box@DP-2"]
 
 [lockscreen_widgets.grid]
 cell_size = 16
@@ -144,6 +140,7 @@ grid = true
 builtin = "Gruvbox"
 community_palette = "Oxocarbon"
 source = "wallpaper"
+wallpaper_scheme = "m3-content"
 
 [theme.templates]
 builtin_ids = [
@@ -159,7 +156,7 @@ builtin_ids = [
   "niri",
   "qt",
 ]
-community_ids = ["zen-browser", "steam", "zathura"]
+community_ids = ["zen-browser", "steam", "zathura", "fcitx5", "rio"]
 
 [wallpaper]
 directory = "/home/ssmvabaa/wallpapers"

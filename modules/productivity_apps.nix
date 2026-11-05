@@ -24,19 +24,12 @@ let
     let
       cfg = config.hardware.graphics;
 
-      # Nixpkgs makes some truly degenerate ibus desktop entries
-      killIbusAutostart = pkgs.writeTextFile {
-        name = "kill-autostart-ibus-daemon";
-        destination = "/etc/xdg/autostart/ibus-daemon.desktop";
-        text = "";
-      };
     in
     lib.mkIf cfg.enable {
       programs.kdeconnect = {
         enable = true;
       };
       environment.systemPackages = [
-        (lib.mkForce killIbusAutostart)
         pkgs.naps2
         pkgs.hunspell
         pkgs.hunspellDicts.en-gb-large
@@ -49,11 +42,10 @@ let
       ];
       i18n.inputMethod = {
         enable = true;
-        type = "ibus";
-        ibus.waylandFrontend = true;
-        ibus.engines = [
-          pkgs.ibus-engines.typing-booster
-          pkgs.openbangla-keyboard
+        type = "fcitx5";
+        fcitx5.waylandFrontend = true;
+        fcitx5.addons = [
+          pkgs.fcitx5-openbangla-keyboard
         ];
       };
       fonts.packages = [
