@@ -93,9 +93,9 @@
   },
   "nix-devshells": {
     "type": "tarball",
-    "url": "https://codeberg.org/api/v1/repos/nitdn/nix-devshells/archive/ed71b1bd80f72cba990dc95f2dd9a5ceec45c94e.tar.gz?rev=ed71b1bd80f72cba990dc95f2dd9a5ceec45c94e",
-    "narHash": "sha256-O6CQsF1s+m7wEGHzVO8ErATgxxSLBvJesaln4w4/UCU=",
-    "lastModified": 1793767899
+    "url": "https://codeberg.org/api/v1/repos/nitdn/nix-devshells/archive/3d4906571c9d4e5b394824c01dad46817ebb5fd6.tar.gz?rev=3d4906571c9d4e5b394824c01dad46817ebb5fd6",
+    "narHash": "sha256-Qz5NsRRbSI/n7vx9E9fsBCq0H6Za9POgUocKb1TgIwU=",
+    "lastModified": 1793944860
   },
   "nix-flatpak": {
     "type": "github",

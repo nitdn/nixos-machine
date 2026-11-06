@@ -55,14 +55,6 @@ let
     };
 in
 {
-  flake.wrappers.niri-pc.settings.spawn-at-startup = [
-    [
-      "ibus"
-      "start"
-      "--type"
-      "wayland"
-    ]
-  ];
   flake.modules.nixos = {
     work.imports = [
       productivity
