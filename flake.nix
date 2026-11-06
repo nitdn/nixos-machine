@@ -7,17 +7,19 @@
   outputs =
     { self, ... }@args:
     let
-      inputs = (import ./.tack) { overrides = args.tackOverrides or { }; };
-      inputs' = inputs // {
+      inputs' = (import ./.tack) { overrides = args.tackOverrides or { }; };
+      # By design the original inputs is empty,
+      # we can however build another inputs from self
+      inputs = inputs' // {
         self = self // {
-          inputs = inputs';
+          inherit inputs;
         };
       };
 
     in
     inputs.flake-parts.lib.mkFlake
       {
-        inputs = inputs';
+        inherit inputs;
       }
       (
         { lib, ... }:
