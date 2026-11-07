@@ -68,7 +68,6 @@ in
         };
         programs.steam.extraPackages = with pkgs; [
           config.programs.gamescope.package
-          steamtinkerlaunch
           libXcursor
           libXi
           libXinerama
@@ -106,7 +105,6 @@ in
           unstablePkgs.concord-tui
           pkgs.arrpc
           pkgs.itch
-
         ];
       };
     disko-elysium = _: {
