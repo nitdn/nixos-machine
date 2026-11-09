@@ -14,13 +14,18 @@ _: {
           backend = "ssh";
           key = "~/.ssh/id_ed25519.pub";
         };
+        revsets = {
+          bookmark-advance-from = "heads(::to & bookmarks())";
+          bookmark-advance-to = "closest_pushable(@)";
+        };
+        revset-aliases."closest_pushable(to)" =
+          ''heads(::to & mutable() & ~description(exact:"") & (~empty() | merges()))'';
         template-aliases.default_commit_description = ''
           "scope: message
           JJ: body
 
           JJ: Closes #NNNN
-          "
-        '';
+          "'';
       };
     };
 

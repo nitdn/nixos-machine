@@ -21,6 +21,8 @@ export def health [] {
 @category  'Remote operations'
 export def ci [revset: string = @- # The jj revset
 ] {
+  jj bookmark advance
+
   jj git push -c ($revset) --remote flake-mirror
 
   jj git push -c ($revset) --remote tngl-mirror
@@ -43,13 +45,11 @@ export def pr [revset: string = @- # The jj revset
 @category  'Remote operations'
 export def trunk [revset: string = @- # The jj revset
 ] {
-  jj bookmark set main --to ($revset)
-
   jj git push -r ($revset) --remote flake-mirror --bookmark main
 
   jj git push -r ($revset) --remote tngl-mirror --bookmark main
 
-  jj git push -r ($revset) --remote origin
+  jj git push -r ($revset) --remote origin --bookmark main
 
   jj gf
 
