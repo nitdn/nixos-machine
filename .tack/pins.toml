@@ -15,11 +15,13 @@ codeberg-tarball = "https://codeberg.org/{path}/archive/main.tar.gz"
 # opt out per-input with exclude_follow
 [all_follow]
 # nixpkgs = "nixpkgs"
-nix-unstable = ["nixpkgs", "nixpkgs-lib"]
+# Nixpkgs is completely cooked, defer to whatever lockfiles they have
+# nixpkgs = ["nixpkgs", "nixpkgs-lib"]
 wrappers = "wrappers"
 rust-analyzer-src = "rust-analyzer"
 treefmt-nix = "treefmt-nix"
 fenix = "fenix"
+# flake-utils = ["utils"]
 
 [omit_inputs]
 names = ["flake-compat", "cachix"]

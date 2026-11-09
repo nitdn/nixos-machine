@@ -21,7 +21,6 @@ in
     pc =
       {
         pkgs,
-        unstablePkgs,
         config,
         ...
       }:
@@ -102,7 +101,7 @@ in
           pkgs.easyeffects
           # pkgs.lutris
           pkgs.umu-launcher
-          unstablePkgs.concord-tui
+          # unstablePkgs.concord-tui
           pkgs.arrpc
           pkgs.itch
         ];
