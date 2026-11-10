@@ -39,9 +39,9 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "cade",
-    "rev": "6dd6201bf42718b279bdedb086360b067247117e",
-    "narHash": "sha256-EZ6fCReAiGerv3zMVgaOPyll2WZP606bPQ8J/t9/0SM=",
-    "lastModified": 1794193708
+    "rev": "27fb0673c096460652ab4e3b1908d80a9c449597",
+    "narHash": "sha256-mEIH9wqp2xbjQ+zx9iGQirAUwvD4NKUuiNimoGY8xUI=",
+    "lastModified": 1794239728
   },
   "disko": {
     "type": "github",
@@ -122,10 +122,10 @@
   },
   "nixpkgs": {
     "type": "tarball",
-    "url": "https://releases.nixos.org/nixos/26.05/nixos-26.05.13627.c56a87d8e41c/nixexprs.tar.zst?rev=c56a87d8e41ce69bd2af57eb35dcc117a9dfca33&lastModified=1793865203",
-    "rev": "c56a87d8e41ce69bd2af57eb35dcc117a9dfca33",
-    "narHash": "sha256-4D+5oPvxkOa6tTCWXi4jwRfmWhDXGRSrX4+eOTItLh0=",
-    "lastModified": 1793865203
+    "url": "https://releases.nixos.org/nixos/26.05/nixos-26.05.13936.ac588ef1c914/nixexprs.tar.zst?rev=ac588ef1c914865dad517b337ea0eb9694a4021c&lastModified=1794165970",
+    "rev": "ac588ef1c914865dad517b337ea0eb9694a4021c",
+    "narHash": "sha256-YqwBRaXgqn0+I8BCsZVLkzd746X/84fr1/FvZiocsYE=",
+    "lastModified": 1794165970
   },
   "run0-sudo-shim": {
     "type": "github",
@@ -147,9 +147,9 @@
     "type": "github",
     "owner": "Mic92",
     "repo": "sops-nix",
-    "rev": "89a234ce2daf6e568a7d4b4fe250afdd23d84e20",
-    "narHash": "sha256-ZlE4BtMjWhfC6rFXLO9Qimn36Ene1INqCgKDDvazjhc=",
-    "lastModified": 1793995029
+    "rev": "fe7b4228405aeac2ce7192c2049a6e2bc8637082",
+    "narHash": "sha256-Ivif/kuD68yEOKcZZG3zSwNMFUuIgzUgeJuzcHrQy+8=",
+    "lastModified": 1794261845
   },
   "steam-presence": {
     "type": "github",
@@ -163,9 +163,9 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "tack",
-    "rev": "ea48abbf5ceb99d4e150b545767a2159f3e07979",
-    "narHash": "sha256-rpcW35sv5exqvhZ0uuyY/14KXaS9hndXJ5qb4DiLFIo=",
-    "lastModified": 1794193449
+    "rev": "f59bc3e6679df14d402e40bf895cc2533bae4ca2",
+    "narHash": "sha256-ZK5sfTsvSo9VYEi8mAVtfu5FUFvMYoGMn6+CYzS1pPU=",
+    "lastModified": 1794242539
   },
   "treefmt-nix": {
     "type": "github",
@@ -179,9 +179,9 @@
     "type": "github",
     "owner": "nix-community",
     "repo": "nix-wrapper-modules",
-    "rev": "e8cc2dc5f75250d3a9c1c760040b9137d5a2c7a3",
-    "narHash": "sha256-jclJs4Ckq4aiAOm7xY/Iq5PmLbVBl/IAh9uknRd4N4k=",
-    "lastModified": 1794220105
+    "rev": "4b4c2a737b0717df0a9b03a83e0cde6d036c1ec9",
+    "narHash": "sha256-qZFj4NtE55eMxSu0qU8D1BDQmC7HIrb+pc/0XRgPNkM=",
+    "lastModified": 1794276898
   },
   "zen-browser": {
     "type": "github",
