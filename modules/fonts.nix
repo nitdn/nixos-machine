@@ -26,7 +26,12 @@
         pkgs.iosevka
         pkgs.nerd-fonts.symbols-only
         pkgs.noto-fonts
+        pkgs.noto-fonts-cjk-sans
+        pkgs.noto-fonts-cjk-serif
+        pkgs.noto-fonts-color-emoji
+
       ];
+      fonts.enableDefaultPackages = false; # FreeSans is a joke with ligatures
 
       fonts.fontconfig.defaultFonts = lib.mkIf config.hardware.graphics.enable {
         sansSerif = [
