@@ -12,8 +12,6 @@
     in
     {
       networking.domain = "home.arpa";
-      networking.dhcpcd.wait = "background";
-      services.zerotierone.enable = true;
       services.tailscale.enable = true;
       networking.firewall = {
         # Always allow traffic from your Tailscale network

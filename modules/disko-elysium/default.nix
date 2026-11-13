@@ -38,6 +38,35 @@ in
         # enable32Bit = true;
       };
       hardware.enableRedistributableFirmware = true;
+      services.logind.settings.Login = {
+        HandleLidSwitch = "suspend";
+        HandleLidSwitchExternalPower = "lock";
+        HandleLidSwitchDocked = "ignore";
+      };
+
+      networking = {
+        interfaces = {
+          enp0s20f0u1u4 = {
+            wakeOnLan.enable = true;
+          };
+        };
+        firewall = {
+          allowedUDPPorts = [ 9 ];
+        };
+      };
+
+      services.auto-cpufreq.enable = true;
+      services.auto-cpufreq.settings = {
+        battery = {
+          governor = "powersave";
+          turbo = "never";
+        };
+        charger = {
+          governor = "performance";
+          turbo = "auto";
+        };
+      };
+
     };
 
   flake.nixosConfigurations.disko-elysium = inputs.nixpkgs.lib.nixosSystem {
