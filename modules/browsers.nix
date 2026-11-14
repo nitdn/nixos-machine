@@ -33,7 +33,7 @@ let
   ];
   extraPolicies = {
     DNSOverHTTPS = {
-      Enabled = true;
+      Enabled = false;
       ProviderURL = "https://jmfa1wa82x.cloudflare-gateway.com/dns-query";
     };
     DisableTelemetry = true;

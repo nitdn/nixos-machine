@@ -22,7 +22,7 @@
             nu -e $"
               $env.config.show_banner = false
               overlay use --reload scripts
-              ${runner_cmd} ($args | str join \s)
+              ${runner_cmd} ($args | str join ` `)
             "
           }
         '';
