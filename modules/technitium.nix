@@ -4,8 +4,21 @@
 
 _: {
   flake.modules.nixos.homelab =
-    _:
+    { config, ... }:
+    let
+      username =
+        config.systemd.services.technitium-dns-server.serviceConfig.User or "technitium-dns-server";
+    in
     {
       services.technitium-dns-server.enable = true;
+      services.postgresql = {
+        ensureDatabases = [ username ];
+        ensureUsers = [
+          {
+            name = username;
+            ensureDBOwnership = true;
+          }
+        ];
+      };
     };
 }

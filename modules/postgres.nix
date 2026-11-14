@@ -2,7 +2,35 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
+_:
+let
+  postgresModule = { pkgs, config, ... }: {
+    services.postgresql = {
+      enable = true;
+      package = pkgs.postgresql_18;
+      identMap = ''
+        # ArbitraryMapName  systemUser  DBUser
+          superuser_map     root        postgres
+          superuser_map     postgres    postgres
+          superuser_map     /^(.*)$     \1 # Let other names log in as themselves
+      '';
+      authentication = pkgs.lib.mkOverride 10 ''
+        # type   database   DBuser    auth-method   optional_ident_map
+        # local  all        all       trust
+          local  all        postgres  peer
+          local  sameuser   all       peer          map=superuser_map
+      '';
+    };
+    services.postgresqlBackup = {
+      enable = true;
+      startAt = config.system.autoUpgrade.dates;
+    };
+  };
+in
 {
+  flake.modules.nixos.homelab = {
+    imports = [ postgresModule ];
+  };
   flake.modules.nixos.vps =
     {
       pkgs,
@@ -11,32 +39,7 @@
       ...
     }:
     {
-
-      services.postgresql = {
-        enable = true;
-        package = pkgs.postgresql_18;
-        ensureDatabases = [ "mydatabase" ];
-        identMap = ''
-          # ArbitraryMapName  systemUser  DBUser
-            superuser_map     root        postgres
-            superuser_map     postgres    postgres
-            superuser_map     /^(.*)$     \1 # Let other names log in as themselves
-        '';
-        authentication = pkgs.lib.mkOverride 10 ''
-          # type   database   DBuser    auth-method   optional_ident_map
-          # local  all        all       trust
-            local  all        postgres  peer
-            local  sameuser   all       peer          map=superuser_map
-            host   sameuser   all       127.0.0.1/32  scram-sha-256
-            host   sameuser   all       ::1/128       scram-sha-256
-            host   sameuser   blocky    all           scram-sha-256
-        '';
-      };
-      services.postgresqlBackup = {
-        enable = true;
-        startAt = config.system.autoUpgrade.dates;
-      };
-
+      imports = [ postgresModule ];
       services.nginx.streamConfig = ''
         server {
           listen 9856;
