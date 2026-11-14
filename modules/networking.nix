@@ -4,24 +4,33 @@
 
 {
   flake.modules.nixos.pc =
-    { config, ... }:
+    _:
     let
       tls_auth_name = "jmfa1wa82x.cloudflare-gateway.com";
       v4_address = "172.64.36.1";
       v6_address = "2a06:98c1:54::c2e2";
     in
     {
-      networking.domain = "home.arpa";
-      services.tailscale.enable = true;
-      networking.firewall = {
-        # Always allow traffic from your Tailscale network
-        trustedInterfaces = [ config.services.tailscale.interfaceName ];
-        # Allow the Tailscale UDP port through the firewall
-        allowedUDPPorts = [ config.services.tailscale.port ];
-      };
 
+      networking = {
+        domain = "home.arpa";
+        # nameservers = [
+        #   # "1.1.1.1" # oh no
+        #   "127.0.0.1"
+        #   "::1"
+        # ];
+        networkmanager.dns = "none";
+      };
+      # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+
+      # Configure network proxy if necessary
+      # networking.proxy.default = "http://user:password@proxy:port/";
+      # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+
+      # Enable networking
+      # networking.networkmanager.enable = true;
       services.stubby = {
-        enable = true;
+        enable = false;
         settings = {
           dns_transport_list = [ "GETDNS_TRANSPORT_TLS" ];
           edns_client_subnet_private = 1;
