@@ -9,6 +9,7 @@ _: {
     let
       username = config.services.freshrss.user or "freshrss";
       tailnet_name = "curlew-rankine.ts.net";
+      virtualHost = "${username}.${tailnet_name}";
       inherit (pkgs) freshrss-extensions;
       inherit (freshrss-extensions) youtube reddit-image;
     in
@@ -29,12 +30,19 @@ _: {
         };
       };
 
+      services.nginx.virtualHosts."${virtualHost}" = {
+        locations."~ ^.+?\\.php(/.*)?$".extraConfig = ''
+          fastcgi_param REMOTE_USER "$http_tailscale_user_login";
+        '';
+      };
+
       services.freshrss = {
         enable = true;
-        baseUrl = "https://${username}.${tailnet_name}";
+        baseUrl = "https://${virtualHost}";
         api.enable = true;
+        authType = "http_auth";
         passwordFile = "/run/secrets/freshrss";
-        virtualHost = "${username}.${tailnet_name}";
+        inherit virtualHost;
         extensions = [
           youtube
 
