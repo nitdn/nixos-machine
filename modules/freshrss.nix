@@ -31,9 +31,9 @@ _: {
       };
 
       services.nginx.virtualHosts."${virtualHost}" = {
-        locations."~ ^.+?\\.php(/.*)?$".extraConfig = ''
-          fastcgi_param REMOTE_USER "$http_tailscale_user_login";
-        '';
+        locations."~ ^.+?\\.php(/.*)?$".fastcgiParams = {
+          REMOTE_USER = "$http_tailscale_user_login";
+        };
       };
 
       services.freshrss = {

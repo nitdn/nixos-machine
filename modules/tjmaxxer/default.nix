@@ -28,6 +28,10 @@ in
       };
       services.lact.enable = true;
 
+      hardware.bluetooth = {
+        enable = true;
+        powerOnBoot = false;
+      };
       # Enable OpenTabletDriver
       hardware.opentabletdriver.enable = true;
 
