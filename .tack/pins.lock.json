@@ -122,10 +122,10 @@
   },
   "nixpkgs": {
     "type": "tarball",
-    "url": "https://releases.nixos.org/nixos/26.05/nixos-26.05.14234.f1e5c356f35d/nixexprs.tar.zst?lastModified=1794552581&rev=f1e5c356f35d07e7b71a6b5e6c9338e0b029e0c0",
-    "rev": "f1e5c356f35d07e7b71a6b5e6c9338e0b029e0c0",
-    "narHash": "sha256-C0bP9ShRkxihpkAiWel93+JypO7ls9usnHRtK2VLvWA=",
-    "lastModified": 1794552581
+    "url": "https://releases.nixos.org/nixos/26.05/nixos-26.05.14561.b349185bb79c/nixexprs.tar.zst?lastModified=1794756927&rev=b349185bb79c7cf7ad8ea8c097931730bf473c71",
+    "rev": "b349185bb79c7cf7ad8ea8c097931730bf473c71",
+    "narHash": "sha256-gMyd1bZoTbvrap9NEM2ZIy/7Qfhd54segpSkHPB2vfE=",
+    "lastModified": 1794756927
   },
   "run0-sudo-shim": {
     "type": "github",
@@ -163,9 +163,9 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "tack",
-    "rev": "bc5060f875a9f28eb8b17177c567b0a8e5b5a3cb",
-    "narHash": "sha256-2cyeVKpgFNwOpl+hCzjbk2kLMGoYNGuiHozUpaIfQhE=",
-    "lastModified": 1794808870
+    "rev": "3cfa5c3f129b754c3f39f0dedc3fa2c352651e5b",
+    "narHash": "sha256-BIsamtBAElAO2TEMK6UsPHp2kCHpMwqULjBwSpq2hhI=",
+    "lastModified": 1794846300
   },
   "treefmt-nix": {
     "type": "github",
@@ -179,16 +179,16 @@
     "type": "github",
     "owner": "nix-community",
     "repo": "nix-wrapper-modules",
-    "rev": "18be4ae009e5da0f6b444712e1cd5ffa2dd25e24",
-    "narHash": "sha256-LK//BaOq4TIGJZGvvoFYh3OGUUMlGUjTR/OBXSgqmvc=",
-    "lastModified": 1794787945
+    "rev": "9491aa1daf680cde178eb0d2fc4bc36f6bdfe0e6",
+    "narHash": "sha256-6z/bKyFdElqHjNZWo306rtyM4tIH6aNIjAmkKFsndVE=",
+    "lastModified": 1794827395
   },
   "zen-browser": {
     "type": "github",
     "owner": "0xc000022070",
     "repo": "zen-browser-flake",
-    "rev": "cb44a9fc1faa18c55dde38a8338f6d46fa2bc6de",
-    "narHash": "sha256-sG0P1rHWgbPQIeR+peNmapCWQKf0nauyDl500JhX9Qo=",
-    "lastModified": 1794805570
+    "rev": "ba0680a6756ed68d51e1dab3cd5b41e0b868b0d1",
+    "narHash": "sha256-sl4+Aoy1jBAYd94B6pOgfYi9zGdALG5HIapKDe6KOs4=",
+    "lastModified": 1794847538
   }
 }
