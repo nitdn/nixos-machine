@@ -111,8 +111,8 @@ jobs:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
       - name: Build machines
         env:
-          MACHINES: "tjmaxxer,msi-colgate,disko-elysium"
+          MACHINES: "{tjmaxxer,msi-colgate,disko-elysium}"
         run: |
           nix copy --to ssh-ng://gh-runner@disko-elysium \
-          .#nixosConfigurations.{${{ env.MACHINES }}}.\
-          config.system.build.toplevel --no-check-sigs
+          .#nixosConfigurations.${{ env.MACHINES }}.\
+          config.system.build.toplevel --no-check-sigs -j12

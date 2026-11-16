@@ -61,6 +61,7 @@ in
       treefmt.programs =
         lib.genAttrs
           [
+            "actionlint"
             "deadnix"
             "flake-edit"
             "nixfmt"
