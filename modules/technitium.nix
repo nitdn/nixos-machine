@@ -4,10 +4,11 @@
 
 _: {
   flake.modules.nixos.homelab =
-    { config, ... }:
+    { config, lib, ... }:
     let
       username =
         config.systemd.services.technitium-dns-server.serviceConfig.User or "technitium-dns-server";
+      port = lib.toString 5380;
     in
     {
       services.technitium-dns-server.enable = true;
@@ -20,5 +21,6 @@ _: {
           }
         ];
       };
+      services.tailscale.serve.services.tcdns.endpoints."tcp:443" = "https://localhost:${port}";
     };
 }

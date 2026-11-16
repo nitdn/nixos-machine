@@ -5,9 +5,15 @@
 
 _: {
   flake.modules.nixos.homelab =
-    { pkgs, config, ... }:
+    {
+      pkgs,
+      config,
+      lib,
+      ...
+    }:
     let
       username = config.services.freshrss.user or "freshrss";
+      port = lib.toString 80; # always http
       tailnet_name = "curlew-rankine.ts.net";
       virtualHost = "${username}.${tailnet_name}";
       inherit (pkgs) freshrss-extensions;
@@ -67,22 +73,6 @@ _: {
         };
       };
 
-      systemd.services.freshrss-config = {
-        environment = {
-          OIDC_ENABLED = "true";
-          OIDC_PROVIDER_METADATA_URL = "https://idp.${tailnet_name}/.well-known/openid-configuration";
-          OIDC_REMOTE_USER_CLAIM = "email";
-          OIDC_SCOPES = "email";
-
-        };
-        serviceConfig.EnvironmentFile = [
-          config.sops.secrets.freshrss-oidc.path
-          "/var/lib/freshrss/oidc-crypto-key"
-        ];
-
-      };
-      sops.secrets.freshrss-oidc = {
-        owner = username;
-      };
+      services.tailscale.serve.services.freshrss.endpoints."tcp:443" = "https://localhost:${port}";
     };
 }
