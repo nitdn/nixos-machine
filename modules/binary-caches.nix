@@ -6,12 +6,12 @@ let
   binaryCaches = {
     nix.settings = {
       substituters = [
-        "https://machines.cachix.org"
-        "https://nix-community.cachix.org"
-        "https://cache.manic.systems"
-        "https://cache.forall.systems"
+        "https://machines.cachix.org/"
+        "https://nix-community.cachix.org/"
+        "https://cache.manic.systems/"
+        "https://cache.forall.systems/"
         # This does build oh god
-        "https://cache.curlew-rankine.ts.net"
+        "https://cache.curlew-rankine.ts.net/"
       ];
       trusted-public-keys = [
         "machines.cachix.org-1:imnXlKFUc4Iaedv6469v6TO37ruiNh6OfJN4le5bqdE="

@@ -60,6 +60,7 @@ in
         imports = [ inputs.cade.nixosModules.default ];
         programs.cade = {
           enable = true;
+          enableBashIntegration = false; # broken in stable
           package = cadePackage;
         };
         environment.shells = [

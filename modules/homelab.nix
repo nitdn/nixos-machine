@@ -11,7 +11,7 @@ let
 in
 {
   flake.modules.nixos.homelab =
-    { config, ... }:
+    { config, pkgs, ... }:
 
     let
       port = config.services.nix-serve.port |> lib.toString;
@@ -25,6 +25,16 @@ in
         enable = true;
         secretKeyFile = "/var/lib/nix-serve/secret-key-file";
       };
+
+      # SSH based user for github runners
+      # will be used as an allowed user
+      users.users."gh-runner" = {
+        isSystemUser = true;
+        shell = pkgs.bashInteractive;
+        group = "gh-runner";
+      };
+      users.groups."gh-runner" = { };
+      nix.settings.trusted-users = [ "gh-runner" ];
 
       services.tailscale.serve = {
         enable = false;
