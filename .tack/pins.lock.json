@@ -147,9 +147,9 @@
     "type": "github",
     "owner": "Mic92",
     "repo": "sops-nix",
-    "rev": "11e5885d241743ff0193465d533b20e754bc3ce0",
-    "narHash": "sha256-3q/hxp/flW1PnV3Dx+H3p8kHGEHJ7251BqVMNsAAB9E=",
-    "lastModified": 1794624949
+    "rev": "7c637afdccdf9bcf35c4a2d67b58a77c1fd843a4",
+    "narHash": "sha256-Y28AMB8lyKjASdJ0BVsR2AqR1cUsVuo8RVVpzHoECho=",
+    "lastModified": 1794866654
   },
   "steam-presence": {
     "type": "github",
@@ -163,9 +163,9 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "tack",
-    "rev": "3cfa5c3f129b754c3f39f0dedc3fa2c352651e5b",
-    "narHash": "sha256-BIsamtBAElAO2TEMK6UsPHp2kCHpMwqULjBwSpq2hhI=",
-    "lastModified": 1794846300
+    "rev": "00f9b58a9ed0d87a9fba57a0850f634dc5b3ff68",
+    "narHash": "sha256-MdbpfjqHenkpPdUTvMqa+ORFr2azLbBDC7Ldkr8x0A0=",
+    "lastModified": 1794885381
   },
   "treefmt-nix": {
     "type": "github",
@@ -179,9 +179,9 @@
     "type": "github",
     "owner": "nix-community",
     "repo": "nix-wrapper-modules",
-    "rev": "9491aa1daf680cde178eb0d2fc4bc36f6bdfe0e6",
-    "narHash": "sha256-6z/bKyFdElqHjNZWo306rtyM4tIH6aNIjAmkKFsndVE=",
-    "lastModified": 1794827395
+    "rev": "0e23367a94ea83bc678fb510984b369dae02bfd2",
+    "narHash": "sha256-+e+EBD7g4ErCYLjtndYDajwyZGn3P573S3y2fd90gKY=",
+    "lastModified": 1794870394
   },
   "zen-browser": {
     "type": "github",
