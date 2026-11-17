@@ -15,16 +15,32 @@ in
 
     let
       port = config.services.nix-serve.port |> lib.toString;
+      username = config.services.atticd.user;
+      hostname = "cache.curlew-rankine.ts.net";
     in
     {
       # All homelabs will serve their nix stores
       # load balanced by tailscale
       # assuming I ever get more than one homelabs lol
 
-      services.nix-serve = {
+      services.atticd = {
         enable = true;
-        package = lib.mkDefault pkgs.nix-serve-ng;
-        secretKeyFile = "/var/lib/nix-serve/secret-key-file";
+        environmentFile = "/var/lib/attic/environment";
+        settings = {
+          database.url = "postgresql://${username}?host=/run/postgresql";
+          allowed-hosts = [ hostname ];
+          api-endpoint = "https://${hostname}/";
+        };
+      };
+
+      services.postgresql = {
+        ensureDatabases = [ username ];
+        ensureUsers = [
+          {
+            name = username;
+            ensureDBOwnership = true;
+          }
+        ];
       };
 
       # SSH based user for github runners
@@ -48,5 +64,8 @@ in
 
   flake.modules.nixos = {
     disko-elysium.imports = [ module ];
+    pc = { pkgs, ... }: {
+      environment.systemPackages = [ pkgs.attic-client ];
+    };
   };
 }
