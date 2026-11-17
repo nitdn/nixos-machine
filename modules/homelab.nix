@@ -23,7 +23,7 @@ in
 
       services.nix-serve = {
         enable = true;
-        package = pkgs.nix-serve-ng;
+        package = lib.mkDefault pkgs.nix-serve-ng;
         secretKeyFile = "/var/lib/nix-serve/secret-key-file";
       };
 

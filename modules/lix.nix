@@ -5,7 +5,19 @@
 {
   flake.modules.nixos.pc =
     { pkgs, ... }:
+    let
+      inherit (pkgs.lixPackageSets.latest) lix;
+    in
     {
-      nix.package = pkgs.lixPackageSets.stable.lix;
+      nix.package = lix;
+    };
+  flake.modules.nixos.homelab =
+    { pkgs, ... }:
+
+    let
+      inherit (pkgs.lixPackageSets.latest) nix-serve-ng;
+    in
+    {
+      services.nix-serve.package = nix-serve-ng;
     };
 }
