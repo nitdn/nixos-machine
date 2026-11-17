@@ -69,6 +69,7 @@ jobs:
           for host in $HOSTS; do
             installables+=(".#nixosConfigurations.${host}.config.system.build.toplevel")
           done
-          nix copy --to ssh-ng://gh-runner@disko-elysium?base64-ssh-public-host-key=c3NoLWVkMjU1MTkgQUFBQUMzTnphQzFsWkRJMU5URTVBQUFBSUZvajhoUUZsN2c3bGtJQUhlNXZIUnhDeU5zQWptOXVIRytLcjl5aVJwMTQgcm9vdEBkaXNrby1lbHlzaXVtCg== \
+          nix copy --to \
+            "ssh-ng://gh-runner@disko-elysium?max-connections=12&base64-ssh-public-host-key=c3NoLWVkMjU1MTkgQUFBQUMzTnphQzFsWkRJMU5URTVBQUFBSUZvajhoUUZsN2c3bGtJQUhlNXZIUnhDeU5zQWptOXVIRytLcjl5aVJwMTQgcm9vdEBkaXNrby1lbHlzaXVtCg==" \
             --no-check-sigs -j12 \
             "${installables[@]}"
