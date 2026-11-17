@@ -21,6 +21,7 @@ _: {
           }
         ];
       };
-      services.tailscale.serve.services.tcdns.endpoints."tcp:443" = "https://localhost:${port}";
+      services.tailscale.serve.services.tcdns.endpoints."tcp:443" =
+        "tls-terminated-tcp://localhost:${port}";
     };
 }

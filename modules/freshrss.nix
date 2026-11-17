@@ -30,17 +30,48 @@ _: {
           }
         ];
       };
-      services.nginx.virtualHosts."_" = {
-        locations."/" = {
-          return = 404;
-        };
-      };
 
-      services.nginx.virtualHosts."${virtualHost}" = {
-        locations."~ ^.+?\\.php(/.*)?$".fastcgiParams = {
-          REMOTE_USER = "$http_tailscale_user_login";
-        };
+      users.users.${config.services.caddy.user}.extraGroups = [ config.services.tailscaleAuth.group ];
+
+      services.caddy.globalConfig = ''
+        servers {
+          listener_wrappers {
+            proxy_protocol {
+              timeout 2s
+              allow 127.0.0.1/24 ::1/128
+              deny 10.0.0.0/8
+              fallback_policy reject
+            }
+            tls
+          }
+        }
+      '';
+      services.caddy.virtualHosts."${virtualHost}".extraConfig = ''
+        # Forward Auth
+        forward_auth unix/${config.services.tailscaleAuth.socketPath} {
+        uri /auth
+        header_up Remote-Addr {remote_host}
+        header_up Remote-Port {remote_port}
+        header_up Original-URI {uri}
+        copy_headers {
+          Tailscale-User>X-Webauth-User
+          Tailscale-Name>X-Webauth-Name
+          Tailscale-Login>X-Webauth-Login
+          Tailscale-Tailnet>X-Webauth-Tailnet
+          Tailscale-Profile-Picture>X-Webauth-Profile-Picture
+          }
+        }
+      '';
+
+      services.tailscaleAuth.enable = true;
+      services.tailscale = {
+        permitCertUid = config.services.caddy.user;
       };
+      # {
+      #   locations."~ ^.+?\\.php(/.*)?$".fastcgiParams = {
+      #     REMOTE_USER = "$http_tailscale_user_login";
+      #   };
+      # };
 
       services.freshrss = {
         enable = true;
@@ -48,6 +79,7 @@ _: {
         api.enable = true;
         authType = "http_auth";
         passwordFile = "/run/secrets/freshrss";
+        webserver = "caddy";
         inherit virtualHost;
         extensions = [
           youtube
@@ -73,6 +105,6 @@ _: {
         };
       };
 
-      services.tailscale.serve.services.freshrss.endpoints."tcp:443" = "https://localhost:${port}";
+      services.tailscale.serve.services.freshrss.endpoints."tcp:443" = "tcp://localhost:${port}";
     };
 }

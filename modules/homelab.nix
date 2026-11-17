@@ -39,7 +39,10 @@ in
 
       services.tailscale.serve = {
         enable = false;
-        services.nix-serve.endpoints."tcp:443" = "https://localhost:${port}";
+        # TODO: > must be a URL starting with one of the supported schemes: [tcp unix]
+        # they literally do not support the config they export
+        # what a joke
+        services.cache.endpoints."tcp:443" = "tls-terminated-tcp://localhost:${port}";
       };
     };
 

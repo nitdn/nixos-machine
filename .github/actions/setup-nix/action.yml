@@ -42,7 +42,7 @@ runs:
           https://cache.manic.systems/
           https://cache.forall.systems/
           https://cache.nixos.org/
-          https://cache.curlew-rankine.ts.net/?priority=100
+          https://cache.curlew-rankine.ts.net/?priority=100&compression=zstd
 
           system-features = nixos-test benchmark big-parallel kvm
 
