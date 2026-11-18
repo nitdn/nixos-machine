@@ -115,17 +115,17 @@
   },
   "nix-unstable": {
     "type": "tarball",
-    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1119549.d5cc68339997/nixexprs.tar.zst?lastModified=1794537146&rev=d5cc6833999746cffdfe0598f7bc801a57b887a9",
-    "rev": "d5cc6833999746cffdfe0598f7bc801a57b887a9",
-    "narHash": "sha256-bTKSclXJAmo9qdxPedTBHUGr8awPr4BrbOoOutJsYIc=",
-    "lastModified": 1794537146
+    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1121687.1a08097fc1ed/nixexprs.tar.zst?lastModified=1794750194&rev=1a08097fc1ed85575db39763b2c4a5d8970a37ba",
+    "rev": "1a08097fc1ed85575db39763b2c4a5d8970a37ba",
+    "narHash": "sha256-1qOtz5nZG+3hsBEqeKtUx+T5gSaJ+hONlBWWSbH+mJ8=",
+    "lastModified": 1794750194
   },
   "nixpkgs": {
     "type": "tarball",
-    "url": "https://releases.nixos.org/nixos/26.05/nixos-26.05.14561.b349185bb79c/nixexprs.tar.zst?lastModified=1794756927&rev=b349185bb79c7cf7ad8ea8c097931730bf473c71",
-    "rev": "b349185bb79c7cf7ad8ea8c097931730bf473c71",
-    "narHash": "sha256-gMyd1bZoTbvrap9NEM2ZIy/7Qfhd54segpSkHPB2vfE=",
-    "lastModified": 1794756927
+    "url": "https://releases.nixos.org/nixos/26.05/nixos-26.05.14630.f68407657ad2/nixexprs.tar.zst?lastModified=1794872590&rev=f68407657ad294471eb4b2e65d193df26edf729f",
+    "rev": "f68407657ad294471eb4b2e65d193df26edf729f",
+    "narHash": "sha256-brwp4mLw1LUBC4FDrBluV5II+2lJRLl+qnpNd1wjPoo=",
+    "lastModified": 1794872590
   },
   "run0-sudo-shim": {
     "type": "github",
@@ -163,9 +163,9 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "tack",
-    "rev": "00f9b58a9ed0d87a9fba57a0850f634dc5b3ff68",
-    "narHash": "sha256-MdbpfjqHenkpPdUTvMqa+ORFr2azLbBDC7Ldkr8x0A0=",
-    "lastModified": 1794885381
+    "rev": "bad78453288bfb5d890af856fa2429979e2b944c",
+    "narHash": "sha256-Jn+PT5iYnKcttgR5Rc6oWLNxhFGzyBY3/P3sgvqcQDU=",
+    "lastModified": 1794909624
   },
   "treefmt-nix": {
     "type": "github",
@@ -187,8 +187,8 @@
     "type": "github",
     "owner": "0xc000022070",
     "repo": "zen-browser-flake",
-    "rev": "ba0680a6756ed68d51e1dab3cd5b41e0b868b0d1",
-    "narHash": "sha256-sl4+Aoy1jBAYd94B6pOgfYi9zGdALG5HIapKDe6KOs4=",
-    "lastModified": 1794847538
+    "rev": "54310da1c2e1d4bcd413c6914a0d274afbd4f30b",
+    "narHash": "sha256-u3qknsQ63fQ0GDO65fLsZHFt7G5c2SWZcjajkV+BwjM=",
+    "lastModified": 1794898407
   }
 }
