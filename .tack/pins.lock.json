@@ -11,7 +11,6 @@
     "nix-devshells": "https://codeberg.org/nitdn/nix-devshells/archive/main.tar.gz",
     "nix-flatpak": "github:gmodena/nix-flatpak/?ref=latest",
     "nix-index-database": "github:nix-community/nix-index-database",
-    "nix-unstable": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst",
     "nixpkgs": "https://channels.nixos.org/nixos-26.05/nixexprs.tar.zst",
     "run0-sudo-shim": "github:lordgrimmauld/run0-sudo-shim",
     "sops-nix": "github:Mic92/sops-nix",
@@ -113,13 +112,6 @@
     "narHash": "sha256-PCGNIyAydZcdUXCxEXTjrS1+wWS+k9E+ENqBkUK2Mpg=",
     "lastModified": 1794739050
   },
-  "nix-unstable": {
-    "type": "tarball",
-    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1121687.1a08097fc1ed/nixexprs.tar.zst?lastModified=1794750194&rev=1a08097fc1ed85575db39763b2c4a5d8970a37ba",
-    "rev": "1a08097fc1ed85575db39763b2c4a5d8970a37ba",
-    "narHash": "sha256-1qOtz5nZG+3hsBEqeKtUx+T5gSaJ+hONlBWWSbH+mJ8=",
-    "lastModified": 1794750194
-  },
   "nixpkgs": {
     "type": "tarball",
     "url": "https://releases.nixos.org/nixos/26.05/nixos-26.05.14630.f68407657ad2/nixexprs.tar.zst?lastModified=1794872590&rev=f68407657ad294471eb4b2e65d193df26edf729f",
@@ -187,8 +179,8 @@
     "type": "github",
     "owner": "0xc000022070",
     "repo": "zen-browser-flake",
-    "rev": "54310da1c2e1d4bcd413c6914a0d274afbd4f30b",
-    "narHash": "sha256-u3qknsQ63fQ0GDO65fLsZHFt7G5c2SWZcjajkV+BwjM=",
-    "lastModified": 1794898407
+    "rev": "2cc6b81e90ea910e6ddbbc0f4c665b4545060a75",
+    "narHash": "sha256-ophGTkzf7oFD5Fa7Bjf2lVTf9XjKkMtv2fShaRkODPw=",
+    "lastModified": 1794982370
   }
 }
