@@ -1,0 +1,280 @@
+# SPDX-FileCopyrightText: 2026 Nitesh Kumar Debnath <nitkdnath@gmail.com>
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+# User preference
+# ───────────────
+
+set-option global makecmd 'make -j$(nproc)'
+set-option global grepcmd 'ag --column'
+set-option global ui_options terminal_status_on_top=true
+hook global ModuleLoaded clang %{ set-option global clang_options -std=c++20 }
+hook global ModuleLoaded tmux %{ alias global terminal tmux-terminal-vertical }
+
+# colorscheme gruvbox-dark
+
+add-highlighter global/ show-matching -previous
+
+set-face global CurSearch +u
+
+hook global RegisterModified '/' %{ add-highlighter -override global/search regex "%reg{/}" 0:CurSearch }
+
+# hook global WinCreate ^[^*]+$ %{ add-highlighter window/ number-lines -hlcursor }
+
+# Enable editor config
+# ────────────────────
+
+hook global BufOpenFile .* %{ editorconfig-load }
+hook global BufNewFile .* %{ editorconfig-load }
+
+# Filetype specific hooks
+# ───────────────────────
+
+hook global WinSetOption filetype=(c|cpp) %{
+    clang-enable-autocomplete
+    clang-enable-diagnostics
+    alias window lint clang-parse
+    alias window lint-next-error clang-diagnostics-next
+}
+
+hook global WinSetOption filetype=python %{
+    jedi-enable-autocomplete
+    lint-enable
+    set-option global lintcmd 'flake8'
+}
+
+map -docstring "xml tag object" global object t %{c<lt>([\w.]+)\b[^>]*?(?<lt>!/)>,<lt>/([\w.]+)\b[^>]*?(?<lt>!/)><ret>}
+
+# Highlight the word under the cursor
+# ───────────────────────────────────
+
+set-face global CurWord +b
+
+hook global NormalIdle .* %{
+    eval -draft %{ try %{
+        exec ,<a-i>w <a-k>\A\w+\z<ret>
+        add-highlighter -override global/curword regex "\b\Q%val{selection}\E\b" 0:CurWord
+    } catch %{
+        add-highlighter -override global/curword group
+    } }
+}
+
+# Switch cursor color in insert mode
+# ──────────────────────────────────
+
+set-face global InsertCursor default,green+B
+
+hook global ModeChange .*:.*:insert %{
+    set-face window PrimaryCursor InsertCursor
+    set-face window PrimaryCursorEol InsertCursor
+}
+
+hook global ModeChange .*:insert:.* %{ try %{
+    unset-face window PrimaryCursor
+    unset-face window PrimaryCursorEol
+} }
+
+# Custom mappings
+# ───────────────
+
+map global normal = ':prompt math: %{exec "a%val{text}<lt>esc>|bc<lt>ret>"}<ret>'
+map global normal <c-/> ":set-register / ''<ret>"
+
+# System clipboard handling
+# ─────────────────────────
+
+evaluate-commands %sh{
+    if [ -n "$SSH_TTY" ]; then
+        copy='printf "\033]52;;%s\033\\" $(base64 | tr -d "\n") > $( [ -n "$kak_client_pid" ] && echo /proc/$kak_client_pid/fd/0 || echo /dev/tty )'
+        paste='printf "paste unsupported through ssh"'
+        backend="OSC 52"
+    else
+        case $(uname) in
+            Linux)
+                if [ -n "$WAYLAND_DISPLAY" ]; then
+                    copy="wl-copy"; paste="wl-paste"; backend=Wayland
+                else
+                    copy="xclip -i"; paste="xclip -o"; backend=X11
+                fi
+                ;;
+            Darwin)  copy="pbcopy"; paste="pbpaste"; backend=OSX ;;
+        esac
+    fi
+
+    printf "map global user -docstring 'paste (after) from clipboard' p '<a-!>%s<ret>'\n" "$paste"
+    printf "map global user -docstring 'paste (before) from clipboard' P '!%s<ret>'\n" "$paste"
+    printf "map global user -docstring 'yank to clipboard' y '<a-|>%s<ret>:echo -markup %%{{Information}copied selection to %s clipboard}<ret>'\n" "$copy" "$backend"
+    printf "map global user -docstring 'replace from clipboard' R '|%s<ret>'\n" "$paste"
+    printf "define-command -override echo-to-clipboard -params .. %%{ echo -to-shell-script '%s' -- %%arg{@} }" "$copy"
+}
+
+# Various mappings
+# ────────────────
+
+map global normal '#' :comment-line<ret>
+
+map global user -docstring 'next lint error' n ':lint-next-error<ret>'
+map global normal <c-p> :lint<ret>
+
+map global user -docstring 'gdb helper mode' g ':gdb-helper<ret>'
+map global user -docstring 'gdb helper mode (repeat)' G ':gdb-helper-repeat<ret>'
+
+map global user -docstring 'lsp mode' l ':enter-user-mode lsp<ret>'
+
+map global normal <minus> ': jump-next -matching \*(grep|make)(-[-\w]+)?\*<ret>'
+
+# Enable <tab>/<s-tab> for insert completion selection
+# ──────────────────────────────────────────────────────
+
+hook global InsertCompletionShow .* %{ map window insert <tab> <c-n>; map window insert <s-tab> <c-p> }
+hook global InsertCompletionHide .* %{ unmap window insert <tab> <c-n>; unmap window insert <s-tab> <c-p> }
+
+# Helper commands
+# ───────────────
+
+define-command find -params 1 %{ edit %arg{1} }
+complete-command -menu find shell-script-candidates %{ ag -g '' --ignore "$kak_opt_ignored_files" }
+
+define-command mkdir %{ nop %sh{ mkdir -p $(dirname $kak_buffile) } }
+
+define-command ide -params 0..1 %{
+    try %{ rename-session %arg{1} }
+
+    rename-client main
+    set-option global jumpclient main
+
+    new rename-client tools
+    set-option global toolsclient tools
+
+    new rename-client docs
+    set-option global docsclient docs
+}
+
+define-command delete-buffers-matching -params 1 %{
+    evaluate-commands -buffer * %{
+        evaluate-commands %sh{ case "$kak_buffile" in $1) echo "delete-buffer" ;; esac }
+    }
+}
+
+declare-option -hidden str swap_buffer_target
+define-command swap-buffer-with -override -params 1 -client-completion %{
+    set-option global swap_buffer_target %val{bufname}
+    edit -scratch # release current window for other client
+    evaluate-commands -client %arg{1} "
+        set-option global swap_buffer_target %%val{bufname}
+        buffer %opt{swap_buffer_target}
+    "
+    delete-buffer # delete the temporary scratch buffer
+    buffer %opt{swap_buffer_target}
+}
+
+declare-option int gdb_server_port 5678
+declare-option str gdb_server_cmd "gdbserver :%opt{gdb_server_port}"
+
+define-command gdb-server -params .. %{
+    fifo %opt{gdb_server_cmd} %arg{@}
+    gdb-session-new -ex "target extended-remote :%opt{gdb_server_port}"
+}
+
+
+declare-option str to_asm_cmd 'g++ -O3 -x c++'
+declare-option str to_asm_prelude '
+#include <utility>
+'
+declare-option -hidden int to_asm_timestamp 0
+
+define-command to-asm -params .. -docstring %{
+    Compile selected text with using the to_asm_cmd option and display assembly in the *asm* buffer
+} %{
+    evaluate-commands -save-regs 'ab"|' %{
+        execute-keys -save-regs '' y
+        set-register a %opt{to_asm_prelude}
+        set-register b %opt{to_asm_cmd}
+        evaluate-commands -try-client %opt{docsclient} %{
+            edit -scratch *asm*
+            set-option buffer filetype gas
+            execute-keys \%R"aP% "|%reg{b} %arg{@} -S - -o - 2>&1|c++filt<ret>" gg
+            try %{ execute-keys -draft \%s^\h*\.cfi_<ret>xd }
+        }
+    }
+}
+
+define-command to-asm-enable -docstring %{
+    Automatically run to-asm on the whole buffer after each change
+} %{
+    remove-hooks window to-asm
+    hook -group to-asm window NormalIdle .* %{ try %{
+        %sh{ [ $kak_opt_to_asm_timestamp -eq $kak_timestamp ] && echo "fail" || echo "nop" }
+        set buffer to_asm_timestamp %val{timestamp}
+        evaluate-commands -draft %{
+            execute-keys '%'
+            to-asm
+        }
+    } }
+}
+
+define-command diff-buffers -override -params 2 %{
+    evaluate-commands %sh{
+        file1=$(mktemp)
+        file2=$(mktemp)
+        echo "
+            evaluate-commands -buffer '$1' write -force $file1
+            evaluate-commands -buffer '$2' write -force $file2
+            edit! -scratch *diff-buffers*
+            set buffer filetype diff
+            set-register | 'diff -u $file1 $file2; rm $file1 $file2'
+            execute-keys !<ret>gg
+        "
+}}
+
+complete-command diff-buffers buffer
+
+define-command clang-format-cursor %{
+    exec -draft <percent>| "clang-format --lines=%val{cursor_line}:%val{cursor_line}" <ret>
+}
+
+hook global GlobalSetOption 'makecmd=ninja(-build)?\b.*' %{ complete-command make shell-script-candidates %{ $kak_opt_makecmd -t targets | cut -f 1 -d : } }
+hook global GlobalSetOption 'makecmd=bazel\b.*' %{ complete-command make shell-script-candidates %{ bazel query //... } }
+
+# Language highlighting in Diffs
+
+hook global ModuleLoaded diff %{
+    set-face global DiffAdd ,rgba:00800080
+    set-face global DiffRm ,rgba:80000080
+}
+
+define-command diff-load-languages %{
+    evaluate-commands -draft -save-regs /a %{
+        try %{
+            add-highlighter shared/diff/languages regions
+        }
+
+        execute-keys '%s^\+\+\+ [^\n]+\.\K\w+$<ret>'
+        evaluate-commands -itersel %{
+            evaluate-commands -draft %{
+                edit -scratch "*diff-filetype-resolver*.%val{selection}"
+                set-register a %opt{filetype}
+                delete-buffer
+            }
+            try %{
+                require-module %reg{a}
+                add-highlighter "shared/diff/languages/%val{selection}" region "^\+\+\+ [^\n]+\.%val{selection}$" "^diff" ref "%reg{a}"
+            }
+        }
+    }
+}
+
+hook -group diff-load-languages global WinSetOption filetype=diff diff-load-languages
+hook -group diff-load-languages global WinSetOption filetype=git-(log|diff) %{ hook -once buffer BufCloseFifo .* diff-load-languages }
+
+hook global GlobalSetOption gdb_dir=.* %{ echo-to-clipboard "new-ui mi3 %opt{gdb_dir}/pty" }
+
+# Mail
+# ────
+
+hook global BufOpenFile .*/mail/.*/(cur|new|tmp)/[^/]+ %{ set-option buffer filetype mail }
+
+# Load local Kakoune config file if it exists
+# ───────────────────────────────────────────
+
+evaluate-commands %sh{ [ -f $kak_config/local.kak ] && echo "source $kak_config/local.kak" }

@@ -8,7 +8,6 @@
     "helium-browser": "github:schembriaiden/helium-browser-nix-flake",
     "inshellah": "github:manic-systems/inshellah/",
     "microvm": "github:microvm-nix/microvm.nix",
-    "nix-devshells": "https://codeberg.org/nitdn/nix-devshells/archive/main.tar.gz",
     "nix-flatpak": "github:gmodena/nix-flatpak/?ref=latest",
     "nix-index-database": "github:nix-community/nix-index-database",
     "nixpkgs": "https://channels.nixos.org/nixos-26.05/nixexprs.tar.zst",
@@ -38,9 +37,10 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "cade",
-    "rev": "195795d8cd9ad24bb1dc01c1074f6ea65f9dd869",
-    "narHash": "sha256-/knskto2VV0NQ5iCfQuF4fZ5KZw/fOMY5Q3JVs861cY=",
-    "lastModified": 1794388636
+    "rev": "31d934dbc8aec3a6a8f00674c2e94ed23f2f91d5",
+    "narHash": "sha256-1sJGEIBvuTdfb9o6zEk+iLIFIXdTTKjV8Y0xErVXWaU=",
+    "lastModified": 1794988526,
+    "public": true
   },
   "disko": {
     "type": "github",
@@ -89,12 +89,6 @@
     "rev": "194a254693f49af939a2b53d04982bd4b276fdb3",
     "narHash": "sha256-m5iXk3ILiCuRpCgqYWNiGVFmu8YLh2FNxxaZj/Auc10=",
     "lastModified": 1794529892
-  },
-  "nix-devshells": {
-    "type": "tarball",
-    "url": "https://codeberg.org/api/v1/repos/nitdn/nix-devshells/archive/3d4906571c9d4e5b394824c01dad46817ebb5fd6.tar.gz?rev=3d4906571c9d4e5b394824c01dad46817ebb5fd6",
-    "narHash": "sha256-Qz5NsRRbSI/n7vx9E9fsBCq0H6Za9POgUocKb1TgIwU=",
-    "lastModified": 1793944860
   },
   "nix-flatpak": {
     "type": "github",

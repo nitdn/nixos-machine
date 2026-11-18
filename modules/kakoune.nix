@@ -4,7 +4,6 @@
 
 # Baseline for a kakoune wrapper
 {
-  inputs,
   config,
   lib,
   ...
@@ -37,7 +36,9 @@ in
       ];
     };
     wrappers.kakoune-pc = { pkgs, ... }: {
-      imports = [ inputs.nix-devshells.wrapperModules.kakoune ];
+      imports = [
+        ./_kakoune
+      ];
       wrapperVariants.kakn.flags."-C" = "nix";
       wrapperVariants.kakn.exePath = "bin/kak";
 
