@@ -12,6 +12,7 @@ _: {
     in
     {
       services.technitium-dns-server.enable = true;
+      systemd.services.technitium-dns-server.serviceConfig.RuntimeDirectory = "technitium";
       services.postgresql = {
         ensureDatabases = [ username ];
         ensureUsers = [

@@ -14,6 +14,10 @@ _: {
       };
     };
     homelab = _: {
+      networking.nat = {
+        enable = true;
+        enableIPv6 = true;
+      };
       services.tsidp = {
         enable = true;
         # OIDC providers tend to use their internal resolvers
