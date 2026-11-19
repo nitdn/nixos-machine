@@ -39,7 +39,6 @@ runs:
           substituters =
           https://nix-community.cachix.org/
           https://cache.manic.systems/
-          https://cache.forall.systems/
           https://cache.nixos.org/
           https://cache.curlew-rankine.ts.net/attic-1
 

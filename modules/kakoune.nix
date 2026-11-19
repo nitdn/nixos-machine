@@ -35,6 +35,13 @@ in
         '')
       ];
     };
+    modules.nixos.darkMode = { pkgs, ... }: {
+      wrappers.kakoune-pc.plugins = [
+        (pkgs.writeTextDir "/share/kak/autoload/dark.kak" ''
+          colorscheme catppuccin_mocha
+        '')
+      ];
+    };
     wrappers.kakoune-pc = { pkgs, ... }: {
       imports = [
         ./_kakoune
