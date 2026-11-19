@@ -38,6 +38,7 @@ in
       # Required by OpenTabletDriver
       hardware.uinput.enable = true;
       boot.kernelModules = [ "uinput" ];
+      hardware.intel-gpu-tools.enable = true;
       hardware.graphics = {
         extraPackages = [
           # Required for modern Intel GPUs (Xe iGPU and ARC)
