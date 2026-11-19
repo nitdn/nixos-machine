@@ -62,10 +62,10 @@ jobs:
           ts-oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
           ts-audience: ${{ secrets.TS_AUDIENCE }}
           cachix-auth-token: ${{ secrets.CACHIX_AUTH_TOKEN }}
-      - name: Set up attic
+      - name: Set up cache push tokens
         run: |
-          nix profile add nixpkgs#attic-client
-          attic login "elysium" "https://cache.curlew-rankine.ts.net" ${{ secrets.ATTIC_AUTH_TOKEN }}
+          nix profile add github:celler-cache/celler#celler github:Mic92/nix-fast-build#nix-fast-build
+          cellar login "elysium" "https://cache.curlew-rankine.ts.net" ${{ secrets.ATTIC_AUTH_TOKEN }}
 
       - name: Build machines
         run: |
@@ -74,8 +74,6 @@ jobs:
           for host in $HOSTS; do
             installables+=(".#nixosConfigurations.${host}.config.system.build.toplevel")
           done
-          nix build  \
-            "${installables[@]}"
-          nix flake archive github:NixOS/nixpkgs/nixos-unstable --to result-archive/
-          nix flake archive --to result-archive/
-          attic push attic-1 -j 12 ./result*
+          nix-fast-build \
+            "${installables[@]}" \
+            --skip-cached --cellar-cache cache-1 --push-build-closure
