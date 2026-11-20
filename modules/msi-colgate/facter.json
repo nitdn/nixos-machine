@@ -1283,7 +1283,7 @@
     ],
     "disk": [
       {
-        "index": 40,
+        "index": 39,
         "attached_to": 34,
         "class_list": [
           "disk",
@@ -1473,7 +1473,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 7.0.0 xhci-hcd",
+          "name": "Linux 7.3.4 xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -1483,11 +1483,11 @@
         },
         "revision": {
           "hex": "0000",
-          "name": "7.00",
+          "name": "7.03",
           "value": 0
         },
         "serial": "0000:25:00.4",
-        "model": "Linux 7.0.0 xhci-hcd xHCI Host Controller",
+        "model": "Linux 7.3.4 xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:08.1/0000:25:00.4/usb6/6-0:1.0",
         "sysfs_bus_id": "6-0:1.0",
         "detail": {
@@ -1525,10 +1525,10 @@
         "driver_modules": [
           "usbcore"
         ],
-        "module_alias": "usb:v1D6Bp0003d0700dc09dsc00dp03ic09isc00ip00in00"
+        "module_alias": "usb:v1D6Bp0003d0703dc09dsc00dp03ic09isc00ip00in00"
       },
       {
-        "index": 45,
+        "index": 43,
         "attached_to": 27,
         "class_list": [
           "usb",
@@ -1550,7 +1550,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 7.0.0 xhci-hcd",
+          "name": "Linux 7.3.4 xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -1560,11 +1560,11 @@
         },
         "revision": {
           "hex": "0000",
-          "name": "7.00",
+          "name": "7.03",
           "value": 0
         },
         "serial": "0000:25:00.3",
-        "model": "Linux 7.0.0 xhci-hcd xHCI Host Controller",
+        "model": "Linux 7.3.4 xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:08.1/0000:25:00.3/usb3/3-0:1.0",
         "sysfs_bus_id": "3-0:1.0",
         "resources": [
@@ -1612,7 +1612,7 @@
         "driver_modules": [
           "usbcore"
         ],
-        "module_alias": "usb:v1D6Bp0002d0700dc09dsc00dp01ic09isc00ip00in00"
+        "module_alias": "usb:v1D6Bp0002d0703dc09dsc00dp01ic09isc00ip00in00"
       },
       {
         "index": 47,
@@ -1637,7 +1637,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 7.0.0 xhci-hcd",
+          "name": "Linux 7.3.4 xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -1647,11 +1647,11 @@
         },
         "revision": {
           "hex": "0000",
-          "name": "7.00",
+          "name": "7.03",
           "value": 0
         },
         "serial": "0000:25:00.3",
-        "model": "Linux 7.0.0 xhci-hcd xHCI Host Controller",
+        "model": "Linux 7.3.4 xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:08.1/0000:25:00.3/usb4/4-0:1.0",
         "sysfs_bus_id": "4-0:1.0",
         "detail": {
@@ -1689,10 +1689,10 @@
         "driver_modules": [
           "usbcore"
         ],
-        "module_alias": "usb:v1D6Bp0003d0700dc09dsc00dp03ic09isc00ip00in00"
+        "module_alias": "usb:v1D6Bp0003d0703dc09dsc00dp03ic09isc00ip00in00"
       },
       {
-        "index": 49,
+        "index": 48,
         "attached_to": 23,
         "class_list": [
           "usb",
@@ -1714,7 +1714,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 7.0.0 xhci-hcd",
+          "name": "Linux 7.3.4 xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -1724,11 +1724,11 @@
         },
         "revision": {
           "hex": "0000",
-          "name": "7.00",
+          "name": "7.03",
           "value": 0
         },
         "serial": "0000:12:00.0",
-        "model": "Linux 7.0.0 xhci-hcd xHCI Host Controller",
+        "model": "Linux 7.3.4 xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:01.2/0000:12:00.0/usb1/1-0:1.0",
         "sysfs_bus_id": "1-0:1.0",
         "resources": [
@@ -1776,10 +1776,10 @@
         "driver_modules": [
           "usbcore"
         ],
-        "module_alias": "usb:v1D6Bp0002d0700dc09dsc00dp01ic09isc00ip00in00"
+        "module_alias": "usb:v1D6Bp0002d0703dc09dsc00dp01ic09isc00ip00in00"
       },
       {
-        "index": 52,
+        "index": 51,
         "attached_to": 10,
         "class_list": [
           "usb",
@@ -1801,7 +1801,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 7.0.0 xhci-hcd",
+          "name": "Linux 7.3.4 xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -1811,11 +1811,11 @@
         },
         "revision": {
           "hex": "0000",
-          "name": "7.00",
+          "name": "7.03",
           "value": 0
         },
         "serial": "0000:25:00.4",
-        "model": "Linux 7.0.0 xhci-hcd xHCI Host Controller",
+        "model": "Linux 7.3.4 xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:08.1/0000:25:00.4/usb5/5-0:1.0",
         "sysfs_bus_id": "5-0:1.0",
         "resources": [
@@ -1863,10 +1863,10 @@
         "driver_modules": [
           "usbcore"
         ],
-        "module_alias": "usb:v1D6Bp0002d0700dc09dsc00dp01ic09isc00ip00in00"
+        "module_alias": "usb:v1D6Bp0002d0703dc09dsc00dp01ic09isc00ip00in00"
       },
       {
-        "index": 54,
+        "index": 53,
         "attached_to": 23,
         "class_list": [
           "usb",
@@ -1888,7 +1888,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 7.0.0 xhci-hcd",
+          "name": "Linux 7.3.4 xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -1898,11 +1898,11 @@
         },
         "revision": {
           "hex": "0000",
-          "name": "7.00",
+          "name": "7.03",
           "value": 0
         },
         "serial": "0000:12:00.0",
-        "model": "Linux 7.0.0 xhci-hcd xHCI Host Controller",
+        "model": "Linux 7.3.4 xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:01.2/0000:12:00.0/usb2/2-0:1.0",
         "sysfs_bus_id": "2-0:1.0",
         "detail": {
@@ -1940,13 +1940,13 @@
         "driver_modules": [
           "usbcore"
         ],
-        "module_alias": "usb:v1D6Bp0003d0700dc09dsc00dp03ic09isc00ip00in00"
+        "module_alias": "usb:v1D6Bp0003d0703dc09dsc00dp03ic09isc00ip00in00"
       }
     ],
     "keyboard": [
       {
-        "index": 51,
-        "attached_to": 45,
+        "index": 41,
+        "attached_to": 51,
         "class_list": [
           "keyboard",
           "usb"
@@ -1987,13 +1987,13 @@
         },
         "serial": "6F004300115042523132312000000000",
         "model": "Keychron V1",
-        "sysfs_id": "/devices/pci0000:00/0000:00:08.1/0000:25:00.3/usb3/3-2/3-2:1.0",
-        "sysfs_bus_id": "3-2:1.0",
+        "sysfs_id": "/devices/pci0000:00/0000:00:08.1/0000:25:00.4/usb5/5-1/5-1:1.0",
+        "sysfs_bus_id": "5-1:1.0",
         "unix_device_names": [
           "/dev/input/by-id/usb-Keychron_Keychron_V1_6F004300115042523132312000000000-event-kbd",
-          "/dev/input/by-path/pci-0000:25:00.3-usb-0:2:1.0-event-kbd",
-          "/dev/input/by-path/pci-0000:25:00.3-usbv2-0:2:1.0-event-kbd",
-          "/dev/input/event1"
+          "/dev/input/by-path/pci-0000:25:00.4-usb-0:1:1.0-event-kbd",
+          "/dev/input/by-path/pci-0000:25:00.4-usbv2-0:1:1.0-event-kbd",
+          "/dev/input/event10"
         ],
         "resources": [
           {
@@ -2257,8 +2257,8 @@
     ],
     "mouse": [
       {
-        "index": 41,
-        "attached_to": 45,
+        "index": 50,
+        "attached_to": 43,
         "class_list": [
           "mouse",
           "usb"
@@ -2300,12 +2300,12 @@
         "compat_vendor": "Unknown",
         "compat_device": "Generic USB Mouse",
         "model": "PixArt Dell MS116 USB Optical Mouse",
-        "sysfs_id": "/devices/pci0000:00/0000:00:08.1/0000:25:00.3/usb3/3-3/3-3:1.0",
-        "sysfs_bus_id": "3-3:1.0",
+        "sysfs_id": "/devices/pci0000:00/0000:00:08.1/0000:25:00.3/usb3/3-2/3-2:1.0",
+        "sysfs_bus_id": "3-2:1.0",
         "unix_device_names": [
           "/dev/input/mice"
         ],
-        "unix_device_name2": "/dev/input/mouse1",
+        "unix_device_name2": "/dev/input/mouse0",
         "resources": [
           {
             "type": "baud",
@@ -2365,8 +2365,8 @@
         "module_alias": "usb:v413Cp301Ad0100dc00dsc00dp00ic03isc01ip02in00"
       },
       {
-        "index": 48,
-        "attached_to": 45,
+        "index": 52,
+        "attached_to": 51,
         "class_list": [
           "mouse",
           "usb"
@@ -2409,12 +2409,12 @@
         "compat_vendor": "Unknown",
         "compat_device": "Generic USB Mouse",
         "model": "Keychron V1",
-        "sysfs_id": "/devices/pci0000:00/0000:00:08.1/0000:25:00.3/usb3/3-2/3-2:1.2",
-        "sysfs_bus_id": "3-2:1.2",
+        "sysfs_id": "/devices/pci0000:00/0000:00:08.1/0000:25:00.4/usb5/5-1/5-1:1.2",
+        "sysfs_bus_id": "5-1:1.2",
         "unix_device_names": [
           "/dev/input/mice"
         ],
-        "unix_device_name2": "/dev/input/mouse0",
+        "unix_device_name2": "/dev/input/mouse1",
         "resources": [
           {
             "type": "baud",
@@ -2565,7 +2565,7 @@
     ],
     "network_interface": [
       {
-        "index": 55,
+        "index": 54,
         "attached_to": 0,
         "class_list": [
           "network_interface"
@@ -2587,7 +2587,7 @@
         ]
       },
       {
-        "index": 56,
+        "index": 55,
         "attached_to": 31,
         "class_list": [
           "network_interface"
@@ -2818,8 +2818,8 @@
     ],
     "printer": [
       {
-        "index": 43,
-        "attached_to": 49,
+        "index": 45,
+        "attached_to": 43,
         "class_list": [
           "printer",
           "usb"
@@ -2855,8 +2855,8 @@
         },
         "serial": "ACN2041204913",
         "model": "KONICA MINOLTA 225i",
-        "sysfs_id": "/devices/pci0000:00/0000:00:01.2/0000:12:00.0/usb1/1-8/1-8:1.1",
-        "sysfs_bus_id": "1-8:1.1",
+        "sysfs_id": "/devices/pci0000:00/0000:00:08.1/0000:25:00.3/usb3/3-3/3-3:1.1",
+        "sysfs_bus_id": "3-3:1.1",
         "resources": [
           {
             "type": "baud",
@@ -2897,8 +2897,8 @@
         "module_alias": "usb:v132Bp237Fd0100dc00dsc00dp00ic07isc01ip02in01"
       },
       {
-        "index": 53,
-        "attached_to": 49,
+        "index": 49,
+        "attached_to": 43,
         "class_list": [
           "printer",
           "usb"
@@ -2934,8 +2934,8 @@
         },
         "serial": "583848593034393480",
         "model": "Epson L3210 Series",
-        "sysfs_id": "/devices/pci0000:00/0000:00:01.2/0000:12:00.0/usb1/1-7/1-7:1.1",
-        "sysfs_bus_id": "1-7:1.1",
+        "sysfs_id": "/devices/pci0000:00/0000:00:08.1/0000:25:00.3/usb3/3-4/3-4:1.1",
+        "sysfs_bus_id": "3-4:1.1",
         "resources": [
           {
             "type": "baud",
@@ -3177,52 +3177,178 @@
     "system": {
       "form_factor": "desktop"
     },
-    "unknown": [
+    "usb": [
       {
-        "index": 39,
-        "attached_to": 0,
+        "index": 40,
+        "attached_to": 43,
         "class_list": [
+          "usb",
           "unknown"
         ],
+        "bus_type": {
+          "hex": "0086",
+          "name": "USB",
+          "value": 134
+        },
+        "slot": {
+          "bus": 0,
+          "number": 0
+        },
         "base_class": {
-          "hex": "0007",
-          "name": "Communication controller",
-          "value": 7
+          "hex": "0000",
+          "name": "Unclassified device",
+          "value": 0
         },
         "sub_class": {
           "hex": "0000",
-          "name": "Serial controller",
+          "name": "Unclassified device",
           "value": 0
         },
-        "pci_interface": {
-          "hex": "0002",
-          "name": "16550",
-          "value": 2
+        "vendor": {
+          "hex": "132b",
+          "name": "KONICA MINOLTA",
+          "value": 4907
         },
         "device": {
+          "hex": "237f",
+          "name": "KONICA MINOLTA 225i",
+          "value": 9087
+        },
+        "revision": {
           "hex": "0000",
-          "name": "16550A",
+          "name": "1.00",
           "value": 0
         },
-        "model": "16550A",
-        "unix_device_names": [
-          "/dev/ttyS0"
-        ],
+        "serial": "ACN2041204913",
+        "model": "KONICA MINOLTA 225i",
+        "sysfs_id": "/devices/pci0000:00/0000:00:08.1/0000:25:00.3/usb3/3-3/3-3:1.0",
+        "sysfs_bus_id": "3-3:1.0",
         "resources": [
           {
-            "type": "io",
-            "base": 1016,
-            "range": 0,
-            "enabled": true,
-            "access": "read_write"
+            "type": "baud",
+            "speed": 480000000,
+            "bits": 0,
+            "stop_bits": 0,
+            "parity": 0,
+            "handshake": 0
           }
-        ]
-      }
-    ],
-    "usb": [
+        ],
+        "detail": {
+          "device_class": {
+            "hex": "0000",
+            "name": "per_interface",
+            "value": 0
+          },
+          "device_subclass": {
+            "hex": "0000",
+            "name": "per_interface",
+            "value": 0
+          },
+          "device_protocol": 0,
+          "interface_class": {
+            "hex": "00ff",
+            "name": "vendor_spec",
+            "value": 255
+          },
+          "interface_subclass": {
+            "hex": "00ff",
+            "name": "vendor_spec",
+            "value": 255
+          },
+          "interface_protocol": 255,
+          "interface_number": 0,
+          "interface_alternate_setting": 0
+        },
+        "hotplug": "usb",
+        "module_alias": "usb:v132Bp237Fd0100dc00dsc00dp00icFFiscFFipFFin00"
+      },
       {
         "index": 44,
-        "attached_to": 45,
+        "attached_to": 43,
+        "class_list": [
+          "usb",
+          "unknown"
+        ],
+        "bus_type": {
+          "hex": "0086",
+          "name": "USB",
+          "value": 134
+        },
+        "slot": {
+          "bus": 0,
+          "number": 0
+        },
+        "base_class": {
+          "hex": "0000",
+          "name": "Unclassified device",
+          "value": 0
+        },
+        "sub_class": {
+          "hex": "0000",
+          "name": "Unclassified device",
+          "value": 0
+        },
+        "vendor": {
+          "hex": "04b8",
+          "name": "Epson",
+          "value": 1208
+        },
+        "device": {
+          "hex": "1188",
+          "name": "L3210 Series",
+          "value": 4488
+        },
+        "revision": {
+          "hex": "0000",
+          "name": "1.00",
+          "value": 0
+        },
+        "serial": "583848593034393480",
+        "model": "Epson L3210 Series",
+        "sysfs_id": "/devices/pci0000:00/0000:00:08.1/0000:25:00.3/usb3/3-4/3-4:1.0",
+        "sysfs_bus_id": "3-4:1.0",
+        "resources": [
+          {
+            "type": "baud",
+            "speed": 12000000,
+            "bits": 0,
+            "stop_bits": 0,
+            "parity": 0,
+            "handshake": 0
+          }
+        ],
+        "detail": {
+          "device_class": {
+            "hex": "0000",
+            "name": "per_interface",
+            "value": 0
+          },
+          "device_subclass": {
+            "hex": "0000",
+            "name": "per_interface",
+            "value": 0
+          },
+          "device_protocol": 0,
+          "interface_class": {
+            "hex": "00ff",
+            "name": "vendor_spec",
+            "value": 255
+          },
+          "interface_subclass": {
+            "hex": "00ff",
+            "name": "vendor_spec",
+            "value": 255
+          },
+          "interface_protocol": 255,
+          "interface_number": 0,
+          "interface_alternate_setting": 0
+        },
+        "hotplug": "usb",
+        "module_alias": "usb:v04B8p1188d0100dc00dsc00dp00icFFiscFFipFFin00"
+      },
+      {
+        "index": 46,
+        "attached_to": 51,
         "class_list": [
           "usb",
           "unknown"
@@ -3263,8 +3389,8 @@
         },
         "serial": "6F004300115042523132312000000000",
         "model": "Keychron V1",
-        "sysfs_id": "/devices/pci0000:00/0000:00:08.1/0000:25:00.3/usb3/3-2/3-2:1.1",
-        "sysfs_bus_id": "3-2:1.1",
+        "sysfs_id": "/devices/pci0000:00/0000:00:08.1/0000:25:00.4/usb5/5-1/5-1:1.1",
+        "sysfs_bus_id": "5-1:1.1",
         "resources": [
           {
             "type": "baud",
@@ -3311,174 +3437,6 @@
           "usbhid"
         ],
         "module_alias": "usb:v3434p0311d0200dc00dsc00dp00ic03isc00ip00in01"
-      },
-      {
-        "index": 46,
-        "attached_to": 49,
-        "class_list": [
-          "usb",
-          "unknown"
-        ],
-        "bus_type": {
-          "hex": "0086",
-          "name": "USB",
-          "value": 134
-        },
-        "slot": {
-          "bus": 0,
-          "number": 0
-        },
-        "base_class": {
-          "hex": "0000",
-          "name": "Unclassified device",
-          "value": 0
-        },
-        "sub_class": {
-          "hex": "0000",
-          "name": "Unclassified device",
-          "value": 0
-        },
-        "vendor": {
-          "hex": "04b8",
-          "name": "Epson",
-          "value": 1208
-        },
-        "device": {
-          "hex": "1188",
-          "name": "L3210 Series",
-          "value": 4488
-        },
-        "revision": {
-          "hex": "0000",
-          "name": "1.00",
-          "value": 0
-        },
-        "serial": "583848593034393480",
-        "model": "Epson L3210 Series",
-        "sysfs_id": "/devices/pci0000:00/0000:00:01.2/0000:12:00.0/usb1/1-7/1-7:1.0",
-        "sysfs_bus_id": "1-7:1.0",
-        "resources": [
-          {
-            "type": "baud",
-            "speed": 12000000,
-            "bits": 0,
-            "stop_bits": 0,
-            "parity": 0,
-            "handshake": 0
-          }
-        ],
-        "detail": {
-          "device_class": {
-            "hex": "0000",
-            "name": "per_interface",
-            "value": 0
-          },
-          "device_subclass": {
-            "hex": "0000",
-            "name": "per_interface",
-            "value": 0
-          },
-          "device_protocol": 0,
-          "interface_class": {
-            "hex": "00ff",
-            "name": "vendor_spec",
-            "value": 255
-          },
-          "interface_subclass": {
-            "hex": "00ff",
-            "name": "vendor_spec",
-            "value": 255
-          },
-          "interface_protocol": 255,
-          "interface_number": 0,
-          "interface_alternate_setting": 0
-        },
-        "hotplug": "usb",
-        "module_alias": "usb:v04B8p1188d0100dc00dsc00dp00icFFiscFFipFFin00"
-      },
-      {
-        "index": 50,
-        "attached_to": 49,
-        "class_list": [
-          "usb",
-          "unknown"
-        ],
-        "bus_type": {
-          "hex": "0086",
-          "name": "USB",
-          "value": 134
-        },
-        "slot": {
-          "bus": 0,
-          "number": 0
-        },
-        "base_class": {
-          "hex": "0000",
-          "name": "Unclassified device",
-          "value": 0
-        },
-        "sub_class": {
-          "hex": "0000",
-          "name": "Unclassified device",
-          "value": 0
-        },
-        "vendor": {
-          "hex": "132b",
-          "name": "KONICA MINOLTA",
-          "value": 4907
-        },
-        "device": {
-          "hex": "237f",
-          "name": "KONICA MINOLTA 225i",
-          "value": 9087
-        },
-        "revision": {
-          "hex": "0000",
-          "name": "1.00",
-          "value": 0
-        },
-        "serial": "ACN2041204913",
-        "model": "KONICA MINOLTA 225i",
-        "sysfs_id": "/devices/pci0000:00/0000:00:01.2/0000:12:00.0/usb1/1-8/1-8:1.0",
-        "sysfs_bus_id": "1-8:1.0",
-        "resources": [
-          {
-            "type": "baud",
-            "speed": 480000000,
-            "bits": 0,
-            "stop_bits": 0,
-            "parity": 0,
-            "handshake": 0
-          }
-        ],
-        "detail": {
-          "device_class": {
-            "hex": "0000",
-            "name": "per_interface",
-            "value": 0
-          },
-          "device_subclass": {
-            "hex": "0000",
-            "name": "per_interface",
-            "value": 0
-          },
-          "device_protocol": 0,
-          "interface_class": {
-            "hex": "00ff",
-            "name": "vendor_spec",
-            "value": 255
-          },
-          "interface_subclass": {
-            "hex": "00ff",
-            "name": "vendor_spec",
-            "value": 255
-          },
-          "interface_protocol": 255,
-          "interface_number": 0,
-          "interface_alternate_setting": 0
-        },
-        "hotplug": "usb",
-        "module_alias": "usb:v132Bp237Fd0100dc00dsc00dp00icFFiscFFipFFin00"
       }
     ],
     "usb_controller": [
