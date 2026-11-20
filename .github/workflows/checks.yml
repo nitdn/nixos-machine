@@ -74,6 +74,8 @@ jobs:
           for host in $HOSTS; do
             installables+=(".#nixosConfigurations.${host}.config.system.build.toplevel")
           done
-          nix build -j12 \
+          nix build  \
             "${installables[@]}"
+          nix flake archive github:NixOS/nixpkgs/nixos-unstable --to result-archive/
+          nix flake archive --to result-archive/
           attic push attic-1 -j 12 ./result*
