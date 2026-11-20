@@ -74,6 +74,6 @@ jobs:
           for host in $HOSTS; do
             installables+=(".#nixosConfigurations.${host}.config.system.build.toplevel")
           done
-          nix build -j12 \
+          nix build  \
             "${installables[@]}"
           attic push attic-1 -j 12 ./result*
