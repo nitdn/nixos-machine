@@ -30,31 +30,6 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-      - name: Set up Nix
-        uses: ./.github/actions/setup-nix # zizmor: ignore[self-repository] actionlint does not support `$/` yet
-        with:
-          ts-oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
-          ts-audience: ${{ secrets.TS_AUDIENCE }}
-          cachix-auth-token: ${{ secrets.CACHIX_AUTH_TOKEN }}
-      - name: Check flakes
-        run: |
-          nix flake check --keep-going \
-            --no-allow-import-from-derivation
-
-  build_hosts:
-    name: "Build packages for hosts"
-    runs-on: ubuntu-latest
-    timeout-minutes: 240
-    environment: cachix
-    permissions:
-      contents: read
-      id-token: write # OIDC token for the Tailscale GitHub Action
-    env:
-      HOSTS: "tjmaxxer msi-colgate disko-elysium"
-    steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          persist-credentials: false
       - uses: wimpysworld/nothing-but-nix@b2574ec1cf1462bee0a34de0fb6ff11ad3c43cb2 # v12
       - name: Set up Nix
         uses: ./.github/actions/setup-nix # zizmor: ignore[self-repository] actionlint does not support `$/` yet
@@ -62,18 +37,44 @@ jobs:
           ts-oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
           ts-audience: ${{ secrets.TS_AUDIENCE }}
           cachix-auth-token: ${{ secrets.CACHIX_AUTH_TOKEN }}
-      - name: Set up cache push tokens
+      # Runs in the background so the cache setup and host builds below overlap with
+      # it; the "Wait for flake checks" step at the end fails the job if it failed.
+      - name: Check flakes
+        id: flake-check
+        background: true
         run: |
-          nix profile add github:celler-cache/celler#celler github:Mic92/nix-fast-build#nix-fast-build
-          cellar login "elysium" "https://cache.curlew-rankine.ts.net" ${{ secrets.ATTIC_AUTH_TOKEN }}
+          nix flake check --keep-going \
+            --no-allow-import-from-derivation
+
+      - name: Set up cache push tokens
+        continue-on-error: true
+        env:
+          # celler reads the token from this variable, so it never appears in the command line or the log.
+          CELLER_TOKEN: ${{ secrets.ATTIC_AUTH_TOKEN }}
+        run: |
+          nix profile add \
+            github:celler-cache/celler#celler \
+            github:Mic92/nix-fast-build#nix-fast-build
+          celler login elysium https://cache.curlew-rankine.ts.net
 
       - name: Build machines
+        continue-on-error: true
+        env:
+          HOSTS: "tjmaxxer msi-colgate disko-elysium"
         run: |
           set -euo pipefail
-          installables=()
-          for host in $HOSTS; do
-            installables+=(".#nixosConfigurations.${host}.config.system.build.toplevel")
-          done
+          # One evaluation for all hosts: --flake takes a single path, so point it
+          # at nixosConfigurations and let --select turn the chosen hosts into
+          # their toplevel derivations before nix-eval-jobs traverses them.
+          read -ra hosts <<< "$HOSTS"
+          names=$(printf '"%s" ' "${hosts[@]}")
           nix-fast-build \
-            "${installables[@]}" \
-            --skip-cached --cellar-cache cache-1 --push-build-closure
+            --flake ".#nixosConfigurations" \
+            --select "cfgs: builtins.listToAttrs (map (n: { name = n; value = cfgs.\${n}.config.system.build.toplevel; }) [ ${names}])" \
+            --skip-cached \
+            --celler-cache https://cache.curlew-rankine.ts.net/cache-1 \
+            --push-build-closure \
+            --option extra-experimental-features pipe-operators
+
+      - name: Wait for flake checks
+        wait: flake-check
