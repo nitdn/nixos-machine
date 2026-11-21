@@ -49,14 +49,18 @@ jobs:
           nix flake check --keep-going \
             --no-allow-import-from-derivation
 
+      - continue-on-error: true
+        run: tailscale ping cache.curlew-rankine.ts.net
+
       - name: Set up cache push
         id: celler-watch
         continue-on-error: true
         run: |
-          nix build nixpkgs#hello
-          nix profile add \
-            github:celler-cache/celler#celler \
+          nix build \
             github:Mic92/nix-fast-build#nix-fast-build
+          nix profile add \
+            github:Mic92/nix-fast-build#nix-fast-build \
+            github:celler-cache/celler#celler
           celler login elysium https://cache.curlew-rankine.ts.net
           celler push cache-1 ./result
 
