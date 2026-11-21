@@ -3,6 +3,7 @@
     "affinity-nix": "github:mrshmllow/affinity-nix",
     "bizhub-225i": "https://dl.konicaminolta.eu/en/?tx_kmdownloadproxy_downloadproxy[fileId]=4562fe1cc1a8e069fd2f57714fd11d89&tx_kmdownloadproxy_downloadproxy[documentId]=138755&tx_kmdownloadproxy_downloadproxy[system]=KonicaMinolta&tx_kmdownloadproxy_downloadproxy[language]=EN&type=1558521685",
     "cade": "github:manic-systems/cade/",
+    "celler": "github:celler-cache/celler",
     "disko": "github:nix-community/disko",
     "flake-parts": "github:hercules-ci/flake-parts",
     "helium-browser": "github:schembriaiden/helium-browser-nix-flake",
@@ -41,6 +42,15 @@
     "rev": "ae2aa77f9442209261535c4ee53a67e946ca482d",
     "narHash": "sha256-aaqCFYAXcq59Cl5yo73ERoJqOHDdPqvO2Qfg307hyuc=",
     "lastModified": 1794993519,
+    "public": true
+  },
+  "celler": {
+    "type": "github",
+    "owner": "celler-cache",
+    "repo": "celler",
+    "rev": "590c6bca864a5614dd8b94a0b8862eeefb9d3a77",
+    "narHash": "sha256-G2L8usGIrwlTnVhZZ51hADsHtfjyYsEGgjP7FdV8Z0E=",
+    "lastModified": 1794261439,
     "public": true
   },
   "disko": {

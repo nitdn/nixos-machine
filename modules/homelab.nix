@@ -5,7 +5,12 @@
 # This is a homelab skeleton, please look at modules to see
 # what the homelabs actually use
 
-{ lib, config, ... }:
+{
+  lib,
+  config,
+  inputs,
+  ...
+}:
 let
   module = config.flake.modules.nixos.homelab;
 in
@@ -15,24 +20,39 @@ in
 
     let
       port = config.services.nix-serve.port |> lib.toString;
-      username = config.services.atticd.user;
-      hostname = "cache.curlew-rankine.ts.net";
+      username = config.services.cellerd.user;
+      domainName = "curlew-rankine.ts.net";
+      hostname = "cache.${domainName}";
     in
     {
+      imports = [ inputs.celler.nixosModules.cellerd ];
       # All homelabs will serve their nix stores
       # load balanced by tailscale
       # assuming I ever get more than one homelabs lol
+      #
+      sops.secrets.celler-env = { };
 
-      services.atticd = {
+      services.cellerd = {
         enable = true;
-        environmentFile = "/var/lib/attic/environment";
+        environmentFile = config.sops.secrets.celler-env.path;
         settings = {
           database.url = "postgresql://${username}?host=/run/postgresql";
           allowed-hosts = [ hostname ];
           api-endpoint = "https://${hostname}/";
-        };
-      };
+          storage = {
+            type = "s3";
+            region = "garage";
+            bucket = "celler";
+            endpoint = "https://garage.${domainName}";
+          };
+          garbage-collection.default-retention-period = "12 hours";
 
+          jwt = {
+            rs256-public-key-file = ./celler/public-key.pem;
+          };
+        };
+
+      };
       services.postgresql = {
         ensureDatabases = [ username ];
         ensureUsers = [
@@ -64,8 +84,14 @@ in
 
   flake.modules.nixos = {
     disko-elysium.imports = [ module ];
-    pc = { pkgs, ... }: {
-      environment.systemPackages = [ pkgs.attic-client ];
-    };
+    pc =
+      { pkgs, ... }:
+      let
+        inherit (pkgs.stdenv.hostPlatform) system;
+        clientPackage = inputs.celler.packages.${system}.default;
+      in
+      {
+        environment.systemPackages = [ clientPackage ];
+      };
   };
 }
