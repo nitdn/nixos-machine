@@ -16,11 +16,11 @@ let
   flakeInputs = inputs._meta |> lib.filterAttrs (_name: value: value.type != "fixed");
 in
 {
-  flake.modules.nixos.readOnlyPkgs = { ... }: {
+  flake.modules.nixos.readOnlyPkgs = _: {
     # this needs to be a hardcoded system configuration
     # do not import it in every machine
     nixpkgs.pkgs = withSystem "x86_64-linux" ({ pkgs, ... }: pkgs); # perSystem module arguments
-    imports = [ inputs.nixpkgs.nixosModules.readOnlyPkgs ];
+    # imports = [ inputs.nixpkgs.nixosModules.readOnlyPkgs ];
   };
   flake.modules.nixos.tjmaxxer.imports = [ nixosModules.readOnlyPkgs ];
   flake.modules.nixos.msi-colgate.imports = [ nixosModules.readOnlyPkgs ];
@@ -69,7 +69,6 @@ in
       };
       services.fwupd.enable = true;
       services.btrfs.autoScrub.enable = lib.mkDefault true;
-      hardware.facter.detected.dhcp.enable = false;
       services.gvfs.enable = true;
       services.udisks2.enable = true;
 

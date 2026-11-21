@@ -71,7 +71,6 @@ in
             "sqlfluff-lint"
             "statix"
             "taplo"
-            "typos"
             "typstyle"
             "zizmor"
           ]
