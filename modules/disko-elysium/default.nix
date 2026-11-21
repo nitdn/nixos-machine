@@ -49,6 +49,9 @@ in
           enp0s20f0u1u4 = {
             wakeOnLan.enable = true;
           };
+          enp2s0 = {
+            wakeOnLan.enable = true;
+          };
         };
         firewall = {
           allowedUDPPorts = [ 9 ];
