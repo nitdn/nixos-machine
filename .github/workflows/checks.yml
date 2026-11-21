@@ -23,6 +23,9 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 120
     environment: cachix
+    env:
+      # celler reads the token from this variable, so it never appears in the command line or the log.
+      CELLER_TOKEN: ${{ secrets.CACHE_PUSH_TOKEN }}
     permissions:
       contents: read
       id-token: write # OIDC token for the Tailscale GitHub Action
@@ -46,16 +49,16 @@ jobs:
           nix flake check --keep-going \
             --no-allow-import-from-derivation
 
-      - name: Set up cache push tokens
+      - name: Set up cache push
+        id: celler-watch
         continue-on-error: true
-        env:
-          # celler reads the token from this variable, so it never appears in the command line or the log.
-          CELLER_TOKEN: ${{ secrets.ATTIC_AUTH_TOKEN }}
         run: |
+          nix build nixpkgs#hello
           nix profile add \
             github:celler-cache/celler#celler \
             github:Mic92/nix-fast-build#nix-fast-build
           celler login elysium https://cache.curlew-rankine.ts.net
+          celler push cache-1 ./result
 
       - name: Build machines
         continue-on-error: true
@@ -72,7 +75,7 @@ jobs:
             --flake ".#nixosConfigurations" \
             --select "cfgs: builtins.listToAttrs (map (n: { name = n; value = cfgs.\${n}.config.system.build.toplevel; }) [ ${names}])" \
             --skip-cached \
-            --celler-cache https://cache.curlew-rankine.ts.net/cache-1 \
+            --celler-cache elysium:cache-1 \
             --push-build-closure \
             --option extra-experimental-features pipe-operators
 

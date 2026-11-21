@@ -25,7 +25,7 @@ runs:
         oauth-client-id: ${{ inputs.ts-oauth-client-id }}
         audience: ${{ inputs.ts-audience }}
         tags: tag:ci
-        version: unstable
+        version: latest
         ping: cache.curlew-rankine.ts.net
 
     - name: Install Nix
@@ -37,8 +37,6 @@ runs:
           keep-env-derivations = true
 
           keep-outputs = true
-
-          http-connections = 64
 
           substituters =
           https://nix-community.cachix.org/
