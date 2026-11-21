@@ -17,7 +17,7 @@ let
       authentication = pkgs.lib.mkOverride 10 ''
         # type   database   DBuser    auth-method   optional_ident_map
         # local  all        all       trust
-          local  all        postgres  peer
+          local  all        postgres  peer          map=superuser_map
           local  sameuser   all       peer          map=superuser_map
       '';
     };
