@@ -39,7 +39,6 @@
         ++ lib.attrValues {
           inherit (config.packages) jujutsu-pc;
           inherit (inputs'.tack.packages) tack;
-          inherit (pkgs.lixPackageSets.stable) nix-fast-build;
           inherit (pkgs)
             dix
             github-cli

@@ -21,20 +21,30 @@ in
     let
       port = config.services.nix-serve.port |> lib.toString;
       username = config.services.cellerd.user;
-      hostname = "cache.curlew-rankine.ts.net";
+      domainName = "curlew-rankine.ts.net";
+      hostname = "cache.${domainName}";
     in
     {
       imports = [ inputs.celler.nixosModules.cellerd ];
       # All homelabs will serve their nix stores
       # load balanced by tailscale
       # assuming I ever get more than one homelabs lol
+      #
+      sops.secrets.celler-env = { };
 
       services.cellerd = {
         enable = true;
+        environmentFile = config.sops.secrets.celler-env.path;
         settings = {
           database.url = "postgresql://${username}?host=/run/postgresql";
           allowed-hosts = [ hostname ];
           api-endpoint = "https://${hostname}/";
+          storage = {
+            type = "s3";
+            region = "garage";
+            bucket = "celler";
+            endpoint = "https://garage.${domainName}";
+          };
           garbage-collection.default-retention-period = "12 hours";
 
           jwt = {
