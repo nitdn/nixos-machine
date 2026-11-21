@@ -35,6 +35,7 @@ in
           database.url = "postgresql://${username}?host=/run/postgresql";
           allowed-hosts = [ hostname ];
           api-endpoint = "https://${hostname}/";
+          garbage-collection.default-retention-period = "12 hours";
 
           jwt = {
             rs256-public-key-file = ./celler/public-key.pem;
