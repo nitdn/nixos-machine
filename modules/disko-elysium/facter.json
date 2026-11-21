@@ -326,7 +326,7 @@
         "sysfs_bus_id": "0000:00:1f.0",
         "unix_device_names": [
           "/dev/input/by-path/pci-0000:00:1f.0-platform-PNP0C0D:00-event",
-          "/dev/input/event3"
+          "/dev/input/event2"
         ],
         "detail": {
           "function": 0,
@@ -653,7 +653,7 @@
         "module_alias": "usb:v05C8p038Fd0102dcEFdsc02dp01ic0Eisc02ip00in01"
       },
       {
-        "index": 34,
+        "index": 35,
         "attached_to": 30,
         "class_list": [
           "camera",
@@ -1160,7 +1160,7 @@
     "hub": [
       {
         "index": 28,
-        "attached_to": 33,
+        "attached_to": 34,
         "class_list": [
           "usb",
           "hub"
@@ -1257,7 +1257,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 7.3.4 xhci-hcd",
+          "name": "Linux 7.3.5 xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -1271,7 +1271,7 @@
           "value": 0
         },
         "serial": "0000:00:14.0",
-        "model": "Linux 7.3.4 xhci-hcd xHCI Host Controller",
+        "model": "Linux 7.3.5 xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:14.0/usb1/1-0:1.0",
         "sysfs_bus_id": "1-0:1.0",
         "resources": [
@@ -1323,6 +1323,92 @@
       },
       {
         "index": 33,
+        "attached_to": 30,
+        "class_list": [
+          "usb",
+          "hub"
+        ],
+        "bus_type": {
+          "hex": "0086",
+          "name": "USB",
+          "value": 134
+        },
+        "slot": {
+          "bus": 0,
+          "number": 0
+        },
+        "base_class": {
+          "hex": "010a",
+          "name": "Hub",
+          "value": 266
+        },
+        "vendor": {
+          "hex": "0bda",
+          "name": "Generic",
+          "value": 3034
+        },
+        "device": {
+          "hex": "5411",
+          "name": "USB2.1 Hub",
+          "value": 21521
+        },
+        "revision": {
+          "hex": "0000",
+          "name": "0.02",
+          "value": 0
+        },
+        "model": "Generic USB2.1 Hub",
+        "sysfs_id": "/devices/pci0000:00/0000:00:14.0/usb1/1-1/1-1:1.0",
+        "sysfs_bus_id": "1-1:1.0",
+        "resources": [
+          {
+            "type": "baud",
+            "speed": 480000000,
+            "bits": 0,
+            "stop_bits": 0,
+            "parity": 0,
+            "handshake": 0
+          }
+        ],
+        "detail": {
+          "device_class": {
+            "hex": "0009",
+            "name": "hub",
+            "value": 9
+          },
+          "device_subclass": {
+            "hex": "0000",
+            "name": "per_interface",
+            "value": 0
+          },
+          "device_protocol": 2,
+          "interface_class": {
+            "hex": "0009",
+            "name": "hub",
+            "value": 9
+          },
+          "interface_subclass": {
+            "hex": "0000",
+            "name": "per_interface",
+            "value": 0
+          },
+          "interface_protocol": 2,
+          "interface_number": 0,
+          "interface_alternate_setting": 1
+        },
+        "hotplug": "usb",
+        "driver": "hub",
+        "driver_module": "usbcore",
+        "drivers": [
+          "hub"
+        ],
+        "driver_modules": [
+          "usbcore"
+        ],
+        "module_alias": "usb:v0BDAp5411d0002dc09dsc00dp02ic09isc00ip02in00"
+      },
+      {
+        "index": 34,
         "attached_to": 23,
         "class_list": [
           "usb",
@@ -1344,7 +1430,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 7.3.4 xhci-hcd",
+          "name": "Linux 7.3.5 xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -1358,7 +1444,7 @@
           "value": 0
         },
         "serial": "0000:00:14.0",
-        "model": "Linux 7.3.4 xhci-hcd xHCI Host Controller",
+        "model": "Linux 7.3.5 xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:14.0/usb2/2-0:1.0",
         "sysfs_bus_id": "2-0:1.0",
         "detail": {
@@ -1505,7 +1591,7 @@
     ],
     "mouse": [
       {
-        "index": 40,
+        "index": 41,
         "attached_to": 0,
         "bus_type": {
           "hex": "0008",
@@ -1530,7 +1616,7 @@
           "hex": "0000",
           "value": 0
         },
-        "sysfs_id": "/devices/pci0000:00/0000:00:1f.4/i2c-5/5-002c/rmi4-00/input/input11",
+        "sysfs_id": "/devices/pci0000:00/0000:00:1f.4/i2c-13/13-002c/rmi4-00/input/input8",
         "unix_device_names": [
           "/dev/input/event6",
           "/dev/input/ + handler"
@@ -1851,7 +1937,7 @@
     ],
     "network_interface": [
       {
-        "index": 35,
+        "index": 36,
         "attached_to": 13,
         "class_list": [
           "network_interface"
@@ -1892,7 +1978,7 @@
         ]
       },
       {
-        "index": 36,
+        "index": 37,
         "attached_to": 32,
         "class_list": [
           "network_interface"
@@ -1933,7 +2019,7 @@
         ]
       },
       {
-        "index": 37,
+        "index": 38,
         "attached_to": 0,
         "class_list": [
           "network_interface"
@@ -1955,7 +2041,7 @@
         ]
       },
       {
-        "index": 38,
+        "index": 39,
         "attached_to": 8,
         "class_list": [
           "network_interface"

@@ -47,6 +47,7 @@ in
       networking = {
         interfaces = {
           enp0s20f0u1u4 = {
+            useDHCP = false;
             wakeOnLan.enable = true;
           };
           enp2s0 = {
