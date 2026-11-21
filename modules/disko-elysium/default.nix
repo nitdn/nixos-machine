@@ -49,9 +49,25 @@ in
           enp0s20f0u1u4 = {
             wakeOnLan.enable = true;
           };
+          enp2s0 = {
+            wakeOnLan.enable = true;
+          };
         };
         firewall = {
           allowedUDPPorts = [ 9 ];
+        };
+      };
+      networking.bonds = {
+        bond0 = {
+          interfaces = [
+            "enp2s0"
+            "enp0s20f0u1u4"
+          ];
+          driverOptions = {
+            miimon = "100"; # Monitor MII link every 100ms
+            mode = "802.3ad";
+            xmit_hash_policy = "layer3+4"; # IP and TCP/UDP hash
+          };
         };
       };
 

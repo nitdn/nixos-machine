@@ -1,0 +1,12 @@
+# SPDX-FileCopyrightText: 2025 Nitesh Kumar Debnath <nitkdnath@gmail.com>
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+# actionlint does not know GitHub's parallel-steps keywords (`background`, `wait`)
+# yet (https://github.com/rhysd/actionlint/pull/694). Remove these ignores once
+# a release supports them.
+paths:
+  .github/workflows/checks.yml:
+    ignore:
+      - 'unexpected key "background" for step to run shell command'
+      - 'step must run script with "run" section or run action with "uses" section'

@@ -4,20 +4,26 @@
 #
 _: {
   flake.modules.nixos = {
-    pc = { config, ... }: {
-      services.tailscale.enable = true;
-      networking.firewall = {
-        # Always allow traffic from your Tailscale network
-        trustedInterfaces = [ config.services.tailscale.interfaceName ];
-        # Allow the Tailscale UDP port through the firewall
-        allowedUDPPorts = [ config.services.tailscale.port ];
+    pc =
+      {
+        unstablePkgs,
+        config,
+        lib,
+        ...
+      }:
+      {
+        services.tailscale = {
+          enable = true;
+          package = unstablePkgs.tailscale;
+          useRoutingFeatures = lib.mkDefault "client";
+          openFirewall = true;
+        };
+        networking.firewall = {
+          # Always allow traffic from your Tailscale network
+          trustedInterfaces = [ config.services.tailscale.interfaceName ];
+        };
       };
-    };
     homelab = _: {
-      networking.nat = {
-        enable = true;
-        enableIPv6 = true;
-      };
       services.tsidp = {
         enable = true;
         # OIDC providers tend to use their internal resolvers
