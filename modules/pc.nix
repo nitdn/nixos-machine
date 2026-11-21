@@ -69,7 +69,6 @@ in
       };
       services.fwupd.enable = true;
       services.btrfs.autoScrub.enable = lib.mkDefault true;
-      hardware.facter.detected.dhcp.enable = false;
       services.gvfs.enable = true;
       services.udisks2.enable = true;
 
