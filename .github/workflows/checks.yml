@@ -57,11 +57,12 @@ jobs:
         continue-on-error: true
         run: |
           nix build \
-            github:Mic92/nix-fast-build#nix-fast-build
+            github:Mic92/nix-fast-build#nix-fast-build \
+            github:celler-cache/celler#celler
           nix profile add \
             github:Mic92/nix-fast-build#nix-fast-build \
             github:celler-cache/celler#celler
-          celler login elysium https://cache.curlew-rankine.ts.net "${{ secrets.CACHE_PUSH_TOKEN }}"
+          celler login elysium https://cache.curlew-rankine.ts.net
           celler push cache-1 ./result
 
       - name: Build machines

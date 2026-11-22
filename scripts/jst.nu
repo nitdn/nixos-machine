@@ -21,7 +21,8 @@ export def health [] {
 @category  'Remote operations'
 export def ci [revset: string = @- # The jj revset
 ] {
-  jj bookmark advance
+  # Updating other bookmarks tends to reset checks
+  jj bookmark advance main
 
   jj git push -c ($revset) --remote flake-mirror
 
