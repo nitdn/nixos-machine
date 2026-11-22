@@ -6,7 +6,6 @@
 # what the homelabs actually use
 
 {
-  lib,
   config,
   inputs,
   ...
@@ -19,7 +18,7 @@ in
     { config, pkgs, ... }:
 
     let
-      port = config.services.nix-serve.port |> lib.toString;
+      port = 8080;
       username = config.services.cellerd.user;
       domainName = "curlew-rankine.ts.net";
       hostname = "cache.${domainName}";
@@ -78,7 +77,7 @@ in
         # TODO: > must be a URL starting with one of the supported schemes: [tcp unix]
         # they literally do not support the config they export
         # what a joke
-        services.cache.endpoints."tcp:443" = "tls-terminated-tcp://localhost:${port}";
+        services.cache.endpoints."tcp:443" = "tls-terminated-tcp://localhost:${port |> toString}";
       };
     };
 

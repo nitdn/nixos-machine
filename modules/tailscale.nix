@@ -24,6 +24,7 @@ _: {
         };
       };
     homelab = { unstablePkgs, ... }: {
+      services.tailscale.useRoutingFeatures = "server";
       services.tsidp = {
         enable = true;
         package = unstablePkgs.tsidp;

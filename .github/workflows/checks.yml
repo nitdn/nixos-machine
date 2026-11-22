@@ -65,26 +65,24 @@ jobs:
           ts-oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
           ts-audience: ${{ secrets.TS_AUDIENCE }}
           cachix-auth-token: ${{ secrets.CACHIX_AUTH_TOKEN }}
-
       - name: Ping binary cache
         continue-on-error: true
         run: |
-          tailscale ping cache.curlew-rankine.ts.net
-
+          tailscale ping --peerapi disko-elysium
       - name: Set up cache push
         id: celler-watch
         env:
           # celler reads the token from this variable, so it stays out of the script text and command line.
           CELLER_TOKEN: ${{ secrets.CACHE_PUSH_TOKEN }}
         run: |
-          nix build \
-            github:Mic92/nix-fast-build#nix-fast-build \
-            github:celler-cache/celler#celler
           nix profile add \
-            github:Mic92/nix-fast-build#nix-fast-build \
+            github:Mic92/nix-fast-build#nix-fast-build
+          nix-fast-build \
+            --flake "github:celler-cache/celler#packages.x86_64-linux.celler" --out-link result #\
+            # --option substituters "https://cache.nixos.org https://nix-community.cachix.org"
+          nix profile add \
             github:celler-cache/celler#celler
           celler login elysium https://cache.curlew-rankine.ts.net
-          celler push cache-1 ./result
 
       - name: Build machines
         run: |

@@ -8,10 +8,12 @@ _: {
     let
       username =
         config.systemd.services.technitium-dns-server.serviceConfig.User or "technitium-dns-server";
-      port = lib.toString 5380;
+      port = 5380;
     in
     {
-      services.technitium-dns-server.enable = true;
+      services.technitium-dns-server = {
+        enable = true;
+      };
       systemd.services.technitium-dns-server.serviceConfig.RuntimeDirectory = "technitium";
       services.postgresql = {
         ensureDatabases = [ username ];
@@ -23,6 +25,6 @@ _: {
         ];
       };
       services.tailscale.serve.services.tcdns.endpoints."tcp:443" =
-        "tls-terminated-tcp://localhost:${port}";
+        "tls-terminated-tcp://localhost:${port |> lib.toString}";
     };
 }
