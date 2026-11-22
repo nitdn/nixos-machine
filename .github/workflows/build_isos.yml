@@ -5,12 +5,21 @@ name: "Build installer ISO images"
 on:
   release:
     types: [created]
+
+# No permissions by default; the job below opts in to what it needs.
+permissions: {}
+
+# One run per release tag. Never cancel midway, so a release upload can't be cut off.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   images:
     name: "Build a minimal image"
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: write # Upload the built ISO to the release
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
