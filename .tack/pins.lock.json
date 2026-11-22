@@ -24,9 +24,9 @@
     "type": "github",
     "owner": "mrshmllow",
     "repo": "affinity-nix",
-    "rev": "0eaa225d9ac32a3917e6c8e161de809eb5a3a368",
-    "narHash": "sha256-kXzr6IYA5qovAaa66N9iIqm8DHeRBvKKMf4iPafzzbM=",
-    "lastModified": 1795134435,
+    "rev": "188d9365326b8f820e5c2c46069566ef3dfe3330",
+    "narHash": "sha256-jeh9MU9l5Rn8LSOdBRjsd37xSV01HuiwRSh+TSrBx6g=",
+    "lastModified": 1795305373,
     "public": true
   },
   "bizhub-225i": {
@@ -57,9 +57,10 @@
     "type": "github",
     "owner": "nix-community",
     "repo": "disko",
-    "rev": "1dd30c29c88d99ce295f15e27f93c49bc5fbae07",
-    "narHash": "sha256-h2BYMW4nTFpIqnMd8gwAPFmJAp/1wWLQ6vT0NfL5qt4=",
-    "lastModified": 1794328522
+    "rev": "44761d4f745b95e037458a0e57133c5700c8e320",
+    "narHash": "sha256-D35n2Q2v1KrlF9LS/pFl8Z3EBMJW6qvPw5q4HMbXXLg=",
+    "lastModified": 1795168368,
+    "public": true
   },
   "fenix": {
     "type": "github",
@@ -81,9 +82,9 @@
     "type": "github",
     "owner": "schembriaiden",
     "repo": "helium-browser-nix-flake",
-    "rev": "eda99c0c406b8045a4a3e441f2e9608f1d64ab66",
-    "narHash": "sha256-Dk0aWxK5ypX2MdaV2NB1Kdm33XT9dUsv8VwKjueqa4g=",
-    "lastModified": 1795035810,
+    "rev": "e955e6105a81b44f51d9bc2fcc8e3dc50438fa0b",
+    "narHash": "sha256-YyTpCLnrCZI6CNiB7XxMXk+8A8GPLmIc4qCH2T7O0uU=",
+    "lastModified": 1795297737,
     "public": true
   },
   "inshellah": {
@@ -98,9 +99,9 @@
     "type": "github",
     "owner": "microvm-nix",
     "repo": "microvm.nix",
-    "rev": "d70265960646e506757f8364e8585c17a06050e7",
-    "narHash": "sha256-cK+o/P3zE/1GW68p0URGGaI0mx8fAj2EAyG9CNmOII0=",
-    "lastModified": 1795106485,
+    "rev": "430a46d03ef15f1b8b715fafa85f21847960b783",
+    "narHash": "sha256-mruPu1cqOVBxPiRwrh6r1tnX1OAzMggy+rDk6YuqhK8=",
+    "lastModified": 1795298370,
     "public": true
   },
   "nix-flatpak": {
@@ -121,10 +122,10 @@
   },
   "nixpkgs": {
     "type": "tarball",
-    "url": "https://releases.nixos.org/nixos/26.05/nixos-26.05.14753.3457b69ac4ab/nixexprs.tar.zst?lastModified=1795031880&rev=3457b69ac4aba6d9ea9a743370af160fb502db29",
-    "rev": "3457b69ac4aba6d9ea9a743370af160fb502db29",
-    "narHash": "sha256-TpCexO5p9oBa2et7EEIP6y3vsgieBM3M1U1YyO7oG/U=",
-    "lastModified": 1795031880
+    "url": "https://releases.nixos.org/nixos/26.05/nixos-26.05.14979.94c3211b0ee8/nixexprs.tar.zst?lastModified=1795258312&rev=94c3211b0ee8ba969a3f12eb4aff8ba0f72971dd",
+    "rev": "94c3211b0ee8ba969a3f12eb4aff8ba0f72971dd",
+    "narHash": "sha256-pLM4uV148b0eRALcfeaBoiw7K2M77XPihI0iNzxytAw=",
+    "lastModified": 1795258312
   },
   "run0-sudo-shim": {
     "type": "github",
@@ -171,18 +172,19 @@
     "type": "github",
     "owner": "numtide",
     "repo": "treefmt-nix",
-    "rev": "0ba5d67225c3f5c88eb134e1a665a379bfd3bea9",
-    "narHash": "sha256-WSBJcYjPRxGetDNxVzKnRPs1TQasQQlAC25W/S4W6YE=",
-    "lastModified": 1795017206,
+    "rev": "a0a97e31a897a3537eea5c49df4f8adaa83b3b37",
+    "narHash": "sha256-J8IYl3oEdctyvBgWr+/L01MY5Xm0TU4WXwZDccN5jjk=",
+    "lastModified": 1795173499,
     "public": true
   },
   "wrappers": {
     "type": "github",
     "owner": "nix-community",
     "repo": "nix-wrapper-modules",
-    "rev": "0e23367a94ea83bc678fb510984b369dae02bfd2",
-    "narHash": "sha256-+e+EBD7g4ErCYLjtndYDajwyZGn3P573S3y2fd90gKY=",
-    "lastModified": 1794870394
+    "rev": "e1e6cc3094ce733b82a0b4345c1bd3eb0776a709",
+    "narHash": "sha256-x6Xm7pweplmSNhmrdLMx1oZw8tZzhFoYKsq7f+vHpE4=",
+    "lastModified": 1795270739,
+    "public": true
   },
   "zen-browser": {
     "type": "github",
