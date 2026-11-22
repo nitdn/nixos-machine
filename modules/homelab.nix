@@ -44,7 +44,7 @@ in
             bucket = "celler";
             endpoint = "https://garage.${domainName}";
           };
-          garbage-collection.default-retention-period = "12 hours";
+          garbage-collection.default-retention-period = "8 days";
 
           jwt = {
             rs256-public-key-file = ./celler/public-key.pem;
