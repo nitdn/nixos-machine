@@ -1,0 +1,150 @@
+# SPDX-FileCopyrightText: 2026 Nitesh Kumar Debnath <nitkdnath@gmail.com>
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+name: "Underlay UDP loss"
+
+# Measures UDP loss on the real network underneath Tailscale, not inside the tunnel:
+#   1. tailscale netcheck: UDP reachability / NAT type / DERP latency from the runner.
+#   2. tailscale ping (disco): probe packets sent over the underlay UDP path to the
+#      cache host, so unanswered pings are underlay loss (direct or relayed).
+#   3. iperf3 -u against public servers, over the runner's normal internet route
+#      (no exit node), for loss at a known bitrate. This is runner -> internet only.
+
+on:
+  workflow_dispatch:
+    inputs:
+      host:
+        description: "Cache host on the tailnet (only used for the disco ping probe)"
+        default: "cache.curlew-rankine.ts.net"
+      pings:
+        description: "Number of disco pings (about 1 per second)"
+        default: "60"
+      iperf_servers:
+        description: "Public iperf3 servers, space separated (first one that works is used)"
+        default: "iperf.he.net speedtest.serverius.net"
+      bitrate:
+        description: "iperf3 UDP send rate"
+        default: "10M"
+      duration:
+        description: "iperf3 seconds per direction"
+        default: "10"
+      max_loss:
+        description: "Fail if loss % exceeds this"
+        default: "1"
+
+permissions:
+  contents: read
+
+# Public iperf3 servers accept one test at a time; don't overlap our own runs.
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+
+jobs:
+  underlay-loss:
+    name: "Measure underlay UDP loss"
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment: cachix # same environment as checks.yml, where the TS_* secrets live
+    permissions:
+      contents: read
+      id-token: write # OIDC token for the Tailscale GitHub Action
+    steps:
+      - name: Connect to tailnet
+        uses: tailscale/github-action@064b10558093f38325e838ddea35486bdc6b1d5c # v4.4.0
+        with:
+          oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
+          audience: ${{ secrets.TS_AUDIENCE }}
+          tags: tag:ci
+
+      - name: Install tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq iperf3 jq
+
+      - name: netcheck (underlay UDP, NAT type, DERP latency)
+        run: |
+          tailscale netcheck | tee netcheck.txt
+          {
+            echo "### tailscale netcheck"
+            echo '```'
+            cat netcheck.txt
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Disco ping to cache host (underlay path)
+        env:
+          HOST: ${{ inputs.host }}
+          PINGS: ${{ inputs.pings }}
+          MAX_LOSS: ${{ inputs.max_loss }}
+        run: |
+          # Let NAT traversal settle on a direct path first; early pongs go via DERP.
+          tailscale ping --c=20 --until-direct "$HOST" || true
+
+          tailscale ping --c="$PINGS" --timeout=2s --until-direct=false "$HOST" | tee ping.txt || true
+
+          pongs=$(grep -c '^pong' ping.txt || true)
+          derp=$(grep -c '^pong.* via DERP' ping.txt || true)
+          direct=$(grep -cE '^pong.* via \[?[0-9a-fA-F.:]+\]?:[0-9]+ in' ping.txt || true)
+          lost=$((PINGS - pongs))
+          loss=$(awk -v l="$lost" -v n="$PINGS" 'BEGIN{printf "%.2f", l*100/n}')
+
+          echo "sent=$PINGS answered=$pongs direct=$direct derp=$derp lost=$lost (${loss}%)"
+          {
+            echo "### Disco ping to $HOST"
+            echo "| sent | answered | direct | via DERP | lost | loss |"
+            echo "|---|---|---|---|---|---|"
+            echo "| $PINGS | $pongs | $direct | $derp | $lost | ${loss}% |"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+          [ "$direct" -eq 0 ] && echo "::warning::No direct underlay path to $HOST (all traffic relayed via DERP)"
+          awk -v l="$loss" -v m="$MAX_LOSS" 'BEGIN{exit !(l > m)}' && exit 1 || exit 0
+
+      - name: iperf3 UDP to public server (runner -> internet)
+        env:
+          SERVERS: ${{ inputs.iperf_servers }}
+          BITRATE: ${{ inputs.bitrate }}
+          DURATION: ${{ inputs.duration }}
+          MAX_LOSS: ${{ inputs.max_loss }}
+        run: |
+          fail=0
+          used=""
+          for srv in $SERVERS; do
+            if iperf3 -c "$srv" -u -b "$BITRATE" -t "$DURATION" -J > up.json 2> err.txt \
+               && jq -e '.end.sum.lost_percent != null' up.json > /dev/null; then
+              used="$srv"
+              break
+            fi
+            echo "::warning::iperf3 UDP to $srv failed: $(head -c 200 err.txt || true) $(jq -r '.error // empty' up.json 2>/dev/null)"
+          done
+          [ -n "$used" ] || { echo "::error::no public iperf3 server completed a UDP test"; exit 1; }
+
+          iperf3 -c "$used" -u -b "$BITRATE" -t "$DURATION" -R -J > down.json
+
+          {
+            echo "### iperf3 UDP via $used @ $BITRATE for ${DURATION}s"
+            echo "| direction | lost / total | loss | jitter |"
+            echo "|---|---|---|---|"
+          } >> "$GITHUB_STEP_SUMMARY"
+          for dir in up down; do
+            loss=$(jq -r '.end.sum.lost_percent' "$dir.json")
+            lost=$(jq -r '.end.sum.lost_packets' "$dir.json")
+            total=$(jq -r '.end.sum.packets' "$dir.json")
+            jitter=$(jq -r '.end.sum.jitter_ms * 100 | round / 100' "$dir.json")
+            echo "$dir: lost $lost/$total (${loss}%), jitter ${jitter} ms"
+            echo "| $dir | $lost / $total | ${loss}% | ${jitter} ms |" >> "$GITHUB_STEP_SUMMARY"
+            awk -v l="$loss" -v m="$MAX_LOSS" 'BEGIN{exit !(l > m)}' && fail=1
+          done
+          exit $fail
+
+      - name: Upload raw results
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: underlay-udp-loss
+          path: |
+            netcheck.txt
+            ping.txt
+            *.json
+          if-no-files-found: ignore
