@@ -23,9 +23,10 @@ _: {
           trustedInterfaces = [ config.services.tailscale.interfaceName ];
         };
       };
-    homelab = _: {
+    homelab = { unstablePkgs, ... }: {
       services.tsidp = {
         enable = true;
+        package = unstablePkgs.tsidp;
         # OIDC providers tend to use their internal resolvers
         settings.enableFunnel = true;
 

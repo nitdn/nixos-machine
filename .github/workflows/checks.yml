@@ -18,10 +18,38 @@ concurrency:
   cancel-in-progress: ${{ github.ref_name != github.event.repository.default_branch }}
 
 jobs:
+  # Required: this is the job that decides whether the workflow passes.
   check_flake:
     name: "Run flake checks"
     runs-on: ubuntu-latest
     timeout-minutes: 120
+    environment: cachix
+    permissions:
+      contents: read
+      id-token: write # OIDC token for the Tailscale GitHub Action
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Set up Nix
+        uses: ./.github/actions/setup-nix # zizmor: ignore[self-repository] actionlint does not support `$/` yet
+        with:
+          ts-oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
+          ts-audience: ${{ secrets.TS_AUDIENCE }}
+          cachix-auth-token: ${{ secrets.CACHIX_AUTH_TOKEN }}
+      - name: Check flakes
+        run: |
+          nix flake check --keep-going \
+            --no-allow-import-from-derivation
+
+  # Optional: builds every host and pushes the results to the binary cache. A
+  # failure here is shown on the job but does not fail the workflow run. It runs
+  # in parallel with check_flake.
+  build_hosts:
+    name: "Build hosts and push to cache"
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    continue-on-error: true
     environment: cachix
     permissions:
       contents: read
@@ -37,24 +65,18 @@ jobs:
           ts-oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
           ts-audience: ${{ secrets.TS_AUDIENCE }}
           cachix-auth-token: ${{ secrets.CACHIX_AUTH_TOKEN }}
-      # Runs in the background so the cache setup and host builds below overlap with
-      # it; the "Wait for flake checks" step at the end fails the job if it failed.
-      - name: Check flakes
-        id: flake-check
-        background: true
-        run: |
-          nix flake check --keep-going \
-            --no-allow-import-from-derivation
 
-      - continue-on-error: true
-        run: tailscale ping cache.curlew-rankine.ts.net
+      - name: Ping binary cache
+        continue-on-error: true
+        run: |
+          tailscale debug derp-set-on-demand
+          tailscale ping cache.curlew-rankine.ts.net
 
       - name: Set up cache push
         id: celler-watch
         env:
           # celler reads the token from this variable, so it stays out of the script text and command line.
           CELLER_TOKEN: ${{ secrets.CACHE_PUSH_TOKEN }}
-        continue-on-error: true
         run: |
           nix build \
             github:Mic92/nix-fast-build#nix-fast-build \
@@ -66,7 +88,6 @@ jobs:
           celler push cache-1 ./result
 
       - name: Build machines
-        continue-on-error: true
         run: |
           # One evaluation for every host in the flake: --flake takes a single path,
           # so point it at nixosConfigurations and let --select turn each
@@ -79,6 +100,3 @@ jobs:
             --celler-cache elysium:cache-1 \
             --push-build-closure \
             --option extra-experimental-features pipe-operators
-
-      - name: Wait for flake checks
-        wait: flake-check
