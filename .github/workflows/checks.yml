@@ -30,6 +30,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
+      - uses: wimpysworld/nothing-but-nix@b2574ec1cf1462bee0a34de0fb6ff11ad3c43cb2 # v12
       - name: Set up Nix
         uses: ./.github/actions/setup-nix # zizmor: ignore[self-repository] actionlint does not support `$/` yet
         with:
@@ -59,11 +60,15 @@ jobs:
           nix profile add \
             github:Mic92/nix-fast-build#nix-fast-build
           nix-fast-build \
-            --flake "github:celler-cache/celler#packages.x86_64-linux.celler" --out-link result #\
+            --flake "github:celler-cache/celler#packages.x86_64-linux.celler" \
             # --option substituters "https://cache.nixos.org https://nix-community.cachix.org"
           nix profile add \
             github:celler-cache/celler#celler
           celler login elysium https://cache.curlew-rankine.ts.net
+          nix-fast-build \
+            --flake "github:celler-cache/celler#packages.x86_64-linux.celler" \
+              --rebuild --celler-cache cache-1 --push-build-closure
+            # --option substituters "https://cache.nixos.org https://nix-community.cachix.org"
 
       - name: Build machines
         continue-on-error: true

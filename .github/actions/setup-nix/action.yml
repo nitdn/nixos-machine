@@ -57,4 +57,4 @@ runs:
           cache.forall.systems:5PmD7QO4MSF8YgyRZtkSGXRDo96H3bybIf2SsQh8ScI=
           cache-1:RcZktvtIEXmBcRCaE0SfZziL5OmR153UJHJXf5I+euA=
 
-          extra-experimental-features = pipe-operators
+          extra-experimental-features = pipe-operators nix-command flakes
