@@ -11,6 +11,7 @@
     "microvm": "github:microvm-nix/microvm.nix",
     "nix-flatpak": "github:gmodena/nix-flatpak/?ref=latest",
     "nix-index-database": "github:nix-community/nix-index-database",
+    "nix-unstable": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst",
     "nixpkgs": "https://channels.nixos.org/nixos-26.05/nixexprs.tar.zst",
     "run0-sudo-shim": "github:lordgrimmauld/run0-sudo-shim",
     "sops-nix": "github:Mic92/sops-nix",
@@ -39,9 +40,9 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "cade",
-    "rev": "ae2aa77f9442209261535c4ee53a67e946ca482d",
-    "narHash": "sha256-aaqCFYAXcq59Cl5yo73ERoJqOHDdPqvO2Qfg307hyuc=",
-    "lastModified": 1794993519,
+    "rev": "d1eb4fa146cc9a6ab08a636868bf1d830b327bd4",
+    "narHash": "sha256-OthKDEs7meVsVSD2I53cJfm2GzwPWzc/3JCBCNLBzdc=",
+    "lastModified": 1795426417,
     "public": true
   },
   "celler": {
@@ -91,9 +92,10 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "inshellah",
-    "rev": "f78539f7516c860f14d75995d1a110e8738f4838",
-    "narHash": "sha256-IdUU/fItF5/eXCnO/EgnU10uQRhVrEyDgZRr5+PRPQA=",
-    "lastModified": 1794808966
+    "rev": "57f5f704ed74c015bf1de1aad362e4b2962a3145",
+    "narHash": "sha256-jbFVHGu/tAi0AArVSLh76hBamDOgLZ7RQQA6AG6xoeM=",
+    "lastModified": 1795426402,
+    "public": true
   },
   "microvm": {
     "type": "github",
@@ -121,12 +123,19 @@
     "lastModified": 1795345257,
     "public": true
   },
+  "nix-unstable": {
+    "type": "tarball",
+    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1125864.2786a2a72088/nixexprs.tar.zst?lastModified=1795234589&rev=2786a2a72088ecf32aea5b3ec52099e6a7cff78f",
+    "rev": "2786a2a72088ecf32aea5b3ec52099e6a7cff78f",
+    "narHash": "sha256-pAEASBc6wof0S58XcSEdZoQ2iFQDkCnZwH+wFLrkd1Q=",
+    "lastModified": 1795234589
+  },
   "nixpkgs": {
     "type": "tarball",
-    "url": "https://releases.nixos.org/nixos/26.05/nixos-26.05.14979.94c3211b0ee8/nixexprs.tar.zst?lastModified=1795258312&rev=94c3211b0ee8ba969a3f12eb4aff8ba0f72971dd",
-    "rev": "94c3211b0ee8ba969a3f12eb4aff8ba0f72971dd",
-    "narHash": "sha256-pLM4uV148b0eRALcfeaBoiw7K2M77XPihI0iNzxytAw=",
-    "lastModified": 1795258312
+    "url": "https://releases.nixos.org/nixos/26.05/nixos-26.05.15079.0dc498bfe49b/nixexprs.tar.zst?lastModified=1795370043&rev=0dc498bfe49baeb18b0f9891e800b53bb2603193",
+    "rev": "0dc498bfe49baeb18b0f9891e800b53bb2603193",
+    "narHash": "sha256-RThZ6/XvhVczW74iClJaGo9+fXjvfm5mvvzTy6hrcYU=",
+    "lastModified": 1795370043
   },
   "run0-sudo-shim": {
     "type": "github",
@@ -191,9 +200,9 @@
     "type": "github",
     "owner": "0xc000022070",
     "repo": "zen-browser-flake",
-    "rev": "81376950ac382a96b965f9d6f8bf60354ad99c2f",
-    "narHash": "sha256-xJaT+L8DeMR0TJjAOlrjGqaRG2AjZrjivQfCtiLRtlY=",
-    "lastModified": 1795333741,
+    "rev": "e2e4f8220406ce60d64395cfbf91e2189c894769",
+    "narHash": "sha256-R2BZyn0NAM3maHw1GfzEtHFpUPAuJyg4t8I6Dbuzsjg=",
+    "lastModified": 1795434855,
     "public": true
   }
 }

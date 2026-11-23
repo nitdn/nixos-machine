@@ -8,26 +8,43 @@ let
 in
 {
   flake.modules.nixos = {
-    homelab = _: {
-      services.beszel.hub = {
-        enable = true;
-        environment = {
-          APP_URL = "https://${svcHostname}";
-          TRUSTED_AUTH_HEADER = "Tailscale-User-Login";
-          TRUSTED_PROXY_IPS = "127.0.0.1 ::1";
+    homelab =
+      {
+        unstablePkgs,
+        config,
+        lib,
+        ...
+      }:
+      let
+        cfg = config.services.beszel.hub;
+      in
+      {
+        systemd.services.beszel-hub.serviceConfig = {
+          ExecStartPre = lib.mkForce [
+            "${cfg.package}/bin/beszel-hub migrate up"
+            "${cfg.package}/bin/beszel-hub migrate history-sync"
+          ];
+        };
+        services.beszel.hub = {
+          enable = true;
+          package = unstablePkgs.beszel;
+          environment = {
+            APP_URL = "https://${svcHostname}";
+            TRUSTED_AUTH_HEADER = "Tailscale-User-Login";
+            TRUSTED_PROXY_IPS = "127.0.0.1 ::1";
+          };
         };
       };
-    };
     pc =
       {
         config,
-
+        unstablePkgs,
         ...
       }:
       {
         sops.secrets.beszel = { };
         services.beszel.agent = {
-          # TODO: 26.11 has support for intel gpus
+          package = unstablePkgs.beszel;
           enable = true;
           smartmon.enable = true;
           environmentFile = config.sops.secrets.beszel.path;

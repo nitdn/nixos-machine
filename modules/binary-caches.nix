@@ -6,9 +6,9 @@ let
   binaryCaches = {
     nix.settings = {
       substituters = [
-        "https://nix-community.cachix.org/"
+        # "https://nix-community.cachix.org/"
         "https://cache.manic.systems/"
-        # "https://cache.forall.systems/"
+        "https://cache.forall.systems/"
         # This does build oh god
         "https://cache.curlew-rankine.ts.net/cache-1"
       ];
