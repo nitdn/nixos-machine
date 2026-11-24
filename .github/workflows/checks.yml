@@ -65,10 +65,6 @@ jobs:
           nix profile add \
             github:celler-cache/celler#celler
           celler login elysium https://cache.curlew-rankine.ts.net
-          nix-fast-build \
-            --flake "github:celler-cache/celler#packages.x86_64-linux.celler" \
-              --rebuild --celler-cache cache-1 --push-build-closure
-            # --option substituters "https://cache.nixos.org https://nix-community.cachix.org"
 
       - name: Build machines
         continue-on-error: true

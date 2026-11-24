@@ -44,7 +44,6 @@ runs:
           fallback = true
 
           extra-substituters =
-          # https://nix-community.cachix.org/
           https://cache.manic.systems/
           https://cache.forall.systems/
           https://cache.curlew-rankine.ts.net/cache-1/
