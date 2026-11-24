@@ -157,9 +157,10 @@
     "type": "github",
     "owner": "Mic92",
     "repo": "sops-nix",
-    "rev": "7c637afdccdf9bcf35c4a2d67b58a77c1fd843a4",
-    "narHash": "sha256-Y28AMB8lyKjASdJ0BVsR2AqR1cUsVuo8RVVpzHoECho=",
-    "lastModified": 1794866654
+    "rev": "d5abe5e53200ad48254e8e6bd95e6cef94e66577",
+    "narHash": "sha256-2p8/wnENYHU2Z79Ir/rpq+V1sMI9mSD6xGAlvlbVBUY=",
+    "lastModified": 1795471345,
+    "public": true
   },
   "steam-presence": {
     "type": "github",
@@ -173,9 +174,9 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "tack",
-    "rev": "a992d76e8e9c906a3714b596ba3a9b8386a817d6",
-    "narHash": "sha256-u6gAZW/m9HnyiI/QpupurIB0L3SRUsBDRvrCrJp5EMU=",
-    "lastModified": 1795391791,
+    "rev": "35c1c4cb2653226de6bf7744d648549592ad341a",
+    "narHash": "sha256-sHc/kJwHpMcszaBMniAMAp5CiUEIph6pb49pQ6Amag8=",
+    "lastModified": 1795458252,
     "public": true
   },
   "treefmt-nix": {
@@ -191,18 +192,18 @@
     "type": "github",
     "owner": "nix-community",
     "repo": "nix-wrapper-modules",
-    "rev": "c35c43d2e5be66fe1172a1772fe81d1fa0a6ac96",
-    "narHash": "sha256-ozYI9QzZHThJ6gek0zw3U7VWtbij7GWMoIyKeVUHB04=",
-    "lastModified": 1795379121,
+    "rev": "dd4d2130b3e1df56837b11a9be025fcd2774030c",
+    "narHash": "sha256-F6ZSjFLSS6F3vv71/fIr7PLxQQZHuEcCIVBYDfIis2I=",
+    "lastModified": 1795484136,
     "public": true
   },
   "zen-browser": {
     "type": "github",
     "owner": "0xc000022070",
     "repo": "zen-browser-flake",
-    "rev": "e2e4f8220406ce60d64395cfbf91e2189c894769",
-    "narHash": "sha256-R2BZyn0NAM3maHw1GfzEtHFpUPAuJyg4t8I6Dbuzsjg=",
-    "lastModified": 1795434855,
+    "rev": "21385ea8b9e0c32b0962029b0836af2b621b7800",
+    "narHash": "sha256-rGtp5IIchBAs1SL6UCWRpSJOGNnSwQwV0beeQcd8emc=",
+    "lastModified": 1795509874,
     "public": true
   }
 }

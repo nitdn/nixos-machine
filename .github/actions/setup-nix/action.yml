@@ -46,7 +46,7 @@ runs:
           extra-substituters =
           https://cache.manic.systems/
           https://cache.forall.systems/
-          https://cache.curlew-rankine.ts.net/cache-1/
+          https://cache.curlew-rankine.ts.net/cache-1
 
           system-features = nixos-test benchmark big-parallel kvm
 
