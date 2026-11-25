@@ -83,9 +83,9 @@
     "type": "github",
     "owner": "schembriaiden",
     "repo": "helium-browser-nix-flake",
-    "rev": "e955e6105a81b44f51d9bc2fcc8e3dc50438fa0b",
-    "narHash": "sha256-YyTpCLnrCZI6CNiB7XxMXk+8A8GPLmIc4qCH2T7O0uU=",
-    "lastModified": 1795297737,
+    "rev": "4a6622bb3b0491847a99253646afa88a138bf4cb",
+    "narHash": "sha256-LoWbp7VNJrmUAa+vv0mvS+O/fiw+b4O/fT8WTZrJHpI=",
+    "lastModified": 1795555469,
     "public": true
   },
   "inshellah": {
@@ -201,9 +201,9 @@
     "type": "github",
     "owner": "0xc000022070",
     "repo": "zen-browser-flake",
-    "rev": "21385ea8b9e0c32b0962029b0836af2b621b7800",
-    "narHash": "sha256-rGtp5IIchBAs1SL6UCWRpSJOGNnSwQwV0beeQcd8emc=",
-    "lastModified": 1795509874,
+    "rev": "6c4d107744ba0760c5176a3993115b9842c19249",
+    "narHash": "sha256-kbm3rhM5/EX5AJEPV9Svkcdk9f1RTqfX+YWQvROKX8w=",
+    "lastModified": 1795577370,
     "public": true
   }
 }
