@@ -23,7 +23,6 @@
         ];
         settings = {
           spawn-at-startup = [
-            [ "ckb-next" ]
             [
               "wl-clip-persist"
               "--clipboard"
@@ -100,5 +99,14 @@
           pkgs.xwayland-satellite
         ];
       };
+    tjmaxxer = _: {
+      wrappers.niri-pc.settings.spawn-at-startup = [
+        [
+          "ckb-next"
+          "--background"
+        ]
+
+      ];
+    };
   };
 }

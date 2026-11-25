@@ -8,8 +8,6 @@ let
     services.flatpak.enable = true;
     environment.systemPackages = [ pkgs.gnome-software ];
     services.flatpak.packages = [
-      "cn.wps.wps_365"
-      "org.libreoffice.LibreOffice"
     ];
     services.flatpak.update.auto = {
       enable = true;

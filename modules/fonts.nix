@@ -9,17 +9,6 @@
       config,
       ...
     }:
-    let
-      # Mount options for the bind mounts
-      mountOptions = [
-        "ro"
-        "x-gvfs-hide"
-        # Resolves symlinks as if they were real files
-        # Needed for things like OnlyOffice
-        "resolve-symlinks"
-      ];
-    in
-
     {
       fonts.packages = lib.mkIf config.hardware.graphics.enable [
         pkgs.atkinson-hyperlegible-next
@@ -31,7 +20,6 @@
         pkgs.noto-fonts-color-emoji
 
       ];
-      fonts.enableDefaultPackages = false; # FreeSans is a joke with ligatures
 
       fonts.fontconfig.defaultFonts = lib.mkIf config.hardware.graphics.enable {
         sansSerif = [
@@ -45,40 +33,5 @@
           "Iosevka Extended"
         ];
       };
-      # Bind mounts fonts, icons and themes from
-      # The /run/current-system/sw/share/* paths
-      # to their /usr/share/* equivalents
-
-      # Expose all fonts
-      # under /run/current-system/sw/share/X11/fonts
-      fonts.fontDir = {
-        enable = true;
-        decompressFonts = true;
-      };
-
-      # Flatpak: Bind mounts /usr/share/* directories
-      system.fsPackages = [ pkgs.bindfs ];
-
-      # Fonts
-      fileSystems."/usr/share/fonts" = {
-        device = "/run/current-system/sw/share/X11/fonts";
-        fsType = "fuse.bindfs";
-        options = mountOptions;
-      };
-
-      # Icons
-      fileSystems."/usr/share/icons" = {
-        device = "/run/current-system/sw/share/icons";
-        fsType = "fuse.bindfs";
-        options = mountOptions;
-      };
-
-      # Themes
-      fileSystems."/usr/share/themes" = {
-        device = "/run/current-system/sw/share/themes";
-        fsType = "fuse.bindfs";
-        options = mountOptions;
-      };
-
     };
 }

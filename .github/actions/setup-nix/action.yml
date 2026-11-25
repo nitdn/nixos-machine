@@ -28,11 +28,15 @@ runs:
         version: unstable
         ping: cache.curlew-rankine.ts.net
 
+    - uses: wimpysworld/nothing-but-nix@b2574ec1cf1462bee0a34de0fb6ff11ad3c43cb2 # v12
+
     - name: Install Nix
       uses: cachix/install-nix-action@75c75c31ebece974e48ebc36b4ad125bd97bd97b # v31.11.3
       with:
         nix_path: nixpkgs=channel:nixos-unstable
         extra_nix_config: >
+          build-dir = /nix/build
+
           keep-env-derivations = true
 
           keep-outputs = true

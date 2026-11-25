@@ -38,7 +38,8 @@ let
         pkgs.wineWow64Packages.stagingFull
         pkgs.krita
         unstablePkgs.faugus-launcher
-        pkgs.wpsoffice-cn
+        unstablePkgs.wpsoffice-cn
+        unstablePkgs.libreoffice-qt
         # pkgs.affinity-v3
       ];
       i18n.inputMethod = {
