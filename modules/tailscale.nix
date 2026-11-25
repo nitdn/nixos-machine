@@ -34,15 +34,41 @@ _: {
         ];
 
       };
-    homelab = { unstablePkgs, ... }: {
-      services.tailscale.useRoutingFeatures = "server";
-      services.tsidp = {
-        enable = true;
-        package = unstablePkgs.tsidp;
-        # OIDC providers tend to use their internal resolvers
-        settings.enableFunnel = true;
+    homelab =
+      {
+        unstablePkgs,
+        config,
+        lib,
+        ...
+      }:
+      let
+        cfg = config.tailscale.vips;
+        isV6 = lib.hasInfix ":";
+      in
+      {
+        options.tailscale.vips = lib.mkOption {
+          type = lib.types.listOf lib.types.str;
+          default = [ ];
+          description = "Tailscale Service VIPs (v4 and/or v6) to assign to lo.";
+        };
+        config.networking.interfaces.lo = {
+          ipv4.addresses = map (a: {
+            address = a;
+            prefixLength = 32;
+          }) (lib.filter (a: !isV6 a) cfg);
+          ipv6.addresses = map (a: {
+            address = a;
+            prefixLength = 128;
+          }) (lib.filter isV6 cfg);
+        };
+        config.services.tailscale.useRoutingFeatures = "server";
+        config.services.tsidp = {
+          enable = true;
+          package = unstablePkgs.tsidp;
+          # OIDC providers tend to use their internal resolvers
+          settings.enableFunnel = true;
 
+        };
       };
-    };
   };
 }

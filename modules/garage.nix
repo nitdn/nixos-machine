@@ -36,5 +36,10 @@ _: {
           reverse_proxy :3900
         '';
       };
+
+      tailscale.vips = [
+        "100.66.247.71"
+        "fd7a:115c:a1e0::ef3a:f748"
+      ];
     };
 }
