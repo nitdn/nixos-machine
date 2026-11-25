@@ -52,27 +52,23 @@ jobs:
           tailscale ping --peerapi disko-elysium
       - name: Set up nix-fast-build
         continue-on-error: true
-        run: |
-          nix profile add \
-            github:Mic92/nix-fast-build#nix-fast-build
-          # nix-fast-build \
-          #   --flake "github:celler-cache/celler#packages.x86_64-linux.celler" \
-          #   # --option substituters "https://cache.nixos.org https://nix-community.cachix.org"
-          # nix profile add \
-          #   github:celler-cache/celler#celler
-          # celler login elysium https://cache.curlew-rankine.ts.net
-
-      - name: Build machines
-        continue-on-error: true
         env:
           # celler reads the token from this variable, so it stays out of the script text and command line.
           CELLER_TOKEN: ${{ secrets.CACHE_PUSH_TOKEN }}
         run: |
-          nix-fast-build \
-            --flake "github:celler-cache/celler#packages.x86_64-linux.celler"
           nix profile add \
+            github:Mic92/nix-fast-build#nix-fast-build \
             github:celler-cache/celler#celler
           celler login elysium https://cache.curlew-rankine.ts.net
+          nix-fast-build \
+            celler-cache elysium:cache-1 \
+            --push-build-closure \
+            --skip-cached \
+            --flake "github:celler-cache/celler#packages.x86_64-linux.default" \
+            --flake "github:Mic92/nix-fast-build#nix-fast-build#packages.x86_64-linux.default"
+      - name: Build machines
+        continue-on-error: true
+        run: |
           # One evaluation for every host in the flake: --flake takes a single path,
           # so point it at nixosConfigurations and let --select turn each
           # configuration into its toplevel derivation before nix-eval-jobs
