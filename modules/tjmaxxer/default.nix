@@ -71,6 +71,7 @@ in
         enable = false;
         isNormalUser = true;
       };
+      users.groups.${username}.gid = 60429; # hardcoded by homed
       fileSystems."/" = {
         device = "/dev/disk/by-partlabel/nixos-root-b";
         fsType = "btrfs";

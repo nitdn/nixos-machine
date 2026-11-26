@@ -5,6 +5,7 @@
 {
   lib,
   inputs,
+  config,
   ...
 }:
 let
@@ -14,6 +15,7 @@ let
       47621 # Voices of the Void multiplayer
     ];
   };
+  inherit (config.meta) username;
 in
 
 {
@@ -114,7 +116,7 @@ in
       };
     };
     tjmaxxer =
-      { pkgs, ... }:
+      { pkgs, config, ... }:
       {
         imports = [ inputs.steam-presence.nixosModules.steam-presence ];
         programs.steam = {
@@ -122,7 +124,7 @@ in
             enable = true;
             # Either set the key directly (not recommended) or via file/secret
             # steamApiKey = "YOUR_STEAM_WEB_API_KEY";
-            steamApiKeyFile = "/%S/steam-presence/steam-web-apiKey"; # e.g. from agenix/sops
+            steamApiKeyFile = config.sops.secrets.steam-web-apiKey.path; # e.g. from agenix/sops
             userIds = [ "76561198809805717" ];
             localGames = {
               enable = true;
@@ -139,6 +141,8 @@ in
           };
         };
         sops.secrets.steam-web-apiKey = {
+          group = username;
+          mode = "0440";
         };
       };
   };

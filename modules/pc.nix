@@ -149,6 +149,8 @@ in
         packages = lib.attrValues { inherit (pkgs) vlc github-cli; };
       };
 
+      users.groups.${username} = { };
+
       documentation.dev.enable = true;
       programs.appimage.enable = true;
       programs.appimage.package = pkgs.appimage-run.override {
