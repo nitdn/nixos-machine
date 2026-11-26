@@ -4,7 +4,7 @@
 
 _: {
   flake.modules.nixos.homelab =
-    { config, lib, ... }:
+    { config, ... }:
     let
       username =
         config.systemd.services.technitium-dns-server.serviceConfig.User or "technitium-dns-server";
@@ -24,7 +24,6 @@ _: {
           }
         ];
       };
-      services.tailscale.serve.services.tcdns.endpoints."tcp:443" =
-        "tls-terminated-tcp://localhost:${port |> lib.toString}";
+      caddyProxy.tcdns = port;
     };
 }

@@ -40,17 +40,25 @@ in
       };
       sops.secrets.forgejo-runner-token = { };
     };
-  flake.modules.nixos.pc =
-    { pkgs, config, ... }:
-    {
-      imports = [ podman ];
-      users.users.${username} = {
-        extraGroups = [
-          "podman"
-        ];
+  flake.modules.nixos = {
+    pc =
+      { pkgs, config, ... }:
+      {
+        imports = [ podman ];
+        users.users.${username} = {
+          extraGroups = [
+            "podman"
+          ];
+        };
+        environment.systemPackages = lib.mkIf config.hardware.graphics.enable [ pkgs.distrobox ];
       };
-      environment.systemPackages = lib.mkIf config.hardware.graphics.enable [ pkgs.distrobox ];
+    homelab = _: {
+      services.forgejo = {
+        # enable = true;
+
+      };
     };
+  };
   # perSystem =
   #   { pkgs, ... }:
   #   {
