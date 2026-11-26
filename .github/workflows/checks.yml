@@ -59,6 +59,13 @@ jobs:
             github:Mic92/nix-fast-build#nix-fast-build \
             github:celler-cache/celler#celler
           celler login elysium https://cache.curlew-rankine.ts.net
+          nix-fast-build \
+            --flake "github:Mic92/nix-fast-build#packages.x86_64-linux.default" \
+            --flake "github:celler-cache/celler#packages.x86_64-linux.default" \
+            --skip-cached \
+            --celler-cache elysium:cache-1 \
+            --push-build-closure \
+            --option extra-experimental-features pipe-operators
       - name: Build machines
         continue-on-error: true
         run: |

@@ -73,7 +73,8 @@ in
       nix.settings.trusted-users = [ "gh-runner" ];
 
       services.tailscale.serve = {
-        enable = false;
+        enable = true;
+        configFile = ./tailscale-serve.json;
         # TODO: > must be a URL starting with one of the supported schemes: [tcp unix]
         # they literally do not support the config they export
         # what a joke

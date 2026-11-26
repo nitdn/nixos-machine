@@ -1,0 +1,63 @@
+{
+  "Services": {
+    "svc:cache": {
+      "TCP": {
+        "443": {
+          "HTTPS": true
+        }
+      },
+      "Web": {
+        "cache.curlew-rankine.ts.net:443": {
+          "Handlers": {
+            "/": {
+              "Proxy": "http://localhost:8080"
+            }
+          }
+        }
+      }
+    },
+    "svc:freshrss": {
+      "TCP": {
+        "443": {
+          "TCPForward": "localhost:443",
+          "ProxyProtocol": 2
+        }
+      }
+    },
+    "svc:garage": {
+      "Tun": true
+    },
+    "svc:status": {
+      "TCP": {
+        "443": {
+          "HTTPS": true
+        }
+      },
+      "Web": {
+        "status.curlew-rankine.ts.net:443": {
+          "Handlers": {
+            "/": {
+              "Proxy": "http://localhost:8090"
+            }
+          }
+        }
+      }
+    },
+    "svc:tcdns": {
+      "TCP": {
+        "443": {
+          "HTTPS": true
+        }
+      },
+      "Web": {
+        "tcdns.curlew-rankine.ts.net:443": {
+          "Handlers": {
+            "/": {
+              "Proxy": "http://localhost:5380"
+            }
+          }
+        }
+      }
+    }
+  }
+}
