@@ -8,12 +8,10 @@ _: {
     {
       pkgs,
       config,
-      lib,
       ...
     }:
     let
-      username = config.services.freshrss.user or "freshrss";
-      port = lib.toString 80; # always http
+      username = config.services.freshrss.user or "freshrss"; # always http
       tailnet_name = "curlew-rankine.ts.net";
       virtualHost = "${username}.${tailnet_name}";
       inherit (pkgs) freshrss-extensions;
@@ -105,6 +103,7 @@ _: {
         };
       };
 
-      services.tailscale.serve.services.freshrss.endpoints."tcp:443" = "tcp://localhost:${port}";
+      services.tailscale.serve.services.freshrss.endpoints."tcp:443" = "tcp://localhost:443";
+      services.tailscale.serve.services.freshrss.endpoints."tcp:80" = "tcp://localhost:80";
     };
 }

@@ -17,6 +17,7 @@ in
       }:
       let
         cfg = config.services.beszel.hub;
+        inherit (cfg) port;
       in
       {
         systemd.services.beszel-hub.serviceConfig = {
@@ -30,10 +31,11 @@ in
           package = unstablePkgs.beszel;
           environment = {
             APP_URL = "https://${svcHostname}";
-            TRUSTED_AUTH_HEADER = "Tailscale-User-Login";
+            TRUSTED_AUTH_HEADER = "X-Webauth-User";
             TRUSTED_PROXY_IPS = "127.0.0.1 ::1";
           };
         };
+        caddyProxy.status = port;
       };
     pc =
       {
