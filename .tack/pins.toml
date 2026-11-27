@@ -14,17 +14,22 @@ codeberg-tarball = "https://codeberg.org/{path}/archive/main.tar.gz"
 # all_follow maps input names to the top-level pin they follow
 # opt out per-input with exclude_follow
 [all_follow]
-# nixpkgs = "nixpkgs"
 # Nixpkgs is completely cooked, defer to whatever lockfiles they have
-# nixpkgs = ["nixpkgs", "nixpkgs-lib"]
-wrappers = "wrappers"
-rust-analyzer-src = "rust-analyzer"
+nixpkgs = ["nixpkgs-stable", "nixpkgs-lib"]
+# wrappers = "wrappers"
 treefmt-nix = "treefmt-nix"
+flake-parts = "flake-parts"
+
+# auto-dedup (no top-level pin needed):
 fenix = "fenix"
-# flake-utils = ["utils"]
+rust-analyzer-src = "rust-analyzer"
+crane = "crane"
+systems = "default"
+flake-utils = ["utils"]
+git-hooks = "git-hooks"
 
 [omit_inputs]
-names = ["flake-compat", "cachix"]
+names = ["flake-compat", "cachix", "home-manager"]
 
 # inputs.<name> fields
 #   url             required, shorturl ok, ?rev=<sha> pins an exact commit
@@ -50,6 +55,7 @@ url = "github:hercules-ci/flake-parts"
 
 [inputs.inshellah]
 url = "github:manic-systems/inshellah/"
+exclude_follow = ["nixpkgs"]
 
 [inputs.microvm]
 url = "github:microvm-nix/microvm.nix"
