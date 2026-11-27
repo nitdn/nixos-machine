@@ -104,3 +104,4 @@ url = "github:celler-cache/celler"
 
 [tack]
 recomposable = true
+fetch_mode = "build"
