@@ -31,7 +31,7 @@ in
           environment = {
             APP_URL = "https://${svcHostname}";
             TRUSTED_AUTH_HEADER = "Tailscale-User-Login";
-            TRUSTED_PROXY_IPS = "127.0.0.1 ::1";
+            TRUSTED_PROXY_IPS = "127.0.0.1, ::1, 100.64.0.0/16";
           };
         };
       };
