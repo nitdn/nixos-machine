@@ -21,6 +21,7 @@ let
         AllowUsers = [
           username
           "sandbox"
+          "forgejo"
         ];
       };
     };
@@ -38,6 +39,9 @@ in
         services.avahi.extraServiceFiles.ssh = "${pkgs.avahi}/etc/avahi/services/ssh.service";
       };
     vps = {
+      imports = [ secureSSH ];
+    };
+    homelab = {
       imports = [ secureSSH ];
     };
     iso =

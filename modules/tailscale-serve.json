@@ -27,6 +27,25 @@
     "svc:garage": {
       "Tun": true
     },
+    "svc:git": {
+      "TCP": {
+        "22": {
+          "TCPForward": "localhost:22"
+        },
+        "443": {
+          "HTTPS": true
+        }
+      },
+      "Web": {
+        "git.curlew-rankine.ts.net:443": {
+          "Handlers": {
+            "/": {
+              "Proxy": "http://localhost:3000"
+            }
+          }
+        }
+      }
+    },
     "svc:status": {
       "TCP": {
         "443": {
