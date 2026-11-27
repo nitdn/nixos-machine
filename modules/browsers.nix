@@ -75,6 +75,18 @@ let
           IconURL = "https://noogle.dev/favicon.ico";
           Alias = "@ng";
         }
+        {
+          Name = "Tailscale services";
+          URLTemplate = "http://go/ts/{searchTerms}";
+          IconURL = "https://ts.net/favicon.ico";
+          Alias = "@ts";
+        }
+        {
+          Name = "golinks (Tailscale shortener)";
+          URLTemplate = "http://go/{searchTerms}";
+          IconURL = "http://go/.static/favicon.svg";
+          Alias = "@go";
+        }
       ];
     };
   };
