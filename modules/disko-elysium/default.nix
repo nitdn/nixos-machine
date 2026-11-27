@@ -46,8 +46,7 @@ in
 
       networking = {
         interfaces = {
-          enp0s20f0u1u4 = {
-            useDHCP = false;
+          enp0s20f0u1c2 = {
             wakeOnLan.enable = true;
           };
           enp2s0 = {
@@ -58,20 +57,20 @@ in
           allowedUDPPorts = [ 9 ];
         };
       };
-      # networking.bonds = {
-      #   bond0 = {
-      #     interfaces = [
-      #       "enp2s0"
-      #       "enp0s20f0u1u4"
-      #     ];
-      #     driverOptions = {
-      #       miimon = "100"; # Monitor MII link every 100ms
-      #       # mode = "balance-alb";
-      #       mode = "802.3ad";
-      #       xmit_hash_policy = "layer3+4"; # IP and TCP/UDP hash
-      #     };
-      #   };
-      # };
+      networking.bonds = {
+        bond0 = {
+          interfaces = [
+            "enp2s0"
+            "enp0s20f0u1c2"
+          ];
+          driverOptions = {
+            miimon = "100"; # Monitor MII link every 100ms
+            # mode = "balance-alb";
+            mode = "802.3ad";
+            xmit_hash_policy = "layer3+4"; # IP and TCP/UDP hash
+          };
+        };
+      };
 
       services.auto-cpufreq.enable = true;
       services.auto-cpufreq.settings = {
