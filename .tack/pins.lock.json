@@ -25,9 +25,9 @@
     "type": "github",
     "owner": "mrshmllow",
     "repo": "affinity-nix",
-    "rev": "188d9365326b8f820e5c2c46069566ef3dfe3330",
-    "narHash": "sha256-jeh9MU9l5Rn8LSOdBRjsd37xSV01HuiwRSh+TSrBx6g=",
-    "lastModified": 1795305373,
+    "rev": "a0431c17144d14c8c9a54efd545ac22019088239",
+    "narHash": "sha256-pWbW6NLav9bEY0bvQhpGGJncvvLpGfQIx2REQk8gwX8=",
+    "lastModified": 1795743519,
     "public": true
   },
   "bizhub-225i": {
@@ -83,9 +83,9 @@
     "type": "github",
     "owner": "schembriaiden",
     "repo": "helium-browser-nix-flake",
-    "rev": "4a6622bb3b0491847a99253646afa88a138bf4cb",
-    "narHash": "sha256-LoWbp7VNJrmUAa+vv0mvS+O/fiw+b4O/fT8WTZrJHpI=",
-    "lastModified": 1795555469,
+    "rev": "b1ba6fd0405a1ca3e3a5a82b9d032a8614335fa6",
+    "narHash": "sha256-ILMSThKtQqMuBGWAhi7tMZkzmdXM1Kpgpi5J1R1q4ug=",
+    "lastModified": 1795679031,
     "public": true
   },
   "inshellah": {
@@ -174,9 +174,9 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "tack",
-    "rev": "147cec2879505729dbcf2d8ff9848be19b6f7094",
-    "narHash": "sha256-qGjfI0mOgZ1WXjocPeDCL0WqjWy2v0/VyMgYqwfmf6k=",
-    "lastModified": 1795654496,
+    "rev": "673997981720feebb3870645932b6cfe6657db9f",
+    "narHash": "sha256-iRVnAKvQh5vC76QppovlxTklJf98EA+GYEY91loasy4=",
+    "lastModified": 1795748364,
     "public": true
   },
   "treefmt-nix": {
