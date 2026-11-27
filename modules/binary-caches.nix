@@ -9,6 +9,7 @@ let
         # "https://nix-community.cachix.org/"
         "https://cache.manic.systems/"
         "https://cache.forall.systems/"
+        "https://nix-community.cachix.org/"
         # This does build oh god
         "https://cache.curlew-rankine.ts.net/cache-1"
       ];
