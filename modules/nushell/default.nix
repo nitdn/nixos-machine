@@ -39,6 +39,26 @@ in
         "config.nu".content = ''
           source ${zoxide-nushell}
           alias y = yazi
+
+
+          $env.config.hooks.env_change.PWD = (
+              ($env.config.hooks.env_change.PWD? | default []) ++ [
+                  {
+                      condition: {|before, after| ($after | path join "scripts" "mod.nu" | path exists) }
+                      code: 'overlay use ./scripts'
+                  }
+                  {
+                      condition: {|before, after|
+                          (
+                              ($before != null)
+                              and ($before | path join "scripts" "mod.nu" | path exists)
+                              and not ($after | path join "scripts" "mod.nu" | path exists)
+                          )
+                      }
+                      code: 'try { overlay hide --keep-env [PWD] scripts }'
+                  }
+              ]
+          )
         '';
       };
     modules.nixos.pc =
